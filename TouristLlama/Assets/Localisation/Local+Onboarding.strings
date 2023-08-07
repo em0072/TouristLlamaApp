@@ -1,0 +1,38 @@
+/* 
+  Local+Onboarding.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 07/08/2023.
+  
+*/
+
+// MARK: - Features
+"featureFindPeople" = "Find like-minded people to travel with";
+"featurePlanTrip" = "Plan your next trip together";
+
+// MARK: - Welcom
+"getStarted" = "Get Started";
+"quickLogin" = "Quick Login";
+"terms" = "Terms & Conditions";
+
+// MARK: - Register
+"registerTitle" = "Hi,\nWelcome!";
+"registerSubtitle" = "Find like-minded people to travel with and share new experiences together.";
+"register" = "Register";
+"acceptTermsText" = "By creating an account you accept our";
+
+
+"fullName" = "Full Name";
+"email" = "E-mail";
+"password" = "Password";
+
+"alreadyHaveAccount" = "Already have an account?";
+"logIn" = "Log In";
+
+// MARK: - Log In
+"loginTitle" = "Hi,\nWelcome back!";
+"forgotPasswordPrompt" = "Forgot your password?";
+"noAccountPrompt" = "Don't have an account?";
+"signUp" = "Sign Up";
+
+
