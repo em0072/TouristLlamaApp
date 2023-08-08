@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
 		75BC4A482A80E88A00B6F6CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BC4A472A80E88A00B6F6CE /* Assets.xcassets */; };
@@ -31,6 +32,22 @@
 		75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A8B2A8116FE00B6F6CE /* Router.swift */; };
 		75BC4A8E2A811ABC00B6F6CE /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A8D2A811ABC00B6F6CE /* LogInView.swift */; };
 		75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A8F2A811ACA00B6F6CE /* LogInViewModel.swift */; };
+		75ED79E52A82606D0078D103 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79E42A82606D0078D103 /* UserAPI.swift */; };
+		75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 75ED79E82A8260AA0078D103 /* Dependencies */; };
+		75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79EA2A8260B40078D103 /* Dependencies.swift */; };
+		75ED79EE2A8261130078D103 /* UserAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79ED2A8261130078D103 /* UserAPIProvider.swift */; };
+		75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79EF2A82616B0078D103 /* UserAPIBackendless.swift */; };
+		75ED79F32A8262430078D103 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79F22A8262430078D103 /* User.swift */; };
+		75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79F52A8267970078D103 /* EmailConfirmationView.swift */; };
+		75ED79FD2A826CBD0078D103 /* UserAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79FC2A826CBD0078D103 /* UserAPIMock.swift */; };
+		75ED7A002A826FFC0078D103 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 75ED79FF2A826FFC0078D103 /* AlertToast */; };
+		75ED7A032A8270390078D103 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A022A8270390078D103 /* Loading.swift */; };
+		75ED7A052A8270720078D103 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A042A8270720078D103 /* Error.swift */; };
+		75ED7A072A8270C50078D103 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A062A8270C50078D103 /* ViewModel.swift */; };
+		75ED7A0A2A8277C90078D103 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A092A8277C90078D103 /* CustomError.swift */; };
+		75ED7A0C2A8278540078D103 /* Local+Error.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75ED7A0B2A8278540078D103 /* Local+Error.strings */; };
+		75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A0D2A8278640078D103 /* Local+Error.swift */; };
+		75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A0F2A8279350078D103 /* UserAPIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +76,20 @@
 		75BC4A8B2A8116FE00B6F6CE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		75BC4A8D2A811ABC00B6F6CE /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		75BC4A8F2A811ACA00B6F6CE /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		75ED79E42A82606D0078D103 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		75ED79EA2A8260B40078D103 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		75ED79ED2A8261130078D103 /* UserAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIProvider.swift; sourceTree = "<group>"; };
+		75ED79EF2A82616B0078D103 /* UserAPIBackendless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIBackendless.swift; sourceTree = "<group>"; };
+		75ED79F22A8262430078D103 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		75ED79F52A8267970078D103 /* EmailConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationView.swift; sourceTree = "<group>"; };
+		75ED79FC2A826CBD0078D103 /* UserAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIMock.swift; sourceTree = "<group>"; };
+		75ED7A022A8270390078D103 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		75ED7A042A8270720078D103 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		75ED7A062A8270C50078D103 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		75ED7A092A8277C90078D103 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		75ED7A0B2A8278540078D103 /* Local+Error.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Local+Error.strings"; sourceTree = "<group>"; };
+		75ED7A0D2A8278640078D103 /* Local+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Error.swift"; sourceTree = "<group>"; };
+		75ED7A0F2A8279350078D103 /* UserAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75ED7A002A826FFC0078D103 /* AlertToast in Frameworks */,
+				7565F0562A81465300B796A1 /* Backendless in Frameworks */,
+				75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +125,8 @@
 		75BC4A422A80E88800B6F6CE /* TouristLlama */ = {
 			isa = PBXGroup;
 			children = (
+				75ED79FB2A826CAA0078D103 /* Mock */,
+				75ED79F12A82623A0078D103 /* Models */,
 				75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */,
 				75BC4A452A80E88800B6F6CE /* ContentView.swift */,
 				75BC4A682A80ED0B00B6F6CE /* Builders */,
@@ -124,9 +160,10 @@
 		75BC4A522A80E92C00B6F6CE /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				75BC4A552A80E94E00B6F6CE /* Register */,
-				75BC4A542A80E94900B6F6CE /* Login */,
 				75BC4A532A80E93F00B6F6CE /* Onboard */,
+				75BC4A552A80E94E00B6F6CE /* Register */,
+				75ED79F42A8267840078D103 /* EmailConfirmation */,
+				75BC4A542A80E94900B6F6CE /* Login */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -136,7 +173,6 @@
 			children = (
 				75BC4A562A80E95C00B6F6CE /* OnboardView.swift */,
 				75BC4A5E2A80EAC300B6F6CE /* OnboardViewModel.swift */,
-				75BC4A602A80EB8600B6F6CE /* Subviews */,
 			);
 			path = Onboard;
 			sourceTree = "<group>";
@@ -180,13 +216,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		75BC4A602A80EB8600B6F6CE /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Subviews;
-			sourceTree = "<group>";
-		};
 		75BC4A632A80EBDE00B6F6CE /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +237,11 @@
 		75BC4A672A80ED0300B6F6CE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				75ED79EA2A8260B40078D103 /* Dependencies.swift */,
 				75BC4A8B2A8116FE00B6F6CE /* Router.swift */,
+				75ED79EC2A8260DB0078D103 /* Backendless */,
+				75ED79E62A8260700078D103 /* API */,
+				75ED7A012A8270290078D103 /* ViewState */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -226,6 +259,8 @@
 			children = (
 				75BC4A6E2A80EE9F00B6F6CE /* Local+Onboarding.strings */,
 				75BC4A702A80EEB700B6F6CE /* Local+Onboarding.swift */,
+				75ED7A0B2A8278540078D103 /* Local+Error.strings */,
+				75ED7A0D2A8278640078D103 /* Local+Error.swift */,
 			);
 			path = Localisation;
 			sourceTree = "<group>";
@@ -271,6 +306,59 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		75ED79E62A8260700078D103 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				75ED79ED2A8261130078D103 /* UserAPIProvider.swift */,
+				75ED79E42A82606D0078D103 /* UserAPI.swift */,
+				75ED7A0F2A8279350078D103 /* UserAPIError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		75ED79EC2A8260DB0078D103 /* Backendless */ = {
+			isa = PBXGroup;
+			children = (
+				75ED79EF2A82616B0078D103 /* UserAPIBackendless.swift */,
+			);
+			path = Backendless;
+			sourceTree = "<group>";
+		};
+		75ED79F12A82623A0078D103 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				75ED79F22A8262430078D103 /* User.swift */,
+				75ED7A092A8277C90078D103 /* CustomError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		75ED79F42A8267840078D103 /* EmailConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				75ED79F52A8267970078D103 /* EmailConfirmationView.swift */,
+			);
+			path = EmailConfirmation;
+			sourceTree = "<group>";
+		};
+		75ED79FB2A826CAA0078D103 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				75ED79FC2A826CBD0078D103 /* UserAPIMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		75ED7A012A8270290078D103 /* ViewState */ = {
+			isa = PBXGroup;
+			children = (
+				75ED7A062A8270C50078D103 /* ViewModel.swift */,
+				75ED7A022A8270390078D103 /* Loading.swift */,
+				75ED7A042A8270720078D103 /* Error.swift */,
+			);
+			path = ViewState;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,6 +375,11 @@
 			dependencies = (
 			);
 			name = TouristLlama;
+			packageProductDependencies = (
+				7565F0552A81465300B796A1 /* Backendless */,
+				75ED79E82A8260AA0078D103 /* Dependencies */,
+				75ED79FF2A826FFC0078D103 /* AlertToast */,
+			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
 			productType = "com.apple.product-type.application";
@@ -315,6 +408,11 @@
 				Base,
 			);
 			mainGroup = 75BC4A372A80E88800B6F6CE;
+			packageReferences = (
+				7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */,
+				75ED79E72A8260AA0078D103 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+				75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -334,6 +432,7 @@
 				75BC4A6F2A80EE9F00B6F6CE /* Local+Onboarding.strings in Resources */,
 				75BC4A4B2A80E88A00B6F6CE /* Preview Assets.xcassets in Resources */,
 				75BC4A482A80E88A00B6F6CE /* Assets.xcassets in Resources */,
+				75ED7A0C2A8278540078D103 /* Local+Error.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,23 +445,36 @@
 			files = (
 				75BC4A712A80EEB700B6F6CE /* Local+Onboarding.swift in Sources */,
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
+				75ED79F32A8262430078D103 /* User.swift in Sources */,
+				75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */,
 				75BC4A852A810CCA00B6F6CE /* FloatingTextView.swift in Sources */,
 				75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */,
 				75BC4A832A810C6D00B6F6CE /* RegisterView.swift in Sources */,
+				75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */,
 				75BC4A572A80E95C00B6F6CE /* OnboardView.swift in Sources */,
+				75ED7A072A8270C50078D103 /* ViewModel.swift in Sources */,
 				75BC4A8E2A811ABC00B6F6CE /* LogInView.swift in Sources */,
+				75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				75BC4A8A2A8114D700B6F6CE /* String+Email.swift in Sources */,
 				75BC4A6A2A80ED1E00B6F6CE /* OnboardingFeaturesBuilder.swift in Sources */,
 				75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */,
+				75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */,
 				75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */,
+				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
+				75ED7A032A8270390078D103 /* Loading.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,
+				75ED7A052A8270720078D103 /* Error.swift in Sources */,
 				75BC4A782A80F51B00B6F6CE /* Font+Avenir.swift in Sources */,
 				75BC4A5F2A80EAC300B6F6CE /* OnboardViewModel.swift in Sources */,
+				75ED79FD2A826CBD0078D103 /* UserAPIMock.swift in Sources */,
+				75ED7A0A2A8277C90078D103 /* CustomError.swift in Sources */,
 				75BC4A812A80FB9B00B6F6CE /* Colors+Main.swift in Sources */,
+				75ED79EE2A8261130078D103 /* UserAPIProvider.swift in Sources */,
 				75BC4A622A80EB9700B6F6CE /* FeaturesView.swift in Sources */,
+				75ED79E52A82606D0078D103 /* UserAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +675,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Backendless/Swift-SDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		75ED79E72A8260AA0078D103 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7565F0552A81465300B796A1 /* Backendless */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */;
+			productName = Backendless;
+		};
+		75ED79E82A8260AA0078D103 /* Dependencies */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75ED79E72A8260AA0078D103 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
+			productName = Dependencies;
+		};
+		75ED79FF2A826FFC0078D103 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 75BC4A382A80E88800B6F6CE /* Project object */;
 }

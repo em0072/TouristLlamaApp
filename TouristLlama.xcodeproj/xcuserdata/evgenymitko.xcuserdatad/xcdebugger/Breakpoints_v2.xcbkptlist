@@ -3,4 +3,211 @@
    uuid = "985E1517-622F-4E57-BC28-74D705A64B24"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "registerNewUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10 - 19b4682517c20602"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in TouristLlama.RegisterViewModel.registerNewUser() -&gt; ()"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10 - b4508cb90c8724af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in TouristLlama.RegisterViewModel.registerNewUser() -&gt; ()"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10 - cadde89bf0c042bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in TouristLlama.RegisterViewModel.registerNewUser() -&gt; ()"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10 - 238928d30041609d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in TouristLlama.RegisterViewModel.registerNewUser() -&gt; ()"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "26C36FC1-5257-4843-9C3B-CCEBEDB98E10 - b4508cb90c8724af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in TouristLlama.RegisterViewModel.registerNewUser() -&gt; ()"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3FBF97A-43DF-4B75-81DF-10529AC6BC16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "registerNewUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "694E645A-C759-43ED-B9F2-DFDA0CA79DF3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Controllers/ViewState/Error.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "body(content:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "694E645A-C759-43ED-B9F2-DFDA0CA79DF3 - ae62e4d4222fa4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Alert in TouristLlama.ErrorHadlerViewModifier.body(content: SwiftUI._ViewModifier_Content&lt;TouristLlama.ErrorHadlerViewModifier&gt;) -&gt; some"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/ViewState/Error.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "694E645A-C759-43ED-B9F2-DFDA0CA79DF3 - 2e5becc1811690ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.Alert in TouristLlama.ErrorHadlerViewModifier.body(content: SwiftUI._ViewModifier_Content&lt;TouristLlama.ErrorHadlerViewModifier&gt;) -&gt; some"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/ViewState/Error.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51C7A2D5-1EE5-4547-9087-345A1B2E4181"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "registerNewUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33F7D68C-49F7-4687-9246-5BD1129A1F04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "resendEmailConfirmation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25124069-61E1-4EE8-B034-C6BC26140A56"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "resendEmailConfirmation()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

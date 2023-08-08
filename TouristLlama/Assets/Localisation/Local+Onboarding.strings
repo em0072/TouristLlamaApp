@@ -21,6 +21,10 @@
 "register" = "Register";
 "acceptTermsText" = "By creating an account you accept our";
 
+"emailConfirmationTitle" = "Hooray! 🎉\nPlease Confirm Your Email";
+"emailConfirmationBody" = "We sent you a confirmation email. Please click the link in the email to verify you account";
+"emailConfirmationResendPrompt" = "Didn't get the confirmation email?";
+"emailConfirmationResendButton" = "Click here to resend.";
 
 "fullName" = "Full Name";
 "email" = "E-mail";

@@ -23,6 +23,11 @@ extension String {
         static let registerSubtitle = String.localized("registerSubtitle")
         static let register = String.localized("register")
         static let acceptTermsText = String.localized("acceptTermsText")
+        
+        static let emailConfirmationTitle = String.localized("emailConfirmationTitle")
+        static let emailConfirmationBody = String.localized("emailConfirmationBody")
+        static let emailConfirmationResendPrompt = String.localized("emailConfirmationResendPrompt")
+        static let emailConfirmationResendButton = String.localized("emailConfirmationResendButton")
 
         static let fullName = String.localized("fullName")
         static let email = String.localized("email")

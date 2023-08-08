@@ -39,22 +39,24 @@ struct RegisterView: View {
             }
             .padding(.horizontal, 20)
             .navigationTitle("")
+            .navigationDestination(isPresented: $viewModel.isLoginShown) {
+                LogInView()
+            }
+            
+            .sheet(isPresented: $viewModel.isEmailConfirmationShown) {
+                EmailConfirmationView {
+                    viewModel.showLoginView()
+                } resendAction: {
+                    viewModel.resendEmailConfirmation()
+                }
+                .presentationDragIndicator(.visible)
+                .handle(loading:  $viewModel.loadingState)
+            }
         }
-//        .handle(error: $viewModel.error)
-//        .handle(loading: $viewModel.loadingState)
-//        .track(screenType: self)
-
+        .ignoresSafeArea(.keyboard)
+        .handle(loading: $viewModel.loadingState)
+        .handle(error: $viewModel.error)
     }
-    
-    private var isButtonDisabled: Bool {
-        true
-//        viewModel.email.isEmpty || viewModel.password.isEmpty
-    }
-    
-    private func loginAction() {
-//        viewModel.login()
-    }
-    
 }
 
 extension RegisterView {
@@ -131,14 +133,14 @@ extension RegisterView {
     
     private var registerButtonView: some View {
         Button(String.Onboarding.register) {
-            
+            viewModel.registerNewUser()
         }
         .buttonStyle(WideBlueButtonStyle())
     }
     
     private var loginButtonView: some View {
-        NavigationLink {
-            LogInView()
+        Button {
+            viewModel.showLoginView()
         } label: {
             HStack {
                 Text(String.Onboarding.alreadyHaveAccount)
