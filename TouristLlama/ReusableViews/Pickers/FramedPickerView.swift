@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FramedDataPickerView<Data: Pickable>: View {
+struct FramedPickerView<Data: Pickable>: View {
     
     var title: String
     var placeholder: String
@@ -28,7 +28,7 @@ struct FramedDataPickerView<Data: Pickable>: View {
     }
 }
 
-extension FramedDataPickerView {
+extension FramedPickerView {
     
     private var pickerView: some View {
                 Menu {
@@ -83,6 +83,6 @@ extension FramedDataPickerView {
 
 struct FramedDataPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        FramedDataPickerView(title: "Title", placeholder: "Select Option", selected: .constant(Sex.none), emptyState: Sex.none)
+        FramedPickerView(title: "Title", placeholder: "Select Option", selected: .constant(Sex.none), emptyState: Sex.none)
     }
 }

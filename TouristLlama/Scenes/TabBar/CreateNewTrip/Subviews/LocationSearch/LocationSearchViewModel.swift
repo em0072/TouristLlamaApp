@@ -14,6 +14,9 @@ final class LocationSearchViewModel: ViewModel {
     @Published var searchText = "" {
         didSet {
             isShowingActivityIndicator = searchText.isEmpty ? false : true
+            if searchText.isEmpty {
+                viewData.removeAll()
+            }
         }
     }
             

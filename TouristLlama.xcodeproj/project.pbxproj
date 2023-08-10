@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75336BA32A84FE9500031D5C /* FramedDataPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BA22A84FE9500031D5C /* FramedDataPickerView.swift */; };
+		75336BA32A84FE9500031D5C /* FramedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BA22A84FE9500031D5C /* FramedPickerView.swift */; };
 		75336BA52A84FEB100031D5C /* FieldBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BA42A84FEB100031D5C /* FieldBackgroundView.swift */; };
 		75336BA82A84FF6E00031D5C /* FieldTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BA72A84FF6E00031D5C /* FieldTitleView.swift */; };
 		75336BAA2A84FFD400031D5C /* Sex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BA92A84FFD400031D5C /* Sex.swift */; };
@@ -23,6 +23,12 @@
 		75336BC02A8515FF00031D5C /* Local+Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75336BBF2A8515FF00031D5C /* Local+Main.strings */; };
 		75336BC22A85162100031D5C /* Local+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BC12A85162100031D5C /* Local+Main.swift */; };
 		75336BC42A85169800031D5C /* IconPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BC32A85169800031D5C /* IconPlaceholderView.swift */; };
+		75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BC52A852A3900031D5C /* FramedDatePickerView.swift */; };
+		75336BC82A852A8100031D5C /* Date+Forward.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BC72A852A8100031D5C /* Date+Forward.swift */; };
+		75336BCA2A852AF900031D5C /* Binding+Unwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BC92A852AF900031D5C /* Binding+Unwrap.swift */; };
+		75336BCC2A852BDB00031D5C /* Date+TimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BCB2A852BDB00031D5C /* Date+TimeStamp.swift */; };
+		75336BCE2A852BE200031D5C /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BCD2A852BE200031D5C /* Date+Format.swift */; };
+		75336BD02A852C5600031D5C /* TimeInterval+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BCF2A852C5600031D5C /* TimeInterval+Format.swift */; };
 		7539C13E2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */; };
 		7539C17A2A83E84A00BB0B48 /* SwitchToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
@@ -90,7 +96,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75336BA22A84FE9500031D5C /* FramedDataPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedDataPickerView.swift; sourceTree = "<group>"; };
+		75336BA22A84FE9500031D5C /* FramedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedPickerView.swift; sourceTree = "<group>"; };
 		75336BA42A84FEB100031D5C /* FieldBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldBackgroundView.swift; sourceTree = "<group>"; };
 		75336BA72A84FF6E00031D5C /* FieldTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTitleView.swift; sourceTree = "<group>"; };
 		75336BA92A84FFD400031D5C /* Sex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sex.swift; sourceTree = "<group>"; };
@@ -106,6 +112,12 @@
 		75336BBF2A8515FF00031D5C /* Local+Main.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Local+Main.strings"; sourceTree = "<group>"; };
 		75336BC12A85162100031D5C /* Local+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Main.swift"; sourceTree = "<group>"; };
 		75336BC32A85169800031D5C /* IconPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPlaceholderView.swift; sourceTree = "<group>"; };
+		75336BC52A852A3900031D5C /* FramedDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedDatePickerView.swift; sourceTree = "<group>"; };
+		75336BC72A852A8100031D5C /* Date+Forward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Forward.swift"; sourceTree = "<group>"; };
+		75336BC92A852AF900031D5C /* Binding+Unwrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Unwrap.swift"; sourceTree = "<group>"; };
+		75336BCB2A852BDB00031D5C /* Date+TimeStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeStamp.swift"; sourceTree = "<group>"; };
+		75336BCD2A852BE200031D5C /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		75336BCF2A852C5600031D5C /* TimeInterval+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Format.swift"; sourceTree = "<group>"; };
 		7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToggleStyle.swift; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,8 +200,9 @@
 		75336BA12A84FE8700031D5C /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
-				75336BA22A84FE9500031D5C /* FramedDataPickerView.swift */,
+				75336BA22A84FE9500031D5C /* FramedPickerView.swift */,
 				75336BB42A85053100031D5C /* FramedLocationPickerView.swift */,
+				75336BC52A852A3900031D5C /* FramedDatePickerView.swift */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -447,6 +460,11 @@
 			children = (
 				75BC4A892A8114D700B6F6CE /* String+Email.swift */,
 				75336BBD2A8507EC00031D5C /* String+CountryCode.swift */,
+				75336BC72A852A8100031D5C /* Date+Forward.swift */,
+				75336BCB2A852BDB00031D5C /* Date+TimeStamp.swift */,
+				75336BCD2A852BE200031D5C /* Date+Format.swift */,
+				75336BCF2A852C5600031D5C /* TimeInterval+Format.swift */,
+				75336BC92A852AF900031D5C /* Binding+Unwrap.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -681,6 +699,7 @@
 				75BC4A712A80EEB700B6F6CE /* Local+Onboarding.swift in Sources */,
 				75DE164E2A84F02200AF671B /* MyTripsView.swift in Sources */,
 				75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */,
+				75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */,
 				75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */,
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
@@ -692,6 +711,7 @@
 				75DE16592A84F0CE00AF671B /* Local+MyTrips.swift in Sources */,
 				7539C13E2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift in Sources */,
 				75336BB52A85053100031D5C /* FramedLocationPickerView.swift in Sources */,
+				75336BCC2A852BDB00031D5C /* Date+TimeStamp.swift in Sources */,
 				75ED7A162A838D690078D103 /* PasswordRecoveryView.swift in Sources */,
 				75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */,
 				75336BAA2A84FFD400031D5C /* Sex.swift in Sources */,
@@ -704,7 +724,7 @@
 				75BC4A8E2A811ABC00B6F6CE /* LogInView.swift in Sources */,
 				75336BC22A85162100031D5C /* Local+Main.swift in Sources */,
 				75336BAC2A85000300031D5C /* SelectorIconView.swift in Sources */,
-				75336BA32A84FE9500031D5C /* FramedDataPickerView.swift in Sources */,
+				75336BA32A84FE9500031D5C /* FramedPickerView.swift in Sources */,
 				75DE16642A84F53600AF671B /* TripPhoto.swift in Sources */,
 				75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
@@ -717,18 +737,22 @@
 				75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */,
 				75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */,
 				75336BB02A85017500031D5C /* Local+Trip.swift in Sources */,
+				75336BCA2A852AF900031D5C /* Binding+Unwrap.swift in Sources */,
 				75336BA52A84FEB100031D5C /* FieldBackgroundView.swift in Sources */,
 				75336BA82A84FF6E00031D5C /* FieldTitleView.swift in Sources */,
 				75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */,
 				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
 				75ED7A032A8270390078D103 /* Loading.swift in Sources */,
+				75336BC82A852A8100031D5C /* Date+Forward.swift in Sources */,
 				75DE16502A84F03000AF671B /* MyTripsViewModel.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
 				75DE165E2A84F39300AF671B /* Trip.swift in Sources */,
 				75DE16552A84F05500AF671B /* CreateNewTripViewModel.swift in Sources */,
 				75DE164A2A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift in Sources */,
+				75336BCE2A852BE200031D5C /* Date+Format.swift in Sources */,
 				75336BB82A85062A00031D5C /* LocationSearchView.swift in Sources */,
+				75336BD02A852C5600031D5C /* TimeInterval+Format.swift in Sources */,
 				75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,
 				75ED7A052A8270720078D103 /* Error.swift in Sources */,

@@ -18,7 +18,9 @@ struct CreateNewTripView: View {
             TabView(selection: $viewModel.currentCreationStage) {
                 GeneralInfoStageView(name: $viewModel.tripName,
                                      tripStyle: $viewModel.tripStyle,
-                                     tripLocation: $viewModel.tripLocation)
+                                     tripLocation: $viewModel.tripLocation,
+                                     startDate: $viewModel.tripStartDate,
+                                     endDate: $viewModel.tripEndDate)
                     .tag(CreateNewTripViewModel.TripCreationStage.generalInfo)
             }
             .navigationTitle(String.MyTrips.createTripTitle)
