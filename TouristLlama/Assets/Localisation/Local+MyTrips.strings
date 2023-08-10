@@ -1,0 +1,30 @@
+/* 
+  Local+MyTrips.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 10/08/2023.
+  
+*/
+"myTripsTitle" = "My Trips";
+"myTripsCreateTripButton" = "Create";
+
+"myTripsCreateTripGeneralInfoStage" = "General Info";
+"myTripsCreateTripDescriptionStage" = "Description";
+"myTripsCreateTripPhotoStage" = "Photo";
+"myTripsCreateTripSettingsStage" = "Setings";
+
+"myTripsCreateTripTitle" = "Create Trip";
+"myTripsCreateTripName" = "Trip Name";
+"myTripsCreateTripNamePlaceholder" = "What will be the name of your trip?";
+"myTripsCreateTripStyle" = "Style";
+"myTripsCreateTripStylePlaceholder" = "Select style of your trip";
+"myTripsCreateTripLocation" = "Location";
+"myTripsCreateTripLocationPlaceHolder" = "Select Location";
+"myTripsCreateTripStartDate" = "Start Date";
+"myTripsCreateTripEndDate" = "End Date";
+"myTripsCreateTripDatePlaceholder" = "Select Date";
+
+"myTripsCreateTripLocationSearchTitle" = "Location Search";
+"myTripsCreateTripLocationSearchPrompt" = "Enter Location Name";
+"myTripsCreateTripLocationSearchResultsTitle" = "Results";
+"myTripsCreateTripLocationSearchResultsPrompt" = "Please enter location name in the search field";

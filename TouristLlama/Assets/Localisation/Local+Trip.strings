@@ -1,0 +1,11 @@
+/* 
+  Local+Trip.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 10/08/2023.
+  
+*/
+
+"tripStyleLeisure" = "Leisure";
+"tripStyleActive" = "Active";
+

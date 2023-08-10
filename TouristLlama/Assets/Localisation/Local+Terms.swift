@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 extension String {
     
     enum TermsAndConditions {

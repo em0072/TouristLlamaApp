@@ -21,7 +21,7 @@ extension Color {
         static let black = Color("black")
         static let green = Color("green")
         static let grey = Color("grey")
-        static let darkGrey = Color("clickableGrey")
+        static let darkGrey = Color("darkGrey")
         static let TLBackgroundActive = Color("backgroundActive")
         static let TLInactiveGrey = Color("inactiveGrey")
         static let TLBackground = Color("background")
