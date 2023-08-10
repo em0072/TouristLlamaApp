@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var viewModel = ContentViewModel()
+
     var body: some View {
-        OnboardView()
+        ZStack {
+            switch viewModel.loginStatus {
+            case .notDetermined:
+                logoView
+                    .transition(.scale.combined(with: .opacity))
+            case .loggedOut:
+                OnboardView()
+            case .loggedIn:
+                TabBarView()
+            }
+        }
+        .animation(.default, value: viewModel.loginStatus)
+    }
+}
+
+extension ContentView {
+    
+    private var logoView: some View {
+        Image.Main.logo
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 200)
     }
 }
 

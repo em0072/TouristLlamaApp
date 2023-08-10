@@ -19,7 +19,9 @@ class ViewModel: ObservableObject {
     
     var publishers = [AnyCancellable]()
     
-    init() {}
+    init() {
+        subscribeToUpdates()
+    }
     
     func cancelPublishers() {
         publishers.forEach({$0.cancel()})

@@ -9,7 +9,15 @@ import Foundation
 
 struct CustomError: LocalizedError {
     
-    let text: String
+    let text: String?
+    
+    init(text: String) {
+        self.text = text
+    }
+    
+    init() {
+        self.text = nil
+    }
     
     var errorDescription: String? {
         return text

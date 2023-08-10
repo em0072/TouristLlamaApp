@@ -13,14 +13,22 @@ class RegisterViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
     
+    enum SheetType: Identifiable {
+        var id: Self { return self }
+        
+        case emailConfirmation
+        case termsAndConditions
+    }
+    
     @Published var name: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var isEmailConfirmationShown = false
+    @Published var termsAccepted: Bool = false
     @Published var isLoginShown = false
-    
+    @Published var sheetType: SheetType?
+
     var isRegisterButtonDisabled: Bool {
-        name.isEmpty || password.isEmpty || email.isEmpty
+        name.isEmpty || password.isEmpty || email.isEmpty || !termsAccepted
     }
     
     func showLoginView() {
@@ -35,13 +43,17 @@ class RegisterViewModel: ViewModel {
         Task {
             do {
                 loadingState = .loading
-                _ = try await userAPI.registerUser(name: name, email: email, password: password)
-                isEmailConfirmationShown = true
+                try await userAPI.registerUser(name: name, email: email, password: password)
+                sheetType = .emailConfirmation
             } catch {
                 self.error = error
             }
             loadingState = .none
         }
+    }
+    
+    func showTermsAndConditions() {
+        sheetType = .termsAndConditions
     }
     
     func resendEmailConfirmation() {

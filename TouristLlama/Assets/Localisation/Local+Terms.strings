@@ -1,0 +1,36 @@
+/* 
+  Local+Terms.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 09/08/2023.
+  
+*/
+"termsAndConditionsTitle" = "Terms & Conditions for Tourist Llama";
+"termsAndConditionsLastUpdated" = "Last updated on:";
+"termsAndConditionsUpdateDate" = "9 August 2023";
+"termsAndConditionsBody" = "
+**Purpose & Functionality**\n
+The primary purpose of Tourist Llama is to connect travelers based on mutual interests and destinations. It provides a platform for users to find travel companions, share itineraries, and offer recommendations on places to visit. No booking services for flights, hotels, or tours are provided by the app.\n
+**User Requirements**\n
+Users must be 18 years or older to create an account on Tourist Llama. A verified email address is necessary for security purposes.\n
+**Monetization & Fees**\n
+Currently, all features of Tourist Llama are available free of charge. However, certain features, both existing and new, may become paid in the future.\n
+**User Data & Privacy**\n
+We collect user names, email addresses, profile pictures, and travel plan information. This data is stored securely on servers located inside the EU. It is used to facilitate the app's functionalities. Anonymized data, used for analytical purposes, is shared with the Google Analytics service. Personal data is not shared with third parties.\n
+**Content Responsibility**\n
+Users have the ability to post reviews, pictures, and comments. They are solely responsible for the content they upload. In case of inappropriate content, other users can report it, which will then be reviewed by our team.\n
+**Liability & Safety**\n
+Users are encouraged to meet in public places and inform close ones about their meetups arranged through Tourist Llama. The app is not liable for any incidents that arise from such meetings, and we do not intervene in disputes between users.\n
+**Termination & Deactivation**\n
+Users found violating community guidelines, posting inappropriate content, or harassing other members can be banned. Users have the right to delete their accounts at any time.\n
+**Intellectual Property**\n
+All content and design elements of Tourist Llama are owned by us. While user-generated content remains the property of the individual users, by uploading, they grant us a license to display and promote their content within the app.\n
+**Dispute Resolution**\n
+Disputes between users are to be resolved independently, without the app's intervention. Disputes involving the app or the company behind it should first be addressed with our customer service team. If unresolved, legal actions may be pursued.\n
+**Refunds & Cancellations**\n
+If payment features are introduced, users may request refunds within 7 days of a transaction. Subscription cancellations can be done anytime.\n
+**External Links & Third-Party Services**\n
+The app may contain third-party website links, including those shared by users. We are not responsible for the content or terms of these third-party sites. Users should access them at their discretion and risk.\n
+**Modifications**\n
+Changes to these terms and conditions will be highlighted in the app. To continue using Tourist Llama, users must accept the updated terms.
+";

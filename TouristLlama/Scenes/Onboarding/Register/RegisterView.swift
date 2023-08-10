@@ -29,6 +29,7 @@ struct RegisterView: View {
                 fieldsView
                 
                 termsView
+                    .padding(.top, 12)
                 
                 Spacer()
                 
@@ -42,16 +43,7 @@ struct RegisterView: View {
             .navigationDestination(isPresented: $viewModel.isLoginShown) {
                 LogInView()
             }
-            
-            .sheet(isPresented: $viewModel.isEmailConfirmationShown) {
-                EmailConfirmationView {
-                    viewModel.showLoginView()
-                } resendAction: {
-                    viewModel.resendEmailConfirmation()
-                }
-                .presentationDragIndicator(.visible)
-                .handle(loading:  $viewModel.loadingState)
-            }
+            .sheet(item: $viewModel.sheetType, content: sheetView)
         }
         .ignoresSafeArea(.keyboard)
         .handle(loading: $viewModel.loadingState)
@@ -115,20 +107,23 @@ extension RegisterView {
         }
     }
     
+    
     private var termsView: some View {
-        Button {
-            
-        } label: {
-            HStack(spacing: 0) {
-                Text(String.Onboarding.acceptTermsText)
-                Text(" ")
-                Text(String.Onboarding.terms)
-                    .bold()
-                Spacer()
+            Toggle(isOn: $viewModel.termsAccepted) {
+                HStack(spacing: 6) {
+                    Text(String.Onboarding.acceptTermsText)
+                        .font(.avenirSmallBody)
+                    Button {
+                        viewModel.showTermsAndConditions()
+                    } label: {
+                        Text(String.Onboarding.terms)
+                            .font(.avenirSmallBody)
+                            .bold()
+                            .underline()
+                    }
+                }
             }
-            .font(.avenirCaption)
-            .padding(.top, 6)
-        }
+            .toggleStyle(SwitchToggleStyle(size: .small))
     }
     
     private var registerButtonView: some View {
@@ -151,6 +146,24 @@ extension RegisterView {
             .font(.avenirBody)
             .foregroundColor(.Main.black)
             .padding(.top, 30)
+        }
+    }
+    
+    @ViewBuilder
+    private func sheetView(for type: RegisterViewModel.SheetType) -> some View {
+        switch type {
+        case .emailConfirmation:
+            EmailConfirmationView {
+                viewModel.showLoginView()
+            } resendAction: {
+                viewModel.resendEmailConfirmation()
+            }
+            .presentationDragIndicator(.visible)
+            .handle(loading:  $viewModel.loadingState)
+
+        case .termsAndConditions:
+            TermsAndConditionsView()
+                .presentationDragIndicator(.visible)
         }
     }
 }

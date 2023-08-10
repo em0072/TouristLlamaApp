@@ -19,12 +19,7 @@
 "registerTitle" = "Hi,\nWelcome!";
 "registerSubtitle" = "Find like-minded people to travel with and share new experiences together.";
 "register" = "Register";
-"acceptTermsText" = "By creating an account you accept our";
-
-"emailConfirmationTitle" = "Hooray! 🎉\nPlease Confirm Your Email";
-"emailConfirmationBody" = "We sent you a confirmation email. Please click the link in the email to verify you account";
-"emailConfirmationResendPrompt" = "Didn't get the confirmation email?";
-"emailConfirmationResendButton" = "Click here to resend.";
+"acceptTermsText" = "I accept";
 
 "fullName" = "Full Name";
 "email" = "E-mail";
@@ -32,6 +27,18 @@
 
 "alreadyHaveAccount" = "Already have an account?";
 "logIn" = "Log In";
+
+// MARK: - Email Confirmation
+"emailConfirmationTitle" = "Hooray! 🎉";
+"emailConfirmationSubtitle" = "Please Confirm Your Email";
+"emailConfirmationBody" = "We sent you a confirmation email. Please click the link in the email to verify you account";
+"emailConfirmationResendPrompt" = "Didn't get the confirmation email?";
+"emailConfirmationResendButton" = "Click here to resend.";
+
+//MARK: - Password Recovery
+"passwordRecoveryTitle" = "Forgot password";
+"passwordRecoveryBody" = "Please enter your email address. You will receive a link to create a new password via email.";
+"passwordRecoveryButton" = "Reset Password";
 
 // MARK: - Log In
 "loginTitle" = "Hi,\nWelcome back!";

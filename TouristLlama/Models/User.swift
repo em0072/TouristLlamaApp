@@ -8,6 +8,16 @@
 import Foundation
 
 struct User {
+    
+    enum Property: String {
+        case name
+        case email
+        
+        var string: String {
+            return self.rawValue
+        }
+    }
+    
     let id: String
     let name: String
     let email: String

@@ -41,6 +41,16 @@ struct LogInView: View {
             .padding(.horizontal, 20)
             .navigationTitle("")
         }
+        .sheet(isPresented: $viewModel.isPasswordRecoveryShown) {
+            PasswordRecoveryView(email: viewModel.email) {
+                viewModel.recoverPassword()
+            }
+            .presentationDragIndicator(.visible)
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
+        }
+        .handle(loading: $viewModel.loadingState)
+        .handle(error: $viewModel.error)
     }
 }
 
@@ -89,10 +99,10 @@ extension LogInView {
     private var forgotPasswordView: some View {
         HStack {
             Spacer()
-            NavigationLink {
-                Text("Forgot")
+            Button {
+                viewModel.showPasswordRecovery()
             } label: {
-                Text("Forgot your password?")
+                Text(String.Onboarding.forgotPasswordPrompt)
                     .font(.avenirBody)
                     .foregroundColor(.Main.black)
             }
@@ -101,7 +111,7 @@ extension LogInView {
 
     private var logInButton: some View {
         Button(String.Onboarding.logIn) {
-            
+            viewModel.login()
         }
         .buttonStyle(WideBlueButtonStyle())
         .disabled(viewModel.isLoginButtonDisabled)

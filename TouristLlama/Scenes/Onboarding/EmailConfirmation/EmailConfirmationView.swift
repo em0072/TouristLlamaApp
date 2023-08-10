@@ -18,13 +18,17 @@ struct EmailConfirmationView: View {
         VStack(spacing: 20) {
             titleView
             
+            subtitleView
+            
             descriptionView
             
             resendEmailView
             
             buttonView
+            
+            Spacer()
         }
-        .padding(.horizontal, 20)
+        .padding(20)
     }
 }
 
@@ -33,6 +37,12 @@ extension EmailConfirmationView {
     private var titleView: some View {
         Text(String.Onboarding.emailConfirmationTitle)
             .font(.avenirHeadline)
+            .multilineTextAlignment(.center)
+    }
+    
+    private var subtitleView: some View {
+        Text(String.Onboarding.emailConfirmationSubtitle)
+            .font(.avenirTitle)
             .multilineTextAlignment(.center)
     }
     

@@ -25,6 +25,7 @@ extension String {
         static let acceptTermsText = String.localized("acceptTermsText")
         
         static let emailConfirmationTitle = String.localized("emailConfirmationTitle")
+        static let emailConfirmationSubtitle = String.localized("emailConfirmationSubtitle")
         static let emailConfirmationBody = String.localized("emailConfirmationBody")
         static let emailConfirmationResendPrompt = String.localized("emailConfirmationResendPrompt")
         static let emailConfirmationResendButton = String.localized("emailConfirmationResendButton")
@@ -40,6 +41,10 @@ extension String {
         static let forgotPasswordPrompt = String.localized("forgotPasswordPrompt")
         static let noAccountPrompt = String.localized("noAccountPrompt")
         static let signUp = String.localized("signUp")
+        
+        static let passwordRecoveryTitle = String.localized("passwordRecoveryTitle")
+        static let passwordRecoveryBody = String.localized("passwordRecoveryBody")
+        static let passwordRecoveryButton = String.localized("passwordRecoveryButton")
 
     }
     

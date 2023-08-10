@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7539C13E2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */; };
+		7539C17A2A83E84A00BB0B48 /* SwitchToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
@@ -48,9 +50,19 @@
 		75ED7A0C2A8278540078D103 /* Local+Error.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75ED7A0B2A8278540078D103 /* Local+Error.strings */; };
 		75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A0D2A8278640078D103 /* Local+Error.swift */; };
 		75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A0F2A8279350078D103 /* UserAPIError.swift */; };
+		75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A122A838D0E0078D103 /* TabBarView.swift */; };
+		75ED7A162A838D690078D103 /* PasswordRecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A152A838D690078D103 /* PasswordRecoveryView.swift */; };
+		75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A172A83960C0078D103 /* ContentViewModel.swift */; };
+		75ED7A1A2A839B6E0078D103 /* Image+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A192A839B6E0078D103 /* Image+Main.swift */; };
+		75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A1B2A839EF10078D103 /* TabBarViewModel.swift */; };
+		75ED7A1F2A83CFBC0078D103 /* Local+Terms.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75ED7A1E2A83CFBC0078D103 /* Local+Terms.strings */; };
+		75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A202A83CFC70078D103 /* Local+Terms.swift */; };
+		75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
+		7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToggleStyle.swift; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLlamaApp.swift; sourceTree = "<group>"; };
 		75BC4A452A80E88800B6F6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +102,15 @@
 		75ED7A0B2A8278540078D103 /* Local+Error.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Local+Error.strings"; sourceTree = "<group>"; };
 		75ED7A0D2A8278640078D103 /* Local+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Error.swift"; sourceTree = "<group>"; };
 		75ED7A0F2A8279350078D103 /* UserAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIError.swift; sourceTree = "<group>"; };
+		75ED7A122A838D0E0078D103 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		75ED7A152A838D690078D103 /* PasswordRecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRecoveryView.swift; sourceTree = "<group>"; };
+		75ED7A172A83960C0078D103 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		75ED7A192A839B6E0078D103 /* Image+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Main.swift"; sourceTree = "<group>"; };
+		75ED7A1B2A839EF10078D103 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		75ED7A1D2A83A1D90078D103 /* TouristLlama.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TouristLlama.entitlements; sourceTree = "<group>"; };
+		75ED7A1E2A83CFBC0078D103 /* Local+Terms.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Local+Terms.strings"; sourceTree = "<group>"; };
+		75ED7A202A83CFC70078D103 /* Local+Terms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Terms.swift"; sourceTree = "<group>"; };
+		75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7539C13C2A83DF3000BB0B48 /* ToggleStyle */ = {
+			isa = PBXGroup;
+			children = (
+				7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */,
+				7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */,
+			);
+			path = ToggleStyle;
+			sourceTree = "<group>";
+		};
 		75BC4A372A80E88800B6F6CE = {
 			isa = PBXGroup;
 			children = (
@@ -125,17 +155,19 @@
 		75BC4A422A80E88800B6F6CE /* TouristLlama */ = {
 			isa = PBXGroup;
 			children = (
-				75ED79FB2A826CAA0078D103 /* Mock */,
-				75ED79F12A82623A0078D103 /* Models */,
+				75ED7A1D2A83A1D90078D103 /* TouristLlama.entitlements */,
 				75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */,
 				75BC4A452A80E88800B6F6CE /* ContentView.swift */,
+				75ED7A172A83960C0078D103 /* ContentViewModel.swift */,
 				75BC4A682A80ED0B00B6F6CE /* Builders */,
 				75BC4A672A80ED0300B6F6CE /* Controllers */,
+				75ED79F12A82623A0078D103 /* Models */,
 				75BC4A512A80E92600B6F6CE /* Scenes */,
 				75BC4A792A80FB3600B6F6CE /* Styles */,
 				75BC4A632A80EBDE00B6F6CE /* ReusableViews */,
 				75BC4A882A8114C600B6F6CE /* Extensions */,
 				75BC4A5A2A80E9DA00B6F6CE /* Assets */,
+				75ED79FB2A826CAA0078D103 /* Mock */,
 				75BC4A492A80E88A00B6F6CE /* Preview Content */,
 			);
 			path = TouristLlama;
@@ -152,7 +184,9 @@
 		75BC4A512A80E92600B6F6CE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				75ED7A232A83D1200078D103 /* ReusableScenes */,
 				75BC4A522A80E92C00B6F6CE /* Onboarding */,
+				75ED7A112A838CFC0078D103 /* TabBar */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -162,8 +196,9 @@
 			children = (
 				75BC4A532A80E93F00B6F6CE /* Onboard */,
 				75BC4A552A80E94E00B6F6CE /* Register */,
-				75ED79F42A8267840078D103 /* EmailConfirmation */,
 				75BC4A542A80E94900B6F6CE /* Login */,
+				75ED79F42A8267840078D103 /* EmailConfirmation */,
+				75ED7A142A838D530078D103 /* PasswordRecovery */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -212,6 +247,7 @@
 			children = (
 				75BC4A582A80E9D500B6F6CE /* Images.xcassets */,
 				75BC4A5C2A80E9FA00B6F6CE /* Image+Onboarding.swift */,
+				75ED7A192A839B6E0078D103 /* Image+Main.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -261,6 +297,8 @@
 				75BC4A702A80EEB700B6F6CE /* Local+Onboarding.swift */,
 				75ED7A0B2A8278540078D103 /* Local+Error.strings */,
 				75ED7A0D2A8278640078D103 /* Local+Error.swift */,
+				75ED7A1E2A83CFBC0078D103 /* Local+Terms.strings */,
+				75ED7A202A83CFC70078D103 /* Local+Terms.swift */,
 			);
 			path = Localisation;
 			sourceTree = "<group>";
@@ -276,6 +314,7 @@
 		75BC4A792A80FB3600B6F6CE /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				7539C13C2A83DF3000BB0B48 /* ToggleStyle */,
 				75BC4A7A2A80FB3E00B6F6CE /* ButtonStyles */,
 			);
 			path = Styles;
@@ -359,6 +398,39 @@
 			path = ViewState;
 			sourceTree = "<group>";
 		};
+		75ED7A112A838CFC0078D103 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				75ED7A122A838D0E0078D103 /* TabBarView.swift */,
+				75ED7A1B2A839EF10078D103 /* TabBarViewModel.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		75ED7A142A838D530078D103 /* PasswordRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				75ED7A152A838D690078D103 /* PasswordRecoveryView.swift */,
+			);
+			path = PasswordRecovery;
+			sourceTree = "<group>";
+		};
+		75ED7A232A83D1200078D103 /* ReusableScenes */ = {
+			isa = PBXGroup;
+			children = (
+				75ED7A242A83D13D0078D103 /* Terms&Conditions */,
+			);
+			path = ReusableScenes;
+			sourceTree = "<group>";
+		};
+		75ED7A242A83D13D0078D103 /* Terms&Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */,
+			);
+			path = "Terms&Conditions";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -427,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75ED7A1F2A83CFBC0078D103 /* Local+Terms.strings in Resources */,
 				75BC4A7E2A80FB6C00B6F6CE /* Colors.xcassets in Resources */,
 				75BC4A592A80E9D500B6F6CE /* Images.xcassets in Resources */,
 				75BC4A6F2A80EE9F00B6F6CE /* Local+Onboarding.strings in Resources */,
@@ -444,27 +517,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				75BC4A712A80EEB700B6F6CE /* Local+Onboarding.swift in Sources */,
+				75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */,
+				75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */,
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
 				75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */,
 				75BC4A852A810CCA00B6F6CE /* FloatingTextView.swift in Sources */,
 				75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */,
 				75BC4A832A810C6D00B6F6CE /* RegisterView.swift in Sources */,
+				7539C13E2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift in Sources */,
+				75ED7A162A838D690078D103 /* PasswordRecoveryView.swift in Sources */,
 				75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */,
+				7539C17A2A83E84A00BB0B48 /* SwitchToggleStyle.swift in Sources */,
 				75BC4A572A80E95C00B6F6CE /* OnboardView.swift in Sources */,
 				75ED7A072A8270C50078D103 /* ViewModel.swift in Sources */,
 				75BC4A8E2A811ABC00B6F6CE /* LogInView.swift in Sources */,
 				75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */,
+				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				75BC4A8A2A8114D700B6F6CE /* String+Email.swift in Sources */,
 				75BC4A6A2A80ED1E00B6F6CE /* OnboardingFeaturesBuilder.swift in Sources */,
 				75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */,
+				75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */,
 				75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */,
 				75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */,
 				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
 				75ED7A032A8270390078D103 /* Loading.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
+				75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,
 				75ED7A052A8270720078D103 /* Error.swift in Sources */,
 				75BC4A782A80F51B00B6F6CE /* Font+Avenir.swift in Sources */,
@@ -474,6 +555,7 @@
 				75BC4A812A80FB9B00B6F6CE /* Colors+Main.swift in Sources */,
 				75ED79EE2A8261130078D103 /* UserAPIProvider.swift in Sources */,
 				75BC4A622A80EB9700B6F6CE /* FeaturesView.swift in Sources */,
+				75ED7A1A2A839B6E0078D103 /* Image+Main.swift in Sources */,
 				75ED79E52A82606D0078D103 /* UserAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,10 +682,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TouristLlama/TouristLlama.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TouristLlama/Preview Content\"";
-				DEVELOPMENT_TEAM = 3NAZK3L3FT;
+				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -616,7 +699,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlama;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -629,10 +712,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TouristLlama/TouristLlama.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TouristLlama/Preview Content\"";
-				DEVELOPMENT_TEAM = 3NAZK3L3FT;
+				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -645,7 +729,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlama;
+				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

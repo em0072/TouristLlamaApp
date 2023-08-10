@@ -60,7 +60,7 @@ struct HandleLoadingByShowingIndicatorViewModifier: ViewModifier {
                         AlertToast(displayMode: .alert, type: .loading)
                     })
                     .toast(isPresenting: $loader.isSuccess, alert: {
-                        AlertToast(displayMode: .alert, type: .complete(.Main.TLGreen))
+                        AlertToast(displayMode: .alert, type: .complete(.Main.green))
                     })
                     .toast(isPresenting: $loader.isError) {
                         AlertToast(displayMode: .alert, type: .error(.Main.accentRed), title: loader.error?.localizedDescription)
@@ -120,7 +120,7 @@ struct LoadHadlerViewModifier: ViewModifier {
                 AlertToast(displayMode: .alert, type: .loading)
             })
             .toast(isPresenting: $loader.isSuccess, alert: {
-                AlertToast(displayMode: .alert, type: .complete(.Main.TLGreen))
+                AlertToast(displayMode: .alert, type: .complete(.Main.green))
             })
             .toast(isPresenting: $loader.isError) {
                 AlertToast(displayMode: .alert, type: .error(.Main.accentRed), title: loader.error?.localizedDescription)

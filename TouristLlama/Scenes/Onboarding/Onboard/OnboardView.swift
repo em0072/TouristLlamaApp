@@ -12,10 +12,10 @@ struct OnboardView: View {
         
     @Environment(\.colorScheme) var currentScheme
     
-    @State private var navigationPath = NavigationPath()
-
+    @StateObject var viewModel = OnboardingViewModel()
+    
     var body: some View {
-        NavigationStack(path: $navigationPath) {
+        NavigationStack {
             ZStack {
                 backgroundView
                 
@@ -33,6 +33,12 @@ struct OnboardView: View {
             }
             .navigationTitle("")
             .navigationBarHidden(true)
+            .sheet(isPresented: $viewModel.isTermsAndConditionsShown) {
+                TermsAndConditionsView()
+                    .presentationDragIndicator(.visible)
+            }
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
         }
     }
     
@@ -46,8 +52,7 @@ extension OnboardView {
     }
     
     private var featuresView: some View {
-        let features = OnboardingFeaturesBuilder().build()
-        return FeaturesView(features: features)
+        return FeaturesView(features: viewModel.features)
     }
     
     private var buttonsView: some View {
@@ -59,11 +64,11 @@ extension OnboardView {
                 .buttonStyle(WideBlueButtonStyle())
                 .allowsHitTesting(false)
             }
-
+            
             SignInWithAppleButton(.continue) { request in
-                
+                request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in
-                
+                viewModel.handleSignInAuthorisationResult(result)
             }
             .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
             .frame(height: 54)
@@ -72,9 +77,9 @@ extension OnboardView {
     
     private var termsView: some View {
         Button {
-            
+            viewModel.showTermsAndConditions()
         } label: {
-            Text("Terms & Conditions")
+            Text(String.Onboarding.terms)
                 .font(.avenirBody)
                 .fontWeight(.light)
                 .underline()
