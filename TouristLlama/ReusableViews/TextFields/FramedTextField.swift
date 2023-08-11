@@ -27,10 +27,10 @@ struct FramedTextField: View {
                 FieldTitleView(title: title)
             }
             
-                FieldBackgroundView()
-                    .overlay {
-                        textField
-                    }
+            FieldBackgroundView()
+                .overlay {
+                    textField
+                }
         }
     }
 }

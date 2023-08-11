@@ -10,14 +10,16 @@ import SwiftUI
 struct FieldBackgroundView: View {
     
     let height: CGFloat
+    let fillColor: Color
     
-    init(height: CGFloat = 54) {
+    init(height: CGFloat = 54, fillColor: Color? = nil) {
         self.height = height
+        self.fillColor = fillColor ?? Color.Main.TLBackgroundActive
     }
     
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(Color.Main.TLBackgroundActive)
+            .fill(fillColor)
             .frame(height: height)
     }
     

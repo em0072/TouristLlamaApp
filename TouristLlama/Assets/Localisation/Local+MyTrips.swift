@@ -29,6 +29,9 @@ extension String {
         static let createTripStartDate = String.localized("myTripsCreateTripStartDate")
         static let createTripEndDate = String.localized("myTripsCreateTripEndDate")
         static let createTripDatePlaceholde = String.localized("myTripsCreateTripDatePlaceholder")
+        
+        static let createTripDescription = String.localized("myTripsCreateTripDescription")
+        static let createTripDescriptionPlaceholde = String.localized("myTripsCreateTripDescriptionPlaceholder")
 
         static let createTripLocationSearchTitle = String.localized("myTripsCreateTripLocationSearchTitle")
         static let createTripLocationSearchPrompt = String.localized("myTripsCreateTripLocationSearchPrompt")

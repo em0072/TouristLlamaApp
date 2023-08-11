@@ -11,6 +11,8 @@ extension String {
     
     enum Main {
         static let noResults = String.localized("noResults")
+        static let `continue` = String.localized("continue")
+
     }
     
     private static func localized(_ key: String) -> String {

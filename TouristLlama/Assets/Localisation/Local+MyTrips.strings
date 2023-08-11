@@ -24,6 +24,9 @@
 "myTripsCreateTripEndDate" = "End Date";
 "myTripsCreateTripDatePlaceholder" = "Select Date";
 
+"myTripsCreateTripDescription" = "Description";
+"myTripsCreateTripDescriptionPlaceholder" = "Please include some information about the trip. i.e. places you want to visit or activities you want do...";
+
 "myTripsCreateTripLocationSearchTitle" = "Location Search";
 "myTripsCreateTripLocationSearchPrompt" = "Enter Location Name";
 "myTripsCreateTripLocationSearchResultsTitle" = "Results";

@@ -14,20 +14,21 @@ struct GeneralInfoStageView: View {
     @Binding var tripLocation: TripLocation?
     @Binding var startDate: Date?
     @Binding var endDate: Date?
-
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                nameView
-                
-                stylePickerView
-                
-                locationPickerView
-                
-                datePickersView
+            ScrollView {
+                VStack(spacing: 20) {
+                    nameView
+                    
+                    stylePickerView
+                    
+                    locationPickerView
+                    
+                    datePickersView
+                    
+                }
+                .padding(20)
             }
-            .padding(20)
-        }
     }
 }
 
@@ -66,6 +67,7 @@ extension GeneralInfoStageView {
 
         }
     }
+        
 }
 
 struct GeneralInfoStageView_Previews: PreviewProvider {
