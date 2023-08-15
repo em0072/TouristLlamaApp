@@ -20,12 +20,12 @@ struct MyTripsCellView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             tripName
             tripLocation
             tripDates
             HStack(alignment: .bottom) {
-                //                            TripParticipantsImagesView(participants: trip.participants)
+                TripParticipantsImagesView(participants: trip.participants)
                 Spacer()
                 proceedIcon
             }

@@ -30,7 +30,7 @@ class UserAPIBackendless: UserAPIProvider {
                     continuation.resume(throwing: UserAPIError.responceIsEmpty)
                     return
                 }
-                let user = User(id: id, name: name, email: email)
+                let user = User(id: id, name: name, email: email, imageURLString: nil)
                 continuation.resume(returning: user)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
@@ -52,13 +52,10 @@ class UserAPIBackendless: UserAPIProvider {
         return try await withCheckedThrowingContinuation{ continuation in
             Backendless.shared.userService.stayLoggedIn = true
             Backendless.shared.userService.login(identity: email, password: password) { loggedInUser in
-                guard let id = loggedInUser.objectId,
-                      let email = loggedInUser.email else {
+                guard let user = User(from: loggedInUser) else {
                     continuation.resume(throwing: UserAPIError.responceIsEmpty)
                     return
                 }
-                let name = loggedInUser.name ?? ""
-                let user = User(id: id, name: name, email: email)
                 continuation.resume(returning: user)
                 
             } errorHandler: { error in
@@ -77,14 +74,10 @@ class UserAPIBackendless: UserAPIProvider {
                     return
                 }
                 Backendless.shared.userService.currentUser = loggedInUser
-                guard let id = loggedInUser.objectId,
-                      let email = loggedInUser.email else {
+                guard let user = User(from: loggedInUser) else {
                     continuation.resume(throwing: UserAPIError.responceIsEmpty)
                     return
                 }
-                let name = loggedInUser.name ?? ""
-                let user = User(id: id, name: name, email: email)
-
                 continuation.resume(returning: user)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
@@ -103,13 +96,10 @@ class UserAPIBackendless: UserAPIProvider {
                 user.properties[property.string] = value
             }
             Backendless.shared.userService.update(user: user) { updatedUser in
-                guard let id = updatedUser.objectId,
-                      let email = updatedUser.email else {
+                guard let user = User(from: updatedUser) else {
                     continuation.resume(throwing: UserAPIError.responceIsEmpty)
                     return
                 }
-                let name = updatedUser.name ?? ""
-                let user = User(id: id, name: name, email: email)
                 continuation.resume(returning: user)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
@@ -129,12 +119,9 @@ class UserAPIBackendless: UserAPIProvider {
     
     func getCurrentUser() async -> User? {
         guard let backendlessUser = Backendless.shared.userService.currentUser else { return nil }
-        guard let id = backendlessUser.objectId,
-              let email = backendlessUser.email else {
+        guard let user = User(from: backendlessUser) else {
             return nil
         }
-        let name = backendlessUser.name ?? ""
-        let user = User(id: id, name: name, email: email)
         return user
     }
     

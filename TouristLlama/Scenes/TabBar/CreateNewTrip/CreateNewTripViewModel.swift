@@ -16,7 +16,7 @@ class CreateNewTripViewModel: ViewModel {
     
     enum TripCreationError: LocalizedError {
         case noName
-        case noStyle
+//        case noStyle
         case noLocation
         case noStartDate
         case noEndDate
@@ -26,7 +26,7 @@ class CreateNewTripViewModel: ViewModel {
         var errorDescription: String? {
             switch self {
             case .noName: return String.MyTrips.createErrorNoName
-            case .noStyle: return String.MyTrips.createErrorNoStyle
+//            case .noStyle: return String.MyTrips.createErrorNoStyle
             case .noLocation: return String.MyTrips.createErrorNoLocation
             case .noStartDate: return String.MyTrips.createErrorNoStartDate
             case .noEndDate: return String.MyTrips.createErrorNoEndDate
@@ -44,7 +44,7 @@ class CreateNewTripViewModel: ViewModel {
     var previousCreationStage: TripCreationStage = .generalInfo
     @Published var finishedCreationStages: Set<TripCreationStage> = [.generalInfo]
     @Published var tripName: String = ""
-    @Published var tripStyle: TripStyle = .none
+    @Published var tripStyle: TripStyle?
     @Published var tripLocation: TripLocation?
     @Published var tripStartDate: Date?
     @Published var tripEndDate: Date?
@@ -75,11 +75,11 @@ class CreateNewTripViewModel: ViewModel {
             self.error = TripCreationError.noName
             return
         }
-        guard tripStyle != .none else {
-            currentCreationStage = .generalInfo
-            self.error = TripCreationError.noStyle
-            return
-        }
+//        guard tripStyle != .none else {
+//            currentCreationStage = .generalInfo
+//            self.error = TripCreationError.noStyle
+//            return
+//        }
         guard let tripLocation else {
             currentCreationStage = .generalInfo
             self.error = TripCreationError.noLocation

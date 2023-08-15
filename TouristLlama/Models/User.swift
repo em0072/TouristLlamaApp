@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftSDK
 
-struct User {
+struct User: Codable {
     
     enum Property: String {
         case name
@@ -21,6 +22,36 @@ struct User {
     let id: String
     let name: String
     let email: String
+    let imageURLString: String?
 //    let sex: Sex
 //    let memberSince: Date
+    
+    init(id: String, name: String, email: String, imageURLString: String?) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.imageURLString = imageURLString
+    }
+    
+    init?(from blUser: BackendlessUser) {
+        guard let id = blUser.objectId,
+              let email = blUser.email else {
+            return nil
+        }
+        let name = blUser.name ?? ""
+        let imageURLString = blUser.properties[CodingKeys.imageURLString.stringValue] as? String
+
+        self.id = id
+        self.name = name
+        self.email = email
+        self.imageURLString = imageURLString
+    }
+    
+    var blUser: BackendlessUser {
+        let blUser = BackendlessUser()
+        blUser.objectId = self.id
+        blUser.name = self.name
+        blUser.properties[CodingKeys.imageURLString.stringValue] = self.imageURLString
+        return blUser
+    }
 }

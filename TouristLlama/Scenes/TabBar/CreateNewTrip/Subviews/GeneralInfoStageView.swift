@@ -10,7 +10,7 @@ import SwiftUI
 struct GeneralInfoStageView: View {
     
     @Binding var name: String
-    @Binding var tripStyle: TripStyle
+    @Binding var tripStyle: TripStyle?
     @Binding var tripLocation: TripLocation?
     @Binding var startDate: Date?
     @Binding var endDate: Date?
@@ -19,15 +19,18 @@ struct GeneralInfoStageView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     nameView
-                    
+                        .padding(.horizontal, 20)
+
                     stylePickerView
                     
                     locationPickerView
-                    
+                        .padding(.horizontal, 20)
+
                     datePickersView
-                    
+                        .padding(.horizontal, 20)
+
                 }
-                .padding(20)
+                .padding(.vertical, 20)
             }
     }
 }
@@ -40,10 +43,7 @@ extension GeneralInfoStageView {
     }
     
     private var stylePickerView: some View {
-        FramedPickerView(title: String.MyTrips.createTripStyle,
-                             placeholder: String.MyTrips.createTripStylePlaceholder,
-                             selected: $tripStyle,
-                             emptyState: TripStyle.none)
+        TripStylePicker(title: String.MyTrips.createTripStyle, selectedStyle: $tripStyle)
     }
     
     private var locationPickerView: some View {
@@ -73,7 +73,7 @@ extension GeneralInfoStageView {
 struct GeneralInfoStageView_Previews: PreviewProvider {
     static var previews: some View {
         GeneralInfoStageView(name: .constant(""),
-                             tripStyle: .constant(.none),
+                             tripStyle: .constant(nil),
                              tripLocation: .constant(nil),
                              startDate: .constant(Date()),
                              endDate: .constant(nil))

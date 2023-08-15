@@ -6,6 +6,41 @@
   
 */
 
+"tripStyleInfo" = "Trip style can help ensure that your travel buddies will have aligned expectations for your trip.";
+
+
+// Travel Style Names
 "tripStyleLeisure" = "Leisure";
 "tripStyleActive" = "Active";
+"tripStyleCultural" = "Cultural";
+"tripStyleAdventure" = "Adventure";
+"tripStyleNatureAndWildlife" = "Nature & Wildlife";
+"tripStyleBeachAndMarine" = "Beach & Marine";
+"tripStyleCulinary" = "Culinary";
+"tripStyleNightlifeAndParty" = "Nightlife & Party";
+"tripStyleBudgetBackpacking" = "Budget/Backpacking";
+"tripStyleLuxury" = "Luxury";
+"tripStyleFamily" = "Family";
+"tripStyleSolo" = "Solo";
+"tripStyleBusiness" = "Business";
+"tripStyleEcoTourism" = "Eco-tourism";
+"tripStyleVolunteering" = "Volunteering";
+"tripStyleFestivalAndEvents" = "Festival & Events";
 
+// Travel Style Descriptions
+"tripStyleLeisureDescription" = "Relaxed vacations, often focused on relaxation, sightseeing, and perhaps some light activities.";
+"tripStyleActiveDescription" = "Focused on physical activities like hiking, biking, kayaking, or other strenuous activities.";
+"tripStyleCulturalDescription" = "Travelers who prioritize exploring local cultures, traditions, and history.";
+"tripStyleAdventureDescription" = "For those seeking adrenaline rushes, like skydiving, white-water rafting, or off-roading.";
+"tripStyleNatureAndWildlifeDescription" = "Focuses on exploring natural landscapes, wildlife safaris, bird-watching, and similar activities.";
+"tripStyleBeachAndMarineDescription" = "Ideal for those who love beaches, snorkeling, diving, or just lounging by the sea.";
+"tripStyleCulinaryDescription" = "For food lovers, this revolves around tasting local cuisines, exploring food markets, or attending cooking classes.";
+"tripStyleNightlifeAndPartyDescription" = "Aimed at travelers looking to explore the nightlife, clubs, bars, and parties of their destination.";
+"tripStyleBudgetBackpackingDescription" = "For travelers who are budget-conscious and possibly looking to backpack, stay in hostels, and utilize shared or public transportation.";
+"tripStyleLuxuryDescription" = "Those who want to travel in style and comfort, opting for luxury accommodations, gourmet dining, and perhaps private tours.";
+"tripStyleFamilyDescription" = "Suitable for families traveling with kids, focusing on kid-friendly activities and destinations.";
+"tripStyleSoloDescription" = "For those who are looking to travel alone but may want to meet up with others for specific activities or day-trips.";
+"tripStyleBusinessDescription" = "Travelers who are primarily on a business trip but might have some free time for sightseeing or activities.";
+"tripStyleEcoTourismDescription" = "For those keen on sustainable travel, wanting to ensure they leave a minimal footprint and engage in eco-friendly activities.";
+"tripStyleVolunteeringDescription" = "Travelers who want to make a difference by volunteering in communities, wildlife conservation, or other initiatives.";
+"tripStyleFestivalAndEventsDescription" = "People traveling primarily for a festival, concert, or specific event.";

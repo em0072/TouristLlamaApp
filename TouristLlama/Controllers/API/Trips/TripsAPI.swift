@@ -37,7 +37,8 @@ class TripsAPI {
     
     private func addTripToMyTrips(_ trip: Trip) {
         myTrips.append(trip)
-        myTrips.sort { $0.startDate > $1.startDate }
+        myTrips.sort { $0.startDate < $1.startDate }
+        myTrips.sort { $0.endDate < $1.endDate }
     }
 
 }

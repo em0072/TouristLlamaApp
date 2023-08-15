@@ -54,6 +54,7 @@ struct CreateNewTripView: View {
                     .padding(.horizontal, 20)
             }
             .animation(.default, value: viewModel.currentCreationStage)
+            .animation(.default, value: viewModel.tripStyle)
             .navigationTitle(String.MyTrips.createTripTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
