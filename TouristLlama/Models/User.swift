@@ -21,4 +21,6 @@ struct User {
     let id: String
     let name: String
     let email: String
+//    let sex: Sex
+//    let memberSince: Date
 }

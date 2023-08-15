@@ -27,5 +27,10 @@ extension TouristLlamaApp {
         Backendless.shared.hostUrl = "https://eu-api.backendless.com"
         Backendless.shared.initApp(applicationId: "107EEFC1-7541-7992-FF48-1F34C1C05900", apiKey: "976589AC-23F7-4A65-A981-0D2B3B5415DF")
         Backendless.shared.userService.reloadCurrentUser = true
+        
+        Backendless.shared.data.of(BackendlessTripPhoto.self).mapToTable(tableName: "TripPhotos")
+        Backendless.shared.data.of(BackendlessTripLocation.self).mapToTable(tableName: "TripLocations")
+        Backendless.shared.data.of(BackendlessTrip.self).mapToTable(tableName: "Trips")
+
     }
 }

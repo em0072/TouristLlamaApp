@@ -18,11 +18,31 @@ struct SwitchToggleStyle: ToggleStyle {
         case small
     }
     
-    @State var dragInitialState: Bool = false
+    @State private var dragInitialState: Bool = false
     @State private var isReadyToSwipe: Bool = false
-    @State var dragStarted: Bool = false
+    @State private var dragStarted: Bool = false
     
     let size: Size
+    
+    init(onColor: Color = Color.Main.accentBlue,
+         offColor: Color = Color.Main.TLBackgroundActive,
+         thumbOnColor: Color = Color.Main.TLStrongWhite,
+         thumbOffColor: Color = Color.Main.TLInactiveGrey,
+         size: Size) {
+        self.onColor = onColor
+        self.offColor = offColor
+        self.thumbOnColor = thumbOnColor
+        self.thumbOffColor = thumbOffColor
+        self.size = size
+    }
+    
+    init(size: Size) {
+        self.size = size
+    }
+    
+    init() {
+        self.size = .standard
+    }
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {

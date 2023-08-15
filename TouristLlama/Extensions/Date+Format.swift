@@ -44,11 +44,11 @@ struct DateHandler {
     }
     
     
-//    func dateToString(_ date: Date?) -> String? {
-//        guard let date = date else { return nil }
-//        return formatter.string(from: date)
-//    }
-//
+    func dateToString(_ date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return formatter.string(from: date)
+    }
+
 //    func dateToString(_ timeInterval: TimeInterval?) -> String? {
 //        guard let timeInterval = timeInterval else { return nil }
 //        let date = Date(timeIntervalSince1970: timeInterval)

@@ -33,11 +33,29 @@ extension String {
         static let createTripDescription = String.localized("myTripsCreateTripDescription")
         static let createTripDescriptionPlaceholde = String.localized("myTripsCreateTripDescriptionPlaceholder")
 
+        static let createTripPhoto = String.localized("myTripsCreateTripPhoto")
+        
+        static let createTripVisibilityTitle = String.localized("myTripsCreateTripVisibilityTitle")
+        static let createTripVisibilityPrompt = String.localized("myTripsCreateTripVisibilityPrompt")
+        static let createTripVisibilityDescription = String.localized("myTripsCreateTripVisibilityDescription")
+
         static let createTripLocationSearchTitle = String.localized("myTripsCreateTripLocationSearchTitle")
         static let createTripLocationSearchPrompt = String.localized("myTripsCreateTripLocationSearchPrompt")
         static let createTripLocationSearchResultsTitle = String.localized("myTripsCreateTripLocationSearchResultsTitle")
-        static let mcreateTripLocationSearchResultsPrompt = String.localized("myTripsCreateTripLocationSearchResultsPrompt")
+        static let createTripLocationSearchResultsPrompt = String.localized("myTripsCreateTripLocationSearchResultsPrompt")
+        
+        static let ongoingSectionTitle = String.localized("myTripsOngoingSectionTitle")
+        static let futureSectionTitle = String.localized("myTripsFutureSectionTitle")
+        static let pastSectionTitle = String.localized("myTripsPastSectionTitle")
 
+        static let createErrorNoName = String.localized("myTripsCreateErrorNoName")
+        static let createErrorNoStyle = String.localized("myTripsCreateErrorNoStyle")
+        static let createErrorNoLocation = String.localized("myTripsCreateErrorNoLocation")
+        static let createErrorNoStartDate = String.localized("myTripsCreateErrorNoStartDate")
+        static let createErrorNoEndDate = String.localized("myTripsCreateErrorNoEndDate")
+        static let createErrorNoDescription = String.localized("myTripsCreateErrorNoDescription")
+        static let createErrorNoPhoto = String.localized("myTripsCreateErrorNoPhoto")
+        
     }
     
     private static func localized(_ key: String) -> String {

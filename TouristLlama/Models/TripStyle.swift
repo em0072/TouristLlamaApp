@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum TripStyle: Pickable {
+enum TripStyle: String, Pickable {
     case none
     case leisure
     case active
     
-    var rawValue: String {
+    var localizedValue: String {
         switch self {
         case .none:
             return ""

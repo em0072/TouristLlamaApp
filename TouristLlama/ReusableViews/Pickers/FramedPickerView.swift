@@ -38,7 +38,7 @@ extension FramedPickerView {
                                 selected = item
                             } label: {
                                 Label {
-                                    Text(item == emptyState ? "" : item.rawValue.capitalized)
+                                    Text(item == emptyState ? "" : item.localizedValue)
                                         .font(.avenirBody)
                                         .bold(item == selected)
                                 } icon: {

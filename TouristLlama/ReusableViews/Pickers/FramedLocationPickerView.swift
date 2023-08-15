@@ -30,10 +30,8 @@ struct FramedLocationPickerView: View {
         .sheet(isPresented: $isShowing, onDismiss: nil) {
             LocationSearchView() { item in
                 let location = TripLocation(title: item.title,
-                                            city: item.city,
                                             country: item.country,
                                             point: item.point,
-                                            region: item.region,
                                             flag: item.countryCode?.flag)
                 selection = location
                 isShowing = false

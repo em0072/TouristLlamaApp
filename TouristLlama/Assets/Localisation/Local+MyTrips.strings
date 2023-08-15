@@ -27,6 +27,24 @@
 "myTripsCreateTripDescription" = "Description";
 "myTripsCreateTripDescriptionPlaceholder" = "Please include some information about the trip. i.e. places you want to visit or activities you want do...";
 
+"myTripsCreateTripPhoto" = "Select a photo for your trip";
+
+"myTripsCreateTripVisibilityTitle" = "Visibility";
+"myTripsCreateTripVisibilityPrompt" = "Is this trip open for requests?";
+"myTripsCreateTripVisibilityDescription" = "If a trip is open for requests, then other users can find this trip and send requests to join it.";
+
+"myTripsCreateErrorNoName" = "Trip must have a name.\nPlease name your trip.";
+"myTripsCreateErrorNoStyle" = "Trip must have a style.\nPlease choose your trip style.";
+"myTripsCreateErrorNoLocation" = "Trip must have a location.\nPlease choose your trip location.";
+"myTripsCreateErrorNoStartDate" = "Trip must have a start date.\nPlease choose your trip start date.";
+"myTripsCreateErrorNoEndDate" = "Trip must have an end date.\nPlease choose your trip end date.";
+"myTripsCreateErrorNoDescription" = "Trip must have a description.\nPlease write your trip description.";
+"myTripsCreateErrorNoPhoto" = "Trip must have a photo.\nPlease choose your trip photo.";
+
+"myTripsOngoingSectionTitle" = "Ongoing";
+"myTripsFutureSectionTitle" = "Future";
+"myTripsPastSectionTitle" = "Past";
+
 "myTripsCreateTripLocationSearchTitle" = "Location Search";
 "myTripsCreateTripLocationSearchPrompt" = "Enter Location Name";
 "myTripsCreateTripLocationSearchResultsTitle" = "Results";

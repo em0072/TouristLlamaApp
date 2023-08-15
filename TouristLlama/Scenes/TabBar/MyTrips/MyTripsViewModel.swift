@@ -6,12 +6,99 @@
 //
 
 import Foundation
+import Dependencies
 
 class MyTripsViewModel: ViewModel {
     
+    @Dependency(\.tripsAPI) var tripsAPI
+    
+    enum ViewDataMode {
+        case ongoing
+        case past
+    }
+        
     @Published var isShowingNewTripCreation = false
+    @Published var myOngoingTrips: [Trip] = []
+    @Published var myFutureTrips: [Trip] = []
+    @Published var myPastTrips: [Trip] = []
+    
+    @Published var viewDataMode: ViewDataMode = .ongoing
     
     func startCreationOfNewTrip() {
         isShowingNewTripCreation = true
     }
+    
+    var totalTripsCount: Int {
+        myFutureTrips.count + myOngoingTrips.count + myPastTrips.count
+    }
+    
+    override func subscribeToUpdates() {
+        tripsAPI.$myTrips
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] myTrips in
+                guard let self else { return }
+                self.clearTripsData()
+                self.sortTrips(myTrips)
+                if self.tripsAPI.myTripsIsLoaded {
+                    self.state = .content
+                }
+            }
+            .store(in: &publishers)
+    }
+    
+    private func clearTripsData() {
+        myFutureTrips.removeAll()
+        myOngoingTrips.removeAll()
+        myPastTrips.removeAll()
+    }
+    
+    private func sortTrips(_ allTrips: [Trip]) {
+        for trip in allTrips {
+            if trip.startDate > Date() {
+                myFutureTrips.append(trip)
+            } else if trip.endDate > Date() {
+                myOngoingTrips.append(trip)
+            } else {
+                myPastTrips.append(trip)
+            }
+        }
+    }
+        
+//    private func getMyTrips() async {
+//            do {
+//                let myTrips = try await tripsAPI.getMyTrips()
+//                myFutureTrips.removeAll()
+//                myOngoingTrips.removeAll()
+//                myPastTrips.removeAll()
+//                for trip in myTrips {
+//                    if trip.startDate > Date() {
+//                        myFutureTrips.append(trip)
+//                    } else if trip.endDate > Date() {
+//                        myOngoingTrips.append(trip)
+//                    } else {
+//                        myPastTrips.append(trip)
+//                    }
+//                }
+//                self.state = .content
+//            } catch {
+//                self.error = error
+//            }
+//    }
+    
+//    @Sendable
+//    func updateData() async {
+//        switch viewDataMode {
+//        case .ongoing:
+//            await getMyTrips()
+//
+//        case .past:
+//            return
+//        }
+//    }
+    
+//    func updateMyTrips() {
+//        Task {
+//            await getMyTrips()
+//        }
+//    }
 }

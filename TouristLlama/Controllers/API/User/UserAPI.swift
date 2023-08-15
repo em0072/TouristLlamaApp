@@ -9,7 +9,7 @@ import Foundation
 
 class UserAPI {
     
-    let provider: UserAPIProvider
+    private let provider: UserAPIProvider
     
     @Published var currentUser: User?
     

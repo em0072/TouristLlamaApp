@@ -28,22 +28,22 @@ struct CreateNewTripView: View {
                                          tripLocation: $viewModel.tripLocation,
                                          startDate: $viewModel.tripStartDate,
                                          endDate: $viewModel.tripEndDate)
-//                    .transition(.move(edge: .leading))
                     .transition(.asymmetric(insertion: .move(edge: .trailing),
                                             removal: .move(edge: .leading)))
-                    
+
                 case .description:
                     DescriptionStageView(description: $viewModel.tripDescription)
                         .transition(.asymmetric(insertion: .move(edge: .trailing),
                                                 removal: .move(edge: .leading)))
 
                 case .photo:
-                    Text("Photo")
+                    PhotoStageView(searchQuery: viewModel.tripLocation?.title ?? "World",
+                                   tripPhoto: $viewModel.tripPhoto)
                         .transition(.asymmetric(insertion: .move(edge: .trailing),
                                                 removal: .move(edge: .leading)))
 
                 case .settings:
-                    Text("Settings")
+                    SettingsStageView(isVisible: $viewModel.isTripPublic)
                         .transition(.asymmetric(insertion: .move(edge: .trailing),
                                                 removal: .move(edge: .leading)))
                 }
@@ -59,9 +59,12 @@ struct CreateNewTripView: View {
             .toolbar {
                 closeButton
             }
-//            .onChange(of: viewModel.currentCreationStage) { [currentCreationStage =  viewModel.currentCreationStage] newValue in
-//                viewModel.previousCreationStage = currentCreationStage
-//            }
+            .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
+                if shouldDismiss {
+                    dismiss()
+                }
+            }
+            .handle(error: $viewModel.error)
         }
     }
 }
@@ -80,7 +83,7 @@ extension CreateNewTripView {
     }
     
     private var submitButtonView: some View {
-        Button(String.Main.continue) {
+        Button(viewModel.buttonText) {
             viewModel.onButtonAction()
         }
         .buttonStyle(WideBlueButtonStyle())

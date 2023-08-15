@@ -102,7 +102,7 @@ extension LocationSearchView {
     }
     
     private var resultsPlaceholderText: String {
-        viewModel.searchText.isEmpty ? String.MyTrips.mcreateTripLocationSearchResultsPrompt : String.Main.noResults
+        viewModel.searchText.isEmpty ? String.MyTrips.createTripLocationSearchResultsPrompt : String.Main.noResults
     }
 
 

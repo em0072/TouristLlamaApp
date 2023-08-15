@@ -12,6 +12,7 @@ extension String {
     enum Main {
         static let noResults = String.localized("noResults")
         static let `continue` = String.localized("continue")
+        static let create = String.localized("create")
 
     }
     

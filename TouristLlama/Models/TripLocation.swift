@@ -10,18 +10,29 @@ import CoreLocation
 
 struct TripLocation {
     let title: String
-    let city: String
     let country: String
     let point: CLLocation?
-    let region: CLRegion?
     let flag: String?
+        
+    init(title: String, country: String, point: CLLocation?, flag: String?) {
+        self.title = title
+        self.country = country
+        self.point = point
+        self.flag = flag
+    }
     
+    var nameAndFlag: String {
+        var name = title
+        if let flag = flag {
+            name += " \(flag)"
+        }
+        return name
+    }
+
     static var test: TripLocation {
-        TripLocation(title: "Amsterdam, The Netherlands",
-                     city: "Amsterdam",
+        TripLocation(title: "Purmerend, The Netherlands",
                      country: "The Netherlands",
-                     point: CLLocation(latitude: 52.3676, longitude: 4.9041),
-                     region: .init(),
+                     point: .init(latitude: 52.5103769, longitude: 4.9446193),
                      flag: "🇳🇱")
     }
 }

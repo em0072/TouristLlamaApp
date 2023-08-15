@@ -7,8 +7,34 @@
 
 import Foundation
 import SwiftUI
+import Dependencies
 
+@MainActor
 class CreateNewTripViewModel: ViewModel {
+    
+    @Dependency(\.tripsAPI) var tripsAPI
+    
+    enum TripCreationError: LocalizedError {
+        case noName
+        case noStyle
+        case noLocation
+        case noStartDate
+        case noEndDate
+        case noDescription
+        case noPhoto
+        
+        var errorDescription: String? {
+            switch self {
+            case .noName: return String.MyTrips.createErrorNoName
+            case .noStyle: return String.MyTrips.createErrorNoStyle
+            case .noLocation: return String.MyTrips.createErrorNoLocation
+            case .noStartDate: return String.MyTrips.createErrorNoStartDate
+            case .noEndDate: return String.MyTrips.createErrorNoEndDate
+            case .noDescription: return String.MyTrips.createErrorNoDescription
+            case .noPhoto: return String.MyTrips.createErrorNoPhoto
+            }
+        }
+    }
         
     @Published var currentCreationStage: TripCreationStage = .generalInfo {
         willSet {
@@ -16,7 +42,7 @@ class CreateNewTripViewModel: ViewModel {
         }
     }
     var previousCreationStage: TripCreationStage = .generalInfo
-    @Published var finishedCreationStages: Set<TripCreationStage> = []
+    @Published var finishedCreationStages: Set<TripCreationStage> = [.generalInfo]
     @Published var tripName: String = ""
     @Published var tripStyle: TripStyle = .none
     @Published var tripLocation: TripLocation?
@@ -25,12 +51,9 @@ class CreateNewTripViewModel: ViewModel {
     @Published var tripDescription: String = ""
     @Published var tripPhoto: TripPhoto?
     @Published var isTripPublic: Bool = true
-    
-    override init() {
-        super.init()
-        finishedCreationStages.insert(.generalInfo)
-    }
-    
+    @Published var shouldDismiss: Bool = false
+
+        
     func onButtonAction() {
         switch currentCreationStage {
         case .generalInfo:
@@ -47,11 +70,62 @@ class CreateNewTripViewModel: ViewModel {
     }
     
     func createTrip() {
-        
+        guard !tripName.isEmpty else {
+            currentCreationStage = .generalInfo
+            self.error = TripCreationError.noName
+            return
+        }
+        guard tripStyle != .none else {
+            currentCreationStage = .generalInfo
+            self.error = TripCreationError.noStyle
+            return
+        }
+        guard let tripLocation else {
+            currentCreationStage = .generalInfo
+            self.error = TripCreationError.noLocation
+            return
+        }
+        guard let tripStartDate else {
+            currentCreationStage = .generalInfo
+            self.error = TripCreationError.noStartDate
+            return
+        }
+        guard let tripEndDate else {
+            currentCreationStage = .generalInfo
+            self.error = TripCreationError.noEndDate
+            return
+        }
+        guard !tripDescription.isEmpty else {
+            currentCreationStage = .description
+            self.error = TripCreationError.noDescription
+            return
+        }
+
+        guard let tripPhoto else {
+            currentCreationStage = .photo
+            self.error = TripCreationError.noPhoto
+            return
+        }
+
+        let trip = Trip(name: tripName,
+                        style: tripStyle,
+                        location: tripLocation,
+                        startDate: tripStartDate,
+                        endDate: tripEndDate,
+                        description: tripDescription,
+                        photo: tripPhoto,
+                        isPublic: isTripPublic)
+        Task {
+            do {
+                try await tripsAPI.create(trip: trip)
+                self.shouldDismiss = true
+            } catch {
+                self.error = error
+            }
+        }
     }
     
     var isButtonDisabled: Bool {
-        return false
         switch currentCreationStage {
         case .generalInfo:
             return tripName.isEmpty || tripStyle == .none || tripLocation == nil || tripStartDate == nil || tripEndDate == nil
@@ -87,5 +161,9 @@ class CreateNewTripViewModel: ViewModel {
             return .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
 
         }
+    }
+    
+    var buttonText: String {
+        return currentCreationStage == .settings ? String.Main.create : String.Main.continue
     }
 }

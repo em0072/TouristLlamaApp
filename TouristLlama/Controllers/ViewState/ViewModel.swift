@@ -8,7 +8,14 @@
 import SwiftUI
 import Combine
 
+@MainActor
 class ViewModel: ObservableObject {
+    
+    enum ViewState {
+        case loading
+        case content
+        case error
+    }
         
     @Published var loadingState: LoadingState = .none
     @Published var error: Error? {
@@ -16,6 +23,7 @@ class ViewModel: ObservableObject {
             loadingState = .none
         }
     }
+    @Published var state: ViewState = .loading
     
     var publishers = [AnyCancellable]()
     

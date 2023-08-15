@@ -79,7 +79,7 @@ extension FramedDatePickerView {
 
     
     private var datePickerView: some View {
-        DatePicker("", selection: unwrap(binding: $selection, fallback: Date()), in: minimumDate...maximumDate, displayedComponents: [.date])
+        DatePicker("", selection: unwrap(binding: $selection, fallback: Date().removeTimeStamp), in: minimumDate...maximumDate, displayedComponents: [.date])
             .accentColor(.Main.accentBlue)
             .labelsHidden()
             .id(selection)

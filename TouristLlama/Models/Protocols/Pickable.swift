@@ -7,12 +7,17 @@
 
 import Foundation
 
-protocol Pickable: StringRepresentable, Identifiable, Codable, Equatable, Hashable, CaseIterable where AllCases: RandomAccessCollection {}
+protocol Pickable: StringRepresentable, Localizable, Identifiable, Codable, Equatable, Hashable, CaseIterable where AllCases: RandomAccessCollection {}
 
 extension Pickable {
     var id: Self { return self }
 }
 
+extension Pickable {
+    var localizedValue: String {
+        return self.rawValue
+    }
+}
 
 //extension Pickable where Self: RawRepresentable, Self.RawValue == String {
 //    var value: String {
@@ -23,3 +28,8 @@ extension Pickable {
 protocol StringRepresentable {
     var rawValue: String { get }
 }
+
+protocol Localizable {
+    var localizedValue: String { get }
+}
+
