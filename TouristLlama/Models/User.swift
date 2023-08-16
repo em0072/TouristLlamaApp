@@ -8,7 +8,7 @@
 import Foundation
 import SwiftSDK
 
-struct User: Codable {
+struct User: Codable, Identifiable {
     
     enum Property: String {
         case name
@@ -45,6 +45,14 @@ struct User: Codable {
         self.name = name
         self.email = email
         self.imageURLString = imageURLString
+    }
+    
+    var imageURL: URL? {
+        if let imageURLString {
+            return URL(string: imageURLString)
+        } else {
+            return nil
+        }
     }
     
     var blUser: BackendlessUser {

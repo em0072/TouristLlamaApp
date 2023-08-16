@@ -107,14 +107,17 @@ class CreateNewTripViewModel: ViewModel {
             return
         }
 
-        let trip = Trip(name: tripName,
+        let trip = Trip(id: "",
+                        name: tripName,
                         style: tripStyle,
                         location: tripLocation,
                         startDate: tripStartDate,
                         endDate: tripEndDate,
                         description: tripDescription,
                         photo: tripPhoto,
-                        isPublic: isTripPublic)
+                        isPublic: isTripPublic,
+                        participants: [],
+                        ownerId: "")
         Task {
             do {
                 try await tripsAPI.create(trip: trip)

@@ -49,6 +49,7 @@ struct LogInView: View {
             .handle(loading: $viewModel.loadingState)
             .handle(error: $viewModel.error)
         }
+        .ignoresSafeArea(.keyboard)
         .handle(loading: $viewModel.loadingState)
         .handle(error: $viewModel.error)
     }

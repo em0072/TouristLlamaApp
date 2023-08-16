@@ -19,6 +19,7 @@ import SwiftSDK
     var photo: BackendlessTripPhoto?
     var isPublic: Bool = false
     var participants: [BackendlessUser] = []
+    var ownerId: String?
     
     override init() {
         super.init()
@@ -37,16 +38,19 @@ import SwiftSDK
     }
         
     var appObject: Trip? {
-        guard let name else { return nil }
-        guard let location = self.location?.appObject else { return nil }
-        guard let startDate else { return nil }
-        guard let endDate else { return nil }
-        guard let tripDescription else { return nil }
-        guard let photo = self.photo?.appObject else { return nil }
+        guard let objectId,
+              let name,
+              let location = self.location?.appObject,
+              let startDate,
+              let endDate,
+              let tripDescription,
+              let photo = self.photo?.appObject,
+              let ownerId else { return nil }
         
         let style = TripStyle(rawValue: style ?? "")
         
-        return Trip(name: name,
+        return Trip(id: objectId,
+                    name: name,
                     style: style,
                     location: location,
                     startDate: startDate,
@@ -54,7 +58,8 @@ import SwiftSDK
                     description: tripDescription,
                     photo: photo,
                     isPublic: isPublic,
-                    participants: self.participants.compactMap { User(from: $0) }
+                    participants: self.participants.compactMap { User(from: $0) },
+                    ownerId: ownerId
         )
     }
     

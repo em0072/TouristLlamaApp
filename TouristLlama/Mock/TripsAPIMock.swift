@@ -11,7 +11,7 @@ import Combine
 class TripsAPIMock: TripsAPIProvider {
     
     func getMyTrips() async throws -> [Trip] {
-        return [Trip.testOngoing, Trip.testFuture]
+        return [Trip.testOngoing, Trip.testFuture, .testPast]
     }
     
     func create(trip: Trip) async throws -> Trip {

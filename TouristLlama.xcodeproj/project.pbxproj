@@ -97,6 +97,13 @@
 		75DE43482A8C003A00D42B9D /* User+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43472A8C003A00D42B9D /* User+test.swift */; };
 		75DE434A2A8C004600D42B9D /* Trip+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43492A8C004600D42B9D /* Trip+test.swift */; };
 		75DE434C2A8C0BBD00D42B9D /* TripStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE434B2A8C0BBD00D42B9D /* TripStylePicker.swift */; };
+		75DE43502A8CAE1000D42B9D /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE434F2A8CAE1000D42B9D /* TripView.swift */; };
+		75DE43522A8CAE1800D42B9D /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43512A8CAE1800D42B9D /* TripViewModel.swift */; };
+		75DE43542A8CB10300D42B9D /* TripDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43532A8CB10300D42B9D /* TripDetailsView.swift */; };
+		75DE43562A8CB11800D42B9D /* TripChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43552A8CB11800D42B9D /* TripChatsListView.swift */; };
+		75DE43582A8CB22300D42B9D /* ScrollView+Offsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */; };
+		75DE435A2A8CB37D00D42B9D /* Calendar+Nights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */; };
+		75DE435E2A8CBE8B00D42B9D /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */; };
 		75ED79E52A82606D0078D103 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79E42A82606D0078D103 /* UserAPI.swift */; };
 		75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 75ED79E82A8260AA0078D103 /* Dependencies */; };
 		75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79EA2A8260B40078D103 /* Dependencies.swift */; };
@@ -213,6 +220,13 @@
 		75DE43472A8C003A00D42B9D /* User+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+test.swift"; sourceTree = "<group>"; };
 		75DE43492A8C004600D42B9D /* Trip+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+test.swift"; sourceTree = "<group>"; };
 		75DE434B2A8C0BBD00D42B9D /* TripStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStylePicker.swift; sourceTree = "<group>"; };
+		75DE434F2A8CAE1000D42B9D /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
+		75DE43512A8CAE1800D42B9D /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
+		75DE43532A8CB10300D42B9D /* TripDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailsView.swift; sourceTree = "<group>"; };
+		75DE43552A8CB11800D42B9D /* TripChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChatsListView.swift; sourceTree = "<group>"; };
+		75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Offsets.swift"; sourceTree = "<group>"; };
+		75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Nights.swift"; sourceTree = "<group>"; };
+		75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
 		75ED79E42A82606D0078D103 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		75ED79EA2A8260B40078D103 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		75ED79ED2A8261130078D103 /* UserAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIProvider.swift; sourceTree = "<group>"; };
@@ -528,6 +542,9 @@
 				75336BCD2A852BE200031D5C /* Date+Format.swift */,
 				75336BCF2A852C5600031D5C /* TimeInterval+Format.swift */,
 				75336BC92A852AF900031D5C /* Binding+Unwrap.swift */,
+				75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */,
+				75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */,
+				75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -671,6 +688,17 @@
 			path = TripStylePicker;
 			sourceTree = "<group>";
 		};
+		75DE434E2A8CADFB00D42B9D /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				75DE434F2A8CAE1000D42B9D /* TripView.swift */,
+				75DE43512A8CAE1800D42B9D /* TripViewModel.swift */,
+				75DE43532A8CB10300D42B9D /* TripDetailsView.swift */,
+				75DE43552A8CB11800D42B9D /* TripChatsListView.swift */,
+			);
+			path = Trip;
+			sourceTree = "<group>";
+		};
 		75ED79E62A8260700078D103 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				75DE164C2A84F01300AF671B /* MyTrips */,
+				75DE434E2A8CADFB00D42B9D /* Trip */,
 				75DE16512A84F03C00AF671B /* CreateNewTrip */,
 				75DE164B2A84F00D00AF671B /* Root */,
 			);
@@ -866,6 +895,7 @@
 				75BC4A712A80EEB700B6F6CE /* Local+Onboarding.swift in Sources */,
 				75DE43392A8A382000D42B9D /* BackendlessTripLocation.swift in Sources */,
 				75DE164E2A84F02200AF671B /* MyTripsView.swift in Sources */,
+				75DE43502A8CAE1000D42B9D /* TripView.swift in Sources */,
 				75DE434C2A8C0BBD00D42B9D /* TripStylePicker.swift in Sources */,
 				75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */,
 				75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */,
@@ -906,11 +936,14 @@
 				75DE16642A84F53600AF671B /* TripPhoto.swift in Sources */,
 				75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */,
 				75DE43422A8BC66A00D42B9D /* BackendlessTripUser.swift in Sources */,
+				75DE435A2A8CB37D00D42B9D /* Calendar+Nights.swift in Sources */,
 				75DE43482A8C003A00D42B9D /* User+test.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				75DE16672A84F82F00AF671B /* FramedTextField.swift in Sources */,
+				75DE43522A8CAE1800D42B9D /* TripViewModel.swift in Sources */,
 				75BC4A8A2A8114D700B6F6CE /* String+Email.swift in Sources */,
+				75DE43582A8CB22300D42B9D /* ScrollView+Offsets.swift in Sources */,
 				75336BD22A86330600031D5C /* StageSelector.swift in Sources */,
 				75BC4A6A2A80ED1E00B6F6CE /* OnboardingFeaturesBuilder.swift in Sources */,
 				75DE16532A84F04D00AF671B /* CreateNewTripView.swift in Sources */,
@@ -926,6 +959,7 @@
 				75DE43462A8BC8C100D42B9D /* UserImagePlaceholderView.swift in Sources */,
 				75336BA52A84FEB100031D5C /* FieldBackgroundView.swift in Sources */,
 				75336BA82A84FF6E00031D5C /* FieldTitleView.swift in Sources */,
+				75DE435E2A8CBE8B00D42B9D /* View+CornerRadius.swift in Sources */,
 				75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */,
 				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
@@ -934,6 +968,7 @@
 				75336BC82A852A8100031D5C /* Date+Forward.swift in Sources */,
 				75DE16502A84F03000AF671B /* MyTripsViewModel.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
+				75DE43562A8CB11800D42B9D /* TripChatsListView.swift in Sources */,
 				75DE165E2A84F39300AF671B /* Trip.swift in Sources */,
 				75DE16552A84F05500AF671B /* CreateNewTripViewModel.swift in Sources */,
 				75DE164A2A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift in Sources */,
@@ -941,6 +976,7 @@
 				75DE43152A86B8A800D42B9D /* PexelPhotoPickerView.swift in Sources */,
 				75336BB82A85062A00031D5C /* LocationSearchView.swift in Sources */,
 				75336BD02A852C5600031D5C /* TimeInterval+Format.swift in Sources */,
+				75DE43542A8CB10300D42B9D /* TripDetailsView.swift in Sources */,
 				75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */,
 				75DE432A2A8A19F800D42B9D /* SettingsStageView.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,

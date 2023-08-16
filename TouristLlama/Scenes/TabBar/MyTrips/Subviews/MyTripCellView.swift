@@ -47,10 +47,12 @@ extension MyTripsCellView {
     
     private var cellbackground: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color.Main.accentBlue)
-                .scaleEffect(x: isAnimating ? 1.05 : 1, y: isAnimating ? 1.1 : 1)
-                .opacity(isAnimating ? 0 : 0.3)
+            if isHighlighted {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.Main.accentBlue)
+                    .scaleEffect(x: isAnimating ? 1.05 : 1, y: isAnimating ? 1.1 : 1)
+                    .opacity(isAnimating ? 0 : 0.3)
+            }
             
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color.Main.TLBackgroundActive)

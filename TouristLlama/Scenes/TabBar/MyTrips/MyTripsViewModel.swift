@@ -21,15 +21,21 @@ class MyTripsViewModel: ViewModel {
     @Published var myOngoingTrips: [Trip] = []
     @Published var myFutureTrips: [Trip] = []
     @Published var myPastTrips: [Trip] = []
+    @Published var selectedTrip: Trip?
     
     @Published var viewDataMode: ViewDataMode = .ongoing
+    
+    
+    var totalTripsCount: Int {
+        myFutureTrips.count + myOngoingTrips.count + myPastTrips.count
+    }
     
     func startCreationOfNewTrip() {
         isShowingNewTripCreation = true
     }
-    
-    var totalTripsCount: Int {
-        myFutureTrips.count + myOngoingTrips.count + myPastTrips.count
+
+    func openDetails(for trip: Trip) {
+        selectedTrip = trip
     }
     
     override func subscribeToUpdates() {

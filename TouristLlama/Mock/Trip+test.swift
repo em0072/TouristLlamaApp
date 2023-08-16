@@ -10,7 +10,8 @@ import Foundation
 extension Trip {
     
     static var testFuture: Trip {
-        Trip(name: "My Future Trip",
+        Trip(id: "",
+             name: "My Future Trip",
              style: .leisure,
              location: .test,
              startDate: Date().addingTimeInterval(60 * 60 * 24 * 1),
@@ -18,11 +19,13 @@ extension Trip {
              description: "My amazing trip",
              photo: .test,
              isPublic: true,
-             participants: [.test, .test, .testNoPhoto])
+             participants: [.test, .testNotOwner, .testNoPhoto],
+             ownerId: User.test.id)
     }
     
     static var testOngoing: Trip {
-        Trip(name: "My Ongoing Trip",
+        Trip(id: "",
+             name: "My Ongoing Trip",
              style: .leisure,
              location: .test,
              startDate: Date().addingTimeInterval(60 * 60 * 24 * -1),
@@ -30,11 +33,13 @@ extension Trip {
              description: "My amazing trip",
              photo: .test,
              isPublic: true,
-             participants: [.test, .test, .testNoPhoto])
+             participants: [.test, .testNotOwner, .testNoPhoto],
+             ownerId: User.test.id)
     }
 
     static var testPast: Trip {
-        Trip(name: "My Past Trip",
+        Trip(id: "",
+             name: "My Past Trip",
              style: .leisure,
              location: .test,
              startDate: Date().addingTimeInterval(60 * 60 * 24 * -7),
@@ -42,7 +47,8 @@ extension Trip {
              description: "My amazing trip",
              photo: .test,
              isPublic: true,
-             participants: [.test, .test, .testNoPhoto])
+             participants: [.test, .testNotOwner, .testNoPhoto],
+             ownerId: User.test.id)
     }
     
 }

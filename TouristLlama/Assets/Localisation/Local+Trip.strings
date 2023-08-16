@@ -44,3 +44,19 @@
 "tripStyleEcoTourismDescription" = "For those keen on sustainable travel, wanting to ensure they leave a minimal footprint and engage in eco-friendly activities.";
 "tripStyleVolunteeringDescription" = "Travelers who want to make a difference by volunteering in communities, wildlife conservation, or other initiatives.";
 "tripStyleFestivalAndEventsDescription" = "People traveling primarily for a festival, concert, or specific event.";
+
+"tripDetailsTitle" = "Details";
+"tripDiscussionTitle" = "Discussion";
+
+
+"tripDatesTitle" = "Dates";
+"tripOneDayTrip" = "One-day trip";
+"tripOneNight" = "1 night";
+"tripNumberNights" = "%d nights";
+
+"tripAboutTitle" = "Description";
+
+"tripPaticipantsTitle" = "Participants";
+"organizer" = "Organizer";
+
+"tripMapTitle" = "View on map";

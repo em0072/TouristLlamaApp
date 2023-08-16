@@ -39,6 +39,9 @@ struct MyTripsView: View {
             CreateNewTripView()
             .interactiveDismissDisabled()
         }
+        .fullScreenCover(item: $viewModel.selectedTrip) { trip in
+            TripView(trip: trip)
+        }
         .handle(error: $viewModel.error)
     }
 }
@@ -72,8 +75,13 @@ extension MyTripsView {
         if !trips.isEmpty {
             Section {
                 ForEach(trips) { trip in
-                    MyTripsCellView(trip: trip, isHighlighted: isHighlighted)
-                        .opacity(isDimmed ? 0.8 : 1)
+                    Button {
+                        viewModel.openDetails(for: trip)
+                    } label: {
+                        MyTripsCellView(trip: trip, isHighlighted: isHighlighted)
+                            .opacity(isDimmed ? 0.5 : 1)
+                    }
+                    .buttonStyle(.plain)
                 }
             } header: {
                 FieldTitleView(title: title)

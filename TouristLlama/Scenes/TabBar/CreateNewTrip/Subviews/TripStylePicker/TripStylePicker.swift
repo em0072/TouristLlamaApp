@@ -22,7 +22,7 @@ struct TripStylePicker: View {
                 if let selectedStyle {
                     HStack {
                         Text(selectedStyle.localizedDescription)
-                            .font(.avenirSmallBody)
+                            .font(.avenirTagline)
                             .foregroundColor(.Main.grey)
                         Spacer()
                     }
@@ -44,7 +44,7 @@ extension TripStylePicker {
     }
     
     private var pickerView: some View {
-        ScrollView(.horizontal, showsIndicators: true) {
+        ScrollView(axes: .horizontal, showsIndicators: true) {
             HStack {
                 ForEach(TripStyle.allCases) { style in
                     styleCell(for: style, selected: selectedStyle == style)
@@ -56,6 +56,7 @@ extension TripStylePicker {
                             }
                         }
                 }
+                .padding(.top, 3)
                 .padding(.bottom, 10)
             }
 //            .padding(.vertical, 10)
