@@ -23,12 +23,12 @@ import Foundation
         self.large = tripPhoto.large.absoluteString
     }
     
-    init?(from dict: Any?) {
-        guard let dict = dict as? [String: Any] else { return nil }
-        self.small = dict[CodingKeys.small.stringValue] as? String
-        self.medium = dict[CodingKeys.medium.stringValue] as? String
-        self.large = dict[CodingKeys.large.stringValue] as? String
-    }
+//    init?(from dict: Any?) {
+//        guard let dict = dict as? [String: Any] else { return nil }
+//        self.small = dict[CodingKeys.small.stringValue] as? String
+//        self.medium = dict[CodingKeys.medium.stringValue] as? String
+//        self.large = dict[CodingKeys.large.stringValue] as? String
+//    }
     
     var appObject: TripPhoto? {
         guard let smallString = self.small, let small = URL(string: smallString) else { return nil }

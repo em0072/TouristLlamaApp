@@ -33,6 +33,7 @@
 		75336BD42A86333100031D5C /* TripCreationStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75336BD32A86333100031D5C /* TripCreationStage.swift */; };
 		7539C13E2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */; };
 		7539C17A2A83E84A00BB0B48 /* SwitchToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */; };
+		753F953C2A8E3DA4005B55B5 /* Color+Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F953B2A8E3DA4005B55B5 /* Color+Chat.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
@@ -104,6 +105,16 @@
 		75DE43582A8CB22300D42B9D /* ScrollView+Offsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */; };
 		75DE435A2A8CB37D00D42B9D /* Calendar+Nights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */; };
 		75DE435E2A8CBE8B00D42B9D /* View+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */; };
+		75DE43602A8CCBB000D42B9D /* TripChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE435F2A8CCBB000D42B9D /* TripChat.swift */; };
+		75DE43622A8CD18800D42B9D /* BackendlessTripChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43612A8CD18800D42B9D /* BackendlessTripChat.swift */; };
+		75DE43642A8CD26A00D42B9D /* BackendlessChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43632A8CD26A00D42B9D /* BackendlessChatMessage.swift */; };
+		75DE43662A8CD2D300D42B9D /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43652A8CD2D300D42B9D /* ChatMessage.swift */; };
+		75DE43692A8CE9B500D42B9D /* ChatAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43682A8CE9B500D42B9D /* ChatAPIProvider.swift */; };
+		75DE436B2A8CE9FA00D42B9D /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE436A2A8CE9FA00D42B9D /* ChatAPI.swift */; };
+		75DE436D2A8CEA3A00D42B9D /* ChatAPIBackendless.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE436C2A8CEA3A00D42B9D /* ChatAPIBackendless.swift */; };
+		75DE436F2A8CEA6E00D42B9D /* ChatAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE436E2A8CEA6E00D42B9D /* ChatAPIMock.swift */; };
+		75DE43712A8E038800D42B9D /* TripChat+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43702A8E038800D42B9D /* TripChat+test.swift */; };
+		75DE43732A8E03C600D42B9D /* ChatMessage+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DE43722A8E03C600D42B9D /* ChatMessage+test.swift */; };
 		75ED79E52A82606D0078D103 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79E42A82606D0078D103 /* UserAPI.swift */; };
 		75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 75ED79E82A8260AA0078D103 /* Dependencies */; };
 		75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED79EA2A8260B40078D103 /* Dependencies.swift */; };
@@ -157,6 +168,7 @@
 		75336BD32A86333100031D5C /* TripCreationStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCreationStage.swift; sourceTree = "<group>"; };
 		7539C13D2A83DF4400BB0B48 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		7539C1792A83E84A00BB0B48 /* SwitchToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToggleStyle.swift; sourceTree = "<group>"; };
+		753F953B2A8E3DA4005B55B5 /* Color+Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Chat.swift"; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLlamaApp.swift; sourceTree = "<group>"; };
 		75BC4A452A80E88800B6F6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -227,6 +239,16 @@
 		75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Offsets.swift"; sourceTree = "<group>"; };
 		75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Nights.swift"; sourceTree = "<group>"; };
 		75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerRadius.swift"; sourceTree = "<group>"; };
+		75DE435F2A8CCBB000D42B9D /* TripChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChat.swift; sourceTree = "<group>"; };
+		75DE43612A8CD18800D42B9D /* BackendlessTripChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendlessTripChat.swift; sourceTree = "<group>"; };
+		75DE43632A8CD26A00D42B9D /* BackendlessChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendlessChatMessage.swift; sourceTree = "<group>"; };
+		75DE43652A8CD2D300D42B9D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		75DE43682A8CE9B500D42B9D /* ChatAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIProvider.swift; sourceTree = "<group>"; };
+		75DE436A2A8CE9FA00D42B9D /* ChatAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
+		75DE436C2A8CEA3A00D42B9D /* ChatAPIBackendless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIBackendless.swift; sourceTree = "<group>"; };
+		75DE436E2A8CEA6E00D42B9D /* ChatAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIMock.swift; sourceTree = "<group>"; };
+		75DE43702A8E038800D42B9D /* TripChat+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripChat+test.swift"; sourceTree = "<group>"; };
+		75DE43722A8E03C600D42B9D /* ChatMessage+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessage+test.swift"; sourceTree = "<group>"; };
 		75ED79E42A82606D0078D103 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		75ED79EA2A8260B40078D103 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		75ED79ED2A8261130078D103 /* UserAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIProvider.swift; sourceTree = "<group>"; };
@@ -528,6 +550,7 @@
 			children = (
 				75BC4A7D2A80FB6C00B6F6CE /* Colors.xcassets */,
 				75BC4A802A80FB9B00B6F6CE /* Colors+Main.swift */,
+				753F953B2A8E3DA4005B55B5 /* Color+Chat.swift */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
@@ -668,6 +691,8 @@
 				75DE43382A8A382000D42B9D /* BackendlessTripLocation.swift */,
 				75DE433A2A8A3AF400D42B9D /* BackendlessTripPhoto.swift */,
 				75DE43412A8BC66A00D42B9D /* BackendlessTripUser.swift */,
+				75DE43612A8CD18800D42B9D /* BackendlessTripChat.swift */,
+				75DE43632A8CD26A00D42B9D /* BackendlessChatMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -699,11 +724,21 @@
 			path = Trip;
 			sourceTree = "<group>";
 		};
+		75DE43672A8CE9A000D42B9D /* ChatAPI */ = {
+			isa = PBXGroup;
+			children = (
+				75DE43682A8CE9B500D42B9D /* ChatAPIProvider.swift */,
+				75DE436A2A8CE9FA00D42B9D /* ChatAPI.swift */,
+			);
+			path = ChatAPI;
+			sourceTree = "<group>";
+		};
 		75ED79E62A8260700078D103 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				75DE432F2A8A296300D42B9D /* User */,
 				75DE43302A8A296F00D42B9D /* Trips */,
+				75DE43672A8CE9A000D42B9D /* ChatAPI */,
 				75ED7A0F2A8279350078D103 /* UserAPIError.swift */,
 				75DE431C2A86BB7700D42B9D /* Pexel */,
 			);
@@ -715,6 +750,7 @@
 			children = (
 				75ED79EF2A82616B0078D103 /* UserAPIBackendless.swift */,
 				75DE43312A8A299400D42B9D /* TripsAPIBackendless.swift */,
+				75DE436C2A8CEA3A00D42B9D /* ChatAPIBackendless.swift */,
 				75DE43352A8A2A5A00D42B9D /* Models */,
 			);
 			path = Backendless;
@@ -732,6 +768,8 @@
 				75DE16632A84F53600AF671B /* TripPhoto.swift */,
 				75DE16612A84F3D300AF671B /* TripLocation.swift */,
 				75336BD32A86333100031D5C /* TripCreationStage.swift */,
+				75DE435F2A8CCBB000D42B9D /* TripChat.swift */,
+				75DE43652A8CD2D300D42B9D /* ChatMessage.swift */,
 				75DE431A2A86BB6200D42B9D /* PexelPhoto.swift */,
 			);
 			path = Models;
@@ -750,8 +788,11 @@
 			children = (
 				75ED79FC2A826CBD0078D103 /* UserAPIMock.swift */,
 				75DE43362A8A2DF200D42B9D /* TripsAPIMock.swift */,
+				75DE436E2A8CEA6E00D42B9D /* ChatAPIMock.swift */,
 				75DE43472A8C003A00D42B9D /* User+test.swift */,
 				75DE43492A8C004600D42B9D /* Trip+test.swift */,
+				75DE43702A8E038800D42B9D /* TripChat+test.swift */,
+				75DE43722A8E03C600D42B9D /* ChatMessage+test.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -897,9 +938,11 @@
 				75DE164E2A84F02200AF671B /* MyTripsView.swift in Sources */,
 				75DE43502A8CAE1000D42B9D /* TripView.swift in Sources */,
 				75DE434C2A8C0BBD00D42B9D /* TripStylePicker.swift in Sources */,
+				75DE436D2A8CEA3A00D42B9D /* ChatAPIBackendless.swift in Sources */,
 				75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */,
 				75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */,
 				75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */,
+				753F953C2A8E3DA4005B55B5 /* Color+Chat.swift in Sources */,
 				75336BD42A86333100031D5C /* TripCreationStage.swift in Sources */,
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
@@ -935,9 +978,12 @@
 				75336BA32A84FE9500031D5C /* FramedPickerView.swift in Sources */,
 				75DE16642A84F53600AF671B /* TripPhoto.swift in Sources */,
 				75ED7A0E2A8278640078D103 /* Local+Error.swift in Sources */,
+				75DE43712A8E038800D42B9D /* TripChat+test.swift in Sources */,
 				75DE43422A8BC66A00D42B9D /* BackendlessTripUser.swift in Sources */,
+				75DE43622A8CD18800D42B9D /* BackendlessTripChat.swift in Sources */,
 				75DE435A2A8CB37D00D42B9D /* Calendar+Nights.swift in Sources */,
 				75DE43482A8C003A00D42B9D /* User+test.swift in Sources */,
+				75DE43602A8CCBB000D42B9D /* TripChat.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				75DE16672A84F82F00AF671B /* FramedTextField.swift in Sources */,
@@ -953,6 +999,7 @@
 				75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */,
 				75DE434A2A8C004600D42B9D /* Trip+test.swift in Sources */,
 				75336BB02A85017500031D5C /* Local+Trip.swift in Sources */,
+				75DE43662A8CD2D300D42B9D /* ChatMessage.swift in Sources */,
 				75336BCA2A852AF900031D5C /* Binding+Unwrap.swift in Sources */,
 				75DE43172A86B8AE00D42B9D /* PexelPhotoPickerViewModel.swift in Sources */,
 				75DE430F2A86462000D42B9D /* DescriptionStageView.swift in Sources */,
@@ -964,12 +1011,15 @@
 				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
 				75ED7A032A8270390078D103 /* Loading.swift in Sources */,
+				75DE43732A8E03C600D42B9D /* ChatMessage+test.swift in Sources */,
+				75DE43692A8CE9B500D42B9D /* ChatAPIProvider.swift in Sources */,
 				75DE43232A86BDF600D42B9D /* System Constants.swift in Sources */,
 				75336BC82A852A8100031D5C /* Date+Forward.swift in Sources */,
 				75DE16502A84F03000AF671B /* MyTripsViewModel.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
 				75DE43562A8CB11800D42B9D /* TripChatsListView.swift in Sources */,
 				75DE165E2A84F39300AF671B /* Trip.swift in Sources */,
+				75DE436B2A8CE9FA00D42B9D /* ChatAPI.swift in Sources */,
 				75DE16552A84F05500AF671B /* CreateNewTripViewModel.swift in Sources */,
 				75DE164A2A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift in Sources */,
 				75336BCE2A852BE200031D5C /* Date+Format.swift in Sources */,
@@ -980,6 +1030,7 @@
 				75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */,
 				75DE432A2A8A19F800D42B9D /* SettingsStageView.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,
+				75DE43642A8CD26A00D42B9D /* BackendlessChatMessage.swift in Sources */,
 				75ED7A052A8270720078D103 /* Error.swift in Sources */,
 				75BC4A782A80F51B00B6F6CE /* Font+Avenir.swift in Sources */,
 				75BC4A5F2A80EAC300B6F6CE /* OnboardViewModel.swift in Sources */,
@@ -989,6 +1040,7 @@
 				75DE433D2A8A3E5700D42B9D /* BackendlessObject.swift in Sources */,
 				75ED7A0A2A8277C90078D103 /* CustomError.swift in Sources */,
 				75DE431B2A86BB6200D42B9D /* PexelPhoto.swift in Sources */,
+				75DE436F2A8CEA6E00D42B9D /* ChatAPIMock.swift in Sources */,
 				75BC4A812A80FB9B00B6F6CE /* Colors+Main.swift in Sources */,
 				75DE432E2A8A295800D42B9D /* TripsAPIProvider.swift in Sources */,
 				75336BC42A85169800031D5C /* IconPlaceholderView.swift in Sources */,

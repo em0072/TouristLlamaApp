@@ -34,6 +34,18 @@ extension DependencyValues {
     }
 }
 
+// MARK: - ChatAPIKey
+private enum ChatAPIKey: DependencyKey {
+    static let liveValue = ChatAPI(provider: ChatAPIBackendless())
+    static let previewValue = ChatAPI(provider: ChatAPIMock())
+}
+
+extension DependencyValues {
+    var chatAPI: ChatAPI {
+        get { self[ChatAPIKey.self] }
+        set { self[ChatAPIKey.self] = newValue }
+    }
+}
 
 // MARK: - Pexel Service
 private enum PexelServiceKey: DependencyKey {

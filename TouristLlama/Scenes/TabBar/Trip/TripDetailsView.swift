@@ -17,34 +17,84 @@ struct TripDetailsView: View {
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
     
     var body: some View {
-        ScrollView(showsIndicators: false) { offset in
-            scrollViewOffset = offset
-        } content: {
-            VStack(alignment: .leading, spacing: 0) {
-                imageView
-                datesView
-                dividerView
-                aboutView
-                dividerView
-                paticipantsView
-                dividerView
-                mapView
+        NavigationStack {
+            ScrollView(showsIndicators: false) { offset in
+                scrollViewOffset = offset
+            } content: {
+                VStack(alignment: .leading, spacing: 0) {
+                    imageView
+                    datesView
+                    dividerView
+                    aboutView
+                    dividerView
+                    paticipantsView
+                    dividerView
+                    mapView
+                }
             }
+            //        .sheet(isPresented: $viewModel.openUserManagment, onDismiss: nil, content: {
+            //            NavigationView {
+            //                TripManageMemebersView(trip: viewModel.trip)
+            //            }
+            //            .accentColor(.TLBlack)
+            //        })
+            .padding(.top, -8)
+            .ignoresSafeArea(.all, edges: .top)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    closeButton
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        HStack(spacing: 8) {
+                            editButton
+                            shareButton
+                        }
+                }
+            }
+
         }
-        //        .sheet(isPresented: $viewModel.openUserManagment, onDismiss: nil, content: {
-        //            NavigationView {
-        //                TripManageMemebersView(trip: viewModel.trip)
-        //            }
-        //            .accentColor(.TLBlack)
-        //        })
-        .padding(.top, -8)
-        .ignoresSafeArea(.all, edges: .top)
         
     }
 }
 
     
 extension TripDetailsView {
+    
+    private var closeButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "xmark.circle.fill")
+                .font(.system(size: 25, weight: .medium))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.Main.black, Color.Main.white)
+        }
+    }
+    
+    private var shareButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "square.and.arrow.up.circle.fill")
+                .font(.system(size: 25, weight: .medium))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.Main.black, Color.Main.white)
+        }
+    }
+    
+    private var editButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "pencil.circle.fill")
+                .font(.system(size: 25, weight: .medium))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.Main.black, Color.Main.white)
+        }
+    }
     
     private var imageView: some View {
         ZStack(alignment: .leading) {
@@ -250,8 +300,6 @@ extension TripDetailsView {
 
 struct TripDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
             TripDetailsView(viewModel: TripViewModel(trip: .testOngoing))
-        }
     }
 }

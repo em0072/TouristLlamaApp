@@ -84,9 +84,20 @@ extension CreateNewTripView {
     }
     
     private var submitButtonView: some View {
-        Button(viewModel.buttonText) {
+        Button {
             viewModel.onButtonAction()
+        } label: {
+            if viewModel.isCreatingTrip {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            } else {
+                Text(viewModel.buttonText)
+            }
         }
+
+//        Button(viewModel.buttonText) {
+//            viewModel.onButtonAction()
+//        }
         .buttonStyle(WideBlueButtonStyle())
         .disabled(viewModel.isButtonDisabled)
     }

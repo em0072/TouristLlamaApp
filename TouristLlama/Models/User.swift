@@ -13,7 +13,8 @@ struct User: Codable, Identifiable {
     enum Property: String {
         case name
         case email
-        
+        case profilePicture
+
         var string: String {
             return self.rawValue
         }
@@ -22,7 +23,7 @@ struct User: Codable, Identifiable {
     let id: String
     let name: String
     let email: String
-    let imageURLString: String?
+    let profilePicture: String?
 //    let sex: Sex
 //    let memberSince: Date
     
@@ -30,7 +31,7 @@ struct User: Codable, Identifiable {
         self.id = id
         self.name = name
         self.email = email
-        self.imageURLString = imageURLString
+        self.profilePicture = imageURLString
     }
     
     init?(from blUser: BackendlessUser) {
@@ -39,17 +40,17 @@ struct User: Codable, Identifiable {
             return nil
         }
         let name = blUser.name ?? ""
-        let imageURLString = blUser.properties[CodingKeys.imageURLString.stringValue] as? String
+        let imageURLString = blUser.properties[CodingKeys.profilePicture.stringValue] as? String
 
         self.id = id
         self.name = name
         self.email = email
-        self.imageURLString = imageURLString
+        self.profilePicture = imageURLString
     }
     
     var imageURL: URL? {
-        if let imageURLString {
-            return URL(string: imageURLString)
+        if let profilePicture {
+            return URL(string: profilePicture)
         } else {
             return nil
         }
@@ -59,7 +60,14 @@ struct User: Codable, Identifiable {
         let blUser = BackendlessUser()
         blUser.objectId = self.id
         blUser.name = self.name
-        blUser.properties[CodingKeys.imageURLString.stringValue] = self.imageURLString
+        blUser.properties[CodingKeys.profilePicture.stringValue] = self.profilePicture
         return blUser
+    }
+}
+
+extension User: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
     }
 }

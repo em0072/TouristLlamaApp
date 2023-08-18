@@ -24,9 +24,9 @@ class UserAPI {
         }
     }
     
-    func getCurrentUser() async -> User? {
-        await provider.getCurrentUser()
-    }
+//    func getCurrentUser() async -> User? {
+//        await provider.getCurrentUser()
+//    }
     
     @discardableResult
     func registerUser(name: String, email: String, password: String) async throws -> User {

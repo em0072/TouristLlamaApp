@@ -20,6 +20,7 @@ import SwiftSDK
     var isPublic: Bool = false
     var participants: [BackendlessUser] = []
     var ownerId: String?
+    var chat: BackendlessTripChat?
     
     override init() {
         super.init()
@@ -35,6 +36,7 @@ import SwiftSDK
         self.photo = BackendlessTripPhoto(from: trip.photo)
         self.isPublic = trip.isPublic
         self.participants = trip.participants.map { $0.blUser }
+        self.chat = BackendlessTripChat(from: trip.chat)
     }
         
     var appObject: Trip? {

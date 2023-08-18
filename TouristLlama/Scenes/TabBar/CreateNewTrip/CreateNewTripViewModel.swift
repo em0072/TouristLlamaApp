@@ -52,6 +52,7 @@ class CreateNewTripViewModel: ViewModel {
     @Published var tripPhoto: TripPhoto?
     @Published var isTripPublic: Bool = true
     @Published var shouldDismiss: Bool = false
+    @Published var isCreatingTrip: Bool = false
 
         
     func onButtonAction() {
@@ -118,17 +119,20 @@ class CreateNewTripViewModel: ViewModel {
                         isPublic: isTripPublic,
                         participants: [],
                         ownerId: "")
+        isCreatingTrip = true
         Task {
             do {
                 try await tripsAPI.create(trip: trip)
                 self.shouldDismiss = true
             } catch {
                 self.error = error
+                self.isCreatingTrip = false
             }
         }
     }
     
     var isButtonDisabled: Bool {
+        guard !isCreatingTrip else { return true }
         switch currentCreationStage {
         case .generalInfo:
             return tripName.isEmpty || tripStyle == .none || tripLocation == nil || tripStartDate == nil || tripEndDate == nil

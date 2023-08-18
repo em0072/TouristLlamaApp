@@ -28,9 +28,12 @@ extension TouristLlamaApp {
         Backendless.shared.initApp(applicationId: "107EEFC1-7541-7992-FF48-1F34C1C05900", apiKey: "976589AC-23F7-4A65-A981-0D2B3B5415DF")
         Backendless.shared.userService.reloadCurrentUser = true
         
-        Backendless.shared.data.of(BackendlessTripPhoto.self).mapToTable(tableName: "TripPhotos")
-        Backendless.shared.data.of(BackendlessTripLocation.self).mapToTable(tableName: "TripLocations")
-        Backendless.shared.data.of(BackendlessTrip.self).mapToTable(tableName: "Trips")
+        Backendless.shared.data.of(BackendlessTripPhoto.self).mapToTable(tableName: "TripPhoto")
+        Backendless.shared.data.of(BackendlessTripLocation.self).mapToTable(tableName: "TripLocation")
+        Backendless.shared.data.of(BackendlessTrip.self).mapToTable(tableName: "Trip")
+        Backendless.shared.data.of(BackendlessTripChat.self).mapToTable(tableName: "TripChat")
+//        Backendless.shared.data.of(BackendlessChatMessage.self).mapToTable(tableName: "ChatMessage")
+
 
     }
 }

@@ -34,7 +34,7 @@ class TripsAPI {
         let newTrip = try await provider.create(trip: trip)
         addTripToMyTrips(newTrip)
     }
-    
+        
     private func addTripToMyTrips(_ trip: Trip) {
         myTrips.append(trip)
         myTrips.sort { $0.startDate < $1.startDate }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftSDK
 import Combine
 
-class TripsAPIBackendless: TripsAPIProvider {    
+class TripsAPIBackendless: TripsAPIProvider {
     
     private let serviceName = "TripsService"
 

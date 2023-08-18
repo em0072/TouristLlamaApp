@@ -16,7 +16,7 @@ struct TripParticipantsImagesView: View {
             let threeOrLess = participants.count <= 3
             let numberOfParticipants = threeOrLess ? participants.count : 2
             ForEach(0..<numberOfParticipants, id: \.self) { i in
-                memberCircleImage(imageURL: participants[i].imageURLString, position: i)
+                memberCircleImage(imageURL: participants[i].profilePicture, position: i)
             }
             if participants.count > 3 {
                 let restParticipantsCount = participants.count - 2
