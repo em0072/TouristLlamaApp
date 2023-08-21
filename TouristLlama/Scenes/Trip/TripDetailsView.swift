@@ -12,9 +12,18 @@ struct TripDetailsView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var viewModel: TripViewModel
+    @StateObject var viewModel: TripDetailViewModel
     
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
+    
+    let onTripEdit: () -> Void
+    let trip: Trip
+    
+    init(trip: Trip, onTripEdit: @escaping () -> Void) {
+        self.trip = trip
+        self._viewModel = StateObject(wrappedValue: TripDetailViewModel(trip: trip))
+        self.onTripEdit = onTripEdit
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,12 +41,6 @@ struct TripDetailsView: View {
                     mapView
                 }
             }
-            //        .sheet(isPresented: $viewModel.openUserManagment, onDismiss: nil, content: {
-            //            NavigationView {
-            //                TripManageMemebersView(trip: viewModel.trip)
-            //            }
-            //            .accentColor(.TLBlack)
-            //        })
             .padding(.top, -8)
             .ignoresSafeArea(.all, edges: .top)
             .navigationBarTitleDisplayMode(.inline)
@@ -49,12 +52,16 @@ struct TripDetailsView: View {
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                         HStack(spacing: 8) {
-                            editButton
+                            if viewModel.isCurrentUserOwnerOfTrip {
+                                editButton
+                            }
                             shareButton
                         }
                 }
             }
-
+        }
+        .onChange(of: trip) { trip in
+            viewModel.trip = trip
         }
         
     }
@@ -87,7 +94,8 @@ extension TripDetailsView {
     
     private var editButton: some View {
         Button {
-            
+            onTripEdit()
+//            viewModel.editTrip()
         } label: {
             Image(systemName: "pencil.circle.fill")
                 .font(.system(size: 25, weight: .medium))
@@ -204,10 +212,9 @@ extension TripDetailsView {
                 ForEach(viewModel.trip.participants) { participant in
                     NavigationLink {
                         if viewModel.isCurrentUser(participant) {
-//                            ProfileView()
-                            Text("Current User \(participant.name)")
+                            ProfileView(user: participant)
                         } else {
-                            Text("User Profile \(participant.name)")
+                            ProfileView(user: participant)
 //                            UserProfileView(user: participant)
                         }
                     } label: {
@@ -215,11 +222,11 @@ extension TripDetailsView {
                     }
                 }
                 NavigationLink {
-                    Text("Manage Members")
+                    Text(String.Trip.manageMembersTitle)
 //                    TripManageMemebersView(trip: viewModel.trip)
                 } label: {
                     HStack {
-                        Text("Invite & Manage Team Members")
+                        Text(String.Trip.manageMembersSubitle)
                             .font(.avenirBody)
                             .bold()
                             .foregroundColor(.Main.black)
@@ -300,6 +307,6 @@ extension TripDetailsView {
 
 struct TripDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-            TripDetailsView(viewModel: TripViewModel(trip: .testOngoing))
+        TripDetailsView(trip: .testOngoing, onTripEdit: {})
     }
 }

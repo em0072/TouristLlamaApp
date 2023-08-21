@@ -59,7 +59,7 @@ extension FramedTextView {
 }
 
 struct FramedTextView_Previews: PreviewProvider {
-    @State static var viewModel: CreateNewTripViewModel = .init()
+    @State static var viewModel: ManageTripViewModel = .init(mode: .create, onSubmit: nil)
     
     static var previews: some View {
         FramedTextView(title: "Title", prompt: "Prompt", value: $viewModel.tripDescription)

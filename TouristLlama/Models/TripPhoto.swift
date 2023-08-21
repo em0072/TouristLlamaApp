@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TripPhoto {
+struct TripPhoto: Equatable {
     let small: URL
     let medium: URL
     let large: URL

@@ -14,23 +14,33 @@ class UserAPIBackendless: UserAPIProvider {
         case requestFailed
         case responceIsEmpty
     }
+    
+    private let serviceName = "UserService"
         
-    func registerUser(name: String, email: String, password: String) async throws -> User {
+    func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
         return try await withCheckedThrowingContinuation{ continuation in
             
             let user = BackendlessUser()
             user.name = name
             user.email = email
             user.password = password
+            user.properties[User.Property.username.string] = username
             
             Backendless.shared.userService.registerUser(user: user) { registredUser in
-                guard let id = registredUser.objectId,
-                      let name = registredUser.name,
-                      let email = registredUser.email else {
-                    continuation.resume(throwing: UserAPIError.responceIsEmpty)
+//                guard let blUser = registredUser as? BackendlessUser else {
+//                    continuation.resume(throwing: CustomError(text: "can't cast object to BackendlessUser"))
+//                    return
+//                }
+//                guard let id = registredUser.objectId,
+//                      let name = registredUser.name,
+//                      let email = registredUser.email else {
+//                    continuation.resume(throwing: UserAPIError.responceIsEmpty)
+//                    return
+//                }
+                guard let user = User(from: registredUser) else {
+                    continuation.resume(throwing: CustomError(text: "can't cast BackendlessUser to User"))
                     return
                 }
-                let user = User(id: id, name: name, email: email, imageURLString: nil)
                 continuation.resume(returning: user)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
@@ -118,6 +128,7 @@ class UserAPIBackendless: UserAPIProvider {
     }
     
     func getCurrentUser() async -> User? {
+        Backendless.shared.userService.reloadCurrentUser = true
         guard let backendlessUser = Backendless.shared.userService.currentUser else { return nil }
         guard let user = User(from: backendlessUser) else {
             return nil
@@ -129,6 +140,58 @@ class UserAPIBackendless: UserAPIProvider {
         return try await withCheckedThrowingContinuation{ continuation in
             Backendless.shared.userService.logout {
                 continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func get(user: User) async throws -> User {
+        return try await withCheckedThrowingContinuation { continuation in
+            let userId = user.id
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getUser", parameters: userId) { response in
+                guard let backendlessUser = response as? BackendlessUser else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse data to backendless object"))
+                    return
+                }
+                guard let user = User(from: backendlessUser) else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse backendless object to app object"))
+                    return
+                }
+                continuation.resume(returning: user)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
+        return try await withCheckedThrowingContinuation { continuation in
+            let userId = user.id
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getUserCounter", parameters: userId) { response in
+                guard let dict = response as? [String: Any] else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse data to a dictionary"))
+                    return
+                }
+                let tripsCount = (dict["tripsCount"] as? Int) ?? 0
+                let friendsCount = (dict["friendsCount"] as? Int) ?? 0
+                
+                continuation.resume(returning: (tripsCount: tripsCount, friendsCount: friendsCount))
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+
+    func checkAvailability(of username: String) async throws -> Bool {
+        return try await withCheckedThrowingContinuation { continuation in
+            let username = username
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getUsernameAvailability", parameters: username) { response in
+                guard let isAvailable = response as? Bool else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse data to a boolean"))
+                    return
+                }
+                continuation.resume(returning: isAvailable)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
             }

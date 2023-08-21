@@ -27,6 +27,8 @@ import SwiftSDK
     }
     
     init(from trip: Trip) {
+        self.objectId = trip.id
+        self.ownerId = trip.ownerId
         self.name = trip.name
         self.style = trip.style?.rawValue
         self.location = BackendlessTripLocation(from: trip.location)

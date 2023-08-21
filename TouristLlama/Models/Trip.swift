@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Trip: Identifiable {
+struct Trip: Identifiable, Equatable {
     let id: String
     let name: String
     let style: TripStyle?
@@ -46,25 +46,4 @@ struct Trip: Identifiable {
         self.ownerId = ownerId
         self.chat = discussion
     }
-//    init(name: String,
-//         style: TripStyle?,
-//         location: TripLocation,
-//         startDate: Date,
-//         endDate: Date,
-//         description: String,
-//         photo: TripPhoto,
-//         isPublic: Bool,
-//         participants: [User] = [],
-//         ownerId: String) {
-//        self.id = UUID()
-//        self.name = name
-//        self.style = style
-//        self.location = location
-//        self.startDate = startDate
-//        self.endDate = endDate
-//        self.description = description
-//        self.photo = photo
-//        self.isPublic = isPublic
-//        self.participants = participants
-//    }
 }

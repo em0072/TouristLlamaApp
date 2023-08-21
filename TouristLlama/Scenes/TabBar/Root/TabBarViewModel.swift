@@ -6,18 +6,7 @@
 //
 
 import Foundation
-import Dependencies
 
 class TabBarViewModel: ViewModel {
-    @Dependency(\.userAPI) var userAPI
     
-    func logout() {
-        Task {
-            do {
-                try await userAPI.logOut()
-            } catch {
-                self.error = error
-            }
-        }
-    }
 }

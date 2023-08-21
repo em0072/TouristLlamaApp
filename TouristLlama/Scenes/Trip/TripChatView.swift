@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TripChatsListView: View {
+struct TripChatView: View {
     
     enum KeyboardFocus {
         case inputField
@@ -15,21 +15,32 @@ struct TripChatsListView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var viewModel: TripViewModel
+    @StateObject var viewModel: TripChatViewModel
+    
+    let title: String
+    let chat: TripChat?
+    
+    init(title: String, chat: TripChat?) {
+        self.title = title
+        self.chat = chat
+        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
+//        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
+//        self.viewModel.chat = chat
+    }
     
     @FocusState private var focusState: KeyboardFocus?
-    
+        
     var body: some View {
         NavigationStack {
             ZStack {
-                if viewModel.isDiscussionLoaded, let chat = viewModel.trip.chat {
+                if let chat = viewModel.chat {
                     chatView(for: chat)
                 } else {
                     loaderView
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(viewModel.trip.name)
+            .navigationTitle(title)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     closeButton
@@ -37,11 +48,14 @@ struct TripChatsListView: View {
             }
             
         }
+        .onChange(of: chat) { chat in
+            viewModel.updateChat(with: chat)
+        }
     }
     
 }
 
-extension TripChatsListView {
+extension TripChatView {
     
     private func chatView(for chat: TripChat) -> some View {
         VStack(spacing: 4) {
@@ -57,13 +71,14 @@ extension TripChatsListView {
                     }
                     .padding(.horizontal, 8)
                 }
+                .scrollDismissesKeyboard(.interactively)
                 .onTapGesture {
                     focusState = nil
                 }
                 .onAppear {
                     scrollViewProxy.scrollTo(chat.messages.last?.id)
                 }
-                .onChange(of: viewModel.trip.chat?.messages ?? []) { messages in
+                .onChange(of: chat.messages) { messages in
                     withAnimation {
                         scrollViewProxy.scrollTo(messages.last?.id)
                     }
@@ -119,7 +134,7 @@ extension TripChatsListView {
             HStack {
                 if message.status == .error && isOutgoing {
                     Button {
-                        viewModel.resendChatMessage(message: message)
+                        viewModel.resend(message: message)
                     } label: {
                         Image(systemName: "exclamationmark.circle.fill")
                             .font(.avenirSubtitle)
@@ -220,7 +235,7 @@ extension TripChatsListView {
                     .fill(Color.Chat.inputTextFieldBackground)
             }
             .padding(.horizontal, 12)
-            .padding(.vertical, 5)
+            .padding(.vertical, 8)
             .shadow(color: .Main.black.opacity(0.1), radius: 2, x: 0, y: 0)
     }
     
@@ -261,6 +276,6 @@ extension TripChatsListView {
 
 struct TripChatsListView_Previews: PreviewProvider {
     static var previews: some View {
-        TripChatsListView(viewModel: TripViewModel(trip: Trip.testOngoing))
+        TripChatView(title: "New chat", chat: .test(numberOfMessages: 55))
     }
 }

@@ -11,7 +11,8 @@ import Dependencies
 class MyTripsViewModel: ViewModel {
     
     @Dependency(\.tripsAPI) var tripsAPI
-    
+    @Dependency(\.userAPI) var userAPI
+
     enum ViewDataMode {
         case ongoing
         case past
@@ -24,7 +25,6 @@ class MyTripsViewModel: ViewModel {
     @Published var selectedTrip: Trip?
     
     @Published var viewDataMode: ViewDataMode = .ongoing
-    
     
     var totalTripsCount: Int {
         myFutureTrips.count + myOngoingTrips.count + myPastTrips.count
@@ -39,6 +39,14 @@ class MyTripsViewModel: ViewModel {
     }
     
     override func subscribeToUpdates() {
+        super.subscribeToUpdates()
+        
+        subscribeToMyTripsUpdates()
+        
+        subscribeToUserUpdates()
+    }
+    
+    private func subscribeToMyTripsUpdates() {
         tripsAPI.$myTrips
             .receive(on: DispatchQueue.main)
             .sink { [weak self] myTrips in
@@ -51,6 +59,18 @@ class MyTripsViewModel: ViewModel {
             }
             .store(in: &publishers)
     }
+    
+    private func subscribeToUserUpdates() {
+        userAPI.$currentUser
+            .receive(on: RunLoop.main)
+            .sink { [weak self] currentUser in
+                if currentUser == nil {
+                    self?.selectedTrip = nil
+                }
+            }
+            .store(in: &publishers)
+    }
+
     
     private func clearTripsData() {
         myFutureTrips.removeAll()

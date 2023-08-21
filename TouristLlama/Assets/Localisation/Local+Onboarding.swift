@@ -31,6 +31,8 @@ extension String {
         static let emailConfirmationResendButton = String.localized("emailConfirmationResendButton")
 
         static let fullName = String.localized("fullName")
+        static let username = String.localized("username")
+        static let usernameIsTaken = String.localized("usernameIsTaken")
         static let email = String.localized("email")
         static let password = String.localized("password")
         

@@ -31,6 +31,10 @@ class ViewModel: ObservableObject {
         subscribeToUpdates()
     }
     
+    deinit {
+        print("\(type(of: self)) is DEAD")
+    }
+    
     func cancelPublishers() {
         publishers.forEach({$0.cancel()})
     }

@@ -8,13 +8,15 @@
 import Foundation
 import SwiftSDK
 
-struct User: Codable, Identifiable {
+struct User: Identifiable {
     
     enum Property: String {
         case name
+        case username
         case email
         case profilePicture
-
+        case about
+        case memberSince = "created"
         var string: String {
             return self.rawValue
         }
@@ -22,30 +24,41 @@ struct User: Codable, Identifiable {
     
     let id: String
     let name: String
+    let username: String
     let email: String
+    let about: String
     let profilePicture: String?
 //    let sex: Sex
-//    let memberSince: Date
+    let memberSince: Date?
     
-    init(id: String, name: String, email: String, imageURLString: String?) {
+    init(id: String, name: String, username: String, email: String, profilePicture: String?, about: String?, memberSince: Date?) {
         self.id = id
         self.name = name
+        self.username = username
         self.email = email
-        self.profilePicture = imageURLString
+        self.profilePicture = profilePicture
+        self.about = about ?? ""
+        self.memberSince = memberSince
     }
     
     init?(from blUser: BackendlessUser) {
         guard let id = blUser.objectId,
+              let name = blUser.name,
+              let username = blUser.properties[Property.username.string] as? String,
               let email = blUser.email else {
             return nil
         }
-        let name = blUser.name ?? ""
-        let imageURLString = blUser.properties[CodingKeys.profilePicture.stringValue] as? String
-
+        let profilePicture = blUser.properties[Property.profilePicture.string] as? String
+        let about = blUser.properties[Property.about.string] as? String ?? ""
+        let memberSince = blUser.properties[Property.memberSince.string] as? Date
+        
         self.id = id
         self.name = name
+        self.username = username
         self.email = email
-        self.profilePicture = imageURLString
+        self.profilePicture = profilePicture
+        self.about = about
+        self.memberSince = memberSince
     }
     
     var imageURL: URL? {
@@ -60,13 +73,16 @@ struct User: Codable, Identifiable {
         let blUser = BackendlessUser()
         blUser.objectId = self.id
         blUser.name = self.name
-        blUser.properties[CodingKeys.profilePicture.stringValue] = self.profilePicture
+        blUser.properties[Property.username.string] = self.username
+        blUser.properties[Property.profilePicture.string] = self.profilePicture
+        blUser.properties[Property.about.string] = self.about
+        blUser.properties[Property.memberSince.string] = self.memberSince
+        blUser.properties[Property.memberSince.string] = self.memberSince
         return blUser
     }
 }
 
 extension User: Equatable {
-    
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
     }

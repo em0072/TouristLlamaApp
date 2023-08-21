@@ -58,6 +58,9 @@ extension String {
 
         static let paticipantsTitle = String.localized("tripPaticipantsTitle")
         static let organizer = String.localized("organizer")
+        
+        static let manageMembersTitle = String.localized("tripManageMembersTitle")
+        static let manageMembersSubitle = String.localized("tripManageMembersSubitle")
 
         static let mapTitle = String.localized("tripMapTitle")
 

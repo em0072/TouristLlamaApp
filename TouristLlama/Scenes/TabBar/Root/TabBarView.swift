@@ -28,11 +28,9 @@ struct TabBarView: View {
                     .foregroundColor(.Main.accentBlue)
                 }
                 .tag(TabOption.myTrips)
-                .tint(nil)
+                .tint(.Main.black)
             
-            Button("Logout") {
-                viewModel.logout()
-            }
+            ProfileView()
             .tabItem {
                 Label {
                     Text("Profile")
@@ -42,7 +40,7 @@ struct TabBarView: View {
                 }
             }
             .tag(TabOption.profile)
-            .tint(nil)
+            .tint(.Main.black)
         }
         .tint(.Main.accentBlue)
     }

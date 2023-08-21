@@ -14,6 +14,7 @@ extension String {
         static let `continue` = String.localized("continue")
         static let create = String.localized("create")
         static let update = String.localized("update")
+        static let cancel = String.localized("cancel")
 
     }
     

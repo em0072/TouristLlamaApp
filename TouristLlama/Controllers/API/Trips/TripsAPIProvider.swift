@@ -11,5 +11,5 @@ import Combine
 protocol TripsAPIProvider {
     func create(trip: Trip) async throws -> Trip
     func getMyTrips() async throws -> [Trip]
-//    func getTripDiscussion(for tripId: String) async throws -> TripDiscussion 
+    func editTrip(trip: Trip) async throws -> Trip
 }

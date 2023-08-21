@@ -13,7 +13,7 @@ class UserAPIMock: UserAPIProvider {
         return User.test
     }
     
-    func registerUser(name: String, email: String, password: String) async throws -> User {
+    func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
         return User.test
     }
     
@@ -35,5 +35,17 @@ class UserAPIMock: UserAPIProvider {
     
     func updateUserProperty(_ properties: [User.Property : Any]) async throws -> User {
         return User.test
+    }
+    
+    func get(user: User) async throws -> User {
+        .testNotOwner
+    }
+    
+    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
+        return (tripsCount: 23, friendsCount: 234)
+    }
+    
+    func checkAvailability(of username: String) async throws -> Bool {
+        Bool.random()
     }
 }

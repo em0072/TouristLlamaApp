@@ -1,5 +1,5 @@
 //
-//  CreateNewTripViewModel.swift
+//  ManageTripViewModel.swift
 //  TouristLlama
 //
 //  Created by Evgeny Mitko on 10/08/2023.
@@ -10,9 +10,14 @@ import SwiftUI
 import Dependencies
 
 @MainActor
-class CreateNewTripViewModel: ViewModel {
+class ManageTripViewModel: ViewModel {
     
     @Dependency(\.tripsAPI) var tripsAPI
+    
+    enum Mode {
+        case create
+        case edit(trip: Trip)
+    }
     
     enum TripCreationError: LocalizedError {
         case noName
@@ -43,6 +48,7 @@ class CreateNewTripViewModel: ViewModel {
     }
     var previousCreationStage: TripCreationStage = .generalInfo
     @Published var finishedCreationStages: Set<TripCreationStage> = [.generalInfo]
+    
     @Published var tripName: String = ""
     @Published var tripStyle: TripStyle?
     @Published var tripLocation: TripLocation?
@@ -52,8 +58,36 @@ class CreateNewTripViewModel: ViewModel {
     @Published var tripPhoto: TripPhoto?
     @Published var isTripPublic: Bool = true
     @Published var shouldDismiss: Bool = false
-    @Published var isCreatingTrip: Bool = false
+    @Published var isRequestInProgress: Bool = false
 
+    let mode: Mode
+    let onSubmit: ((Trip) -> Void)?
+        
+    init(mode: Mode, onSubmit: ((Trip) -> Void)?) {
+        self.mode = mode
+        self.onSubmit = onSubmit
+        super.init()
+        updateFieldsForEditIfNeeded()
+    }
+    
+    private func updateFieldsForEditIfNeeded() {
+        if case .edit(let trip) = mode {
+            tripName = trip.name
+            tripStyle = trip.style
+            tripLocation = trip.location
+            tripStartDate = trip.startDate
+            tripEndDate = trip.endDate
+            
+            finishedCreationStages.insert(.description)
+            tripDescription = trip.description
+            
+            finishedCreationStages.insert(.photo)
+            tripPhoto = trip.photo
+            
+            finishedCreationStages.insert(.settings)
+            isTripPublic = trip.isPublic
+        }
+    }
         
     func onButtonAction() {
         switch currentCreationStage {
@@ -64,23 +98,24 @@ class CreateNewTripViewModel: ViewModel {
         case .photo:
             currentCreationStage = .settings
         case .settings:
-            createTrip()
+            createOrUpdateTrip()
         }
         finishedCreationStages.insert(currentCreationStage)
 
     }
     
-    func createTrip() {
+    private func areAllFieldsCompleted() -> Bool {
+        
+        
+        return true
+    }
+    
+    private func createOrUpdateTrip() {
         guard !tripName.isEmpty else {
             currentCreationStage = .generalInfo
             self.error = TripCreationError.noName
             return
         }
-//        guard tripStyle != .none else {
-//            currentCreationStage = .generalInfo
-//            self.error = TripCreationError.noStyle
-//            return
-//        }
         guard let tripLocation else {
             currentCreationStage = .generalInfo
             self.error = TripCreationError.noLocation
@@ -107,35 +142,70 @@ class CreateNewTripViewModel: ViewModel {
             self.error = TripCreationError.noPhoto
             return
         }
+        isRequestInProgress = true
 
-        let trip = Trip(id: "",
-                        name: tripName,
-                        style: tripStyle,
-                        location: tripLocation,
-                        startDate: tripStartDate,
-                        endDate: tripEndDate,
-                        description: tripDescription,
-                        photo: tripPhoto,
-                        isPublic: isTripPublic,
-                        participants: [],
-                        ownerId: "")
-        isCreatingTrip = true
+        switch mode {
+        case .create:
+            let trip = Trip(id: "",
+                            name: tripName,
+                            style: tripStyle,
+                            location: tripLocation,
+                            startDate: tripStartDate,
+                            endDate: tripEndDate,
+                            description: tripDescription,
+                            photo: tripPhoto,
+                            isPublic: isTripPublic,
+                            participants: [],
+                            ownerId: "")
+            create(trip: trip)
+            
+        case .edit(let tripToUpdate):
+            let trip = Trip(id: tripToUpdate.id,
+                            name: tripName,
+                            style: tripStyle,
+                            location: tripLocation,
+                            startDate: tripStartDate,
+                            endDate: tripEndDate,
+                            description: tripDescription,
+                            photo: tripPhoto,
+                            isPublic: isTripPublic,
+                            participants: tripToUpdate.participants,
+                            ownerId: tripToUpdate.ownerId)
+            update(trip: trip)
+        }
+    }
+    
+    private func create(trip: Trip) {
         Task {
             do {
                 try await tripsAPI.create(trip: trip)
+                self.onSubmit?(trip)
                 self.shouldDismiss = true
             } catch {
                 self.error = error
-                self.isCreatingTrip = false
+                self.isRequestInProgress = false
+            }
+        }
+    }
+    
+    private func update(trip: Trip) {
+        Task {
+            do {
+                let updatedTrip = try await tripsAPI.edit(trip: trip)
+                self.onSubmit?(updatedTrip)
+                self.shouldDismiss = true
+            } catch {
+                self.error = error
+                self.isRequestInProgress = false
             }
         }
     }
     
     var isButtonDisabled: Bool {
-        guard !isCreatingTrip else { return true }
+        guard !isRequestInProgress else { return true }
         switch currentCreationStage {
         case .generalInfo:
-            return tripName.isEmpty || tripStyle == .none || tripLocation == nil || tripStartDate == nil || tripEndDate == nil
+            return tripName.isEmpty || tripLocation == nil || tripStartDate == nil || tripEndDate == nil
         case .description:
             return tripDescription.isEmpty
         case .photo:
@@ -171,6 +241,16 @@ class CreateNewTripViewModel: ViewModel {
     }
     
     var buttonText: String {
-        return currentCreationStage == .settings ? String.Main.create : String.Main.continue
+        if currentCreationStage == .settings {
+            switch mode {
+            case .create:
+                return String.Main.create
+                
+            case .edit:
+                return String.Main.update
+            }
+        } else {
+            return String.Main.continue
+        }
     }
 }

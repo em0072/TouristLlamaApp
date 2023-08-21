@@ -16,4 +16,8 @@ class TripsAPIMock: TripsAPIProvider {
     func create(trip: Trip) async throws -> Trip {
         return Trip.testFuture
     }
+    
+    func editTrip(trip: Trip) async throws -> Trip {
+        return Trip.testFuture
+    }
 }

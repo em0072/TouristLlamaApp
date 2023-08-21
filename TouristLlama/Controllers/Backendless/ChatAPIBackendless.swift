@@ -75,6 +75,7 @@ class ChatAPIBackendless: ChatAPIProvider {
         print("Channel and subscription are created")
         channelSubscriptions.append(subscriptionString)
         channels.append(newChannel)
+        newChannel.join()
     }
     
     func sendChatMessage(message: ChatMessage) async throws {

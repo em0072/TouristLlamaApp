@@ -47,19 +47,37 @@ class TripsAPIBackendless: TripsAPIProvider {
         }
     }
         
-    private func save<Object: BackendlessObject>(object: Object) async throws -> Object {
-        return try await withCheckedThrowingContinuation{ continuation in
-            let dataStorage = Backendless.shared.data.of(object.type)
-            dataStorage.save(entity: object) { savedObject in
-                guard let backendlessObject = savedObject as? Object else {
-                    continuation.resume(throwing: CustomError(text: "Couldn't read responce"))
+    func editTrip(trip: Trip) async throws -> Trip {
+        return try await withCheckedThrowingContinuation { continuation in
+            let trip = BackendlessTrip(from: trip)
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "editTrip", parameters: trip) { response in
+                guard let backendlessTrip = response as? BackendlessTrip else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse data to backendless object"))
                     return
                 }
-                continuation.resume(returning: backendlessObject)
+                guard let trip = backendlessTrip.appObject else {
+                    continuation.resume(throwing: CustomError(text: "Cannot parse backendless object to app object"))
+                    return
+                }
+                continuation.resume(returning: trip)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
             }
-
         }
     }
+//    private func save<Object: BackendlessObject>(object: Object) async throws -> Object {
+//        return try await withCheckedThrowingContinuation{ continuation in
+//            let dataStorage = Backendless.shared.data.of(object.type)
+//            dataStorage.save(entity: object) { savedObject in
+//                guard let backendlessObject = savedObject as? Object else {
+//                    continuation.resume(throwing: CustomError(text: "Couldn't read responce"))
+//                    return
+//                }
+//                continuation.resume(returning: backendlessObject)
+//            } errorHandler: { error in
+//                continuation.resume(throwing: error)
+//            }
+//
+//        }
+//    }
 }

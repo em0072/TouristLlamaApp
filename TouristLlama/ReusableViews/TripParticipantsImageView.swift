@@ -26,11 +26,6 @@ struct TripParticipantsImagesView: View {
     }
     
     private func memberCircleImage(imageURL: String?, position: Int) -> some View {
-        ZStack {
-            Circle()
-                .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
-                .frame(width: 41, height: 41)
-                .offset(x: CGFloat(position * 11) * -1)
             AsyncImage(url: URL(string: imageURL ?? "")) { image in
                 image
                     .resizable()
@@ -40,8 +35,11 @@ struct TripParticipantsImagesView: View {
             }
             .clipShape(Circle())
             .frame(width: 37, height: 37)
+            .overlay {
+                Circle()
+                    .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
+            }
             .offset(x: CGFloat(position * 11) * -1)
-        }
     }
     
     private func restOfMembersIcon( numberOfMembers: Int) -> some View {
@@ -49,8 +47,7 @@ struct TripParticipantsImagesView: View {
             Circle()
                 .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
                 .background(Circle().fill(Color.Main.grey))
-//                .fill(Color.Main.grey, strokeBorder: Color.Main.TLStrongWhite, lineWidth: 2)
-                .frame(width: 41, height: 41)
+                .frame(width: 37, height: 37)
             Text("+\(numberOfMembers)")
                 .font(.avenirSmallBody.weight(.heavy))
                 .foregroundColor(.Main.TLStrongWhite)

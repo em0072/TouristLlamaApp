@@ -47,8 +47,18 @@ class OnboardingViewModel: ViewModel {
                         }
                         fullName += familyName
                     }
+                    
+                    var properties = [User.Property: Any]()
                     if !fullName.isEmpty {
-                        try await userAPI.updateUserProperty([.name: fullName])
+                        properties[.name] = fullName
+                    }
+                    if let email = credentials.email,
+                       let generatedUsername = generatedUserName(from: email) {
+                        properties[.username] = generatedUsername
+                    }
+                    
+                    if !properties.isEmpty {
+                        try await userAPI.updateUserProperty(properties)
                     }
                 } catch {
                     self.error = error
@@ -62,5 +72,23 @@ class OnboardingViewModel: ViewModel {
     
     func showTermsAndConditions() {
         isTermsAndConditionsShown = true
+    }
+    
+    func generatedUserName(from email: String) -> String? {
+        guard let emailMainPart = email.components(separatedBy: "@").first else {
+            return nil
+        }
+        let firstPart: String
+        if emailMainPart.count > 6 {
+            firstPart = "\(emailMainPart.dropFirst(5))"
+        } else {
+            firstPart = emailMainPart
+        }
+        let calendar = Calendar.current
+        let date = Date()
+        let day = calendar.component(.day, from: date)
+        let week = calendar.component(.weekOfYear, from: date)
+        let second = calendar.component(.second, from: date)
+        return firstPart + "\(week)\(day)\(second)"
     }
 }

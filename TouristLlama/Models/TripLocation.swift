@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct TripLocation {
+struct TripLocation: Equatable {
     let title: String
     let country: String
     let point: CLLocation?

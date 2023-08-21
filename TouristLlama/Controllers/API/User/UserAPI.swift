@@ -29,8 +29,8 @@ class UserAPI {
 //    }
     
     @discardableResult
-    func registerUser(name: String, email: String, password: String) async throws -> User {
-        return try await provider.registerUser(name: name, email: email, password: password)
+    func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
+        return try await provider.registerUser(name: name, username: username, email: email, password: password)
     }
     
     func resendConfirmationEmail(email: String) async throws {
@@ -65,5 +65,17 @@ class UserAPI {
         let updatedUser = try await provider.updateUserProperty(properties)
         currentUser = updatedUser
         return updatedUser
+    }
+    
+    func get(user: User) async throws -> User {
+        try await provider.get(user: user)
+    }
+    
+    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
+        try await provider.getUserCounters(user: user)
+    }
+    
+    func checkAvailability(of username: String) async throws -> Bool {
+        try await provider.checkAvailability(of: username)
     }
 }

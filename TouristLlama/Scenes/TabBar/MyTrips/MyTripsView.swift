@@ -36,7 +36,7 @@ struct MyTripsView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowingNewTripCreation) {
-            CreateNewTripView()
+            ManageTripView(mode: .create)
             .interactiveDismissDisabled()
         }
         .fullScreenCover(item: $viewModel.selectedTrip) { trip in

@@ -22,6 +22,8 @@
 "acceptTermsText" = "I accept";
 
 "fullName" = "Full Name";
+"username" = "Username";
+"usernameIsTaken" = "The username is already taken!";
 "email" = "E-mail";
 "password" = "Password";
 

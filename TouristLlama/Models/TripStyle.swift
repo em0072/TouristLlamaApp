@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TripStyle: String, Identifiable, CaseIterable {
+enum TripStyle: String, Identifiable, CaseIterable, Equatable {
     
     var id: String { rawValue }
 //    case none
@@ -117,3 +117,4 @@ enum TripStyle: String, Identifiable, CaseIterable {
         }
 
 }
+

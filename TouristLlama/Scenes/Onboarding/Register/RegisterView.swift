@@ -11,6 +11,7 @@ struct RegisterView: View {
     
     enum FocusField: Hashable {
         case name
+        case username
         case email
         case password
     }
@@ -23,27 +24,32 @@ struct RegisterView: View {
         ZStack {
             backgroundView
             
-            VStack {
-                titleView
-                
-                fieldsView
-                
-                termsView
-                    .padding(.top, 12)
-                
-                Spacer()
-                
-                registerButtonView
-                    .disabled(viewModel.isRegisterButtonDisabled)
-                
-                loginButtonView
+            ScrollView {
+                VStack {
+                    titleView
+                    
+                    fieldsView
+                    
+                    termsView
+                        .padding(.top, 12)
+                    
+                    Spacer()
+                    
+                    registerButtonView
+                        .disabled(viewModel.isRegisterButtonDisabled)
+                        .padding(.top, 30)
+                    
+                    loginButtonView
+                }
+                .padding(.horizontal, 20)
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationDestination(isPresented: $viewModel.isLoginShown) {
+                    LogInView()
+                }
+                .sheet(item: $viewModel.sheetType, content: sheetView)
             }
-            .padding(.horizontal, 20)
-            .navigationTitle("")
-            .navigationDestination(isPresented: $viewModel.isLoginShown) {
-                LogInView()
-            }
-            .sheet(item: $viewModel.sheetType, content: sheetView)
+            .scrollDismissesKeyboard(.interactively)
         }
         .ignoresSafeArea(.keyboard)
         .handle(loading: $viewModel.loadingState)
@@ -75,7 +81,8 @@ extension RegisterView {
     
     private var fieldsView: some View {
         VStack(spacing: 20) {
-            FloatingTextField(title: String.Onboarding.fullName, value: $viewModel.name,
+            FloatingTextField(title: String.Onboarding.fullName,
+                              value: $viewModel.name,
                               foregroundColor: .Main.black,
                               placeholderColorActive: .Main.black)
             .withDivider(colored: .Main.black)
@@ -85,7 +92,23 @@ extension RegisterView {
                 focusedField = .email
             }
             
-            FloatingTextField(title: String.Onboarding.email, value: $viewModel.email,
+            ZStack {
+                FloatingTextField(title: viewModel.usernameFieldTitle,
+                                  value: $viewModel.username,
+                                  foregroundColor: .Main.black,
+                                  placeholderColorActive: viewModel.usernameFieldPlaceholderColor)
+                .withDivider(colored: .Main.black)
+                .focused($focusedField, equals: .username)
+                .submitLabel(.next)
+                .onSubmit {
+                    focusedField = .username
+                }
+                
+                usernameCheckView
+            }
+
+            FloatingTextField(title: String.Onboarding.email,
+                              value: $viewModel.email,
                               foregroundColor: .Main.black,
                               placeholderColorActive: .Main.black,
                               keyboardType: .emailAddress)
@@ -96,7 +119,8 @@ extension RegisterView {
                 focusedField = .password
             }
             
-            FloatingTextField(title: String.Onboarding.password, value: $viewModel.password,
+            FloatingTextField(title: String.Onboarding.password,
+                              value: $viewModel.password,
                               foregroundColor: .Main.black,
                               placeholderColorActive: .Main.black,
                               secure: true)
@@ -104,6 +128,24 @@ extension RegisterView {
             .focused($focusedField, equals: .password)
             .keyboardType(.default)
             .submitLabel(.done)
+        }
+    }
+    
+    private var usernameCheckView: some View {
+        HStack {
+            Spacer()
+            
+            ZStack {
+                if viewModel.isCheckingUsernameAvailability {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+                
+                if viewModel.isUsernameAvailable != nil && !viewModel.isCheckingUsernameAvailability {
+                    Image(systemName: viewModel.usernameFieldIcon)
+                        .foregroundColor(viewModel.usernameFieldIconColor)
+                }
+            }
         }
     }
     

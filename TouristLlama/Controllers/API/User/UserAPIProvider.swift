@@ -9,11 +9,14 @@ import Foundation
 
 protocol UserAPIProvider {
     func getCurrentUser() async -> User?
-    func registerUser(name: String, email: String, password: String) async throws -> User
+    func registerUser(name: String, username: String, email: String, password: String) async throws -> User
     func resendConfirmationEmail(email: String) async throws
     func login(email: String, password: String) async throws -> User
     func login(token: String) async throws -> User
     func recoverPassword(email: String) async throws
     func logout() async throws
     func updateUserProperty(_ properties: [User.Property: Any]) async throws -> User
+    func get(user: User) async throws -> User
+    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int)
+    func checkAvailability(of username: String) async throws -> Bool
 }

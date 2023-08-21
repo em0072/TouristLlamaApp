@@ -40,6 +40,7 @@ struct LogInView: View {
             }
             .padding(.horizontal, 20)
             .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $viewModel.isPasswordRecoveryShown) {
             PasswordRecoveryView(email: viewModel.email) {

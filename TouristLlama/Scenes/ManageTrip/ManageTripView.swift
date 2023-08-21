@@ -1,5 +1,5 @@
 //
-//  CreateNewTripView.swift
+//  ManageTripView.swift
 //  TouristLlama
 //
 //  Created by Evgeny Mitko on 10/08/2023.
@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct CreateNewTripView: View {
+struct ManageTripView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @StateObject var viewModel = CreateNewTripViewModel()
+    @StateObject var viewModel: ManageTripViewModel
+    
+    init(mode: ManageTripViewModel.Mode, onSubmit: ((Trip) -> Void)? = nil) {
+        self._viewModel = StateObject(wrappedValue: ManageTripViewModel(mode: mode, onSubmit: onSubmit))
+    }
     
     var body: some View {
         NavigationStack {
@@ -71,7 +75,7 @@ struct CreateNewTripView: View {
 }
 
 
-extension CreateNewTripView {
+extension ManageTripView {
     
     private var closeButton: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
@@ -87,7 +91,7 @@ extension CreateNewTripView {
         Button {
             viewModel.onButtonAction()
         } label: {
-            if viewModel.isCreatingTrip {
+            if viewModel.isRequestInProgress {
                 ProgressView()
                     .progressViewStyle(.circular)
             } else {
@@ -104,8 +108,8 @@ extension CreateNewTripView {
     
 }
 
-struct CreateNewTripView_Previews: PreviewProvider {
+struct ManageTripView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewTripView()
+        ManageTripView(mode: .create)
     }
 }

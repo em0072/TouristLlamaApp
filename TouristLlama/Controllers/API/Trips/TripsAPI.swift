@@ -34,11 +34,23 @@ class TripsAPI {
         let newTrip = try await provider.create(trip: trip)
         addTripToMyTrips(newTrip)
     }
+    
+    func edit(trip: Trip) async throws -> Trip {
+        let editedTrip = try await provider.editTrip(trip: trip)
+        updateTrips(with: editedTrip)
+        return editedTrip
+    }
         
     private func addTripToMyTrips(_ trip: Trip) {
         myTrips.append(trip)
         myTrips.sort { $0.startDate < $1.startDate }
         myTrips.sort { $0.endDate < $1.endDate }
+    }
+    
+    private func updateTrips(with trip: Trip) {
+        if let tripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
+            myTrips[tripIndex] = trip
+        }
     }
 
 }

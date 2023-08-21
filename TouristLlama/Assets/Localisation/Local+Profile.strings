@@ -1,0 +1,21 @@
+/* 
+  Local+Profile.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 21/08/2023.
+  
+*/
+"profileCounterTrips" = "Trips";
+"profileCounterAwards" = "Awards";
+"profileCounterFriends" = "Friends";
+
+"profileEditProfile" = "Edit Profile";
+"profileManageFriends" = "Manage Friends";
+"profileManageFriendsSubtitle" = "Find and add new people";
+"profileExploreAwards" = "Explore Awards";
+
+"profileSettingsTitle" = "Settings";
+"profileSettingsLogoutPromptTitle" = "Logout Confirmation";
+"profileSettingsLogoutPromptMessage" = "Are you sure you want to logout?";
+"profileSettingsLogout" = "Logout";
+
