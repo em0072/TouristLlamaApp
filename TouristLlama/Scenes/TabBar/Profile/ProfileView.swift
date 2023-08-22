@@ -39,6 +39,9 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) { settingsButton }
             }
+            .fullScreenCover(item: $viewModel.userToEditProfile) { currentUser in
+                EditProfileView(currentUser: currentUser)
+            }
         }
     }
 }
@@ -135,7 +138,7 @@ extension ProfileView {
     
     private var editProfileButton: some View {
         Button {
-//            viewModel.openEditProfileView.toggle()
+            viewModel.openEditProfile()
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)

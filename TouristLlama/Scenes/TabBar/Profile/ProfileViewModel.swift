@@ -8,12 +8,15 @@
 import Foundation
 import Dependencies
 
+@MainActor
 class ProfileViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
     
     @Published var user: User?
     @Published var counter: (tripsCount: Int, friendsCount: Int)?
+    @Published var userToEditProfile: User?
+
     
     init(user: User?) {
         self.user = user
@@ -26,9 +29,16 @@ class ProfileViewModel: ViewModel {
         return user?.id == userAPI.currentUser?.id
     }
     
+    func openEditProfile() {
+        if isCurrentUser {
+            userToEditProfile = userAPI.currentUser
+        }
+    }
+    
     private func getUpdatedUser() {
         if let currentUser = userAPI.currentUser, user == currentUser || user == nil {
             user = currentUser
+            subscribeToCurrentUserUpdatesIfNeeded()
         } else if let userToLoad = user {
             Task {
                 do {
@@ -37,6 +47,17 @@ class ProfileViewModel: ViewModel {
                     self.error = error
                 }
             }
+        }
+    }
+    
+    private func subscribeToCurrentUserUpdatesIfNeeded() {
+        if isCurrentUser {
+            userAPI.$currentUser
+                .receive(on: RunLoop.main)
+                .sink { [weak self] currentUser in
+                    self?.user = currentUser
+                }
+                .store(in: &publishers)
         }
     }
     

@@ -48,4 +48,8 @@ class UserAPIMock: UserAPIProvider {
     func checkAvailability(of username: String) async throws -> Bool {
         Bool.random()
     }
+    
+    func uploadProfilePicture(data: Data) async throws -> String {
+        return "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg"
+    }
 }

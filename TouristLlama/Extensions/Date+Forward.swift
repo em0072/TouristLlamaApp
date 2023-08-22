@@ -50,8 +50,12 @@ extension Date {
         return date
     }
     
-    public var timeIntervalSince1970Milliseconds: Double {
+    public var timeIntervalSince1970Milliseconds: TimeInterval {
         self.timeIntervalSince1970 * 1000
+    }
+    
+    init(timeIntervalSince1970Milliseconds: TimeInterval) {
+        self.init(timeIntervalSince1970: timeIntervalSince1970Milliseconds / 1000)
     }
 
 }

@@ -19,11 +19,11 @@ extension Pickable {
     }
 }
 
-//extension Pickable where Self: RawRepresentable, Self.RawValue == String {
-//    var value: String {
-//        return self.rawValue
-//    }
-//}
+extension Pickable where Self: RawRepresentable, Self.RawValue == String {
+    var value: String {
+        return self.rawValue
+    }
+}
 
 protocol StringRepresentable {
     var rawValue: String { get }

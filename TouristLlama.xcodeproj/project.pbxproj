@@ -42,6 +42,16 @@
 		753F954E2A937BC0005B55B5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F954D2A937BC0005B55B5 /* SettingsViewModel.swift */; };
 		753F95502A939454005B55B5 /* TripDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F954F2A939454005B55B5 /* TripDetailViewModel.swift */; };
 		753F95522A939470005B55B5 /* TripChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95512A939470005B55B5 /* TripChatViewModel.swift */; };
+		753F95552A94B05A005B55B5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95542A94B05A005B55B5 /* EditProfileView.swift */; };
+		753F95572A94B066005B55B5 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95562A94B066005B55B5 /* EditProfileViewModel.swift */; };
+		753F95592A94BA67005B55B5 /* FramedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95582A94BA67005B55B5 /* FramedButtonStyle.swift */; };
+		753F955B2A94BF48005B55B5 /* Pronoun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F955A2A94BF48005B55B5 /* Pronoun.swift */; };
+		753F955E2A94C4A8005B55B5 /* EditPersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F955D2A94C4A8005B55B5 /* EditPersonalInfoView.swift */; };
+		753F95602A94D180005B55B5 /* EditUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F955F2A94D180005B55B5 /* EditUsernameView.swift */; };
+		753F95622A94DC1E005B55B5 /* EditAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95612A94DC1E005B55B5 /* EditAboutView.swift */; };
+		753F95642A94F5F1005B55B5 /* CameraPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95632A94F5F1005B55B5 /* CameraPickerView.swift */; };
+		753F95662A94F628005B55B5 /* UIimage+resized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95652A94F628005B55B5 /* UIimage+resized.swift */; };
+		753F95682A94F651005B55B5 /* View+CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95672A94F651005B55B5 /* View+CameraPicker.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
@@ -184,6 +194,17 @@
 		753F954D2A937BC0005B55B5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		753F954F2A939454005B55B5 /* TripDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailViewModel.swift; sourceTree = "<group>"; };
 		753F95512A939470005B55B5 /* TripChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChatViewModel.swift; sourceTree = "<group>"; };
+		753F95542A94B05A005B55B5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		753F95562A94B066005B55B5 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		753F95582A94BA67005B55B5 /* FramedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedButtonStyle.swift; sourceTree = "<group>"; };
+		753F955A2A94BF48005B55B5 /* Pronoun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pronoun.swift; sourceTree = "<group>"; };
+		753F955D2A94C4A8005B55B5 /* EditPersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalInfoView.swift; sourceTree = "<group>"; };
+		753F955F2A94D180005B55B5 /* EditUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameView.swift; sourceTree = "<group>"; };
+		753F95612A94DC1E005B55B5 /* EditAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAboutView.swift; sourceTree = "<group>"; };
+		753F95632A94F5F1005B55B5 /* CameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPickerView.swift; sourceTree = "<group>"; };
+		753F95652A94F628005B55B5 /* UIimage+resized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIimage+resized.swift"; sourceTree = "<group>"; };
+		753F95672A94F651005B55B5 /* View+CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CameraPicker.swift"; sourceTree = "<group>"; };
+		753F95692A94F7AA005B55B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLlamaApp.swift; sourceTree = "<group>"; };
 		75BC4A452A80E88800B6F6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -310,6 +331,7 @@
 				75336BA22A84FE9500031D5C /* FramedPickerView.swift */,
 				75336BB42A85053100031D5C /* FramedLocationPickerView.swift */,
 				75336BC52A852A3900031D5C /* FramedDatePickerView.swift */,
+				753F95632A94F5F1005B55B5 /* CameraPickerView.swift */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -368,6 +390,26 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		753F95532A94B044005B55B5 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				753F95542A94B05A005B55B5 /* EditProfileView.swift */,
+				753F95562A94B066005B55B5 /* EditProfileViewModel.swift */,
+				753F955C2A94C49D005B55B5 /* Subviews */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		753F955C2A94C49D005B55B5 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				753F955D2A94C4A8005B55B5 /* EditPersonalInfoView.swift */,
+				753F955F2A94D180005B55B5 /* EditUsernameView.swift */,
+				753F95612A94DC1E005B55B5 /* EditAboutView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		75BC4A372A80E88800B6F6CE = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +430,7 @@
 		75BC4A422A80E88800B6F6CE /* TouristLlama */ = {
 			isa = PBXGroup;
 			children = (
+				753F95692A94F7AA005B55B5 /* Info.plist */,
 				75DE43242A8A09C300D42B9D /* Packages */,
 				75ED7A1D2A83A1D90078D103 /* TouristLlama.entitlements */,
 				75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */,
@@ -419,6 +462,7 @@
 		75BC4A512A80E92600B6F6CE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				753F95532A94B044005B55B5 /* EditProfile */,
 				753F954A2A937BA0005B55B5 /* Settings */,
 				75DE434E2A8CADFB00D42B9D /* Trip */,
 				75DE16512A84F03C00AF671B /* ManageTrip */,
@@ -578,6 +622,7 @@
 			children = (
 				75BC4A7B2A80FB5400B6F6CE /* WideBlueButtonStyle.swift */,
 				75DE16492A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift */,
+				753F95582A94BA67005B55B5 /* FramedButtonStyle.swift */,
 			);
 			path = ButtonStyles;
 			sourceTree = "<group>";
@@ -596,6 +641,7 @@
 			isa = PBXGroup;
 			children = (
 				75BC4A892A8114D700B6F6CE /* String+Email.swift */,
+				753F95652A94F628005B55B5 /* UIimage+resized.swift */,
 				75336BBD2A8507EC00031D5C /* String+CountryCode.swift */,
 				75336BC72A852A8100031D5C /* Date+Forward.swift */,
 				75336BCB2A852BDB00031D5C /* Date+TimeStamp.swift */,
@@ -605,6 +651,7 @@
 				75DE43572A8CB22300D42B9D /* ScrollView+Offsets.swift */,
 				75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */,
 				75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */,
+				753F95672A94F651005B55B5 /* View+CameraPicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -800,6 +847,7 @@
 				75336BB12A85038C00031D5C /* Protocols */,
 				75ED79F22A8262430078D103 /* User.swift */,
 				75336BA92A84FFD400031D5C /* Sex.swift */,
+				753F955A2A94BF48005B55B5 /* Pronoun.swift */,
 				75ED7A092A8277C90078D103 /* CustomError.swift */,
 				75DE165D2A84F39300AF671B /* Trip.swift */,
 				75DE165F2A84F3AF00AF671B /* TripStyle.swift */,
@@ -1011,6 +1059,7 @@
 				75DE43192A86B8E800D42B9D /* PhotoStageView.swift in Sources */,
 				75BC4A572A80E95C00B6F6CE /* OnboardView.swift in Sources */,
 				753F95452A93621A005B55B5 /* Local+Profile.swift in Sources */,
+				753F95592A94BA67005B55B5 /* FramedButtonStyle.swift in Sources */,
 				75ED7A072A8270C50078D103 /* ViewModel.swift in Sources */,
 				75DE43372A8A2DF200D42B9D /* TripsAPIMock.swift in Sources */,
 				75DE432C2A8A293F00D42B9D /* TripsAPI.swift in Sources */,
@@ -1028,6 +1077,7 @@
 				75DE43602A8CCBB000D42B9D /* TripChat.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
+				753F95572A94B066005B55B5 /* EditProfileViewModel.swift in Sources */,
 				75DE16672A84F82F00AF671B /* FramedTextField.swift in Sources */,
 				75DE43522A8CAE1800D42B9D /* TripViewModel.swift in Sources */,
 				75BC4A8A2A8114D700B6F6CE /* String+Email.swift in Sources */,
@@ -1062,15 +1112,20 @@
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
 				75DE43562A8CB11800D42B9D /* TripChatView.swift in Sources */,
 				75DE165E2A84F39300AF671B /* Trip.swift in Sources */,
+				753F95682A94F651005B55B5 /* View+CameraPicker.swift in Sources */,
 				75DE436B2A8CE9FA00D42B9D /* ChatAPI.swift in Sources */,
 				75DE16552A84F05500AF671B /* ManageTripViewModel.swift in Sources */,
 				75DE164A2A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift in Sources */,
 				75336BCE2A852BE200031D5C /* Date+Format.swift in Sources */,
 				75DE43152A86B8A800D42B9D /* PexelPhotoPickerView.swift in Sources */,
+				753F95662A94F628005B55B5 /* UIimage+resized.swift in Sources */,
 				75336BB82A85062A00031D5C /* LocationSearchView.swift in Sources */,
 				75336BD02A852C5600031D5C /* TimeInterval+Format.swift in Sources */,
+				753F95642A94F5F1005B55B5 /* CameraPickerView.swift in Sources */,
+				753F95622A94DC1E005B55B5 /* EditAboutView.swift in Sources */,
 				75DE43542A8CB10300D42B9D /* TripDetailsView.swift in Sources */,
 				75ED7A182A83960C0078D103 /* ContentViewModel.swift in Sources */,
+				753F955E2A94C4A8005B55B5 /* EditPersonalInfoView.swift in Sources */,
 				75DE432A2A8A19F800D42B9D /* SettingsStageView.swift in Sources */,
 				75BC4A662A80EBFC00B6F6CE /* FeatureItem.swift in Sources */,
 				75DE43642A8CD26A00D42B9D /* BackendlessChatMessage.swift in Sources */,
@@ -1084,9 +1139,12 @@
 				75DE433D2A8A3E5700D42B9D /* BackendlessObject.swift in Sources */,
 				75ED7A0A2A8277C90078D103 /* CustomError.swift in Sources */,
 				75DE431B2A86BB6200D42B9D /* PexelPhoto.swift in Sources */,
+				753F955B2A94BF48005B55B5 /* Pronoun.swift in Sources */,
 				75DE436F2A8CEA6E00D42B9D /* ChatAPIMock.swift in Sources */,
+				753F95552A94B05A005B55B5 /* EditProfileView.swift in Sources */,
 				75BC4A812A80FB9B00B6F6CE /* Colors+Main.swift in Sources */,
 				75DE432E2A8A295800D42B9D /* TripsAPIProvider.swift in Sources */,
+				753F95602A94D180005B55B5 /* EditUsernameView.swift in Sources */,
 				75336BC42A85169800031D5C /* IconPlaceholderView.swift in Sources */,
 				75ED79EE2A8261130078D103 /* UserAPIProvider.swift in Sources */,
 				75BC4A622A80EB9700B6F6CE /* FeaturesView.swift in Sources */,
@@ -1226,8 +1284,10 @@
 				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TouristLlama/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tourist Llama";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera for you to be able to take pictures and upload them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1258,8 +1318,10 @@
 				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TouristLlama/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tourist Llama";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera for you to be able to take pictures and upload them.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

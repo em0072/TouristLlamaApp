@@ -27,6 +27,7 @@ class RegisterViewModel: ViewModel {
     @Published var termsAccepted: Bool = false
     @Published var isLoginShown = false
     @Published var isUsernameAvailable: Bool?
+    @Published var isUserNameLongEnough: Bool = true
     @Published var sheetType: SheetType?
     
     private var usernameCheckTask: Task<Bool?, Never>?
@@ -37,7 +38,7 @@ class RegisterViewModel: ViewModel {
     }
 
     var isRegisterButtonDisabled: Bool {
-        name.isEmpty || username.isEmpty || isUsernameAvailable != true || password.isEmpty || email.isEmpty || !termsAccepted
+        name.isEmpty || username.isEmpty || isUsernameAvailable != true || username.count >= 3 || password.isEmpty || email.isEmpty || !termsAccepted
     }
     
     var isCheckingUsernameAvailability: Bool {
@@ -61,13 +62,19 @@ class RegisterViewModel: ViewModel {
     }
 
     var usernameFieldTitle: String {
-        guard let isUsernameAvailable, !isUsernameAvailable else {
-            return String.Onboarding.username
+        guard isUserNameLongEnough else {
+            return String.Onboarding.username + " " + "(" + String.Profile.usernameLimitText + ")"
         }
-        return String.Onboarding.username + " " + "(" + String.Onboarding.usernameIsTaken + ")"
+        guard let isUsernameAvailable, !isUsernameAvailable else {
+            return String.Profile.username
+        }
+        return String.Onboarding.username + " " + "(" + String.Profile.usernameTaken + ")"
     }
     
     var usernameFieldPlaceholderColor: Color {
+        guard isUserNameLongEnough else {
+            return .Main.accentRed
+        }
         guard let isUsernameAvailable, !isUsernameAvailable else {
             return .Main.black
         }
@@ -116,11 +123,16 @@ class RegisterViewModel: ViewModel {
         $username
             .debounce(for: 0.3, scheduler: RunLoop.main)
             .sink { [weak self] username in
-                self?.isUsernameAvailable = nil
-                guard !username.isEmpty else {
+                guard let self else { return }
+                self.isUsernameAvailable = nil
+                guard username.isEmpty else {
                     return
                 }
-                self?.checkUsernameAvailability(of: username)
+                self.isUserNameLongEnough = username.count >= 3
+                guard self.isUserNameLongEnough else {
+                    return
+                }
+                self.checkUsernameAvailability(of: username)
             }
             .store(in: &publishers)
     }

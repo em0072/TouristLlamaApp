@@ -78,4 +78,8 @@ class UserAPI {
     func checkAvailability(of username: String) async throws -> Bool {
         try await provider.checkAvailability(of: username)
     }
+    
+    func uploadProfilePicture(data: Data) async throws -> String {
+        try await provider.uploadProfilePicture(data: data)
+    }
 }

@@ -15,7 +15,12 @@ extension String {
         static let create = String.localized("create")
         static let update = String.localized("update")
         static let cancel = String.localized("cancel")
-
+        static let done = String.localized("done")
+        
+        static let camera = String.localized("camera")
+        static let photoLibrary = String.localized("photoLibrary")
+        
+        static let charectersLeft = String.localized("charectersLeft")
     }
     
     private static func localized(_ key: String) -> String {

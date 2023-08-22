@@ -10,3 +10,9 @@
 "create" = "Create";
 "update" = "Update";
 "cancel" = "Cancel";
+"done" = "Done";
+"camera" = "Camera";
+"photoLibrary" = "Photo Library";
+
+
+"charectersLeft" = "charecters left";

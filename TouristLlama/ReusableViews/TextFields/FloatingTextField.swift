@@ -75,7 +75,7 @@ struct DividerModifier: ViewModifier {
             content
             Divider()
                 .frame(height: 1)
-                .background(color ?? Color.Main.grey)
+                .background(color ?? Color.Main.grey.opacity(0.4))
         }
     }
 }
@@ -89,5 +89,6 @@ extension View {
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
         FloatingTextField(title: "Title", value: .constant("Hello"), secure: true)
+            .withDivider()
     }
 }

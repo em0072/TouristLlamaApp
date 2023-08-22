@@ -5,6 +5,9 @@
   Created by Evgeny Mitko on 21/08/2023.
   
 */
+
+// MARK: - Profile
+
 "profileCounterTrips" = "Trips";
 "profileCounterAwards" = "Awards";
 "profileCounterFriends" = "Friends";
@@ -18,4 +21,27 @@
 "profileSettingsLogoutPromptTitle" = "Logout Confirmation";
 "profileSettingsLogoutPromptMessage" = "Are you sure you want to logout?";
 "profileSettingsLogout" = "Logout";
+
+
+// MARK: - Edit profile
+
+"editProfileFullName" = "Full Name";
+"editProfileUsername" = "Username";
+"editProfilePronoun" = "Pronoun";
+"editProfileAboutMe" = "About Me";
+"editProfileEditProfilePictureTitle" = "Edit Profile Picture";
+"editProfileEditProfilePictureSubtitle" = "Would you like to take a fresh photo with Camera or choose picture from Photo Library?";
+"editProfileChangeProfilePhoto" = "Change profile photo";
+"editProfileChooseNickname" = "Choose a nickname";
+"editProfileUsernameLimitText" = "Please ensure that the username is at least 3 charachters";
+"editProfileUsernameAvailable" = "Awesome, this username is available!";
+"editProfileUsernameTaken" = "Sorry, this username is taken.";
+"editProfileEmail" = "Email";
+"editProfilePhoneNumber" = "Phone Number";
+"editProfileDateOfBirth" = "Date of Birth";
+"editProfileDescriptionPlaceholder" = "Tell a little bit about yourself";
+"editProfilePersonalInformationSettings" = "Personal Information Settings";
+
+
+
 

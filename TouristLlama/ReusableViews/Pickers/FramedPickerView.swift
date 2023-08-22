@@ -9,12 +9,21 @@ import SwiftUI
 
 struct FramedPickerView<Data: Pickable>: View {
     
-    var title: String
-    var placeholder: String
-
+    let title: String
+    let placeholder: String
+    
     @Binding var selected: Data
     
-    var emptyState: Data? = nil
+    let emptyState: Data?
+    let includeEmptyState: Bool
+
+    init(title: String, placeholder: String, selected: Binding<Data>, emptyState: Data? = nil, includeEmptyState: Bool = true) {
+        self.title = title
+        self.placeholder = placeholder
+        self._selected = Binding(projectedValue: selected)
+        self.emptyState = emptyState
+        self.includeEmptyState = includeEmptyState
+    }
 
     var body: some View {
         VStack(spacing: 8) {
@@ -33,12 +42,12 @@ extension FramedPickerView {
     private var pickerView: some View {
                 Menu {
                     ForEach(Data.allCases) { item in
-                        if item != emptyState {
+                        if includeEmptyState || item != emptyState {
                             Button {
                                 selected = item
                             } label: {
                                 Label {
-                                    Text(item == emptyState ? "" : item.localizedValue)
+                                    Text(item == emptyState ? "" : item.localizedValue.capitalized)
                                         .font(.avenirBody)
                                         .bold(item == selected)
                                 } icon: {
@@ -83,6 +92,6 @@ extension FramedPickerView {
 
 struct FramedDataPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        FramedPickerView(title: "Title", placeholder: "Select Option", selected: .constant(Sex.none), emptyState: Sex.none)
+        FramedPickerView(title: "Title", placeholder: "Select Option", selected: .constant(Sex.none), emptyState: Sex.none, includeEmptyState: false)
     }
 }

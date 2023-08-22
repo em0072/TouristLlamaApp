@@ -18,6 +18,7 @@ struct CapsuleBlueButtonStyle: ButtonStyle {
                 Capsule()
                     .fill(Color.Main.accentBlue)
             }
+            .opacity(configuration.isPressed ? 0.7 : 1)
     }
 }
 

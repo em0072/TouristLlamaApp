@@ -19,7 +19,7 @@ struct FramedDatePickerView: View {
         self.title = title
         self.placeholder = placeholder
         self._selection = selection
-        self.minimumDate = minimumDate?.removeTimeStamp ?? Date.forward(.years(-1)).removeTimeStamp
+        self.minimumDate = minimumDate?.removeTimeStamp ?? Date.forward(.years(-150)).removeTimeStamp
         self.maximumDate = maximumDate?.removeTimeStamp ?? Date.forward(.years(150)).removeTimeStamp
     }
 

@@ -26,6 +26,24 @@ extension String {
         static let logoutPromptMessage = String.localized("profileSettingsLogoutPromptMessage")
         static let logout = String.localized("profileSettingsLogout")
 
+        static let fullName = String.localized("editProfileFullName")
+        static let username = String.localized("editProfileUsername")
+        static let pronoun = String.localized("editProfilePronoun")
+        static let aboutMe = String.localized("editProfileAboutMe")
+        static let editProfilePictureTitle = String.localized("editProfileEditProfilePictureTitle")
+        static let editProfilePictureSubtitle = String.localized("editProfileEditProfilePictureSubtitle")
+        static let changeProfilePhoto = String.localized("editProfileChangeProfilePhoto")
+        static let chooseNickname = String.localized("editProfileChooseNickname")
+        static let usernameLimitText = String.localized("editProfileUsernameLimitText")
+        static let usernameAvailable = String.localized("editProfileUsernameAvailable")
+        static let usernameTaken = String.localized("editProfileUsernameTaken")
+        static let email = String.localized("editProfileEmail")
+        static let phoneNumber = String.localized("editProfilePhoneNumber")
+        static let dateOfBirth = String.localized("editProfileDateOfBirth")
+        static let descriptionPlaceholder = String.localized("editProfileDescriptionPlaceholder")
+        static let personalInformationSettings = String.localized("editProfilePersonalInformationSettings")
+
+        
     }
     
     private static func localized(_ key: String) -> String {

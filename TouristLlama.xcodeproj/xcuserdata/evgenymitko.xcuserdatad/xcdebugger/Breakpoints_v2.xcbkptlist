@@ -14,8 +14,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "registerNewUser()"
             landmarkType = "7">
             <Locations>
@@ -107,8 +107,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "registerNewUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -171,8 +171,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "registerNewUser()"
             landmarkType = "7">
          </BreakpointContent>
@@ -187,8 +187,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "resendEmailConfirmation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -203,8 +203,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "resendEmailConfirmation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,8 +298,8 @@
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "login(token:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,8 +346,8 @@
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "login(token:)"
             landmarkType = "7">
             <Locations>
@@ -754,8 +754,8 @@
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "getCurrentUser()"
             landmarkType = "7">
             <Locations>
@@ -1810,8 +1810,8 @@
             filePath = "TouristLlama/Models/User.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "init?(from:)"
             landmarkType = "7">
             <Locations>
@@ -3457,10 +3457,10 @@
             filePath = "TouristLlama/Scenes/TabBar/Profile/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "getUpdatedUser()"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3473,10 +3473,10 @@
             filePath = "TouristLlama/Scenes/TabBar/Profile/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getUpdatedUser()"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "7D8DBA52-76E0-4BB2-9B40-0A6D660E0884 - a66f20198717fd26"
@@ -3551,10 +3551,10 @@
             filePath = "TouristLlama/Scenes/TabBar/Profile/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "getUpdatedUser()"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "F5C6D9B7-F1B5-4FF1-8FC1-144E03BBD1CB - a66f20198717fd26"
@@ -3629,8 +3629,8 @@
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "get(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3645,8 +3645,8 @@
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "getUserCounters(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3661,10 +3661,10 @@
             filePath = "TouristLlama/Scenes/TabBar/Profile/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "getUserCounters()"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "319A096F-C872-42F8-AB51-413D64732A6C - 7d1b0908ade77b7"
@@ -3739,8 +3739,8 @@
             filePath = "TouristLlama/Scenes/Onboarding/Register/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "checkUsernameAvailability(of:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3749,14 +3749,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B6ABF06F-D136-42BF-AF80-0E2658E834FC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "checkAvailability(of:)"
             landmarkType = "7">
             <Locations>
@@ -3797,14 +3797,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "CDAC4794-AC40-4BC5-A648-FB3A2711A36A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouristLlama/Controllers/Backendless/UserAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "checkAvailability(of:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4059,8 +4059,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "editTrip()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4091,8 +4091,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "isCurrentUserParticipantOfTrip"
             landmarkType = "24">
             <Locations>
@@ -4171,8 +4171,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "subscribeToChatUpdates()"
             landmarkType = "7">
             <Locations>
@@ -4239,6 +4239,86 @@
             endingLineNumber = "22"
             landmarkName = "subscribeToChatUpdates(for:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A8B3BC2-EF34-4CAC-BBB9-53D837722E58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Models/User.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "init?(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A8B3BC2-EF34-4CAC-BBB9-53D837722E58 - 26a35cf337aaf5bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouristLlama.User.init(from: SwiftSDK.BackendlessUser) -&gt; Swift.Optional&lt;TouristLlama.User&gt;"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Models/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "2676">
+               </Location>
+               <Location
+                  uuid = "2A8B3BC2-EF34-4CAC-BBB9-53D837722E58 - 26a35cf337aaf5bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TouristLlama.User.init(from: SwiftSDK.BackendlessUser) -&gt; Swift.Optional&lt;TouristLlama.User&gt;"
+                  moduleName = "TouristLlama"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Models/User.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "2832">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EB6A2A0-189F-4768-88EC-D165C06CD2E5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/EditProfile/EditProfileViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "checkUsernameAvailability(username:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E3F28A6-CEB0-4766-9FAB-E0E378DB502C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TouristLlama/Scenes/EditProfile/EditProfileViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "subscribeToPickedImage()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

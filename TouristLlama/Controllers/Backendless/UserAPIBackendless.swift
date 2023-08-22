@@ -27,16 +27,6 @@ class UserAPIBackendless: UserAPIProvider {
             user.properties[User.Property.username.string] = username
             
             Backendless.shared.userService.registerUser(user: user) { registredUser in
-//                guard let blUser = registredUser as? BackendlessUser else {
-//                    continuation.resume(throwing: CustomError(text: "can't cast object to BackendlessUser"))
-//                    return
-//                }
-//                guard let id = registredUser.objectId,
-//                      let name = registredUser.name,
-//                      let email = registredUser.email else {
-//                    continuation.resume(throwing: UserAPIError.responceIsEmpty)
-//                    return
-//                }
                 guard let user = User(from: registredUser) else {
                     continuation.resume(throwing: CustomError(text: "can't cast BackendlessUser to User"))
                     return
@@ -197,4 +187,26 @@ class UserAPIBackendless: UserAPIProvider {
             }
         }
     }
+    
+    func uploadProfilePicture(data: Data) async throws -> String {
+        return try await withCheckedThrowingContinuation { continuation in
+            guard let objectId = Backendless.shared.userService.currentUser?.objectId else {
+                continuation.resume(throwing: CustomError(text: "No current user is available"))
+                return
+            }
+            let fileName = "\(Date().timeIntervalSince1970)"
+            let filePath = "users/\(objectId)/photos/profilePictures"
+            Backendless.shared.file.uploadFile(fileName: fileName, filePath: filePath, content: data, overwrite: true) { file in
+                guard let fileUrl = file.fileUrl else {
+                    continuation.resume(throwing: CustomError(text: "File upload returned empty file url"))
+                    return
+                }
+                continuation.resume(returning: fileUrl)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+//        return "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg"
+    }
+
 }
