@@ -68,7 +68,7 @@ extension FramedLocationPickerView {
             }
             return name
         } else {
-            return String.MyTrips.createTripLocationPlaceholder
+            return String.Trips.createTripLocationPlaceholder
         }
     }
     

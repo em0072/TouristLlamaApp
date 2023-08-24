@@ -59,7 +59,7 @@ struct ManageTripView: View {
             }
             .animation(.default, value: viewModel.currentCreationStage)
             .animation(.default, value: viewModel.tripStyle)
-            .navigationTitle(String.MyTrips.createTripTitle)
+            .navigationTitle(String.Trips.createTripTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 closeButton

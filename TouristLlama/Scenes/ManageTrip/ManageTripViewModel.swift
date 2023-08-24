@@ -30,13 +30,13 @@ class ManageTripViewModel: ViewModel {
         
         var errorDescription: String? {
             switch self {
-            case .noName: return String.MyTrips.createErrorNoName
+            case .noName: return String.Trips.createErrorNoName
 //            case .noStyle: return String.MyTrips.createErrorNoStyle
-            case .noLocation: return String.MyTrips.createErrorNoLocation
-            case .noStartDate: return String.MyTrips.createErrorNoStartDate
-            case .noEndDate: return String.MyTrips.createErrorNoEndDate
-            case .noDescription: return String.MyTrips.createErrorNoDescription
-            case .noPhoto: return String.MyTrips.createErrorNoPhoto
+            case .noLocation: return String.Trips.createErrorNoLocation
+            case .noStartDate: return String.Trips.createErrorNoStartDate
+            case .noEndDate: return String.Trips.createErrorNoEndDate
+            case .noDescription: return String.Trips.createErrorNoDescription
+            case .noPhoto: return String.Trips.createErrorNoPhoto
             }
         }
     }

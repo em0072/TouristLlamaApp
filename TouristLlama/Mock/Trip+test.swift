@@ -10,7 +10,7 @@ import Foundation
 extension Trip {
     
     static var testFuture: Trip {
-        Trip(id: "",
+        Trip(id: "1232ew",
              name: "My Future Trip",
              style: .leisure,
              location: .test,
@@ -24,7 +24,7 @@ extension Trip {
     }
     
     static var testOngoing: Trip {
-        Trip(id: "",
+        Trip(id: "dfcfvgr34",
              name: "My Ongoing Trip",
              style: .leisure,
              location: .test,
@@ -38,7 +38,7 @@ extension Trip {
     }
 
     static var testPast: Trip {
-        Trip(id: "",
+        Trip(id: "09iurjvrlnw",
              name: "My Past Trip",
              style: .leisure,
              location: .test,

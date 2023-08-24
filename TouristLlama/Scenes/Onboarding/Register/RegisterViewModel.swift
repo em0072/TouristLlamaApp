@@ -8,7 +8,6 @@
 import SwiftUI
 import Dependencies
 
-@MainActor
 class RegisterViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI

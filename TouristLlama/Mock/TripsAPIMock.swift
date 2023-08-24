@@ -20,4 +20,8 @@ class TripsAPIMock: TripsAPIProvider {
     func editTrip(trip: Trip) async throws -> Trip {
         return Trip.testFuture
     }
+    
+    func getExploreTrips() async throws -> [Trip] {
+        return [Trip.testOngoing, Trip.testFuture, .testPast]
+    }
 }

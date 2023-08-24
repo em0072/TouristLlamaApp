@@ -8,6 +8,7 @@
 import SwiftUI
 import Dependencies
 
+@MainActor
 class TripChatViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
@@ -71,7 +72,6 @@ class TripChatViewModel: ViewModel {
         }
     }
 
-    @MainActor
     func markMessageAsNotSent(message: ChatMessage) {
         if let messageIndex = chat?.messages.firstIndex(of: message) {
             chat?.messages[messageIndex].status = .error
@@ -112,7 +112,6 @@ class TripChatViewModel: ViewModel {
             .store(in: &publishers)
     }
 
-    @MainActor
     private func insertMessageIfNeeded(_ message: ChatMessage) {
         if userAPI.currentUser?.id != message.ownerId {
             chat?.messages.append(message)

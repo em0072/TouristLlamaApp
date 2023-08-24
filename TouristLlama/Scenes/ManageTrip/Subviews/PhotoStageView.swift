@@ -15,7 +15,7 @@ struct PhotoStageView: View {
     
     var body: some View {
         VStack {
-            FieldTitleView(title: String.MyTrips.createTripPhoto)
+            FieldTitleView(title: String.Trips.createTripPhoto)
             
             pexelPhotoPicker
         }

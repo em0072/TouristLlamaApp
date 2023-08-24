@@ -16,3 +16,8 @@
 
 
 "charectersLeft" = "charecters left";
+
+//MARK: - TabBar
+"exploreTab" = "Explore";
+"myTripsTab" = "My Trips";
+"profileTab" = "Profile";

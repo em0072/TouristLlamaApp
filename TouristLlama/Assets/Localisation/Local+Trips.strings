@@ -5,6 +5,8 @@
   Created by Evgeny Mitko on 10/08/2023.
   
 */
+
+//MARK: - My Trips
 "myTripsTitle" = "My Trips";
 "myTripsCreateTripButton" = "Create";
 
@@ -49,3 +51,6 @@
 "myTripsCreateTripLocationSearchPrompt" = "Enter Location Name";
 "myTripsCreateTripLocationSearchResultsTitle" = "Results";
 "myTripsCreateTripLocationSearchResultsPrompt" = "Please enter location name in the search field";
+
+//MARK: - Explore
+"exploreSearchPrompt" = "What are you looking for?";

@@ -73,26 +73,79 @@ enum TripStyle: String, Identifiable, CaseIterable, Equatable {
     }
     
     var styleColor: Color {
-            switch self {
-//            case .none: return .clear
-            case .leisure: return Color(red: 240/255, green: 230/255, blue: 140/255)
-            case .active: return Color(red: 173/255, green: 216/255, blue: 230/255)
-            case .cultural: return Color(red: 221/255, green: 160/255, blue: 221/255)
-            case .adventure: return Color(red: 152/255, green: 251/255, blue: 152/255)
-            case .natureAndWildlife: return Color(red: 255/255, green: 192/255, blue: 203/255)
-            case .beachAndMarine: return Color(red: 135/255, green: 206/255, blue: 250/255)
-            case .culinary: return Color(red: 255/255, green: 182/255, blue: 193/255)
-            case .nightlifeAndParty: return Color(red: 240/255, green: 128/255, blue: 128/255)
-            case .budgetBackpacking: return Color(red: 224/255, green: 255/255, blue: 255/255)
-            case .luxury: return Color(red: 250/255, green: 235/255, blue: 215/255)
-            case .family: return Color(red: 255/255, green: 228/255, blue: 225/255)
-            case .solo: return Color(red: 255/255, green: 218/255, blue: 185/255)
-            case .business: return Color(red: 230/255, green: 230/255, blue: 250/255)
-            case .ecoTourism: return Color(red: 250/255, green: 250/255, blue: 210/255)
-            case .volunteering: return Color(red: 255/255, green: 240/255, blue: 245/255)
-            case .festivalAndEvents: return Color(red: 240/255, green: 230/255, blue: 140/255)
-            }
+        switch self {
+        case .leisure:
+            return Color(red: 255/255, green: 231/255, blue: 112/255)
+        case .active:
+            return Color(red: 255/255, green: 200/255, blue: 200/255)
+        case .cultural:
+            return Color(red: 217/255, green: 203/255, blue: 255/255)
+        case .adventure:
+            return Color(red: 240/255, green: 209/255, blue: 132/255)
+        case .natureAndWildlife:
+            return Color(red: 166/255, green: 231/255, blue: 162/255)
+        case .beachAndMarine:
+            return Color(red: 160/255, green: 229/255, blue: 255/255)
+        case .culinary:
+            return Color(red: 255/255, green: 172/255, blue: 151/255)
+        case .nightlifeAndParty:
+            return Color(red: 255/255, green: 184/255, blue: 228/255)
+        case .budgetBackpacking:
+            return Color(red: 167/255, green: 195/255, blue: 255/255)
+        case .luxury:
+            return Color(red: 255/255, green: 213/255, blue: 113/255)
+        case .family:
+            return Color(red: 255/255, green: 197/255, blue: 117/255)
+        case .solo:
+            return Color(red: 109/255, green: 207/255, blue: 255/255)
+        case .business:
+            return Color(red: 174/255, green: 174/255, blue: 250/255)
+        case .ecoTourism:
+            return Color(red: 139/255, green: 219/255, blue: 117/255)
+        case .volunteering:
+            return Color(red: 255/255, green: 183/255, blue: 165/255)
+        case .festivalAndEvents:
+            return Color(red: 248/255, green: 183/255, blue: 255/255)
         }
+    }
+
+    var styleTextColor: Color {
+        switch self {
+        case .leisure:
+            return Color(red: 154/255, green: 90/255, blue: 0/255)
+        case .active:
+            return Color(red: 217/255, green: 12/255, blue: 12/255)
+        case .cultural:
+            return Color(red: 87/255, green: 49/255, blue: 200/255)
+        case .adventure:
+            return Color(red: 153/255, green: 109/255, blue: 0/255)
+        case .natureAndWildlife:
+            return Color(red: 7/255, green: 128/255, blue: 0/255)
+        case .beachAndMarine:
+            return Color(red: 0/255, green: 118/255, blue: 255/255)
+        case .culinary:
+            return Color(red: 128/255, green: 26/255, blue: 0/255)
+        case .nightlifeAndParty:
+            return Color(red: 159/255, green: 0/255, blue: 99/255)
+        case .budgetBackpacking:
+            return Color(red: 0/255, green: 74/255, blue: 231/255)
+        case .luxury:
+            return Color(red: 129/255, green: 91/255, blue: 0/25)
+        case .family:
+            return Color(red: 128/255, green: 74/255, blue: 0/255)
+        case .solo:
+            return Color(red: 0/255, green: 79/255, blue: 118/255)
+        case .business:
+            return Color(red: 0/255, green: 0/255, blue: 165/255)
+        case .ecoTourism:
+            return Color(red: 24/255, green: 110/255, blue: 0/255)
+        case .volunteering:
+            return Color(red: 152/255, green: 30/255, blue: 0/255)
+        case .festivalAndEvents:
+            return Color(red: 141/255, green: 0/255, blue: 156/255)
+        }
+    }
+
 
     var styleSymbol: String {
             switch self {

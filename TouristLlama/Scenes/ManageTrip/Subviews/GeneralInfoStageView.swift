@@ -37,30 +37,30 @@ struct GeneralInfoStageView: View {
 
 extension GeneralInfoStageView {
     private var nameView: some View {
-        FramedTextField(title: String.MyTrips.createTripName,
-                        prompt: String.MyTrips.createTripNamePlaceholder,
+        FramedTextField(title: String.Trips.createTripName,
+                        prompt: String.Trips.createTripNamePlaceholder,
                         value: $name)
     }
     
     private var stylePickerView: some View {
-        TripStylePicker(title: String.MyTrips.createTripStyle, selectedStyle: $tripStyle)
+        TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: $tripStyle)
     }
     
     private var locationPickerView: some View {
-        FramedLocationPickerView(title: String.MyTrips.createTripLocation,
+        FramedLocationPickerView(title: String.Trips.createTripLocation,
                                  selection: $tripLocation)
     }
     
     private var datePickersView: some View {
         HStack(spacing: 12) {
-            FramedDatePickerView(title: String.MyTrips.createTripStartDate,
-                                 placeholder: String.MyTrips.createTripDatePlaceholde,
+            FramedDatePickerView(title: String.Trips.createTripStartDate,
+                                 placeholder: String.Trips.createTripDatePlaceholde,
                                  selection: $startDate,
                                  minimumDate: Date(),
                                  maximumDate: endDate)
             
-            FramedDatePickerView(title: String.MyTrips.createTripEndDate,
-                                 placeholder: String.MyTrips.createTripDatePlaceholde,
+            FramedDatePickerView(title: String.Trips.createTripEndDate,
+                                 placeholder: String.Trips.createTripDatePlaceholde,
                                  selection: $endDate,
                                  minimumDate: startDate,
                                  maximumDate: nil)

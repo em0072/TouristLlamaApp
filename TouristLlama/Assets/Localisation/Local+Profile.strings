@@ -39,6 +39,7 @@
 "editProfileEmail" = "Email";
 "editProfilePhoneNumber" = "Phone Number";
 "editProfileDateOfBirth" = "Date of Birth";
+"editProfileDateOfBirthSubtitle" = "We will not display your date of birth - only your age.";
 "editProfileDescriptionPlaceholder" = "Tell a little bit about yourself";
 "editProfilePersonalInformationSettings" = "Personal Information Settings";
 

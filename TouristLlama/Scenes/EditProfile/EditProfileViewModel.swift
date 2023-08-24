@@ -9,7 +9,6 @@ import SwiftUI
 import Dependencies
 import PhotosUI
 
-@MainActor
 class EditProfileViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
@@ -131,7 +130,7 @@ class EditProfileViewModel: ViewModel {
                 }
                                 
                 if let newImage {
-                    let profilePicture = try await uploadImageToServer()
+                    let profilePicture = try await uploadImageToServer(image: newImage)
                     userProperties[.profilePicture] = profilePicture
                 }
                 
@@ -144,8 +143,8 @@ class EditProfileViewModel: ViewModel {
         }
     }
     
-    private func uploadImageToServer() async throws -> String {
-        guard let imageData = newImage?.jpegData(compressionQuality: 1) else {
+    private func uploadImageToServer(image: UIImage) async throws -> String {
+        guard let imageData = image.jpegData(compressionQuality: 1) else {
             throw CustomError(text: "Can't convert UIImage to Data")
         }
         return try await userAPI.uploadProfilePicture(data: imageData)

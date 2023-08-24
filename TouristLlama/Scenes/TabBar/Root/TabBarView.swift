@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     
     enum TabOption {
+        case explore
         case myTrips
         case profile
     }
@@ -18,10 +19,22 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
+            ExploreView()
+                .tabItem {
+                    Label {
+                        Text(String.Main.exploreTab)
+                    } icon: {
+                        Image(systemName: "safari")
+                    }
+                    .foregroundColor(.Main.accentBlue)
+                }
+                .tag(TabOption.explore)
+                .tint(.Main.black)
+
             MyTripsView()
                 .tabItem {
                     Label {
-                        Text("My Trips")
+                        Text(String.Main.myTripsTab)
                     } icon: {
                         Image(systemName: "calendar")
                     }
@@ -33,7 +46,7 @@ struct TabBarView: View {
             ProfileView()
             .tabItem {
                 Label {
-                    Text("Profile")
+                    Text(String.Main.profileTab)
                         .font(.avenirBody)
                 } icon: {
                     Image(systemName: "person.circle.fill")

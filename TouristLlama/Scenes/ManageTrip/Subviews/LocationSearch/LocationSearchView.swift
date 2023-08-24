@@ -18,12 +18,12 @@ struct LocationSearchView: View {
             VStack {
                 searchTextFieldView
                 
-                FieldTitleView(title: String.MyTrips.createTripLocationSearchResultsTitle + ":")
+                FieldTitleView(title: String.Trips.createTripLocationSearchResultsTitle + ":")
                 
                 resultsView
             }
             .padding(.horizontal, 20)
-            .navigationTitle(String.MyTrips.createTripLocationSearchTitle)
+            .navigationTitle(String.Trips.createTripLocationSearchTitle)
         }
         .onChange(of: viewModel.selectedItem) { selectedItem in
             guard let selectedItem else { return }
@@ -49,8 +49,9 @@ extension LocationSearchView {
     
     private var searchTextFieldView: some View {
         FramedTextField(title: "",
-                        prompt: String.MyTrips.createTripLocationSearchPrompt,
-                        value: $viewModel.searchText)
+                        prompt: String.Trips.createTripLocationSearchPrompt,
+                        value: $viewModel.searchText,
+                        styles: [.withDeleteButton, .withLoading(viewModel.isShowingActivityIndicator)])
     }
     
     @ViewBuilder
@@ -102,7 +103,7 @@ extension LocationSearchView {
     }
     
     private var resultsPlaceholderText: String {
-        viewModel.searchText.isEmpty ? String.MyTrips.createTripLocationSearchResultsPrompt : String.Main.noResults
+        viewModel.searchText.isEmpty ? String.Trips.createTripLocationSearchResultsPrompt : String.Main.noResults
     }
 
 

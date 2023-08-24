@@ -23,16 +23,16 @@ enum TripCreationStage: Identifiable, CaseIterable {
     var name: String {
         switch self {
         case .generalInfo:
-            return String.MyTrips.generalInfoStage
+            return String.Trips.generalInfoStage
             
         case .description:
-            return String.MyTrips.descriptionStage
+            return String.Trips.descriptionStage
             
         case .photo:
-            return String.MyTrips.photoStage
+            return String.Trips.photoStage
             
         case .settings:
-            return String.MyTrips.settingsStage
+            return String.Trips.settingsStage
         }
     }
     

@@ -40,6 +40,10 @@ class TripsAPI {
         updateTrips(with: editedTrip)
         return editedTrip
     }
+    
+    func getExploreTrips() async throws -> [Trip] {
+        try await provider.getExploreTrips()
+    }
         
     private func addTripToMyTrips(_ trip: Trip) {
         myTrips.append(trip)

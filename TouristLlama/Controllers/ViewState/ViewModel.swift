@@ -14,7 +14,6 @@ class ViewModel: ObservableObject {
     enum ViewState {
         case loading
         case content
-        case error
     }
         
     @Published var loadingState: LoadingState = .none

@@ -40,6 +40,7 @@ extension String {
         static let email = String.localized("editProfileEmail")
         static let phoneNumber = String.localized("editProfilePhoneNumber")
         static let dateOfBirth = String.localized("editProfileDateOfBirth")
+        static let dateOfBirthSubtitle = String.localized("editProfileDateOfBirthSubtitle")
         static let descriptionPlaceholder = String.localized("editProfileDescriptionPlaceholder")
         static let personalInformationSettings = String.localized("editProfilePersonalInformationSettings")
 

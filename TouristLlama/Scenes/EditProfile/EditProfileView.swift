@@ -75,8 +75,7 @@ extension EditProfileView {
         VStack(spacing: 20) {
             FramedTextField(title: String.Profile.fullName,
                             prompt: String.Profile.fullName,
-                            value: $viewModel.fullName,
-                            showDeleteButton: false)
+                            value: $viewModel.fullName)
             
             NavigationLink {
                 EditUsernameView(username: viewModel.username,

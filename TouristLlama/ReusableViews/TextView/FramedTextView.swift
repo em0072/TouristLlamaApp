@@ -16,8 +16,8 @@ struct FramedTextView: View {
     @State private var charactersLeft: Int = 0
     let maxHeight: CGFloat
 
-    init(title: String, prompt: String?, value: Binding<String>, charactersLimit: Int? = nil, maxHeight: CGFloat = 250) {
-        self.title = title
+    init(title: String?, prompt: String?, value: Binding<String>, charactersLimit: Int? = nil, maxHeight: CGFloat = 250) {
+        self.title = title ?? ""
         self.prompt = prompt
         self._value = Binding(projectedValue: value)
         self.charactersLimit = charactersLimit

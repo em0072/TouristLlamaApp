@@ -17,19 +17,23 @@ struct EditPersonalInfoView: View {
         VStack(spacing: 24) {
             FramedTextField(title: String.Profile.email,
                             prompt: String.Profile.email,
-                            value: $email,
-                            showDeleteButton: false)
+                            value: $email)
                 .disabled(true)
             
             FramedTextField(title: String.Profile.phoneNumber,
                             prompt: String.Profile.phoneNumber,
-                            value: $phone,
-                            showDeleteButton: false)
+                            value: $phone)
 
             FramedDatePickerView(title: String.Profile.dateOfBirth,
                                  placeholder: String.Profile.dateOfBirth,
                                  selection: $dateOfBirth,
                                  maximumDate: Date.forward(.years(-18)))
+            HStack {
+                Text(String.Profile.dateOfBirthSubtitle)
+                    .font(.avenirCaption)
+                Spacer()
+            }
+            .padding(.top, -15)
             Spacer()
         }
         .padding([.horizontal, .top], 20)

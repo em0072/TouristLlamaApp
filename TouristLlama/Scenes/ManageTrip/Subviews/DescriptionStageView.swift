@@ -16,8 +16,8 @@ struct DescriptionStageView: View {
         
     var body: some View {
         VStack {
-            FramedTextView(title: String.MyTrips.createTripDescription,
-                           prompt: String.MyTrips.createTripDescriptionPlaceholde,
+            FramedTextView(title: String.Trips.createTripDescription,
+                           prompt: String.Trips.createTripDescriptionPlaceholde,
                            value: $description)
             .frame(height: 300)
             

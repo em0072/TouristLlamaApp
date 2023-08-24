@@ -26,18 +26,18 @@ extension SettingsStageView {
     
     private var visibilitySection: some View {
         VStack(alignment: .leading) {
-            FieldTitleView(title: String.MyTrips.createTripVisibilityTitle)
+            FieldTitleView(title: String.Trips.createTripVisibilityTitle)
                 
             Toggle(isOn: $isVisible) {
 //                    VStack(alignment: .leading, spacing: 8) {
-                        Text(String.MyTrips.createTripVisibilityPrompt)
+                        Text(String.Trips.createTripVisibilityPrompt)
                             .font(.avenirBody)
 //                    }
 //                    .padding(.trailing, 25)
             }
             .toggleStyle(SwitchToggleStyle())
             
-            Text(String.MyTrips.createTripVisibilityDescription)
+            Text(String.Trips.createTripVisibilityDescription)
                 .font(.avenirTagline)
 
         }

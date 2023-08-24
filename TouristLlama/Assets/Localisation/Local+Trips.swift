@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     
-    enum MyTrips {
+    enum Trips {
         static let title = String.localized("myTripsTitle")
         static let createTripButton = String.localized("myTripsCreateTripButton")
         
@@ -56,11 +56,12 @@ extension String {
         static let createErrorNoDescription = String.localized("myTripsCreateErrorNoDescription")
         static let createErrorNoPhoto = String.localized("myTripsCreateErrorNoPhoto")
         
+        static let searchPrompt = String.localized("exploreSearchPrompt")
     }
     
     private static func localized(_ key: String) -> String {
         return Bundle.main.localizedString(forKey: key,
                                            value: nil,
-                                           table: "Local+MyTrips")
+                                           table: "Local+Trips")
     }
 }

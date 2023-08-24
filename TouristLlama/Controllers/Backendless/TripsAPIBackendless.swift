@@ -65,6 +65,21 @@ class TripsAPIBackendless: TripsAPIProvider {
             }
         }
     }
+    
+    func getExploreTrips() async throws -> [Trip] {
+        return try await withCheckedThrowingContinuation { continuation in
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getTrips", parameters: nil) { response in
+                guard let tripsArray = response as? [BackendlessTrip] else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to array"))
+                    return
+                }
+                let trips = tripsArray.compactMap { $0.appObject }
+                continuation.resume(returning: trips)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
 //    private func save<Object: BackendlessObject>(object: Object) async throws -> Object {
 //        return try await withCheckedThrowingContinuation{ continuation in
 //            let dataStorage = Backendless.shared.data.of(object.type)

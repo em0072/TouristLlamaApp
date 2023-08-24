@@ -17,18 +17,15 @@ struct MyTripsView: View {
                 switch viewModel.state {
                 case .content:
                     contentView
-                    
-                case .error:
-                    errorView
-                    
+                                        
                 case .loading:
                     loadingView
                 }
             }
-            .navigationTitle(String.MyTrips.title)
+            .navigationTitle(String.Trips.title)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(String.MyTrips.createTripButton) {
+                    Button(String.Trips.createTripButton) {
                         viewModel.startCreationOfNewTrip()
                     }
                     .buttonStyle(CapsuleBlueButtonStyle())
@@ -54,14 +51,14 @@ extension MyTripsView {
             
             ScrollView {
                 VStack(spacing: 12) {
-                    scrollViewSection(title: .MyTrips.ongoingSectionTitle,
+                    scrollViewSection(title: .Trips.ongoingSectionTitle,
                                       trips: viewModel.myOngoingTrips,
                                       isHighlighted: true)
                     
-                    scrollViewSection(title: .MyTrips.futureSectionTitle,
+                    scrollViewSection(title: .Trips.futureSectionTitle,
                                       trips: viewModel.myFutureTrips)
 
-                    scrollViewSection(title: .MyTrips.pastSectionTitle,
+                    scrollViewSection(title: .Trips.pastSectionTitle,
                                       trips: viewModel.myPastTrips,
                                       isDimmed: true)
                 }

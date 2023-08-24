@@ -21,6 +21,10 @@ extension String {
         static let photoLibrary = String.localized("photoLibrary")
         
         static let charectersLeft = String.localized("charectersLeft")
+        
+        static let exploreTab = String.localized("exploreTab")
+        static let myTripsTab = String.localized("myTripsTab")
+        static let profileTab = String.localized("profileTab")
     }
     
     private static func localized(_ key: String) -> String {

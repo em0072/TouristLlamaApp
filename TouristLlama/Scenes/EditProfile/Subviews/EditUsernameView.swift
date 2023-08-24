@@ -45,9 +45,8 @@ struct EditUsernameView: View {
             FramedTextField(title: String.Profile.username,
                             prompt: String.Profile.chooseNickname,
                             value: $username,
-                            isLoading: state == .loading,
-                            showDeleteButton: false,
-                            textInputAutocapitalization: .never)
+                            styles: [.withLoading(state == .loading)],
+                            options: [.autocapitalization(.never)])
             .autocorrectionDisabled(true)
             .padding(.vertical, 20)
             
