@@ -57,6 +57,22 @@ extension String {
         static let createErrorNoPhoto = String.localized("myTripsCreateErrorNoPhoto")
         
         static let searchPrompt = String.localized("exploreSearchPrompt")
+        static let filtersTitle = String.localized("exploreFiltersTitle")
+        static let filtersClear = String.localized("exploreFiltersClear")
+        static let filtersTripStyle = String.localized("exploreFiltersTripStyle")
+        static let filtersStartDate = String.localized("exploreFiltersStartDate")
+        static let filtersEndDate = String.localized("exploreFiltersEndDate")
+        static let filtersSelectDate = String.localized("exploreFiltersSelectDate")
+
+        static func filtersSet(_ number: Int) -> String {
+            if number == 0 {
+                return String.localized("exploreNoFiltersSet")
+            } else if number == 1 {
+                return String.localized("exploreOneFilterSet")
+            } else {
+                return String(format: String.localized("exploreMultipleFiltersSet"), number)
+            }
+        }
     }
     
     private static func localized(_ key: String) -> String {

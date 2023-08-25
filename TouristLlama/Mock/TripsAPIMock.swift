@@ -21,7 +21,7 @@ class TripsAPIMock: TripsAPIProvider {
         return Trip.testFuture
     }
     
-    func getExploreTrips() async throws -> [Trip] {
+    func getExploreTrips(searchTerm: String, tripStyle: TripStyle?, startDate: Date?, endDate: Date?) async throws -> [Trip] {
         return [Trip.testOngoing, Trip.testFuture, .testPast]
     }
 }

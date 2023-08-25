@@ -24,6 +24,7 @@
 "fullName" = "Full Name";
 "username" = "Username";
 "usernameIsTaken" = "The username is already taken!";
+"usernameLenghtLimit" = "Should be at least 3 characters";
 "email" = "E-mail";
 "password" = "Password";
 

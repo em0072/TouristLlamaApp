@@ -43,7 +43,7 @@ class MyTripsViewModel: ViewModel {
         
         subscribeToMyTripsUpdates()
         
-        subscribeToUserUpdates()
+//        subscribeToUserUpdates()
     }
     
     private func subscribeToMyTripsUpdates() {
@@ -60,16 +60,16 @@ class MyTripsViewModel: ViewModel {
             .store(in: &publishers)
     }
     
-    private func subscribeToUserUpdates() {
-        userAPI.$currentUser
-            .receive(on: RunLoop.main)
-            .sink { [weak self] currentUser in
-                if currentUser == nil {
-                    self?.selectedTrip = nil
-                }
-            }
-            .store(in: &publishers)
-    }
+//    private func subscribeToUserUpdates() {
+//        userAPI.$currentUser
+//            .receive(on: RunLoop.main)
+//            .sink { [weak self] currentUser in
+//                if currentUser == nil {
+//                    self?.selectedTrip = nil
+//                }
+//            }
+//            .store(in: &publishers)
+//    }
 
     
     private func clearTripsData() {

@@ -71,13 +71,17 @@ extension TripStylePicker {
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background {
-                Capsule()
-                    .fill(style.styleColor)
-                    .opacity(selected ? 1 : 0.3)
-                    .overlay {
-                        Capsule()
-                            .stroke(style.styleColor, lineWidth: 2)
-                    }
+                ZStack {
+                    Capsule()
+                        .fill(Color.Main.TLStrongWhite.opacity(0.9))
+                    
+                    Capsule()
+                        .fill(style.styleColor)
+                        .opacity(selected ? 1 : 0.3)
+                    
+                    Capsule()
+                        .stroke(style.styleColor, lineWidth: 2)
+                }
             }
     }
     
@@ -86,10 +90,10 @@ extension TripStylePicker {
 struct TripStylePicker_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.ecoTourism))
-            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.volunteering))
-            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.festivalAndEvents))
-            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.business))
+            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.leisure))
+            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.active))
+            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.cultural))
+            TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.adventure))
             TripStylePicker(title: String.Trips.createTripStyle, selectedStyle: .constant(.natureAndWildlife))
         }
     }

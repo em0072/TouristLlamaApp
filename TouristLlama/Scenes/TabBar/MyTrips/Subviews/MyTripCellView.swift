@@ -22,8 +22,11 @@ struct MyTripsCellView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             tripName
+            
             tripLocation
+            
             tripDates
+            
             HStack(alignment: .bottom) {
                 TripParticipantsImagesView(participants: trip.participants)
                 Spacer()
@@ -34,11 +37,11 @@ struct MyTripsCellView: View {
         .contentShape(Rectangle())
         .background {
             cellbackground
+                .onAppear {
+                    isAnimating = isHighlighted
+                }
+                .animation(.easeInOut(duration: 2.5).repeatForever(autoreverses: false), value: isAnimating)
         }
-        .onAppear {
-            isAnimating = isHighlighted
-        }
-        .animation(.easeInOut(duration: 2.5).repeatForever(autoreverses: false), value: isAnimating)
     }
     
 }

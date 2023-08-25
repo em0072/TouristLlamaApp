@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import Kingfisher
 
 struct TripDetailsView: View {
     
@@ -95,7 +96,6 @@ extension TripDetailsView {
     private var editButton: some View {
         Button {
             onTripEdit()
-//            viewModel.editTrip()
         } label: {
             Image(systemName: "pencil.circle.fill")
                 .font(.system(size: 25, weight: .medium))
@@ -107,30 +107,30 @@ extension TripDetailsView {
     private var imageView: some View {
         ZStack(alignment: .leading) {
             GeometryReader { geometry in
-                AsyncImage(url: viewModel.tripImageURL) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height + max(0, geometry.frame(in: .global).minY))
-                        .clipped()
-                        .offset(y: -(max(0, geometry.frame(in: .global).minY)))
-                } placeholder: {
-                    Color.Main.TLInactiveGrey
-                }
+                KFImage(viewModel.tripImageURL)
+                    .placeholder {
+                        Color.Main.TLInactiveGrey
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height + max(0, geometry.frame(in: .global).minY))
+                    .clipped()
+                    .offset(y: -(max(0, geometry.frame(in: .global).minY)))
             }.frame(height: 390)
 
-            LinearGradient(colors: [.clear, .clear, .clear, .black], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.clear, .clear, .Main.white], startPoint: .top, endPoint: .bottom)
+            
             VStack(alignment: .leading, spacing: 5) {
                 Spacer()
                 Text(viewModel.trip.name)
                     .font(.avenirSubtitle)
                     .bold()
-                    .foregroundColor(.Main.TLStrongWhite)
+                    .foregroundColor(.Main.black)
                     .minimumScaleFactor(0.6)
                     .lineLimit(1)
                 Text(viewModel.trip.location.nameAndFlag)
                     .font(.avenirBody.weight(.medium))
-                    .foregroundColor(.Main.TLStrongWhite)
+                    .foregroundColor(.Main.black)
             }
             .padding(20)
         }
@@ -262,16 +262,15 @@ extension TripDetailsView {
     
     private func userView(for user: User) -> some View {
         HStack(alignment: .center) {
-            AsyncImage(url: user.imageURL) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-            } placeholder: {
-                UserImagePlaceholderView()
-            }
-            .frame(width: 35, height: 35)
-            .clipShape(Circle())
-
+            KFImage(user.imageURL)
+                .placeholder {
+                    UserImagePlaceholderView()
+                }
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 35, height: 35)
+                .clipShape(Circle())
+            
             Text(user.name)
                 .font(.avenirBody.weight(.medium))
                 .foregroundColor(.Main.black)

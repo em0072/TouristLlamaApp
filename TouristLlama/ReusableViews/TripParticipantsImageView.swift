@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TripParticipantsImagesView: View {
     
@@ -16,7 +17,7 @@ struct TripParticipantsImagesView: View {
             let threeOrLess = participants.count <= 3
             let numberOfParticipants = threeOrLess ? participants.count : 2
             ForEach(0..<numberOfParticipants, id: \.self) { i in
-                memberCircleImage(imageURL: participants[i].profilePicture, position: i)
+                memberCircleImage(imageURL: participants[i].imageURL, position: i)
             }
             if participants.count > 3 {
                 let restParticipantsCount = participants.count - 2
@@ -25,16 +26,15 @@ struct TripParticipantsImagesView: View {
         }
     }
     
-    private func memberCircleImage(imageURL: String?, position: Int) -> some View {
-            AsyncImage(url: URL(string: imageURL ?? "")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
+    private func memberCircleImage(imageURL: URL?, position: Int) -> some View {
+        KFImage(imageURL)
+            .placeholder {
                 UserImagePlaceholderView()
             }
-            .clipShape(Circle())
+            .resizable()
+            .aspectRatio(contentMode: .fill)
             .frame(width: 37, height: 37)
+            .clipShape(Circle())
             .overlay {
                 Circle()
                     .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
@@ -59,6 +59,10 @@ struct TripParticipantsImagesView: View {
 struct TripParticipantsImagesView_Previews: PreviewProvider {
     static var previews: some View {
         TripParticipantsImagesView(participants: [User.test, User.testNoPhoto, User.testNoPhoto, User.test])
+        
+        MyTripsCellView(trip: Trip.testFuture, isHighlighted: true)
+            .padding(20)
+
     }
 }
 

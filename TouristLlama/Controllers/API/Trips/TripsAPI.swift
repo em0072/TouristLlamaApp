@@ -41,8 +41,8 @@ class TripsAPI {
         return editedTrip
     }
     
-    func getExploreTrips() async throws -> [Trip] {
-        try await provider.getExploreTrips()
+    func getExploreTrips(searchTerm: String, tripStyel: TripStyle? = nil, startDate: Date? = nil, endDate: Date? = nil) async throws -> [Trip] {
+        try await provider.getExploreTrips(searchTerm: searchTerm, tripStyle: tripStyel, startDate: startDate, endDate: endDate)
     }
         
     private func addTripToMyTrips(_ trip: Trip) {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     
@@ -63,15 +64,14 @@ extension ProfileView {
     }
     
     private var userImage: some View {
-        AsyncImage(url: viewModel.user?.imageURL) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-        } placeholder: {
-            UserImagePlaceholderView()
-        }
-        .frame(width: 120, height: 120)
-        .clipShape(Circle())
+        KFImage(viewModel.user?.imageURL)
+            .placeholder {
+                UserImagePlaceholderView()
+            }
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 120, height: 120)
+            .clipShape(Circle())
     }
     
     private var userStats: some View {

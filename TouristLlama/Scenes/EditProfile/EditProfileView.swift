@@ -7,7 +7,7 @@
 
 import SwiftUI
 import PhotosUI
-
+import Kingfisher
 
 struct EditProfileView: View {
     
@@ -130,29 +130,6 @@ extension EditProfileView {
     }
     
     private var imageButtonView: some View {
-//        PhotosPicker
-        //        PhotosPicker(selection: $viewModel.pickedImage, matching: .images, preferredItemEncoding: .compatible) {
-        //            VStack {
-        //                imageView
-        //                    .overlay {
-        //                        if viewModel.isLoadingImage {
-        //                            ZStack {
-        //                                Color.black.opacity(0.5)
-        //
-        //                                ProgressView()
-        //                                    .progressViewStyle(.circular)
-        //                                    .tint(.Main.TLStrongWhite)
-        //                            }
-        //                        }
-        //                    }
-        //                    .padding(.bottom, 16)
-        //
-        //                Text(String.Profile.changeProfilePhoto)
-        //                    .font(.avenirTagline)
-        //                    .bold()
-        //            }
-        //        }
-        
         Button {
             viewModel.changeUserImageAction()
         } label: {
@@ -162,7 +139,6 @@ extension EditProfileView {
                 Text(String.Profile.changeProfilePhoto)
                     .font(.avenirTagline)
                     .bold()
-                
             }
         }
         .padding(.vertical, 16)
@@ -201,14 +177,14 @@ extension EditProfileView {
                 .frame(width: 120,height: 120)
                 .clipShape(Circle())
         } else {
-            AsyncImage(url: viewModel.currentUser.imageURL) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                UserImagePlaceholderView()
-            }
-            .frame(width: 120,height: 120)
-            .clipShape(Circle())
+            KFImage(viewModel.currentUser.imageURL)
+                .placeholder {
+                    UserImagePlaceholderView()
+                }
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 120, height: 120)
+                .clipShape(Circle())
         }
     }
     

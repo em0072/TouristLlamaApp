@@ -16,7 +16,7 @@
 "myTripsCreateTripSettingsStage" = "Setings";
 
 "myTripsCreateTripTitle" = "Create Trip";
-"myTripsCreateTripName" = "Trip Name";
+"myTripsCreateTripName" = "Name";
 "myTripsCreateTripNamePlaceholder" = "What will be the name of your trip?";
 "myTripsCreateTripStyle" = "Style";
 "myTripsCreateTripStylePlaceholder" = "Select style of your trip";
@@ -54,3 +54,14 @@
 
 //MARK: - Explore
 "exploreSearchPrompt" = "What are you looking for?";
+"exploreFiltersTitle" = "Filters";
+"exploreFiltersClear" = "Clear";
+"exploreFiltersTripStyle" = "Trip Style";
+"exploreFiltersStartDate" = "Start Date";
+"exploreFiltersEndDate" = "End Style";
+"exploreFiltersSelectDate" = "Select Date";
+"exploreNoFiltersSet" = "No filters set";
+"exploreOneFilterSet" = "1 filter is set";
+"exploreMultipleFiltersSet" = "%d filters are set";
+
+

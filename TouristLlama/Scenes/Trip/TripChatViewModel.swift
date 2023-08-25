@@ -45,7 +45,7 @@ class TripChatViewModel: ViewModel {
             return true
         }
         let previousMessage = messages[previousMessageIndex]
-        if previousMessage.ownerId == message.ownerId {
+        if previousMessage.ownerId == message.ownerId && previousMessage.type == .user {
             return false
         } else {
             return true

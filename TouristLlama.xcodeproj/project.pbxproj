@@ -58,6 +58,9 @@
 		7557A8D02A9626BA00F402A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8CF2A9626BA00F402A9 /* ErrorView.swift */; };
 		7557A8D22A96283F00F402A9 /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8D12A96283F00F402A9 /* NoResultsView.swift */; };
 		7557A8D52A962B0000F402A9 /* ExploreListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8D42A962B0000F402A9 /* ExploreListCellView.swift */; };
+		7557A8D82A9782B400F402A9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7557A8D72A9782B400F402A9 /* Kingfisher */; };
+		7557A8DA2A989D2700F402A9 /* TripsFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8D92A989D2700F402A9 /* TripsFiltersView.swift */; };
+		7557A8DC2A989D7200F402A9 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8DB2A989D7200F402A9 /* Filters.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
@@ -217,6 +220,8 @@
 		7557A8CF2A9626BA00F402A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7557A8D12A96283F00F402A9 /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
 		7557A8D42A962B0000F402A9 /* ExploreListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreListCellView.swift; sourceTree = "<group>"; };
+		7557A8D92A989D2700F402A9 /* TripsFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsFiltersView.swift; sourceTree = "<group>"; };
+		7557A8DB2A989D7200F402A9 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLlamaApp.swift; sourceTree = "<group>"; };
 		75BC4A452A80E88800B6F6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -326,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7557A8D82A9782B400F402A9 /* Kingfisher in Frameworks */,
 				75ED7A002A826FFC0078D103 /* AlertToast in Frameworks */,
 				75DE43212A86BD0700D42B9D /* Alamofire in Frameworks */,
 				7565F0562A81465300B796A1 /* Backendless in Frameworks */,
@@ -437,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				7557A8D42A962B0000F402A9 /* ExploreListCellView.swift */,
+				7557A8D92A989D2700F402A9 /* TripsFiltersView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -881,6 +888,7 @@
 				75336BD32A86333100031D5C /* TripCreationStage.swift */,
 				75DE435F2A8CCBB000D42B9D /* TripChat.swift */,
 				75DE43652A8CD2D300D42B9D /* ChatMessage.swift */,
+				7557A8DB2A989D7200F402A9 /* Filters.swift */,
 				75DE431A2A86BB6200D42B9D /* PexelPhoto.swift */,
 			);
 			path = Models;
@@ -975,6 +983,7 @@
 				75ED79FF2A826FFC0078D103 /* AlertToast */,
 				75DE43202A86BD0700D42B9D /* Alamofire */,
 				75DE43272A8A0A6F00D42B9D /* WaterfallGrid */,
+				7557A8D72A9782B400F402A9 /* Kingfisher */,
 			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
@@ -1009,6 +1018,7 @@
 				75ED79E72A8260AA0078D103 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 				75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				75DE431F2A86BD0700D42B9D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
@@ -1104,6 +1114,7 @@
 				75DE43482A8C003A00D42B9D /* User+test.swift in Sources */,
 				75DE43602A8CCBB000D42B9D /* TripChat.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
+				7557A8DA2A989D2700F402A9 /* TripsFiltersView.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				753F95572A94B066005B55B5 /* EditProfileViewModel.swift in Sources */,
 				75DE16672A84F82F00AF671B /* FramedTextField.swift in Sources */,
@@ -1149,6 +1160,7 @@
 				75336BCE2A852BE200031D5C /* Date+Format.swift in Sources */,
 				75DE43152A86B8A800D42B9D /* PexelPhotoPickerView.swift in Sources */,
 				753F95662A94F628005B55B5 /* UIimage+resized.swift in Sources */,
+				7557A8DC2A989D7200F402A9 /* Filters.swift in Sources */,
 				75336BB82A85062A00031D5C /* LocationSearchView.swift in Sources */,
 				75336BD02A852C5600031D5C /* TimeInterval+Format.swift in Sources */,
 				753F95642A94F5F1005B55B5 /* CameraPickerView.swift in Sources */,
@@ -1396,6 +1408,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Backendless/Swift-SDK";
@@ -1431,6 +1451,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7557A8D72A9782B400F402A9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		7565F0552A81465300B796A1 /* Backendless */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */;

@@ -31,6 +31,9 @@ struct TripView: View {
                 tripDetailsView
             }
         }
+        .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
+            if shouldDismiss { dismiss() }
+        }
 
     }
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WaterfallGrid
+import Kingfisher
 
 struct PexelPhotoPickerView: View {
     
@@ -84,53 +85,14 @@ extension PexelPhotoPickerView {
     }
     
     private func imageCellView(photoURL: URL) -> some View {
-        AsyncImage(url: photoURL) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        } placeholder: {
-            Rectangle()
-                .fill(Color.Main.TLInactiveGrey)
-                .overlay {
-                    Image(systemName: "photo")
-                        .font(.avenirSubline)
-                }
-        }
-
-        
-//        AsyncImage(url: photoURL,
-//                   transaction: .init(animation: .none)) { phase in
-//            switch phase {
-//            case .empty:
-//                Rectangle()
-//                    .fill(Color.Main.TLInactiveGrey)
-//                    .overlay {
-//                        Image(systemName: "photo")
-//                            .font(.avenirSubline)
-//                    }
-//
-//            case .success(let image):
-//                image
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//
-//            case .failure(let error):
-//                VStack {
-//                    Image(systemName: "xmark.circle")
-//                        .font(.avenirSubline)
-//                        .foregroundColor(.Main.accentRed)
-//                    
-//                    Text(error.localizedDescription)
-//                        .font(.avenirTagline)
-//                }
-//                .padding(.horizontal, 20)
-//                
-//            @unknown default:
-//                Image(systemName: "xmark.circle")
-//                    .font(.avenirSubline)
-//                    .foregroundColor(.Main.accentRed)
-//            }
-//        }        
+        KFImage(photoURL)
+            .placeholder {
+                Image(systemName: "photo")
+                    .font(.avenirSubline)
+                    .foregroundColor(Color.Main.TLInactiveGrey)
+            }
+            .resizable()
+            .aspectRatio(contentMode: .fit)
     }
     
     private func copyrightCellView(photographerName: String, photographerURL: URL) -> some View {
@@ -155,6 +117,6 @@ extension PexelPhotoPickerView {
 
 struct PexelPhotoPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PexelPhotoPickerView(searchQuery: "Paris") { _ in }
+        PexelPhotoPickerView(searchQuery: "Amsterdam") { _ in }
     }
 }

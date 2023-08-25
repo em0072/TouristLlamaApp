@@ -12,13 +12,19 @@ import Combine
 class ChatAPIBackendless: ChatAPIProvider {
     
     private let serviceName = "ChatService"
-    private let channel: Channel
+//    private let channel: Channel
     private var channels: [Channel] = []
     private var channelSubscriptions: [RTSubscription?] = []
+    private var timer: Timer?
     
     init() {
         print("ChatAPIBackendless is ALIVE")
-        channel = Backendless.shared.messaging.subscribe(channelName: "TripMessages")
+//        channel = Backendless.shared.messaging.subscribe(channelName: "TripMessages")
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            print("TIMER", "channels", self.channels.count, self.channels.map( { $0 }))
+            print("TIMER", "sunscriptions", self.channelSubscriptions.count, self.channelSubscriptions.map( { $0 }))
+
+        })
     }
     
     deinit {

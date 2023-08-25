@@ -62,12 +62,12 @@ class RegisterViewModel: ViewModel {
 
     var usernameFieldTitle: String {
         guard isUserNameLongEnough else {
-            return String.Onboarding.username + " " + "(" + String.Profile.usernameLimitText + ")"
+            return String.Onboarding.username + " " + "(" + String.Onboarding.usernameLengthLimit + ")"
         }
         guard let isUsernameAvailable, !isUsernameAvailable else {
             return String.Profile.username
         }
-        return String.Onboarding.username + " " + "(" + String.Profile.usernameTaken + ")"
+        return String.Onboarding.username + " " + "(" + String.Onboarding.usernameIsTaken + ")"
     }
     
     var usernameFieldPlaceholderColor: Color {
@@ -124,7 +124,7 @@ class RegisterViewModel: ViewModel {
             .sink { [weak self] username in
                 guard let self else { return }
                 self.isUsernameAvailable = nil
-                guard username.isEmpty else {
+                guard !username.isEmpty else {
                     return
                 }
                 self.isUserNameLongEnough = username.count >= 3

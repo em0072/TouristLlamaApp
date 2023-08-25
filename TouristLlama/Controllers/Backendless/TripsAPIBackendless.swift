@@ -66,9 +66,21 @@ class TripsAPIBackendless: TripsAPIProvider {
         }
     }
     
-    func getExploreTrips() async throws -> [Trip] {
+    func getExploreTrips(searchTerm: String, tripStyle: TripStyle?, startDate: Date?, endDate: Date?) async throws -> [Trip] {
         return try await withCheckedThrowingContinuation { continuation in
-            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getTrips", parameters: nil) { response in
+            var parameters: [String: Any] = .init()
+            parameters["search"] = searchTerm
+            if let tripStyle {
+                parameters["tripStyle"] = tripStyle.rawValue
+            }
+            if let startDate {
+                parameters["startDate"] = startDate.timeIntervalSince1970Milliseconds
+            }
+            if let endDate {
+                parameters["endDate"] = endDate.timeIntervalSince1970Milliseconds
+            }
+
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getTrips", parameters: parameters) { response in
                 guard let tripsArray = response as? [BackendlessTrip] else {
                     continuation.resume(throwing: CustomError(text: "Can't cast to array"))
                     return

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import Kingfisher
+import Kingfisher
 
 struct ExploreListCellView: View {
     
@@ -42,15 +42,10 @@ struct ExploreListCellView: View {
     
     private var imageView: some View {
         GeometryReader { proxy in
-            AsyncImage(url: trip.photo.large) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                Color.gray
-            }
-//            .frame(width: proxy.size.width)
-//            .clipped()
+            KFImage(trip.photo.large)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: proxy.size.width)
         }
     }
     
@@ -64,7 +59,7 @@ struct ExploreListCellView: View {
                 Text(tripStyle.localizedValue)
                     .font(.avenirSmallBody)
                     .bold()
-//                    .foregroundColor(tripStyle.)
+                    .foregroundColor(tripStyle.styleTextColor)
             }
         }
     }
@@ -73,13 +68,13 @@ struct ExploreListCellView: View {
         Text(trip.name)
             .font(.avenirBigBody)
             .bold()
-            .foregroundColor(.Main.TLStrongWhite)
+            .foregroundColor(.Main.black)
     }
     
     private var tripDatesView: some View {
         Text(datesText)
             .font(.avenirBody)
-            .foregroundColor(.Main.TLStrongWhite)
+            .foregroundColor(.Main.black)
     }
             
     private var datesText: String {
@@ -91,17 +86,17 @@ struct ExploreListCellView: View {
     private var tripLocationView: some View {
         Text(trip.location.nameAndFlag)
             .font(.avenirBody)
-            .foregroundColor(.Main.TLStrongWhite)
+            .foregroundColor(.Main.black)
     }
     
     private var proceedButtonView: some View {
         ZStack {
         Circle()
-            .fill(Color.Main.TLStrongWhite)
+            .fill(Color.Main.black)
             .frame(width: 40, height: 40)
             Image(systemName: "arrow.right")
                 .renderingMode(.template)
-                .foregroundColor(.Main.TLStrongBlack)
+                .foregroundColor(.Main.white)
         }
     }
     
@@ -112,7 +107,10 @@ extension ExploreListCellView {
     private var gradientView: some View {
         Rectangle()
             .fill(
-                LinearGradient(gradient: Gradient(colors: [.black.opacity(0.7), .black.opacity(0.4), .clear]),
+                LinearGradient(gradient: Gradient(colors: [.Main.white.opacity(0.9),
+                                                           .Main.white.opacity(0.6),
+                                                           .clear,
+                                                           .clear]),
                                startPoint: .bottom, endPoint: .top)
             )
     }

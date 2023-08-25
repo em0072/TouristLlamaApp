@@ -21,6 +21,7 @@ class TripViewModel: ViewModel {
 
     @Published var trip: Trip
     @Published var isDiscussionLoaded = false
+    @Published var shouldDismiss = false
     @Published var selectedTab: TabSelection = .details {
         didSet {
             if selectedTab == .chats {
@@ -40,6 +41,18 @@ class TripViewModel: ViewModel {
     
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
+        subscribeToUserUpdates()
+    }
+    
+    private func subscribeToUserUpdates() {
+        userAPI.$currentUser
+            .receive(on: RunLoop.main)
+            .sink { [weak self] currentUser in
+                if currentUser == nil {
+                    self?.shouldDismiss = true
+                }
+            }
+            .store(in: &publishers)
     }
     
     var isCurrentUserParticipantOfTrip: Bool {

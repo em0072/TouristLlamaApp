@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TripChatView: View {
     
@@ -187,15 +188,15 @@ extension TripChatView {
     private func authorImage(_ url: URL?, isTitleCell: Bool) -> some View {
         if isTitleCell {
             VStack {
-                AsyncImage(url: url) { image in
-                    image.resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    UserImagePlaceholderView()
-                }
-                .clipShape(Circle())
-                .frame(width: 30, height: 30)
-                .padding(.top, 12)
+                KFImage(url)
+                    .placeholder {
+                        UserImagePlaceholderView()
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 30, height: 30)
+                    .clipShape(Circle())
+                    .padding(.top, 12)
                 
                 Spacer()
             }
