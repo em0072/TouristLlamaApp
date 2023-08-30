@@ -87,7 +87,11 @@ class TripChatViewModel: ViewModel {
             self.error = CustomError(text: "Chat Message is empty")
             return
         }
-        let message = ChatMessage(chatId: chatId, text: chatMessageText, ownerId: userAPI.currentUser?.id ?? "")
+        guard let currentUser = userAPI.currentUser else {
+            self.error = CustomError(text: "Current User is not found - can't send the message")
+            return
+        }
+        let message = ChatMessage(chatId: chatId, text: chatMessageText, author: currentUser)
         chatMessageText.removeAll()
         insertMessageIfNeeded(message)
         Task {

@@ -40,13 +40,13 @@ struct ChatMessage: Identifiable {
         self.status = .sent
     }
     
-    init(chatId: String, text: String, ownerId: String) {
+    init(chatId: String, text: String, author: User) {
         self.objectId = nil
         self.clientId = UUID().uuidString
-        self.ownerId = ownerId
+        self.ownerId = author.id
         self.chatId = chatId
         self.text = text
-        self.author = nil
+        self.author = author
         self.type = .user
         self.status = .sending
     }

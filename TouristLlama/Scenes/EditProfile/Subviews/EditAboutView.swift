@@ -21,28 +21,7 @@ struct EditAboutView: View {
         .padding(.top, 24)
         .padding(.horizontal, 20)
         .navigationTitle(String.Profile.aboutMe)
-//        .toolbar(content: {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                doneButton
-//            }
-//        })
-//        .onAppear {
-//            withAnimation(.none) {
-//                aboutEditorValue = viewModel.currentUser.about ?? ""
-//            }
-//        }
-//        .track(screenType: self)
     }
-    
-//    private var doneButton: some View {
-//        Button(action: {
-//            viewModel.currentUser.about = aboutEditorValue
-//            dismiss()
-//        }) {
-//            Text("Done")
-//                .font(.TLBigBody.weight(.heavy))
-//        }
-//    }
 }
 
 struct EditAboutView_Previews: PreviewProvider {

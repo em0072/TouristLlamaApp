@@ -24,4 +24,31 @@ class TripsAPIMock: TripsAPIProvider {
     func getExploreTrips(searchTerm: String, tripStyle: TripStyle?, startDate: Date?, endDate: Date?) async throws -> [Trip] {
         return [Trip.testOngoing, Trip.testFuture, .testPast]
     }
+    
+    func subscribeToTripUpdates(for tripId: String, onNewUpdate: @escaping (String) -> Void) {}
+    
+    func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
+        return .testRequestPending
+    }
+    
+    func cancelJoinRequest(tripId: String) async throws {}
+    
+    func answerTravelRequest(request: TripRequest, approved: Bool) async throws -> TripRequest {
+        return approved ? .testRequestApproved : .testRequestRejected
+    }
+    
+    func getTrip(for tripId: String) async throws -> Trip {
+        .testOngoing
+    }
+    
+    func removeUser(tripId: String, userId: String) async throws {
+    }
+    
+    func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest {
+        .testInvitationPending
+    }
+    
+    func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
+        return accepted ? .testInvitationAccepted : .testInvitationRejected
+    }
 }

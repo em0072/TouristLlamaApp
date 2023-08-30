@@ -13,9 +13,11 @@ class TripDetailViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     
     @Published var trip: Trip
+    @Published var isMembersManagmentOpen = false
     
-    init(trip: Trip) {
+    init(trip: Trip, isMembersManagmentOpen: Bool = false) {
         self.trip = trip
+        self.isMembersManagmentOpen = isMembersManagmentOpen
         super.init()
     }
     
@@ -44,6 +46,10 @@ class TripDetailViewModel: ViewModel {
 
     func isCurrentUser(_ user: User) -> Bool {
         return userAPI.currentUser?.id == user.id
+    }
+    
+    func openMembersManagment() {
+        isMembersManagmentOpen = true
     }
 
 }

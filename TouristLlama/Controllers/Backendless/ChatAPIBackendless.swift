@@ -12,14 +12,12 @@ import Combine
 class ChatAPIBackendless: ChatAPIProvider {
     
     private let serviceName = "ChatService"
-//    private let channel: Channel
     private var channels: [Channel] = []
     private var channelSubscriptions: [RTSubscription?] = []
     private var timer: Timer?
     
     init() {
         print("ChatAPIBackendless is ALIVE")
-//        channel = Backendless.shared.messaging.subscribe(channelName: "TripMessages")
         timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
             print("TIMER", "channels", self.channels.count, self.channels.map( { $0 }))
             print("TIMER", "sunscriptions", self.channelSubscriptions.count, self.channelSubscriptions.map( { $0 }))
@@ -30,6 +28,7 @@ class ChatAPIBackendless: ChatAPIProvider {
     deinit {
         print("ChatAPIBackendless is DEAD")
     }
+    
     func getChat(for tripId: String) async throws -> TripChat {
         return try await withCheckedThrowingContinuation { continuation in
             let parameters = tripId
@@ -59,26 +58,18 @@ class ChatAPIBackendless: ChatAPIProvider {
     }
     
     func subscribeToChatUpdates(for chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {
-        print("Checking if the channel with name '\(chatId)' is already created")
         guard !hasChannel(with: chatId) else { return }
-        print("Creating a new channel")
         let newChannel = Backendless.shared.messaging.subscribe(channelName: chatId)
-        print("Creating a new subscription")
         let subscriptionString = newChannel.addCustomObjectMessageListener(forClass: BackendlessChatMessage.self) { response in
             guard let blChatMessage = response as? BackendlessChatMessage else {
-                print("Can't cast to backendless object")
                 return
             }
             guard let chatMessage = blChatMessage.appObject else {
-                print("Can't convert to app object")
                 return
             }
-            print("Provider got a new messge with text \(chatMessage.text)")
             onNewMessage(chatMessage)
         } errorHandler: { error in
-            print("Error: \(error.message ?? "")")
         }
-        print("Channel and subscription are created")
         channelSubscriptions.append(subscriptionString)
         channels.append(newChannel)
         newChannel.join()

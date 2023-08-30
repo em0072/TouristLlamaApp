@@ -14,14 +14,17 @@ struct MyTripsCellView: View {
     
     @State private var isAnimating = false
     
-    init(trip: Trip, isHighlighted: Bool = false) {
+    let onMembersManageOpen: () -> Void
+    
+    init(trip: Trip, isHighlighted: Bool = false, onMembersManageOpen: @escaping () -> Void) {
         self.trip = trip
         self.isHighlighted = isHighlighted
+        self.onMembersManageOpen = onMembersManageOpen
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            tripName
+            titleView
             
             tripLocation
             
@@ -63,9 +66,33 @@ extension MyTripsCellView {
             
     }
     
+    private var titleView: some View {
+        HStack {
+            tripName
+            
+            Spacer()
+            
+            iconsView
+        }
+    }
+    
     private var tripName: some View {
         Text(trip.name)
             .font(.avenirSubtitle.weight(.heavy))
+    }
+    
+    private var iconsView: some View {
+        HStack {
+            if trip.requestsPendingCount > 0 {
+                Button {
+                    onMembersManageOpen()
+                } label: {
+                    Image(systemName: "person.crop.circle.badge.questionmark.fill")
+                        .foregroundColor(.Main.yellow)
+                        .font(.avenirSubtitle)
+                }
+            }
+        }
     }
     
     private var tripLocation: some View {
@@ -107,7 +134,7 @@ extension MyTripsCellView {
 
 struct MyTripsCellView_Previews: PreviewProvider {
     static var previews: some View {
-        MyTripsCellView(trip: Trip.testFuture, isHighlighted: true)
+        MyTripsCellView(trip: Trip.testOngoing, isHighlighted: true, onMembersManageOpen: {} )
             .padding(20)
     }
 }

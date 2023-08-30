@@ -10,7 +10,7 @@ import Foundation
 class UserAPIMock: UserAPIProvider {
     
     func getCurrentUser() async -> User? {
-        return User.test
+        return User.testNotInvited
     }
     
     func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
@@ -51,5 +51,9 @@ class UserAPIMock: UserAPIProvider {
     
     func uploadProfilePicture(data: Data) async throws -> String {
         return "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg"
+    }
+    
+    func searchUsers(searchPrompt: String) async throws -> [User] {
+        return [.testNoPhoto, .testNotOwner, .testNotInvited]
     }
 }

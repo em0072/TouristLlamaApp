@@ -21,6 +21,7 @@ import SwiftSDK
     var participants: [BackendlessUser] = []
     var ownerId: String?
     var chat: BackendlessTripChat?
+    var requests: [BackendlessTripReqest] = []
     
     override init() {
         super.init()
@@ -39,6 +40,7 @@ import SwiftSDK
         self.isPublic = trip.isPublic
         self.participants = trip.participants.map { $0.blUser }
         self.chat = BackendlessTripChat(from: trip.chat)
+        self.requests = trip.requests.map { BackendlessTripReqest(from: $0) }
     }
         
     var appObject: Trip? {
@@ -52,7 +54,7 @@ import SwiftSDK
               let ownerId else { return nil }
         
         let style = TripStyle(rawValue: style ?? "")
-        
+        let requests = self.requests.compactMap { $0.appObject }
         return Trip(id: objectId,
                     name: name,
                     style: style,
@@ -63,7 +65,8 @@ import SwiftSDK
                     photo: photo,
                     isPublic: isPublic,
                     participants: self.participants.compactMap { User(from: $0) },
-                    ownerId: ownerId
+                    ownerId: ownerId,
+                    requests: requests
         )
     }
     

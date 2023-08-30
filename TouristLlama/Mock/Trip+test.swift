@@ -34,7 +34,10 @@ extension Trip {
              photo: .test,
              isPublic: true,
              participants: [.test, .testNotOwner, .testNoPhoto],
-             ownerId: User.test.id)
+             ownerId: User.test.id,
+             requests: [
+                        .testInvitationPending
+                       ])
     }
 
     static var testPast: Trip {

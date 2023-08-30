@@ -17,12 +17,13 @@ struct TripDetailsView: View {
     
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
     
+//    @State var isMembersManagmentOpen: Bool
     let onTripEdit: () -> Void
     let trip: Trip
     
-    init(trip: Trip, onTripEdit: @escaping () -> Void) {
+    init(trip: Trip, isMembersManagmentOpen: Bool, onTripEdit: @escaping () -> Void) {
         self.trip = trip
-        self._viewModel = StateObject(wrappedValue: TripDetailViewModel(trip: trip))
+        self._viewModel = StateObject(wrappedValue: TripDetailViewModel(trip: trip, isMembersManagmentOpen: isMembersManagmentOpen))
         self.onTripEdit = onTripEdit
     }
     
@@ -60,10 +61,18 @@ struct TripDetailsView: View {
                         }
                 }
             }
+            .navigationDestination(isPresented: $viewModel.isMembersManagmentOpen) {
+                TripManageMemebersView(trip: viewModel.trip)
+            }
         }
         .onChange(of: trip) { trip in
             viewModel.trip = trip
         }
+//        .onAppear {
+//            if isMembersManagmentOpen {
+//                viewModel.openMembersManagment()
+//            }
+//        }
         
     }
 }
@@ -221,39 +230,24 @@ extension TripDetailsView {
                         userView(for: participant)
                     }
                 }
-                NavigationLink {
-                    Text(String.Trip.manageMembersTitle)
-//                    TripManageMemebersView(trip: viewModel.trip)
-                } label: {
-                    HStack {
-                        Text(String.Trip.manageMembersSubitle)
-                            .font(.avenirBody)
-                            .bold()
-                            .foregroundColor(.Main.black)
-                        Spacer()
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(.Main.black)
-                            .font(.system(size: 15, weight: .heavy))
+                
+                if viewModel.isCurrentUserOwnerOfTrip {
+                    Button {
+                        viewModel.openMembersManagment()
+                    } label: {
+                        HStack {
+                            Text(String.Trip.manageMembersSubitle)
+                                .font(.avenirBody)
+                                .bold()
+                                .foregroundColor(.Main.black)
+                            Spacer()
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.Main.black)
+                                .font(.system(size: 15, weight: .heavy))
+                        }
                     }
+                    .padding(.top, 20)
                 }
-                .padding(.top, 20)
-
-                
-//                Button {
-//                    viewModel.openUserManagment.toggle()
-//                } label: {
-//                    HStack {
-//                        Text("Invite & Manage Team Members")
-//                            .font(.TLBody.weight(.heavy))
-//                            .foregroundColor(.TLBlack)
-//                        Spacer()
-//                        Image(systemName: "arrow.right")
-//                            .foregroundColor(.TLBlack)
-//                            .font(.system(size: 15, weight: .heavy))
-//                    }
-//                }
-//                .padding(.top, 20)
-                
             }
         }
         .padding(20)
@@ -306,6 +300,6 @@ extension TripDetailsView {
 
 struct TripDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailsView(trip: .testOngoing, onTripEdit: {})
+        TripDetailsView(trip: .testOngoing, isMembersManagmentOpen: false, onTripEdit: {})
     }
 }

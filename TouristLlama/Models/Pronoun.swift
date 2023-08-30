@@ -19,42 +19,4 @@ enum Pronoun: String, Pickable {
     case veVer = "ve/ver"
     case xeXem = "xe/xem"
     case faeFae = "fae/fae"
-
-//    var rawValue: String {
-//        switch self {
-//        case .none:
-//            return ""
-//            
-//        case .heHim:
-//            return "he/him"
-//            
-//        case .sheHer:
-//            return "she/her"
-//            
-//        case .theyThem:
-//            return "they/them"
-//            
-//        case .zeHir:
-//            return "ze/hir"
-//            
-//        case .zeZir:
-//            return "ze/zir"
-//            
-//        case .eyEm:
-//            return "ey/em"
-//            
-//        case .perPer:
-//            return "per/per"
-//            
-//        case .veVer:
-//            return "ve/ver"
-//            
-//        case .xeXem:
-//            return "xe/xem"
-//            
-//        case .faeFae:
-//            return "fae/fae"
-//
-//        }
-//    }
 }

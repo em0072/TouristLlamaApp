@@ -10,10 +10,14 @@
 "create" = "Create";
 "update" = "Update";
 "cancel" = "Cancel";
+"remove" = "Remove";
 "done" = "Done";
 "camera" = "Camera";
 "photoLibrary" = "Photo Library";
-
+"search" = "Search";
+"select" = "Select";
+"accept" = "Accept";
+"reject" = "Reject";
 
 "charectersLeft" = "charecters left";
 

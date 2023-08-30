@@ -57,8 +57,35 @@
 
 "tripPaticipantsTitle" = "Participants";
 "organizer" = "Organizer";
+"invitedUser" = "Invited";
+"inviteRejected" = "Invite rejected";
+"requestRejected" = "Request rejected";
 
 "tripManageMembersTitle" = "Manage Members";
 "tripManageMembersSubitle" = "Invite & Manage Team Members";
 
+"tripManageRequestsSectionTitle" = "New requests";
+"tripManageRequestsOneMore" = "1 more request";
+"tripManageRequestsMore" = "%d more request";
+"tripManageTeammatesSectionTitle" = "Teammates";
+"tripManageRejectedSectionTitle" = "Rejections";
+"tripManageRemoveUserDialogTitle" = "Remove Participant";
+"tripManageRemoveUserDialogSubtitle" = "Are you sure you want to remove this participant from the trip?";
+
 "tripMapTitle" = "View on map";
+
+//MARK: - Members Manage
+"tripRequestToJoin" = "Request to join";
+"tripRequestApplicationLetterTitle" = "Application letter";
+"tripRequestApplicationLetterSubtitle" = "Please write a few words about yourself and why you want to join this trip. This will give trip organiser a better understanding of who you are and whether you'll fit this trip.";
+"tripRequestApplicationLetterPrompt" = "A few words about yourself...";
+"tripRequestToJoinSend" = "Send my request";
+"tripRequestToJoinPending" = "Your join request is pending";
+"tripRequestToJoinRejected" = "Your join request was rejected";
+"tripRequestToJoinAgain" = "Request to join again";
+"tripInviteToJoinPending" = "You are invited to join this trip";
+"tripInviteToJoinRejected" = "You rejected the invitation to join the trip";
+
+
+//MARK: - User Search
+"userSearchInitialInstruction" = "Start typing the username to find the user.";

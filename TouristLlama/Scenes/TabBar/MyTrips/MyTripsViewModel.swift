@@ -22,7 +22,9 @@ class MyTripsViewModel: ViewModel {
     @Published var myOngoingTrips: [Trip] = []
     @Published var myFutureTrips: [Trip] = []
     @Published var myPastTrips: [Trip] = []
-    @Published var selectedTrip: Trip?
+//    @Published var selectedTrip: Trip?
+    @Published var tripOpenState: TripOpenState?
+
     
     @Published var viewDataMode: ViewDataMode = .ongoing
     
@@ -35,7 +37,15 @@ class MyTripsViewModel: ViewModel {
     }
 
     func openDetails(for trip: Trip) {
-        selectedTrip = trip
+        tripOpenState = .details(trip)
+    }
+    
+    func openMembersManage(for trip: Trip) {
+        tripOpenState = .members(trip)
+    }
+    
+    func openChat(for trip: Trip) {
+        tripOpenState = .chat(trip)
     }
     
     override func subscribeToUpdates() {
@@ -59,8 +69,8 @@ class MyTripsViewModel: ViewModel {
             }
             .store(in: &publishers)
     }
-    
-//    private func subscribeToUserUpdates() {
+
+    //    private func subscribeToUserUpdates() {
 //        userAPI.$currentUser
 //            .receive(on: RunLoop.main)
 //            .sink { [weak self] currentUser in

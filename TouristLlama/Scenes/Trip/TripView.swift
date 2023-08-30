@@ -13,9 +13,12 @@ struct TripView: View {
     
     @StateObject var viewModel: TripViewModel
     
-    
     init(trip: Trip) {
-        _viewModel = StateObject(wrappedValue: TripViewModel(trip: trip))
+        self.init(openState: .details(trip))
+    }
+    
+    init(openState: TripOpenState) {
+        _viewModel = StateObject(wrappedValue: TripViewModel(openState: openState))
     }
     
     var body: some View {
@@ -28,12 +31,27 @@ struct TripView: View {
                         }
                     }
             } else {
-                tripDetailsView
+                VStack(spacing: 0) {
+                    tripDetailsView
+                    
+                    joinView
+                }
             }
         }
         .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
             if shouldDismiss { dismiss() }
         }
+        .sheet(isPresented: $viewModel.isApplicationLetterFormShown) {
+            TripApplicationForm { message in
+                viewModel.joinRequestSend(message: message)
+            }
+            .presentationDragIndicator(.visible)
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
+        }
+        .animation(.default, value: viewModel.nonParticipantTripRequest)
+        .handle(loading: $viewModel.loadingState)
+        .handle(error: $viewModel.error)
 
     }
     
@@ -41,8 +59,185 @@ struct TripView: View {
 
 extension TripView {
     
+    @ViewBuilder
+    private var joinView: some View {
+        if let request = viewModel.nonParticipantTripRequest {
+            switch request.status {
+            case .inviteRejected:
+                inviteRejectedView
+
+            case .invitePending:
+                invitePendingView(request: request)
+                
+            case .requestPending:
+                requestPendingView(request: request)
+
+            case .requestRejected:
+                requestRejectedView
+                
+            case .inviteAccepted, .requestApproved:
+                EmptyView()
+                
+            case .requestCancelled:
+                joinButtonView
+            }
+            
+        } else {
+            joinButtonView
+        }
+    }
+    
+    private var joinButtonView: some View {
+        Button(String.Trip.requestToJoin) {
+            viewModel.joinButtonAction()
+        }
+        .buttonStyle(WideBlueButtonStyle())
+        .padding(.top, 12)
+        .padding(.horizontal, 20)
+    }
+    
+    private func requestPendingView(request: TripRequest) -> some View {
+        HStack {
+Spacer()
+            VStack {
+                Text(String.Trip.requestToJoinPending)
+                    .foregroundColor(.Main.TLStrongBlack)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.cancelJoinRequest(request)
+                } label: {
+                    Text(String.Main.cancel)
+                        .font(.avenirBody)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            Spacer()
+        }
+        .background {
+            Color.Main.yellow
+                .ignoresSafeArea()
+
+        }
+
+    }
+    
+    private func invitePendingView(request: TripRequest) -> some View {
+        HStack {
+                Spacer()
+            VStack {
+                Text(String.Trip.inviteToJoinPending)
+                    .foregroundColor(.Main.TLStrongBlack)
+                    .font(.avenirBody)
+                    .bold()
+                
+                HStack {
+                    Button {
+                        viewModel.acceptInvite(request)
+                    } label: {
+                        Text(String.Main.accept)
+                            .font(.avenirBody)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background {
+                                Capsule()
+                                    .fill(Color.Main.green)
+                            }
+                    }
+                    
+                    Button {
+                        viewModel.rejectInvite(request)
+                    } label: {
+                        Text(String.Main.reject)
+                            .font(.avenirBody)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background {
+                                Capsule()
+                                    .fill(Color.Main.accentRed)
+                            }
+                    }
+
+                }
+            }
+            .padding(.top, 12)
+
+            Spacer()
+
+        }
+        .background {
+            Color.Main.yellow
+                .ignoresSafeArea()
+
+        }
+
+    }
+    
+    private var requestRejectedView: some View {
+        HStack {
+
+            Spacer()
+            
+            VStack {
+                Text(String.Trip.requestToJoinRejected)
+                    .foregroundColor(.Main.TLStrongBlack)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.joinButtonAction()
+                } label: {
+                    Text(String.Trip.requestToJoinAgain)
+                        .font(.avenirBody)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+        }
+        .background {
+            Color.Main.accentRed
+                .ignoresSafeArea()
+
+        }
+    }
+    
+    private var inviteRejectedView: some View {
+        HStack {
+
+            Spacer()
+            
+            VStack {
+                Text(String.Trip.inviteToJoinRejected)
+                    .foregroundColor(.Main.TLStrongBlack)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.joinButtonAction()
+                } label: {
+                    Text(String.Trip.requestToJoinAgain)
+                        .font(.avenirBody)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+        }
+        .background {
+            Color.Main.accentRed
+                .ignoresSafeArea()
+
+        }
+    }
+
+    
     private var tripDetailsView: some View {
-        TripDetailsView(trip: viewModel.trip) {
+        TripDetailsView(trip: viewModel.trip, isMembersManagmentOpen: viewModel.isMembersManagmentOpen) {
             viewModel.editTrip()
         }
     }
@@ -55,7 +250,6 @@ extension TripView {
                 }.tag(TripViewModel.TabSelection.details)
                 .tint(Color.Main.black)
             
-//            TripChatView(viewModel: viewModel)
             TripChatView(title: viewModel.trip.name, chat: viewModel.trip.chat)
                 .tabItem {
                     Label(String.Trip.discussionTitle, systemImage: "text.bubble.fill")
@@ -73,6 +267,6 @@ extension TripView {
 
 struct TripView_Previews: PreviewProvider {
     static var previews: some View {
-        TripView(trip: Trip.testOngoing)
+        TripView(openState: .details(.testOngoing))
     }
 }

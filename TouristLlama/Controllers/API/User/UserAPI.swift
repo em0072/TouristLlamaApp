@@ -82,4 +82,8 @@ class UserAPI {
     func uploadProfilePicture(data: Data) async throws -> String {
         try await provider.uploadProfilePicture(data: data)
     }
+    
+    func searchUsers(searchPrompt: String) async throws -> [User] {
+        try await provider.searchUsers(searchPrompt: searchPrompt)
+    }
 }

@@ -36,8 +36,8 @@ struct MyTripsView: View {
             ManageTripView(mode: .create)
             .interactiveDismissDisabled()
         }
-        .fullScreenCover(item: $viewModel.selectedTrip) { trip in
-            TripView(trip: trip)
+        .fullScreenCover(item: $viewModel.tripOpenState) { tripState in
+            TripView(openState: tripState)
         }
         .handle(error: $viewModel.error)
     }
@@ -75,7 +75,9 @@ extension MyTripsView {
                     Button {
                         viewModel.openDetails(for: trip)
                     } label: {
-                        MyTripsCellView(trip: trip, isHighlighted: isHighlighted)
+                        MyTripsCellView(trip: trip, isHighlighted: isHighlighted) {
+                            viewModel.openMembersManage(for: trip)
+                        }
                             .opacity(isDimmed ? 0.5 : 1)
                     }
                     .buttonStyle(.plain)

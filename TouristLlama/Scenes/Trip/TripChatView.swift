@@ -164,7 +164,6 @@ extension TripChatView {
             
             if !isOutgoing {
                 Spacer()
-//                    .padding(isOutgoing ? .leading : .trailing, 30)
             } else {
                 authorImage(message.author?.imageURL, isTitleCell: isTitleCell)
             }

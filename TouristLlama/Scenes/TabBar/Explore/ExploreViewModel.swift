@@ -30,6 +30,7 @@ class ExploreViewModel: ViewModel {
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
         subscribeToSearchTerm()
+        subscribeToAllTrips()
     }
 
     var filtersTitle: String? {
@@ -53,10 +54,10 @@ class ExploreViewModel: ViewModel {
         Task {
             do {
                 isSearching = true
-                trips = try await tripAPI.getExploreTrips(searchTerm: searchPrompt,
-                                                          tripStyel: filters.tripStyle,
-                                                          startDate: filters.startDate,
-                                                          endDate: filters.endDate)
+                try await tripAPI.getExploreTrips(searchTerm: searchPrompt,
+                                                  tripStyel: filters.tripStyle,
+                                                  startDate: filters.startDate,
+                                                  endDate: filters.endDate)
                 state = .content
                 isSearching = false
             } catch {
@@ -77,10 +78,22 @@ class ExploreViewModel: ViewModel {
     
     private func subscribeToSearchTerm() {
         $searchPrompt
+            .dropFirst()
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [weak self] searchTerm in
                 self?.requestTrips()
             }
             .store(in: &publishers)
+    }
+    
+    private func subscribeToAllTrips() {
+        tripAPI.$allTrips
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] allTrips in
+                self?.trips = allTrips
+            })
+            .store(in: &publishers)
+//            .assign(to: &$trips)
     }
 }

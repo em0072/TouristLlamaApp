@@ -49,6 +49,7 @@ extension String {
             static let volunteeringDescription = String.localized("tripStyleVolunteeringDescription")
             static let festivalAndEventsDescription = String.localized("tripStyleFestivalAndEventsDescription")
         }
+        
         static let detailsTitle = String.localized("tripDetailsTitle")
         static let discussionTitle = String.localized("tripDiscussionTitle")
 
@@ -58,10 +59,30 @@ extension String {
 
         static let paticipantsTitle = String.localized("tripPaticipantsTitle")
         static let organizer = String.localized("organizer")
-        
+        static let invitedUser = String.localized("invitedUser")
+        static let inviteRejected = String.localized("inviteRejected")
+        static let requestRejected = String.localized("requestRejected")
+
         static let manageMembersTitle = String.localized("tripManageMembersTitle")
         static let manageMembersSubitle = String.localized("tripManageMembersSubitle")
+        
+        static let manageRequestsSectionTitle = String.localized("tripManageRequestsSectionTitle")
+        static func manageRequests(_ number: Int) -> String {
+            if number == 0 {
+                return String.localized("")
+            } else if number == 1 {
+                return String.localized("tripManageRequestsOneMore")
+            } else {
+                return String(format: String.localized("tripManageRequestsMore"), number)
+            }
+        }
+        static let manageTeammatesSectionTitle = String.localized("tripManageTeammatesSectionTitle")
+        static let manageRejectedSectionTitle = String.localized("tripManageRejectedSectionTitle")
+        static let manageRemoveUserDialogTitle = String.localized("tripManageRemoveUserDialogTitle")
+        static let manageRemoveUserDialogSubtitle = String.localized("tripManageRemoveUserDialogSubtitle")
 
+        
+        
         static let mapTitle = String.localized("tripMapTitle")
 
         static func numberOfNights(_ number: Int) -> String {
@@ -73,8 +94,26 @@ extension String {
                 return String(format: String.localized("tripNumberNights"), number)
             }
         }
+        
+        //MARK: - Members Manage
+        static let requestToJoin = String.localized("tripRequestToJoin")
+        static let requestApplicationLetterTitle = String.localized("tripRequestApplicationLetterTitle")
+        static let requestApplicationLetterSubtitle = String.localized("tripRequestApplicationLetterSubtitle")
+        static let requestApplicationLetterPrompt = String.localized("tripRequestApplicationLetterPrompt")
+        static let requestToJoinSend = String.localized("tripRequestToJoinSend")
+        static let requestToJoinPending = String.localized("tripRequestToJoinPending")
+        static let requestToJoinRejected = String.localized("tripRequestToJoinRejected")
+        static let requestToJoinAgain = String.localized("tripRequestToJoinAgain")
+        static let inviteToJoinPending = String.localized("tripInviteToJoinPending")
+        static let inviteToJoinRejected = String.localized("tripInviteToJoinRejected")
+
+        
+        //MARK: - User Search
+        static let userSearchInitialInstruction = String.localized("userSearchInitialInstruction")
 
     }
+    
+
     
     private static func localized(_ key: String) -> String {
         return Bundle.main.localizedString(forKey: key,

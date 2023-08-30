@@ -32,9 +32,9 @@ extension User {
              profilePicture: "https://images.pexels.com/photos/209035/pexels-photo-209035.jpeg?cs=srgb&dl=pexels-pixabay-209035.jpg&fm=jpg",
              about: "About me",
              memberSince: Date())
-
+        
     }
-
+    
     
     static var testNoPhoto: User {
         User(id: "324rvs",
@@ -48,4 +48,18 @@ extension User {
              about: "About me",
              memberSince: Date())
     }
+    
+    static var testNotInvited: User {
+        User(id: "45tges2",
+             name: "Random",
+             username: "random",
+             pronoun: .heHim,
+             email: "random@mail.com",
+             phone: "09483290234",
+             dateOfBirth: nil,
+             profilePicture: nil,
+             about: "About me",
+             memberSince: Date())
+    }
+
 }

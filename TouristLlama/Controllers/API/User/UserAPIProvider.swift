@@ -20,4 +20,5 @@ protocol UserAPIProvider {
     func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int)
     func checkAvailability(of username: String) async throws -> Bool
     func uploadProfilePicture(data: Data) async throws -> String
+    func searchUsers(searchPrompt: String) async throws -> [User]
 }

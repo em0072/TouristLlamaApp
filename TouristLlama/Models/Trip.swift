@@ -17,9 +17,10 @@ struct Trip: Identifiable, Equatable {
     let description: String
     let photo: TripPhoto
     let isPublic: Bool
-    let participants: [User]
+    var participants: [User]
     let ownerId: String
     var chat: TripChat?
+    var requests: [TripRequest]
     
     init(id: String,
          name: String,
@@ -32,7 +33,8 @@ struct Trip: Identifiable, Equatable {
          isPublic: Bool,
          participants: [User] = [],
          ownerId: String,
-         discussion: TripChat? = nil) {
+         chat: TripChat? = nil,
+         requests: [TripRequest] = []) {
         self.id = id
         self.name = name
         self.style = style
@@ -44,6 +46,31 @@ struct Trip: Identifiable, Equatable {
         self.isPublic = isPublic
         self.participants = participants
         self.ownerId = ownerId
-        self.chat = discussion
+        self.chat = chat
+        self.requests = requests
     }
+    
+    mutating func upsert(tripRequest: TripRequest) {
+        if let requestIndex = requests.lastIndex(where: { $0.id == tripRequest.id }) {
+            requests[requestIndex] = tripRequest
+        } else {
+            requests.append(tripRequest)
+        }
+    }
+    
+    mutating func delete(tripRequest: TripRequest) {
+        if let requestIndex = requests.lastIndex(where: { $0.id == tripRequest.id }) {
+            requests.remove(at: requestIndex)
+        }
+    }
+    
+    mutating func add(participant: User) {
+        participants.append(participant)
+    }
+    
+    var requestsPendingCount: Int {
+        let pendingRequests = requests.filter { $0.status == .requestPending }
+        return pendingRequests.count
+    }
+
 }

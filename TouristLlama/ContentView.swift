@@ -21,6 +21,9 @@ struct ContentView: View {
                 OnboardView()
             case .loggedIn:
                 TabBarView()
+                    .onAppear {
+                        viewModel.requestNotificationsAuthorization()
+                    }
             }
         }
         .animation(.default, value: viewModel.loginStatus)

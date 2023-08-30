@@ -206,7 +206,20 @@ class UserAPIBackendless: UserAPIProvider {
                 continuation.resume(throwing: error)
             }
         }
-//        return "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg"
+    }
+    func searchUsers(searchPrompt: String) async throws -> [User] {
+        return try await withCheckedThrowingContinuation { continuation in
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "searchUsers", parameters: searchPrompt) { response in
+                guard let backendlessUsersArray = response as? [BackendlessUser] else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to array"))
+                    return
+                }
+                let users = backendlessUsersArray.compactMap { User(from: $0) }
+                continuation.resume(returning: users)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
     }
 
 }

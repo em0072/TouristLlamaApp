@@ -7,6 +7,9 @@
 
 import Foundation
 import Dependencies
+import SwiftSDK
+import UserNotifications
+import UIKit
 
 class ContentViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
@@ -27,5 +30,15 @@ class ContentViewModel: ViewModel {
                 self?.loginStatus = currentUser == nil ? .loggedOut : .loggedIn
             }
             .store(in: &publishers)
-    }    
+    }
+    
+    func requestNotificationsAuthorization() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            Task { @MainActor in
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
 }
+
