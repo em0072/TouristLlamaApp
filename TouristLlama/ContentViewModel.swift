@@ -13,6 +13,7 @@ import UIKit
 
 class ContentViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
+    @Dependency(\.notificationsController) var notificationsController
     
     enum LoginStatus {
         case notDetermined
@@ -33,6 +34,7 @@ class ContentViewModel: ViewModel {
     }
     
     func requestNotificationsAuthorization() {
+        notificationsController.requestPushNotificationAuthorization()
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             Task { @MainActor in

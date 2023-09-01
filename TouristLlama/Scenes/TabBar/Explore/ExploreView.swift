@@ -108,7 +108,7 @@ extension ExploreView {
         Button {
             viewModel.open(trip)
         } label: {
-            ExploreListCellView(trip: trip)
+            ExploreListCellView(trip: trip, showBadge: viewModel.shouldShowNotificationBadge(trip))
         }
     }
 }

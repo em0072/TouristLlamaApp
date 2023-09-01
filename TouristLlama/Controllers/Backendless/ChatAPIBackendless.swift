@@ -75,11 +75,19 @@ class ChatAPIBackendless: ChatAPIProvider {
         newChannel.join()
     }
     
-    func sendChatMessage(message: ChatMessage) async throws {
+    func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
         return try await withCheckedThrowingContinuation { continuation in
             let message = BackendlessChatMessage(from: message)
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "postChatMessage", parameters: message) { response in
-                continuation.resume(returning: ())
+                guard let blChatMessage = response as? BackendlessChatMessage else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to backendless object"))
+                    return
+                }
+                guard let chatMessage = blChatMessage.appObject else {
+                    continuation.resume(throwing: CustomError(text: "Can't convert to app object"))
+                    return
+                }
+                continuation.resume(returning: chatMessage)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
             }

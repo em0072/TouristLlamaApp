@@ -79,6 +79,10 @@ struct User: Identifiable {
         self.memberSince = memberSince
     }
     
+    static var info: User {
+        User(id: "info", name: "", username: "", pronoun: .none, email: "", phone: "", dateOfBirth: nil, profilePicture: nil, about: nil, memberSince: nil)
+    }
+    
     var imageURL: URL? {
         if let profilePicture {
             return URL(string: profilePicture)

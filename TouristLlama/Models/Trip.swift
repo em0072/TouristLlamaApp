@@ -16,6 +16,7 @@ struct Trip: Identifiable, Equatable {
     let endDate: Date
     let description: String
     let photo: TripPhoto
+    var lastMessage: ChatMessage?
     let isPublic: Bool
     var participants: [User]
     let ownerId: String
@@ -30,6 +31,7 @@ struct Trip: Identifiable, Equatable {
          endDate: Date,
          description: String,
          photo: TripPhoto,
+         lastMessage: ChatMessage? = nil,
          isPublic: Bool,
          participants: [User] = [],
          ownerId: String,
@@ -43,6 +45,7 @@ struct Trip: Identifiable, Equatable {
         self.endDate = endDate
         self.description = description
         self.photo = photo
+        self.lastMessage = lastMessage
         self.isPublic = isPublic
         self.participants = participants
         self.ownerId = ownerId
@@ -71,6 +74,15 @@ struct Trip: Identifiable, Equatable {
     var requestsPendingCount: Int {
         let pendingRequests = requests.filter { $0.status == .requestPending }
         return pendingRequests.count
+    }
+    
+    func hasRequests(with status: TripRequestStatus) -> Bool {
+        for request in requests {
+            if request.status == status {
+                return true
+            }
+        }
+        return false
     }
 
 }

@@ -15,5 +15,7 @@ class ChatAPIMock: ChatAPIProvider {
     
     func subscribeToChatUpdates(for chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {}
     
-    func sendChatMessage(message: ChatMessage) async throws {}
+    func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
+        .test
+    }
 }

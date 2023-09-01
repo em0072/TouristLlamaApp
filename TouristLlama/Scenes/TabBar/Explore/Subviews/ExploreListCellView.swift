@@ -11,6 +11,7 @@ import Kingfisher
 struct ExploreListCellView: View {
     
     var trip: Trip
+    var showBadge: Bool
     
     var body: some View {
         ZStack {
@@ -91,13 +92,23 @@ struct ExploreListCellView: View {
     
     private var proceedButtonView: some View {
         ZStack {
-        Circle()
-            .fill(Color.Main.black)
-            .frame(width: 40, height: 40)
-            Image(systemName: "arrow.right")
-                .renderingMode(.template)
-                .foregroundColor(.Main.white)
+            Circle()
+                .fill(Color.Main.black)
+                .frame(width: 40, height: 40)
+                .overlay {
+                    Image(systemName: "arrow.right")
+                        .renderingMode(.template)
+                        .foregroundColor(.Main.white)
+                }
+            if showBadge {
+                Circle()
+                    .fill(Color.Main.accentRed)
+                    .frame(width: 20, height: 20)
+                    .offset(x: 15, y: -15)
+            }
+
         }
+        
     }
     
 }
@@ -119,6 +130,6 @@ extension ExploreListCellView {
 
 struct ExploreListCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreListCellView(trip: .testOngoing)
+        ExploreListCellView(trip: .testOngoing, showBadge: true)
     }
 }

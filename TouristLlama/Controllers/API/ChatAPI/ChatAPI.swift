@@ -7,8 +7,11 @@
 
 import Foundation
 import Combine
+import Dependencies
 
 class ChatAPI {
+    
+    @Dependency(\.userDefaultsController) var userDefaultsController
     
     private let provider: ChatAPIProvider
     
@@ -19,22 +22,15 @@ class ChatAPI {
     }
 
     func subscribeToChatUpdates(for chatId: String) -> AnyPublisher<ChatMessage, Never> {
-        print("Trying to get a chat publisher (id: \(chatId)")
         if let exictingPublisher = publishers[chatId] {
-            print("publisher found in dictionary")
             return exictingPublisher.eraseToAnyPublisher()
         }
-        print("publisher NOT found in dictionary")
-        print("Creating new publisher")
         let publisher = PassthroughSubject<ChatMessage, Never>()
         publishers[chatId] = publisher
-        print("Subscribing to provider updates")
         provider.subscribeToChatUpdates(for: chatId) { [weak self] message in
             guard let self else { return }
-            print("Publisher will post a new message with text '\(message.text)'")
             publishers[chatId]?.send(message)
         }
-        print("Returning freshly made publisher")
         return publisher.eraseToAnyPublisher()
     }
     
@@ -42,8 +38,8 @@ class ChatAPI {
         try await provider.getChat(for: tripId)
     }
 
-    func sendChatMessage(message: ChatMessage) async throws {
+    func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
         try await provider.sendChatMessage(message: message)
     }
-
+    
 }

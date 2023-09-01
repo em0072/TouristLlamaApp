@@ -17,6 +17,7 @@ import SwiftSDK
     var endDate: Date?
     var tripDescription: String?
     var photo: BackendlessTripPhoto?
+    var lastMessage: BackendlessChatMessage?
     var isPublic: Bool = false
     var participants: [BackendlessUser] = []
     var ownerId: String?
@@ -37,6 +38,9 @@ import SwiftSDK
         self.endDate = trip.endDate
         self.tripDescription = trip.description
         self.photo = BackendlessTripPhoto(from: trip.photo)
+        if let lastMessage = trip.lastMessage {
+            self.lastMessage = BackendlessChatMessage(from: lastMessage)
+        }
         self.isPublic = trip.isPublic
         self.participants = trip.participants.map { $0.blUser }
         self.chat = BackendlessTripChat(from: trip.chat)
@@ -55,6 +59,8 @@ import SwiftSDK
         
         let style = TripStyle(rawValue: style ?? "")
         let requests = self.requests.compactMap { $0.appObject }
+        let lastMessage = self.lastMessage?.appObject
+        
         return Trip(id: objectId,
                     name: name,
                     style: style,
@@ -63,6 +69,7 @@ import SwiftSDK
                     endDate: endDate,
                     description: tripDescription,
                     photo: photo,
+                    lastMessage: lastMessage,
                     isPublic: isPublic,
                     participants: self.participants.compactMap { User(from: $0) },
                     ownerId: ownerId,

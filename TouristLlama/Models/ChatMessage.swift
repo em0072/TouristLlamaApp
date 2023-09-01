@@ -19,23 +19,25 @@ struct ChatMessage: Identifiable {
         case error
     }
     
-    var id: String { return clientId }
+    var id: String { return objectId ?? clientId }
     let objectId: String?
     let clientId: String
     let ownerId: String?
     let chatId: String
     let text: String
     let author: User?
+    let created: Date
     let type: MessageType
     var status: MessageStatus?
     
-    init(objectId: String, clientId: String, ownerId: String, chatId: String, text: String, author: User?, type: MessageType) {
+    init(objectId: String, clientId: String, ownerId: String, chatId: String, text: String, author: User?, created: Date, type: MessageType) {
         self.objectId = objectId
         self.clientId = clientId
         self.ownerId = ownerId
         self.chatId = chatId
         self.text = text
         self.author = author
+        self.created = created
         self.type = type
         self.status = .sent
     }
@@ -47,6 +49,7 @@ struct ChatMessage: Identifiable {
         self.chatId = chatId
         self.text = text
         self.author = author
+        self.created = Date()
         self.type = .user
         self.status = .sending
     }

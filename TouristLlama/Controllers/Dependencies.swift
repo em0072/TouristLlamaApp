@@ -60,3 +60,29 @@ extension DependencyValues {
     }
 }
 
+// MARK: - Notifications Controller
+private enum NotificationsControllerKey: DependencyKey {
+    static let liveValue = NotificationsController()
+    static let previewValue = NotificationsController()
+}
+
+extension DependencyValues {
+    var notificationsController: NotificationsController {
+        get { self[NotificationsControllerKey.self] }
+        set { self[NotificationsControllerKey.self] = newValue }
+    }
+}
+
+// MARK: - UserDefaults Controller
+private enum UserDefaultsControllerKey: DependencyKey {
+    static let liveValue = UserDefaultsController()
+    static let previewValue = UserDefaultsController()
+}
+
+extension DependencyValues {
+    var userDefaultsController: UserDefaultsController {
+        get { self[UserDefaultsControllerKey.self] }
+        set { self[UserDefaultsControllerKey.self] = newValue }
+    }
+}
+

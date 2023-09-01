@@ -51,5 +51,15 @@ class TripDetailViewModel: ViewModel {
     func openMembersManagment() {
         isMembersManagmentOpen = true
     }
+    
+    var hasPendingRequests: Bool {
+        guard isCurrentUserOwnerOfTrip else { return false }
+        return trip.hasRequests(with: .requestPending)
+    }
+    
+    var pendingRequestsCount: Int {
+        guard isCurrentUserOwnerOfTrip else { return 0 }
+        return trip.requestsPendingCount
+    }
 
 }

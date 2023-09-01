@@ -17,7 +17,6 @@ struct TripDetailsView: View {
     
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
     
-//    @State var isMembersManagmentOpen: Bool
     let onTripEdit: () -> Void
     let trip: Trip
     
@@ -68,11 +67,6 @@ struct TripDetailsView: View {
         .onChange(of: trip) { trip in
             viewModel.trip = trip
         }
-//        .onAppear {
-//            if isMembersManagmentOpen {
-//                viewModel.openMembersManagment()
-//            }
-//        }
         
     }
 }
@@ -224,7 +218,6 @@ extension TripDetailsView {
                             ProfileView(user: participant)
                         } else {
                             ProfileView(user: participant)
-//                            UserProfileView(user: participant)
                         }
                     } label: {
                         userView(for: participant)
@@ -241,6 +234,17 @@ extension TripDetailsView {
                                 .bold()
                                 .foregroundColor(.Main.black)
                             Spacer()
+                            
+                            if viewModel.hasPendingRequests {
+                                Circle()
+                                    .fill(Color.Main.accentRed)
+                                    .frame(width: 25, height: 25)
+                                    .overlay {
+                                        Text("\(viewModel.pendingRequestsCount)")
+                                            .font(.avenirSmallBody)
+                                    }
+                            }
+                            
                             Image(systemName: "arrow.right")
                                 .foregroundColor(.Main.black)
                                 .font(.system(size: 15, weight: .heavy))

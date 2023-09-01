@@ -21,6 +21,7 @@ extension String {
         static let select = String.localized("select")
         static let accept = String.localized("accept")
         static let reject = String.localized("reject")
+        static let unread = String.localized("unread")
 
         static let camera = String.localized("camera")
         static let photoLibrary = String.localized("photoLibrary")

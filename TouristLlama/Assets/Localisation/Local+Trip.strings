@@ -89,3 +89,7 @@
 
 //MARK: - User Search
 "userSearchInitialInstruction" = "Start typing the username to find the user.";
+
+
+// MARK: - Chat
+"tripChatNewMessages" = "New Messages";

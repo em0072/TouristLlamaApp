@@ -19,6 +19,7 @@ class TripViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.chatAPI) var chatAPI
     @Dependency(\.tripsAPI) var tripAPI
+    @Dependency(\.userDefaultsController) var userDefaultsController
 
     @Published var trip: Trip
     @Published var isDiscussionLoaded = false
@@ -162,7 +163,7 @@ class TripViewModel: ViewModel {
 
         
     private func getTripDiscussionIfNeeded() {
-        if isCurrentUserParticipantOfTrip && !isDiscussionLoaded {
+        if isCurrentUserParticipantOfTrip {
             getTripDiscussion()
         }
     }
@@ -174,10 +175,31 @@ class TripViewModel: ViewModel {
                 trip.chat = discussion
                 subscribeToChatUpdates()
                 isDiscussionLoaded = true
+                setChatBadgeIfNeeded()
             } catch {
                 self.error = error
             }
         }
+    }
+    
+    private func setChatBadgeIfNeeded() {
+        guard let chat = trip.chat else { return }
+        guard selectedTab != .chats  else {
+            chatBadgeCount = 0
+            return
+        }
+        var unreadMessages = 0
+        let lastReadMessageId = userDefaultsController.getLastMessageIf(for: trip.id)
+        var foundLastReadMessage = false
+        for message in chat.messages {
+            if foundLastReadMessage {
+                unreadMessages += 1
+            }
+            if message.id == lastReadMessageId {
+                foundLastReadMessage = true
+            }
+        }
+        chatBadgeCount = unreadMessages
     }
     
     private func subscribeToChatUpdates() {

@@ -9,17 +9,26 @@ import SwiftUI
 
 struct MyTripsCellView: View {
     
-    var trip: Trip
-    var isHighlighted: Bool
+    enum Icon {
+        case requests
+        case chat
+    }
+    
+    let trip: Trip
+    let icons: [Icon]
+    let isHighlighted: Bool
     
     @State private var isAnimating = false
     
     let onMembersManageOpen: () -> Void
-    
-    init(trip: Trip, isHighlighted: Bool = false, onMembersManageOpen: @escaping () -> Void) {
+    let onChatOpen: () -> Void
+
+    init(trip: Trip, icons: [Icon], isHighlighted: Bool = false, onMembersManageOpen: @escaping () -> Void, onChatOpen: @escaping () -> Void) {
         self.trip = trip
         self.isHighlighted = isHighlighted
+        self.icons = icons
         self.onMembersManageOpen = onMembersManageOpen
+        self.onChatOpen = onChatOpen
     }
     
     var body: some View {
@@ -68,7 +77,7 @@ extension MyTripsCellView {
     
     private var titleView: some View {
         HStack {
-            tripName
+            tripNameView
             
             Spacer()
             
@@ -76,21 +85,41 @@ extension MyTripsCellView {
         }
     }
     
-    private var tripName: some View {
+    private var tripNameView: some View {
         Text(trip.name)
-            .font(.avenirSubtitle.weight(.heavy))
+            .font(.avenirSubtitle)
+            .bold()
     }
     
     private var iconsView: some View {
         HStack {
-            if trip.requestsPendingCount > 0 {
-                Button {
-                    onMembersManageOpen()
-                } label: {
-                    Image(systemName: "person.crop.circle.badge.questionmark.fill")
-                        .foregroundColor(.Main.yellow)
-                        .font(.avenirSubtitle)
-                }
+            requestIconView
+            chatIconView
+        }
+    }
+    
+    @ViewBuilder
+    private var requestIconView: some View {
+        if icons.contains(.requests) {
+            Button {
+                onMembersManageOpen()
+            } label: {
+                Image(systemName: "person.crop.circle.badge.questionmark.fill")
+                    .foregroundColor(.Main.yellow)
+                    .font(.avenirSubtitle)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var chatIconView: some View {
+        if icons.contains(.chat) {
+            Button {
+                onChatOpen()
+            } label: {
+                Image(systemName: "bubble.left.fill")
+                    .foregroundColor(.Main.yellow)
+                    .font(.avenirSubtitle)
             }
         }
     }
@@ -134,7 +163,7 @@ extension MyTripsCellView {
 
 struct MyTripsCellView_Previews: PreviewProvider {
     static var previews: some View {
-        MyTripsCellView(trip: Trip.testOngoing, isHighlighted: true, onMembersManageOpen: {} )
+        MyTripsCellView(trip: Trip.testOngoing, icons: [.chat, .requests], isHighlighted: true, onMembersManageOpen: {}, onChatOpen: {} )
             .padding(20)
     }
 }

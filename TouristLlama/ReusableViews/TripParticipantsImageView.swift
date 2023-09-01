@@ -60,7 +60,7 @@ struct TripParticipantsImagesView_Previews: PreviewProvider {
     static var previews: some View {
         TripParticipantsImagesView(participants: [User.test, User.testNoPhoto, User.testNoPhoto, User.test])
         
-        MyTripsCellView(trip: Trip.testFuture, isHighlighted: true, onMembersManageOpen: {})
+        MyTripsCellView(trip: Trip.testFuture, icons: [], isHighlighted: true, onMembersManageOpen: {}, onChatOpen: {})
             .padding(20)
 
     }

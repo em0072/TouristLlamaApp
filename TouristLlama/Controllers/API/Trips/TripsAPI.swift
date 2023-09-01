@@ -178,8 +178,4 @@ class TripsAPI {
 
     }
     
-    private func addMyTripsListner() {
-        
-    }
-
 }

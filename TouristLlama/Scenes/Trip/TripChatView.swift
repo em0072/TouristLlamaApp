@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import ExyteChat
 
 struct TripChatView: View {
     
@@ -20,10 +21,12 @@ struct TripChatView: View {
     
     let title: String
     let chat: TripChat?
+    let selected: Bool
     
-    init(title: String, chat: TripChat?) {
+    init(title: String, chat: TripChat?, selected: Bool = true) {
         self.title = title
         self.chat = chat
+        self.selected = selected
         self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
 //        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
 //        self.viewModel.chat = chat
@@ -35,7 +38,8 @@ struct TripChatView: View {
         NavigationStack {
             ZStack {
                 if let chat = viewModel.chat {
-                    chatView(for: chat)
+                    chatView(messages: viewModel.messages)
+//                    chatView(for: chat)
                 } else {
                     loaderView
                 }
@@ -52,22 +56,37 @@ struct TripChatView: View {
         .onChange(of: chat) { chat in
             viewModel.updateChat(with: chat)
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
     
 }
 
 extension TripChatView {
     
+    private func chatView(messages: [Message]) -> some View {
+        ChatView(messages: messages) { draft in
+            viewModel.sendChatMessage()
+        } messageBuilder: { message, positionInGroup, _ in
+            messageCell(message: message, positionInGroup: positionInGroup)
+        }
+    }
+    
     private func chatView(for chat: TripChat) -> some View {
         VStack(spacing: 4) {
             ScrollViewReader { scrollViewProxy in
                 ScrollView {
-                    LazyVStack(spacing: 4) {
+                    VStack(spacing: 4) {
                         ForEach(chat.messages) { message in
                             messageCell(message: message,
                                         isTitleCell: viewModel.isFirstFormAuthor(message: message),
                                         isOutgoing: viewModel.isOutgoing(message: message))
                             .id(message.id)
+                            
+                            if viewModel.shouldShowNewMessageText(after: message) {
+                                newMessagesView
+                            }
                         }
                     }
                     .padding(.horizontal, 8)
@@ -77,13 +96,20 @@ extension TripChatView {
                     focusState = nil
                 }
                 .onAppear {
-                    scrollViewProxy.scrollTo(chat.messages.last?.id)
+                    if let newMessagesChatId = viewModel.newMessagesChatId {
+                        scrollViewProxy.scrollTo(newMessagesChatId)
+                    } else {
+                        scrollViewProxy.scrollTo(viewModel.chat?.messages.last?.id)
+                    }
                 }
                 .onChange(of: chat.messages) { messages in
                     withAnimation {
                         scrollViewProxy.scrollTo(messages.last?.id)
                     }
                 }
+                .onChange(of: selected, perform: { newValue in
+                    viewModel.setChatViewSelected(newValue)
+                })
                 .onChange(of: focusState) { newFocus in
                     if focusState != nil {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -98,6 +124,58 @@ extension TripChatView {
         }
     }
     
+    private var newMessagesView: some View {
+        HStack {
+
+            Rectangle()
+                .frame(height: 1)
+
+            Text(String.Trip.chatNewMessages)
+                .font(.avenirBody)
+                .textCase(.uppercase)
+                .padding(.vertical, 12)
+                .fixedSize(horizontal: true, vertical: false)
+
+            Rectangle()
+                .frame(height: 1)
+        }
+    }
+    
+    @ViewBuilder
+    private func messageCell(message: Message, positionInGroup: PositionInGroup) -> some View {
+        let messageType: ChatMessage.MessageType = message.user.id == User.info.id ? .info : .user
+        let isOutgoing: Bool = message.user.isCurrentUser
+        ZStack {
+            HStack {
+                switch messageType {
+                case .info:
+                    chatInfoMessageView(message)
+                case .user:
+                    switch positionInGroup {
+                    case .first, .single:
+                        chatUserBubbleView(message, isTitleCell: true, isOutgoing: isOutgoing)
+                    case .middle, .last:
+                        chatUserBubbleView(message, isTitleCell: false, isOutgoing: isOutgoing)
+
+                    }
+//                    Text(message.text)
+
+//                    chatUserBubbleView(message, isTitleCell: isTitleCell, isOutgoing: isOutgoing)
+//                        .onAppear {
+//                            if selected {
+//                                viewModel.markMessageAsRead(message: message)
+//                            }
+//                        }
+                }
+            }
+        }
+        .onAppear {
+            print(message.text)
+        }
+
+    }
+
+    
     private func messageCell(message: ChatMessage, isTitleCell: Bool, isOutgoing: Bool) -> some View {
         ZStack {
             HStack {
@@ -106,6 +184,11 @@ extension TripChatView {
                     chatInfoMessageView(message)
                 case .user:
                     chatUserBubbleView(message, isTitleCell: isTitleCell, isOutgoing: isOutgoing)
+                        .onAppear {
+                            if selected {
+                                viewModel.markMessageAsRead(message: message)
+                            }
+                        }
                 }
             }
         }
@@ -120,6 +203,71 @@ extension TripChatView {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color.Main.grey.opacity(0.3))
             }
+    }
+    
+    private func chatInfoMessageView(_ message: Message) -> some View {
+        HStack {
+            Spacer()
+            
+            Text(message.text)
+                .font(.avenirTagline)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 7)
+                .background {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.Main.grey.opacity(0.3))
+                }
+            
+            Spacer()
+        }
+    }
+
+    private func chatUserBubbleView(_ message: Message, isTitleCell: Bool, isOutgoing: Bool) -> some View {
+        HStack {
+            if isOutgoing {
+                HStack {
+                    Spacer()
+                }
+            } else {
+                authorImage(message.user.avatarURL, isTitleCell: isTitleCell)
+            }
+            
+            HStack {
+                if case .error(let draft) = message.status, isOutgoing {
+                    Button {
+                        viewModel.resend(message: draft)
+                    } label: {
+                        Image(systemName: "exclamationmark.circle.fill")
+                            .font(.avenirSubtitle)
+                            .foregroundStyle(Color.Main.TLStrongWhite, Color.Main.accentRed)
+                    }
+
+                }
+
+                VStack(alignment: isOutgoing ? .trailing : .leading) {
+                    if isTitleCell {
+                        authorNameView(message.user.name, isOutgoing: isOutgoing)
+                    }
+                    chatMessageView(message.text)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .foregroundColor(isOutgoing ? Color.Main.TLStrongWhite : Color.Main.black)
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(isOutgoing ? Color.Chat.outgoingBubble.opacity(message.status == .sending ? 0.6 : 1) : Color.Chat.incomingBubble)
+                        .shadow(color: .Main.black.opacity(0.3), radius: 2, x: 0, y: 0)
+                }
+            }
+            .padding(isOutgoing ? .leading : .trailing, 30)
+            .padding(.top, isTitleCell ? 8 : 0)
+            
+            if !isOutgoing {
+                Spacer()
+            } else {
+                authorImage(message.user.avatarURL, isTitleCell: isTitleCell)
+            }
+        }
     }
     
     private func chatUserBubbleView(_ message: ChatMessage, isTitleCell: Bool, isOutgoing: Bool) -> some View {

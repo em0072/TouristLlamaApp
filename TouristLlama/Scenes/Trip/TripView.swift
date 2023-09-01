@@ -110,6 +110,7 @@ Spacer()
                 } label: {
                     Text(String.Main.cancel)
                         .font(.avenirBody)
+                        .foregroundColor(.Main.TLStrongBlack)
                         .underline()
                 }
             }
@@ -139,11 +140,12 @@ Spacer()
                     } label: {
                         Text(String.Main.accept)
                             .font(.avenirBody)
+                            .foregroundColor(.Main.TLStrongBlack)
                             .padding(.vertical, 6)
                             .padding(.horizontal, 12)
                             .background {
                                 Capsule()
-                                    .fill(Color.Main.green)
+                                    .fill(Color.Main.green.opacity(0.7))
                             }
                     }
                     
@@ -152,11 +154,12 @@ Spacer()
                     } label: {
                         Text(String.Main.reject)
                             .font(.avenirBody)
+                            .foregroundColor(.Main.TLStrongBlack)
                             .padding(.vertical, 6)
                             .padding(.horizontal, 12)
                             .background {
                                 Capsule()
-                                    .fill(Color.Main.accentRed)
+                                    .fill(Color.Main.accentRed.opacity(0.7))
                             }
                     }
 
@@ -190,6 +193,7 @@ Spacer()
                     viewModel.joinButtonAction()
                 } label: {
                     Text(String.Trip.requestToJoinAgain)
+                        .foregroundColor(.Main.TLStrongBlack)
                         .font(.avenirBody)
                         .underline()
                 }
@@ -220,6 +224,7 @@ Spacer()
                     viewModel.joinButtonAction()
                 } label: {
                     Text(String.Trip.requestToJoinAgain)
+                        .foregroundColor(.Main.TLStrongBlack)
                         .font(.avenirBody)
                         .underline()
                 }
@@ -250,7 +255,7 @@ Spacer()
                 }.tag(TripViewModel.TabSelection.details)
                 .tint(Color.Main.black)
             
-            TripChatView(title: viewModel.trip.name, chat: viewModel.trip.chat)
+            TripChatView(title: viewModel.trip.name, chat: viewModel.trip.chat, selected: viewModel.selectedTab == .chats)
                 .tabItem {
                     Label(String.Trip.discussionTitle, systemImage: "text.bubble.fill")
                 }.tag(TripViewModel.TabSelection.chats)

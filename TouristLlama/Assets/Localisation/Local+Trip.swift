@@ -111,6 +111,9 @@ extension String {
         //MARK: - User Search
         static let userSearchInitialInstruction = String.localized("userSearchInitialInstruction")
 
+        // MARK: - Chat
+        static let chatNewMessages = String.localized("tripChatNewMessages")
+
     }
     
 

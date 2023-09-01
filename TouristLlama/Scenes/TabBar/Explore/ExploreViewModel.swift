@@ -11,7 +11,8 @@ import Dependencies
 class ExploreViewModel: ViewModel {
     
     @Dependency(\.tripsAPI) var tripAPI
-    
+    @Dependency(\.userAPI) var userAPI
+
     @Published var searchPrompt: String = ""
     @Published var isSearching: Bool = false {
         didSet {
@@ -74,6 +75,16 @@ class ExploreViewModel: ViewModel {
     func set(_ filters: Filters) {
         self.filters = filters
         self.requestTrips()
+    }
+    
+    func shouldShowNotificationBadge(_ trip: Trip) -> Bool {
+        guard let currentUser = userAPI.currentUser else { return false }
+        for request in trip.requests {
+            if request.applicant.id == currentUser.id && request.status == .invitePending {
+                return true
+            }
+        }
+        return false
     }
     
     private func subscribeToSearchTerm() {

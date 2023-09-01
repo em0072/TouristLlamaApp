@@ -7,11 +7,14 @@
 
 import Foundation
 import Dependencies
+import Combine
 
 class MyTripsViewModel: ViewModel {
     
     @Dependency(\.tripsAPI) var tripsAPI
     @Dependency(\.userAPI) var userAPI
+    @Dependency(\.chatAPI) var chatAPI
+    @Dependency(\.userDefaultsController) var userDefaultsController
 
     enum ViewDataMode {
         case ongoing
@@ -19,12 +22,16 @@ class MyTripsViewModel: ViewModel {
     }
         
     @Published var isShowingNewTripCreation = false
+    @Published var myTrips: [Trip] = [] {
+        didSet {
+            sortTrips()
+        }
+    }
     @Published var myOngoingTrips: [Trip] = []
     @Published var myFutureTrips: [Trip] = []
     @Published var myPastTrips: [Trip] = []
-//    @Published var selectedTrip: Trip?
     @Published var tripOpenState: TripOpenState?
-
+    @Published var chatPublishers = [AnyCancellable]()
     
     @Published var viewDataMode: ViewDataMode = .ongoing
     
@@ -48,12 +55,21 @@ class MyTripsViewModel: ViewModel {
         tripOpenState = .chat(trip)
     }
     
+    func tripCellIcons(_ trip: Trip) -> [MyTripsCellView.Icon] {
+        var icons = [MyTripsCellView.Icon]()
+        if trip.requestsPendingCount > 0 {
+            icons.append(.requests)
+        }
+        if trip.lastMessage?.id != userDefaultsController.getLastMessageIf(for: trip.id) {
+            icons.append(.chat)
+        }
+        return icons
+    }
+    
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
         
         subscribeToMyTripsUpdates()
-        
-//        subscribeToUserUpdates()
     }
     
     private func subscribeToMyTripsUpdates() {
@@ -61,26 +77,32 @@ class MyTripsViewModel: ViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] myTrips in
                 guard let self else { return }
-                self.clearTripsData()
-                self.sortTrips(myTrips)
+                self.myTrips = myTrips
                 if self.tripsAPI.myTripsIsLoaded {
                     self.state = .content
+                    self.subscribeToChatUpdates()
                 }
             }
             .store(in: &publishers)
     }
-
-    //    private func subscribeToUserUpdates() {
-//        userAPI.$currentUser
-//            .receive(on: RunLoop.main)
-//            .sink { [weak self] currentUser in
-//                if currentUser == nil {
-//                    self?.selectedTrip = nil
-//                }
-//            }
-//            .store(in: &publishers)
-//    }
-
+    
+    private func subscribeToChatUpdates() {
+        chatPublishers.removeAll()
+        for trip in myTrips {
+            guard let chatId = trip.lastMessage?.chatId else { continue }
+            chatAPI.subscribeToChatUpdates(for: chatId)
+                .receive(on: RunLoop.main)
+                .sink { [weak self] message in
+                    guard let self else { return }
+                    let tripChatId = trip.lastMessage?.chatId
+                    let messageChatId = message.chatId
+                    if tripChatId == messageChatId, let tripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
+                        myTrips[tripIndex].lastMessage = message
+                    }
+                }
+                .store(in: &chatPublishers)
+        }
+    }
     
     private func clearTripsData() {
         myFutureTrips.removeAll()
@@ -88,8 +110,9 @@ class MyTripsViewModel: ViewModel {
         myPastTrips.removeAll()
     }
     
-    private func sortTrips(_ allTrips: [Trip]) {
-        for trip in allTrips {
+    private func sortTrips() {
+        clearTripsData()
+        for trip in myTrips {
             if trip.startDate > Date().removeTimeStamp {
                 myFutureTrips.append(trip)
             } else if trip.endDate >= Date().removeTimeStamp {
@@ -99,42 +122,4 @@ class MyTripsViewModel: ViewModel {
             }
         }
     }
-        
-//    private func getMyTrips() async {
-//            do {
-//                let myTrips = try await tripsAPI.getMyTrips()
-//                myFutureTrips.removeAll()
-//                myOngoingTrips.removeAll()
-//                myPastTrips.removeAll()
-//                for trip in myTrips {
-//                    if trip.startDate > Date() {
-//                        myFutureTrips.append(trip)
-//                    } else if trip.endDate > Date() {
-//                        myOngoingTrips.append(trip)
-//                    } else {
-//                        myPastTrips.append(trip)
-//                    }
-//                }
-//                self.state = .content
-//            } catch {
-//                self.error = error
-//            }
-//    }
-    
-//    @Sendable
-//    func updateData() async {
-//        switch viewDataMode {
-//        case .ongoing:
-//            await getMyTrips()
-//
-//        case .past:
-//            return
-//        }
-//    }
-    
-//    func updateMyTrips() {
-//        Task {
-//            await getMyTrips()
-//        }
-//    }
 }

@@ -36,7 +36,7 @@ extension Trip {
              participants: [.test, .testNotOwner, .testNoPhoto],
              ownerId: User.test.id,
              requests: [
-                        .testInvitationPending
+                .testRequestPending
                        ])
     }
 

@@ -57,6 +57,9 @@
 		75516FD22A9F44DB00816150 /* SearchingUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD12A9F44DB00816150 /* SearchingUsersView.swift */; };
 		75516FD42A9F44F300816150 /* SearchingUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD32A9F44F300816150 /* SearchingUsersViewModel.swift */; };
 		75516FD72A9F4F8100816150 /* SearchingUsersListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD62A9F4F8100816150 /* SearchingUsersListCell.swift */; };
+		755170012A9F84EA00816150 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755170002A9F84E900816150 /* NotificationsController.swift */; };
+		755170032AA0A5E800816150 /* UserDefaultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755170022AA0A5E800816150 /* UserDefaultsController.swift */; };
+		755170062AA1CAC100816150 /* ExyteChat in Frameworks */ = {isa = PBXBuildFile; productRef = 755170052AA1CAC100816150 /* ExyteChat */; };
 		7557A8CE2A96266200F402A9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8CD2A96266200F402A9 /* LoadingView.swift */; };
 		7557A8D02A9626BA00F402A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8CF2A9626BA00F402A9 /* ErrorView.swift */; };
 		7557A8D22A96283F00F402A9 /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8D12A96283F00F402A9 /* NoResultsView.swift */; };
@@ -233,6 +236,8 @@
 		75516FD12A9F44DB00816150 /* SearchingUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersView.swift; sourceTree = "<group>"; };
 		75516FD32A9F44F300816150 /* SearchingUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersViewModel.swift; sourceTree = "<group>"; };
 		75516FD62A9F4F8100816150 /* SearchingUsersListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersListCell.swift; sourceTree = "<group>"; };
+		755170002A9F84E900816150 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		755170022AA0A5E800816150 /* UserDefaultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsController.swift; sourceTree = "<group>"; };
 		7557A8CD2A96266200F402A9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7557A8CF2A9626BA00F402A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7557A8D12A96283F00F402A9 /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
@@ -359,6 +364,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755170062AA1CAC100816150 /* ExyteChat in Frameworks */,
 				7557A8D82A9782B400F402A9 /* Kingfisher in Frameworks */,
 				75ED7A002A826FFC0078D103 /* AlertToast in Frameworks */,
 				75DE43212A86BD0700D42B9D /* Alamofire in Frameworks */,
@@ -680,6 +686,8 @@
 				75ED79EA2A8260B40078D103 /* Dependencies.swift */,
 				75BC4A8B2A8116FE00B6F6CE /* Router.swift */,
 				75336BBB2A85069200031D5C /* LocationSearch.swift */,
+				755170002A9F84E900816150 /* NotificationsController.swift */,
+				755170022AA0A5E800816150 /* UserDefaultsController.swift */,
 				75ED79EC2A8260DB0078D103 /* Backendless */,
 				75ED79E62A8260700078D103 /* API */,
 				75ED7A012A8270290078D103 /* ViewState */,
@@ -1066,6 +1074,7 @@
 				75DE43202A86BD0700D42B9D /* Alamofire */,
 				75DE43272A8A0A6F00D42B9D /* WaterfallGrid */,
 				7557A8D72A9782B400F402A9 /* Kingfisher */,
+				755170052AA1CAC100816150 /* ExyteChat */,
 			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
@@ -1101,6 +1110,7 @@
 				75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				75DE431F2A86BD0700D42B9D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				755170042AA1CAC100816150 /* XCRemoteSwiftPackageReference "Chat" */,
 			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
@@ -1155,6 +1165,7 @@
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
 				753F95412A935976005B55B5 /* ProfileViewModel.swift in Sources */,
+				755170012A9F84EA00816150 /* NotificationsController.swift in Sources */,
 				75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */,
 				7557A8F02A9D210F00F402A9 /* TripManageMembersViewModel.swift in Sources */,
 				75DE43322A8A299400D42B9D /* TripsAPIBackendless.swift in Sources */,
@@ -1236,6 +1247,7 @@
 				75BC4A902A811ACA00B6F6CE /* LogInViewModel.swift in Sources */,
 				75ED79F02A82616B0078D103 /* UserAPIBackendless.swift in Sources */,
 				7557A8D02A9626BA00F402A9 /* ErrorView.swift in Sources */,
+				755170032AA0A5E800816150 /* UserDefaultsController.swift in Sources */,
 				75BC4A8C2A8116FE00B6F6CE /* Router.swift in Sources */,
 				75ED7A032A8270390078D103 /* Loading.swift in Sources */,
 				75DE43732A8E03C600D42B9D /* ChatMessage+test.swift in Sources */,
@@ -1504,6 +1516,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		755170042AA1CAC100816150 /* XCRemoteSwiftPackageReference "Chat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/Chat";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1547,6 +1567,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		755170052AA1CAC100816150 /* ExyteChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 755170042AA1CAC100816150 /* XCRemoteSwiftPackageReference "Chat" */;
+			productName = ExyteChat;
+		};
 		7557A8D72A9782B400F402A9 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */;

@@ -18,6 +18,7 @@
 "select" = "Select";
 "accept" = "Accept";
 "reject" = "Reject";
+"unread" = "Unread";
 
 "charectersLeft" = "charecters left";
 

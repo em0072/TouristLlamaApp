@@ -75,8 +75,12 @@ extension MyTripsView {
                     Button {
                         viewModel.openDetails(for: trip)
                     } label: {
-                        MyTripsCellView(trip: trip, isHighlighted: isHighlighted) {
+                        MyTripsCellView(trip: trip,
+                                        icons: viewModel.tripCellIcons(trip),
+                                        isHighlighted: isHighlighted) {
                             viewModel.openMembersManage(for: trip)
+                        } onChatOpen: {
+                            viewModel.openChat(for: trip)
                         }
                             .opacity(isDimmed ? 0.5 : 1)
                     }
