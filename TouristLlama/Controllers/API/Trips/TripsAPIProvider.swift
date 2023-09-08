@@ -20,6 +20,7 @@ protocol TripsAPIProvider {
     func answerTravelRequest(request: TripRequest, approved: Bool) async throws -> TripRequest
     func getTrip(for tripId: String) async throws -> Trip
     func removeUser(tripId: String, userId: String) async throws
+    func cancelInvite(tripId: String, userId: String) async throws
     func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest
     func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest
     func leaveTrip(tripId: String) async throws

@@ -5,7 +5,7 @@
 //  Created by Evgeny Mitko on 28/08/2023.
 //
 
-import Foundation
+import SwiftUI
 import Dependencies
 
 class TripManageMembersViewModel: ViewModel {
@@ -61,11 +61,34 @@ class TripManageMembersViewModel: ViewModel {
     
     func deleteAction() {
         guard let userToRemove else { return }
+        
+        if trip.participants.contains(userToRemove) {
+            removeUser(user: userToRemove)
+        } else if invitationsPending.contains(where: { $0.applicant.id == userToRemove.id }) {
+            cancelUserInvite(user: userToRemove)
+        }
+    }
+    
+    private func removeUser(user: User) {
         loadingState = .loading
         Task {
             do {
-                try await tripAPI.removeUser(tripId: trip.id, userId: userToRemove.id)
+                try await tripAPI.removeUser(tripId: trip.id, userId: user.id)
                 deleteMemberFromTrip()
+                loadingState = .none
+            } catch {
+                self.error = error
+                loadingState = .none
+            }
+        }
+    }
+    
+    private func cancelUserInvite(user: User) {
+        loadingState = .loading
+        Task {
+            do {
+                try await tripAPI.cancelInvite(tripId: trip.id, userId: user.id)
+                deleteMemberFromInvite()
                 loadingState = .none
             } catch {
                 self.error = error
@@ -136,9 +159,17 @@ class TripManageMembersViewModel: ViewModel {
     
     private func deleteMemberFromTrip() {
         guard let userToRemove, let userIndex = trip.participants.firstIndex(where: { $0.id == userToRemove.id }) else { return }
-        trip.participants.remove(at: userIndex)
+        _ = withAnimation {
+            trip.participants.remove(at: userIndex)
+        }
     }
     
+    private func deleteMemberFromInvite() {
+        guard let userToRemove, let inviteIndex = invitationsPending.firstIndex(where: { $0.applicant.id == userToRemove.id }) else { return }
+        _ = withAnimation {
+            invitationsPending.remove(at: inviteIndex)
+        }
+    }
     
     
     private func sortData() {

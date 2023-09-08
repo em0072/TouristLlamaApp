@@ -44,6 +44,11 @@ class TripsAPIMock: TripsAPIProvider {
     }
     
     func removeUser(tripId: String, userId: String) async throws {
+        
+    }
+    
+    func cancelInvite(tripId: String, userId: String) async throws {
+        
     }
     
     func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest {

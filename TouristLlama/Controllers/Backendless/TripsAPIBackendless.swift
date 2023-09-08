@@ -156,6 +156,7 @@ class TripsAPIBackendless: TripsAPIProvider {
         }, errorHandler: { fault in
             print("Error: \(fault.message ?? "")")
         })
+        
     }
     
     func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void) {
@@ -202,6 +203,17 @@ class TripsAPIBackendless: TripsAPIProvider {
         return try await withCheckedThrowingContinuation { continuation in
             let parameters: [String: Any] = ["tripId": tripId, "userId": userId]
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "removeUser", parameters: parameters) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func cancelInvite(tripId: String, userId: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters: [String: Any] = ["tripId": tripId, "userId": userId]
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "cancelInvite", parameters: parameters) { response in
                 continuation.resume(returning: ())
             } errorHandler: { error in
                 continuation.resume(throwing: error)

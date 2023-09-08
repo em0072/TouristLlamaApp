@@ -5491,8 +5491,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "answerTravelRequest(request:approved:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5507,8 +5507,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "answerTravelRequest(request:approved:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5523,8 +5523,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "answerTravelRequest(request:approved:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5539,8 +5539,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "answerTravelRequest(request:approved:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5809,10 +5809,10 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "subscribeToTripUpdates()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5841,10 +5841,10 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "subscribeToTripUpdates()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5921,10 +5921,10 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "subscribeToTripUpdates()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -5937,10 +5937,10 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "subscribeToTripUpdates()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6031,8 +6031,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "removeUser(tripId:userId:)"
             landmarkType = "7">
             <Locations>
@@ -6095,8 +6095,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "invite(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6111,8 +6111,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "sendJoinInvite(tripId:userId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6127,8 +6127,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "sendJoinInvite(tripId:userId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6143,8 +6143,8 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "sendJoinInvite(tripId:userId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6415,8 +6415,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "deleteMemberFromTrip()"
             landmarkType = "7">
          </BreakpointContent>
@@ -6431,8 +6431,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "deleteMemberFromTrip()"
             landmarkType = "7">
             <Locations>
@@ -6497,22 +6497,6 @@
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "702CF251-32D6-4785-84C5-40CFD5636A97"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "deleteAction()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7559,25 +7543,25 @@
             filePath = "TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "subscribeToTripDeletion(for:onDelete:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "BC1FDADC-4B9F-487E-9783-803A905C8F3C - c7c7773d545dca2d"
+                  uuid = "BC1FDADC-4B9F-487E-9783-803A905C8F3C - cdbd2e6c8b1cc1b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TouristLlama.TripsAPIBackendless.subscribeToTripDeletion(for: Swift.String, onDelete: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "TouristLlama.TripsAPIBackendless.subscribeToTripUpdates(for: Swift.String, onNewUpdate: (Swift.String) -&gt; ()) -&gt; ()"
                   moduleName = "TouristLlama"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
-                  offsetFromSymbolStart = "572">
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "1892">
                </Location>
                <Location
                   uuid = "BC1FDADC-4B9F-487E-9783-803A905C8F3C - 17e261d0d6cb1c78"
@@ -7592,21 +7576,6 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "167"
                   endingLineNumber = "167"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  uuid = "BC1FDADC-4B9F-487E-9783-803A905C8F3C - 17e261d0d6cb1c59"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; () in TouristLlama.TripsAPIBackendless.subscribeToTripDeletion(for: Swift.String, onDelete: (Swift.String) -&gt; ()) -&gt; ()"
-                  moduleName = "TouristLlama"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/Backendless/TripsAPIBackendless.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166"
                   offsetFromSymbolStart = "412">
                </Location>
             </Locations>
@@ -7622,13 +7591,13 @@
             filePath = "TouristLlama/Controllers/API/Trips/TripsAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "deleteTrip(with:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "5287E448-C21D-457F-8964-163118E0944D - fcbbbf7e34cad766"
+                  uuid = "5287E448-C21D-457F-8964-163118E0944D - fcbbbf7e34cad7b9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -7638,12 +7607,12 @@
                   urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/API/Trips/TripsAPI.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "222"
-                  endingLineNumber = "222"
-                  offsetFromSymbolStart = "832">
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "716">
                </Location>
                <Location
-                  uuid = "5287E448-C21D-457F-8964-163118E0944D - fcbbbf7e34cad745"
+                  uuid = "5287E448-C21D-457F-8964-163118E0944D - fcbbbf7e34cad7b9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -7653,8 +7622,8 @@
                   urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Controllers/API/Trips/TripsAPI.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "223"
-                  endingLineNumber = "223"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
                   offsetFromSymbolStart = "368">
                </Location>
             </Locations>
@@ -8365,8 +8334,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "canInvite(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -8381,8 +8350,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "invite(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -8413,8 +8382,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "invite(_:)"
             landmarkType = "7">
             <Locations>
@@ -8491,8 +8460,8 @@
             filePath = "TouristLlama/Scenes/Members Managment/TripManageMembersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "invite(_:)"
             landmarkType = "7">
          </BreakpointContent>

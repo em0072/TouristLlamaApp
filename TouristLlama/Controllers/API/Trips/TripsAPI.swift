@@ -105,6 +105,10 @@ class TripsAPI {
         try await provider.removeUser(tripId: tripId, userId: userId)
     }
     
+    func cancelInvite(tripId: String, userId: String) async throws {
+        try await provider.cancelInvite(tripId: tripId, userId: userId)
+    }
+    
     func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest {
         let request = try await provider.sendJoinInvite(tripId: tripId, userId: userId)
         updateTrips(with: request)
