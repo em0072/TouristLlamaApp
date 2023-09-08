@@ -18,7 +18,8 @@ extension User {
              dateOfBirth: nil,
              profilePicture: "https://images.unsplash.com/photo-1563409236302-8442b5e644df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZHVja3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
              about: "This is 'About me' text. It tells a little bit about me and what I love doing. Alos it explains how I like to travel.",
-             memberSince: Date())
+             memberSince: Date(),
+             friends: [])
     }
     
     static var testNotOwner: User {
@@ -31,7 +32,8 @@ extension User {
              dateOfBirth: nil,
              profilePicture: "https://images.pexels.com/photos/209035/pexels-photo-209035.jpeg?cs=srgb&dl=pexels-pixabay-209035.jpg&fm=jpg",
              about: "About me",
-             memberSince: Date())
+             memberSince: Date(),
+             friends: [])
         
     }
     
@@ -46,7 +48,8 @@ extension User {
              dateOfBirth: nil,
              profilePicture: nil,
              about: "About me",
-             memberSince: Date())
+             memberSince: Date(),
+             friends: [])
     }
     
     static var testNotInvited: User {
@@ -59,7 +62,8 @@ extension User {
              dateOfBirth: nil,
              profilePicture: nil,
              about: "About me",
-             memberSince: Date())
+             memberSince: Date(),
+             friends: [])
     }
 
 }

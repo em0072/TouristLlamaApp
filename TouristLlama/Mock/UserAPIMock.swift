@@ -10,7 +10,7 @@ import Foundation
 class UserAPIMock: UserAPIProvider {
     
     func getCurrentUser() async -> User? {
-        return User.testNotInvited
+        return User.test
     }
     
     func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
@@ -37,11 +37,11 @@ class UserAPIMock: UserAPIProvider {
         return User.test
     }
     
-    func get(user: User) async throws -> User {
+    func get(userId: String) async throws -> User {
         .testNotOwner
     }
     
-    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
+    func getUserCounters(userId: String) async throws -> (tripsCount: Int, friendsCount: Int) {
         return (tripsCount: 23, friendsCount: 234)
     }
     
@@ -56,4 +56,33 @@ class UserAPIMock: UserAPIProvider {
     func searchUsers(searchPrompt: String) async throws -> [User] {
         return [.testNoPhoto, .testNotOwner, .testNotInvited]
     }
+    
+    func getCurrentUserFriends() async throws -> [User] {
+        [.testNotOwner, .testNoPhoto]
+    }
+    
+    func addFriend(userId: String) async throws -> [User] {
+        [.testNotOwner, .testNoPhoto]
+    }
+    
+    func removeFriend(userId: String) async throws -> [User] {
+        [.testNotOwner]
+    }
+
+    func reportUser(userId: String, reason: String) async throws {
+        
+    }
+    
+    func blockUser(userId: String) async throws {
+        
+    }
+    
+    func unblockUser(userId: String) async throws {
+        
+    }
+
+    func checkIfUserBlocked(userId: String) async throws -> Bool {
+        return true
+    }
+
 }

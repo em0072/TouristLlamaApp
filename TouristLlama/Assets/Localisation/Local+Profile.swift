@@ -43,8 +43,14 @@ extension String {
         static let dateOfBirthSubtitle = String.localized("editProfileDateOfBirthSubtitle")
         static let descriptionPlaceholder = String.localized("editProfileDescriptionPlaceholder")
         static let personalInformationSettings = String.localized("editProfilePersonalInformationSettings")
+    }
+    
+    // MARK: - Friends
+    enum Friends {
+        static let noFriendsTitle = String.localized("friendsManageNoFriendsTitle")
+        static let myFriends = String.localized("friendsManageMyFriends")
+        static let selectFromFriend = String.localized("friendsManageSelectFromFriend")
 
-        
     }
     
     private static func localized(_ key: String) -> String {

@@ -12,8 +12,11 @@ import Dependencies
 class ChatAPI {
     
     @Dependency(\.userDefaultsController) var userDefaultsController
-    
+    @Dependency(\.tripsAPI) var tripsAPI
+
     private let provider: ChatAPIProvider
+    
+    let pageSize: Int = 100
     
     var publishers: [String: PassthroughSubject<ChatMessage, Never>] = [:]
     
@@ -29,13 +32,14 @@ class ChatAPI {
         publishers[chatId] = publisher
         provider.subscribeToChatUpdates(for: chatId) { [weak self] message in
             guard let self else { return }
-            publishers[chatId]?.send(message)
+            self.publishers[chatId]?.send(message)
+//            self.tripsAPI.updateLastMessage(chatId: chatId, message: message)
         }
         return publisher.eraseToAnyPublisher()
     }
     
-    func getTripChat(for tripId: String) async throws -> TripChat {
-        try await provider.getChat(for: tripId)
+    func getTripChat(tripId: String, pageOffset: Int = 0) async throws -> TripChat {
+        try await provider.getChat(tripId: tripId, pageSize: pageSize, pageOffset: pageOffset)
     }
 
     func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {

@@ -155,7 +155,7 @@ extension EditProfileView {
                                 
                                 ProgressView()
                                     .progressViewStyle(.circular)
-                                    .tint(.Main.TLStrongWhite)
+                                    .tint(.Main.strongWhite)
                             }
                         }
                     }

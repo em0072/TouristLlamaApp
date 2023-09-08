@@ -27,6 +27,8 @@ class TripsAPIMock: TripsAPIProvider {
     
     func subscribeToTripUpdates(for tripId: String, onNewUpdate: @escaping (String) -> Void) {}
     
+    func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void) {}
+    
     func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
         return .testRequestPending
     }
@@ -50,5 +52,14 @@ class TripsAPIMock: TripsAPIProvider {
     
     func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
         return accepted ? .testInvitationAccepted : .testInvitationRejected
+    }
+    
+    func leaveTrip(tripId: String) async throws {
+    }
+    
+    func deleteTrip(tripId: String) async throws {
+        
+    }
+    func reportTrip(tripId: String, reason: String) async throws {
     }
 }

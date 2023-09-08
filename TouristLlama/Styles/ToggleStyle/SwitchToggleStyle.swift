@@ -10,7 +10,7 @@ import SwiftUI
 struct SwitchToggleStyle: ToggleStyle {
     var onColor = Color.Main.accentBlue
     var offColor = Color.Main.TLBackgroundActive
-    var thumbOnColor = Color.Main.TLStrongWhite
+    var thumbOnColor = Color.Main.strongWhite
     var thumbOffColor = Color.Main.TLInactiveGrey
     
     enum Size {
@@ -26,7 +26,7 @@ struct SwitchToggleStyle: ToggleStyle {
     
     init(onColor: Color = Color.Main.accentBlue,
          offColor: Color = Color.Main.TLBackgroundActive,
-         thumbOnColor: Color = Color.Main.TLStrongWhite,
+         thumbOnColor: Color = Color.Main.strongWhite,
          thumbOffColor: Color = Color.Main.TLInactiveGrey,
          size: Size) {
         self.onColor = onColor

@@ -8,7 +8,7 @@
 import Foundation
 import Dependencies
 
-// MARK: - UserAPIKey
+// MARK: - UserAPI
 private enum UserAPIKey: DependencyKey {
     static let liveValue = UserAPI(provider: UserAPIBackendless())
     static let previewValue = UserAPI(provider: UserAPIMock())
@@ -21,7 +21,7 @@ extension DependencyValues {
     }
 }
 
-// MARK: - TripsAPIKey
+// MARK: - TripsAPI
 private enum TripsAPIKey: DependencyKey {
     static let liveValue = TripsAPI(provider: TripsAPIBackendless())
     static let previewValue = TripsAPI(provider: TripsAPIMock())
@@ -34,7 +34,7 @@ extension DependencyValues {
     }
 }
 
-// MARK: - ChatAPIKey
+// MARK: - ChatAPI
 private enum ChatAPIKey: DependencyKey {
     static let liveValue = ChatAPI(provider: ChatAPIBackendless())
     static let previewValue = ChatAPI(provider: ChatAPIMock())
@@ -44,6 +44,19 @@ extension DependencyValues {
     var chatAPI: ChatAPI {
         get { self[ChatAPIKey.self] }
         set { self[ChatAPIKey.self] = newValue }
+    }
+}
+
+// MARK: - NotificationsAPI
+private enum NotificationsAPIKey: DependencyKey {
+    static let liveValue = NotificationsAPI(provider: NotificationsAPIBackendless())
+    static let previewValue = NotificationsAPI(provider: NotificationsAPIMock())
+}
+
+extension DependencyValues {
+    var notificationsAPI: NotificationsAPI {
+        get { self[NotificationsAPIKey.self] }
+        set { self[NotificationsAPIKey.self] = newValue }
     }
 }
 

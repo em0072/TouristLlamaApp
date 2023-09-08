@@ -34,7 +34,7 @@ extension StageSelector {
                     Text(stage.name)
                         .multilineTextAlignment(.center)
                         .font(.avenirTagline)
-                        .foregroundColor(isCurrent(stage) ? .Main.TLStrongWhite : .Main.black)
+                        .foregroundColor(isCurrent(stage) ? .Main.strongWhite : .Main.black)
                         .bold(currentStage == stage)
                         .lineLimit(2)
                 } else {

@@ -19,7 +19,7 @@ struct MyTripsView: View {
                     contentView
                                         
                 case .loading:
-                    loadingView
+                    LoadingView()
                 }
             }
             .navigationTitle(String.Trips.title)
@@ -36,9 +36,15 @@ struct MyTripsView: View {
             ManageTripView(mode: .create)
             .interactiveDismissDisabled()
         }
-        .fullScreenCover(item: $viewModel.tripOpenState) { tripState in
+        .fullScreenCover(item: $viewModel.tripOpenState, onDismiss: {
+            viewModel.updateMyTrips()
+        }, content: { tripState in
             TripView(openState: tripState)
-        }
+
+        })
+//        .fullScreenCover(item: $viewModel.tripOpenState) { tripState in
+//            TripView(openState: tripState)
+//        }
         .handle(error: $viewModel.error)
     }
 }
@@ -103,16 +109,6 @@ extension MyTripsView {
         IconPlaceholderView(icon: "xmark.circle.fill", text: viewModel.error?.localizedDescription ?? "Something went wrong")
     }
     
-    private var loadingView: some View {
-        VStack {
-            Spacer()
-            
-            ProgressView()
-                .progressViewStyle(.circular)
-            
-            Spacer()
-        }
-    }
 }
 
 struct MyTripsView_Previews: PreviewProvider {

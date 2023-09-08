@@ -37,7 +37,7 @@ struct TripParticipantsImagesView: View {
             .clipShape(Circle())
             .overlay {
                 Circle()
-                    .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
+                    .stroke(Color.Main.strongWhite, lineWidth: 2)
             }
             .offset(x: CGFloat(position * 11) * -1)
     }
@@ -45,12 +45,12 @@ struct TripParticipantsImagesView: View {
     private func restOfMembersIcon( numberOfMembers: Int) -> some View {
         ZStack {
             Circle()
-                .stroke(Color.Main.TLStrongWhite, lineWidth: 2)
+                .stroke(Color.Main.strongWhite, lineWidth: 2)
                 .background(Circle().fill(Color.Main.grey))
                 .frame(width: 37, height: 37)
             Text("+\(numberOfMembers)")
                 .font(.avenirSmallBody.weight(.heavy))
-                .foregroundColor(.Main.TLStrongWhite)
+                .foregroundColor(.Main.strongWhite)
         }
         .offset(x: CGFloat(2 * 11) * -1)
     }

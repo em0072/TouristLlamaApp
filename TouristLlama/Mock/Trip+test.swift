@@ -54,4 +54,22 @@ extension Trip {
              ownerId: User.test.id)
     }
     
+    static func testRequest(_ request: TripRequest) -> Trip {
+        Trip(id: "09iurjvrlnw",
+             name: "My Past Trip",
+             style: .leisure,
+             location: .test,
+             startDate: Date().addingTimeInterval(60 * 60 * 24 * -7),
+             endDate: Date().addingTimeInterval(60 * 60 * 24 * -1),
+             description: "My amazing trip",
+             photo: .test,
+             isPublic: true,
+             participants: [.testNotOwner, .testNoPhoto],
+             ownerId: User.testNotOwner.id,
+             requests: [
+                request
+                       ])
+    }
+    
+    
 }

@@ -36,6 +36,7 @@ extension TouristLlamaApp {
         Backendless.shared.data.of(BackendlessTrip.self).mapToTable(tableName: "Trip")
         Backendless.shared.data.of(BackendlessTripChat.self).mapToTable(tableName: "TripChat")
         Backendless.shared.data.of(BackendlessTripReqest.self).mapToTable(tableName: "TripRequest")
+        Backendless.shared.data.of(BackendlessUserNotification.self).mapToTable(tableName: "Notification")
 
 
     }

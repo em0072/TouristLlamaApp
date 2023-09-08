@@ -12,9 +12,7 @@ struct ExploreView: View {
     @StateObject var viewModel: ExploreViewModel = .init()
     
     var body: some View {
-        VStack {
-            searchFieldView
-                .padding(.horizontal, 20)
+        ZStack {
             
             switch viewModel.state {
             case .loading:
@@ -24,9 +22,15 @@ struct ExploreView: View {
                 contentView
             }
             
+            searchFieldView
+
+        }
+        .background {
+            Color.Main.white
+                .ignoresSafeArea()
         }
         .onAppear {
-            viewModel.requestTrips()
+            viewModel.requestTrips(showingProgress: false)
         }
         .fullScreenCover(item: $viewModel.tripToOpen) { trip in
             TripView(trip: trip)
@@ -44,16 +48,29 @@ struct ExploreView: View {
 extension ExploreView {
     
     private var searchFieldView: some View {
-        FramedTextField(title: nil,
-                        prompt: String.Trips.searchPrompt,
-                        value: $viewModel.searchPrompt,
-                        styles: [.withLeftIcon("magnifyingglass"),
-                                 .withLoading(viewModel.isSearching && !viewModel.searchPrompt.isEmpty),
-                                 .withDeleteButton,
-                                 .withRightButton(icon: "slider.horizontal.3", action: {
-                                     viewModel.openFilters()
-                                 })
-                        ])
+        VStack {
+            FramedTextField(title: nil,
+                            prompt: String.Trips.searchPrompt,
+                            value: $viewModel.searchPrompt,
+                            styles: [.withLeftIcon("magnifyingglass"),
+                                     .withLoading(viewModel.isSearching && !viewModel.searchPrompt.isEmpty),
+                                     .withDeleteButton,
+                                     .withRightButton(icon: "slider.horizontal.3", action: {
+                                         viewModel.openFilters()
+                                     }),
+                                     .backgroundColor(.Main.white.opacity(0.4)),
+                                     .withShadow(.inner(color: .black.opacity(0.5), radius: 1, x: 0, y: 0))
+                            ])
+            .padding(.horizontal, 20)
+            .padding(.bottom, 12)
+            .background {
+                Rectangle()
+                    .fill(.thinMaterial)
+                    .ignoresSafeArea()
+            }
+            
+            Spacer()
+        }
     }
     
     @ViewBuilder
@@ -67,7 +84,6 @@ extension ExploreView {
     }
     
     private var listView: some View {
-        VStack {            
             ScrollView {
                 VStack(spacing: 18) {
                     ForEach(viewModel.trips) { trip in
@@ -76,7 +92,10 @@ extension ExploreView {
                 }
                 .padding(.horizontal, 20)
             }
-        }
+            .safeAreaInset(edge: .top) {
+                Spacer()
+                    .frame(height: 70)
+            }
     }
     
     @ViewBuilder

@@ -8,25 +8,19 @@
 import SwiftUI
 
 struct TabBarView: View {
-    
-    enum TabOption {
-        case explore
-        case myTrips
-        case profile
-    }
-    
+        
     @StateObject var viewModel = TabBarViewModel()
     
     var body: some View {
-        TabView {
+        TabView(selection: $viewModel.selectedTab) {
             ExploreView()
                 .tabItem {
                     Label {
                         Text(String.Main.exploreTab)
                     } icon: {
-                        Image(systemName: "safari")
+                        Image(systemName: viewModel.exploreTabIcon)
                     }
-                    .foregroundColor(.Main.accentBlue)
+                    .environment(\.symbolVariants, .none)
                 }
                 .tag(TabOption.explore)
                 .tint(.Main.black)
@@ -36,12 +30,25 @@ struct TabBarView: View {
                     Label {
                         Text(String.Main.myTripsTab)
                     } icon: {
-                        Image(systemName: "calendar")
+                        Image(systemName: viewModel.myTripsTabIcon)
                     }
-                    .foregroundColor(.Main.accentBlue)
+                    .environment(\.symbolVariants, .none)
                 }
                 .tag(TabOption.myTrips)
                 .tint(.Main.black)
+            
+            NotificationsView()
+                .tabItem {
+                    Label {
+                        Text(String.Main.notificationsTab)
+                    } icon: {
+                        Image(systemName: viewModel.notificationsTabIcon)
+                    }
+                    .environment(\.symbolVariants, .none)
+                }
+                .tag(TabOption.notifications)
+                .tint(.Main.black)
+                .badge(viewModel.notificationsBadgeNumber)
             
             ProfileView()
             .tabItem {
@@ -49,8 +56,9 @@ struct TabBarView: View {
                     Text(String.Main.profileTab)
                         .font(.avenirBody)
                 } icon: {
-                    Image(systemName: "person.circle.fill")
+                    Image(systemName: viewModel.profileTabIcon)
                 }
+                .environment(\.symbolVariants, .none)
             }
             .tag(TabOption.profile)
             .tint(.Main.black)

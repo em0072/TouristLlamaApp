@@ -14,8 +14,11 @@ class ProfileViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     
     @Published var user: User?
+    @Published var isUserBlocked: Bool = false
     @Published var counter: (tripsCount: Int, friendsCount: Int)?
     @Published var userToEditProfile: User?
+    @Published var isReportingViewOpen = false
+    @Published var isBlockingViewOpen = false
 
     
     init(user: User?) {
@@ -23,11 +26,41 @@ class ProfileViewModel: ViewModel {
         super.init()
         getUpdatedUser()
         getUserCounters()
+        
     }
     
     var isCurrentUser: Bool {
         return user?.id == userAPI.currentUser?.id
     }
+    
+    var blockConfirmationTitle: String {
+        isUserBlocked ? String.Main.unblockTitle : String.Main.blockTitle
+    }
+    
+    var blockConfirmationMessage: String {
+        isUserBlocked ? String.Main.unblockMessage : String.Main.blockMessage
+    }
+
+    var blockConfirmationActionString: String {
+        isUserBlocked ? String.Main.unblock : String.Main.block
+    }
+    
+    var blockMenuButtonTitle: String {
+        isUserBlocked ? String.Main.unblock : String.Main.block
+    }
+
+    var blockMenuButtonIcon: String {
+        isUserBlocked ? "person.crop.circle.badge.checkmark.fill" : "person.crop.circle.badge.xmark.fill"
+    }
+
+    func blockConfirmationAction() {
+        if isUserBlocked {
+            unblockUser()
+        } else {
+            blockUser()
+        }
+    }
+
     
     func openEditProfile() {
         if isCurrentUser {
@@ -42,10 +75,21 @@ class ProfileViewModel: ViewModel {
         } else if let userToLoad = user {
             Task {
                 do {
-                    user = try await userAPI.get(user: userToLoad)
+                    self.user = try await userAPI.get(userId: userToLoad.id)
                 } catch {
                     self.error = error
                 }
+            }
+            checkIfUserIsBlocked(userId: userToLoad.id)
+        }
+    }
+    
+    private func checkIfUserIsBlocked(userId: String) {
+        Task {
+            do {
+                self.isUserBlocked = try await userAPI.checkIfUserBlocked(userId: userId)
+            } catch {
+                self.error = error
             }
         }
     }
@@ -61,11 +105,11 @@ class ProfileViewModel: ViewModel {
         }
     }
     
-    private func getUserCounters() {
+    func getUserCounters() {
         Task {
             do {
                 if let user {
-                    counter = try await userAPI.getUserCounters(user: user)
+                    counter = try await userAPI.getUserCounters(userId: user.id)
                 }
             } catch {
                 self.error = error
@@ -73,4 +117,60 @@ class ProfileViewModel: ViewModel {
         }
     }
     
+    func reportUserButtonAction() {
+        isReportingViewOpen = true
+    }
+    
+    func blockUserButtonAction() {
+        isBlockingViewOpen = true
+    }
+        
+    func reportUser(reason: String) {
+        guard let user else { return }
+        loadingState = .loading
+        Task {
+            do {
+                try await userAPI.reportUser(userId: user.id, reason: reason)
+                loadingState = .none
+                isReportingViewOpen = false
+            } catch {
+                self.error = error
+                loadingState = .none
+            }
+        }
+    }
+    
+    private func blockUser() {
+        guard let user else { return }
+        loadingState = .loading
+        Task {
+            do {
+                try await userAPI.blockUser(userId: user.id)
+                loadingState = .none
+                isBlockingViewOpen = false
+                isUserBlocked = true
+            } catch {
+                self.error = error
+                loadingState = .none
+            }
+        }
+    }
+    
+    private func unblockUser() {
+        guard let user else { return }
+        loadingState = .loading
+        Task {
+            do {
+                try await userAPI.unblockUser(userId: user.id)
+                loadingState = .none
+                isBlockingViewOpen = false
+                isUserBlocked = false
+            } catch {
+                self.error = error
+                loadingState = .none
+            }
+        }
+    }
+
+
 }

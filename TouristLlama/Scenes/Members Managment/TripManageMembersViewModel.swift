@@ -79,7 +79,7 @@ class TripManageMembersViewModel: ViewModel {
     }
 
     func canInvite(_ user: User) -> Bool {
-        user.id != trip.ownerId || !trip.participants.contains(user)
+        user.id != trip.ownerId && !trip.participants.contains(user)
     }
     
     func invite(_ user: User) {
@@ -91,8 +91,7 @@ class TripManageMembersViewModel: ViewModel {
                 isInviteViewShown = false
                 loadingState = .none
             } catch {
-                self.error = error
-                loadingState = .none
+                loadingState = .error(error)
             }
         }
     }

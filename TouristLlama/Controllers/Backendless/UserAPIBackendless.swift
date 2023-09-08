@@ -136,9 +136,8 @@ class UserAPIBackendless: UserAPIProvider {
         }
     }
     
-    func get(user: User) async throws -> User {
+    func get(userId: String) async throws -> User {
         return try await withCheckedThrowingContinuation { continuation in
-            let userId = user.id
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "getUser", parameters: userId) { response in
                 guard let backendlessUser = response as? BackendlessUser else {
                     continuation.resume(throwing: CustomError(text: "Cannot parse data to backendless object"))
@@ -155,9 +154,8 @@ class UserAPIBackendless: UserAPIProvider {
         }
     }
     
-    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
+    func getUserCounters(userId: String) async throws -> (tripsCount: Int, friendsCount: Int) {
         return try await withCheckedThrowingContinuation { continuation in
-            let userId = user.id
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "getUserCounter", parameters: userId) { response in
                 guard let dict = response as? [String: Any] else {
                     continuation.resume(throwing: CustomError(text: "Cannot parse data to a dictionary"))
@@ -207,6 +205,7 @@ class UserAPIBackendless: UserAPIProvider {
             }
         }
     }
+    
     func searchUsers(searchPrompt: String) async throws -> [User] {
         return try await withCheckedThrowingContinuation { continuation in
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "searchUsers", parameters: searchPrompt) { response in
@@ -220,6 +219,103 @@ class UserAPIBackendless: UserAPIProvider {
                 continuation.resume(throwing: error)
             }
         }
+    }
+    
+    func getCurrentUserFriends() async throws -> [User] {
+        return try await withCheckedThrowingContinuation { continuation in
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "getCurrentUserFriends", parameters: nil) { response in
+                guard let backendlessUsersArray = response as? [BackendlessUser] else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to array"))
+                    return
+                }
+                let users = backendlessUsersArray.compactMap { User(from: $0) }
+                continuation.resume(returning: users)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func addFriend(userId: String) async throws -> [User] {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters = userId
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "addFriend", parameters: parameters) { response in
+                guard let backendlessUsersArray = response as? [BackendlessUser] else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to array"))
+                    return
+                }
+                let users = backendlessUsersArray.compactMap { User(from: $0) }
+                continuation.resume(returning: users)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    
+    func removeFriend(userId: String) async throws -> [User] {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters = userId
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "removeFriend", parameters: parameters) { response in
+                guard let backendlessUsersArray = response as? [BackendlessUser] else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to array"))
+                    return
+                }
+                let users = backendlessUsersArray.compactMap { User(from: $0) }
+                continuation.resume(returning: users)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+
+    func reportUser(userId: String, reason: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters: [String: Any] = ["userId": userId, "reason": reason]
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "reportUser", parameters: parameters) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func blockUser(userId: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters = userId
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "blockUser", parameters: parameters) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func unblockUser(userId: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters = userId
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "unblockUser", parameters: parameters) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func checkIfUserBlocked(userId: String) async throws -> Bool {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters = userId
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "checkIfUserBlocked", parameters: parameters) { response in
+                guard let bool = response as? Bool else {
+                    continuation.resume(throwing: CustomError(text: "Can't cast to Boolean"))
+                    return
+                }
+                continuation.resume(returning: bool)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+
     }
 
 }

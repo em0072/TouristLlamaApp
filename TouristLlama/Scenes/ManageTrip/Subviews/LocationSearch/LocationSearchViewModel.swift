@@ -92,7 +92,7 @@ struct LocationCompletionViewData: Identifiable {
         self.title = completion.title
         var attributedTitle = AttributedString(completion.title)
         attributedTitle.font = .avenirBody
-        attributedTitle.foregroundColor = .Main.TLText
+        attributedTitle.foregroundColor = .Main.text
         for value in completion.titleHighlightRanges {
             let range = value.rangeValue
             guard let titleRange = Range(range, in: attributedTitle) else { continue }
@@ -103,7 +103,7 @@ struct LocationCompletionViewData: Identifiable {
         self.subtitle = completion.subtitle
         var attributedSubtitle = AttributedString(completion.subtitle)
         attributedSubtitle.font = .avenirSmallBody
-        attributedSubtitle.foregroundColor = .Main.TLText
+        attributedSubtitle.foregroundColor = .Main.text
         for value in completion.subtitleHighlightRanges {
             let range = value.rangeValue
             guard let subtitleRange = Range(range, in: attributedSubtitle) else { continue }

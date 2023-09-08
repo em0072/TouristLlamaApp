@@ -23,11 +23,7 @@ class UserAPI {
             currentUser = await provider.getCurrentUser()
         }
     }
-    
-//    func getCurrentUser() async -> User? {
-//        await provider.getCurrentUser()
-//    }
-    
+        
     @discardableResult
     func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
         return try await provider.registerUser(name: name, username: username, email: email, password: password)
@@ -67,12 +63,12 @@ class UserAPI {
         return updatedUser
     }
     
-    func get(user: User) async throws -> User {
-        try await provider.get(user: user)
+    func get(userId: String) async throws -> User {
+        try await provider.get(userId: userId)
     }
     
-    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int) {
-        try await provider.getUserCounters(user: user)
+    func getUserCounters(userId: String) async throws -> (tripsCount: Int, friendsCount: Int) {
+        try await provider.getUserCounters(userId: userId)
     }
     
     func checkAvailability(of username: String) async throws -> Bool {
@@ -86,4 +82,33 @@ class UserAPI {
     func searchUsers(searchPrompt: String) async throws -> [User] {
         try await provider.searchUsers(searchPrompt: searchPrompt)
     }
+    
+    func getCurrentUserFriends() async throws -> [User] {
+        try await provider.getCurrentUserFriends()
+    }
+    
+    func addFriend(userId: String) async throws -> [User] {
+        try await provider.addFriend(userId: userId)
+    }
+    
+    func removeFriend(userId: String) async throws -> [User] {
+        try await provider.removeFriend(userId: userId)
+    }
+
+    func reportUser(userId: String, reason: String) async throws {
+        try await provider.reportUser(userId: userId, reason: reason)
+    }
+    
+    func blockUser(userId: String) async throws {
+        try await provider.blockUser(userId: userId)
+    }
+    
+    func unblockUser(userId: String) async throws {
+        try await provider.unblockUser(userId: userId)
+    }
+    
+    func checkIfUserBlocked(userId: String) async throws -> Bool {
+        try await provider.checkIfUserBlocked(userId: userId)
+    }
+
 }

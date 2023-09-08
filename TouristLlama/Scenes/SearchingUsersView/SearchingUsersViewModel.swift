@@ -21,16 +21,30 @@ class SearchingUsersViewModel: ViewModel {
         }
     }
     @Published var users: [User] = []
+    @Published var friends: [User] = []
     @Published var selectedUser: User?
     
     override init() {
         super.init()
-        state = .content
+//        state = .content
+        getCurrentUserFriends()
     }
     
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
         subscribeToSearchTerm()
+    }
+    
+    private func getCurrentUserFriends() {
+        Task {
+            do {
+                friends = try await userAPI.getCurrentUserFriends()
+                state = .content
+            } catch {
+                print(error)
+                state = .content
+            }
+        }
     }
         
     private func subscribeToSearchTerm() {

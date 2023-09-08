@@ -19,6 +19,8 @@
 "accept" = "Accept";
 "reject" = "Reject";
 "unread" = "Unread";
+"submit" = "Submit";
+"or" = "Or";
 
 "charectersLeft" = "charecters left";
 
@@ -26,3 +28,17 @@
 "exploreTab" = "Explore";
 "myTripsTab" = "My Trips";
 "profileTab" = "Profile";
+"notificationsTab" = "Notifications";
+
+// MARK: - Reporting
+"report" = "Report";
+"reportReason" = "Report reason";
+"reportReasonPromt" = "Describe a reason for reporting";
+"block" = "Block";
+"blockTitle" = "You are about to block this user";
+"blockMessage" = "By blocking this user they will be unable to find you or add you to a trip";
+"unblock" = "Unblock";
+"unblockTitle" = "You are about to unblock this user";
+"unblockMessage" = "By unblocking this user they will be able to find you or add you to a trip";
+
+

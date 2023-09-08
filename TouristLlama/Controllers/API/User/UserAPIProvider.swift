@@ -16,9 +16,16 @@ protocol UserAPIProvider {
     func recoverPassword(email: String) async throws
     func logout() async throws
     func updateUserProperty(_ properties: [User.Property: Any]) async throws -> User
-    func get(user: User) async throws -> User
-    func getUserCounters(user: User) async throws -> (tripsCount: Int, friendsCount: Int)
+    func get(userId: String) async throws -> User
+    func getUserCounters(userId: String) async throws -> (tripsCount: Int, friendsCount: Int)
     func checkAvailability(of username: String) async throws -> Bool
     func uploadProfilePicture(data: Data) async throws -> String
     func searchUsers(searchPrompt: String) async throws -> [User]
+    func getCurrentUserFriends() async throws -> [User] 
+    func addFriend(userId: String) async throws -> [User]
+    func removeFriend(userId: String) async throws -> [User]
+    func reportUser(userId: String, reason: String) async throws
+    func blockUser(userId: String) async throws
+    func unblockUser(userId: String) async throws
+    func checkIfUserBlocked(userId: String) async throws -> Bool
 }

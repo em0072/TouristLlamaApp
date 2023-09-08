@@ -107,7 +107,7 @@ extension PexelPhotoPickerView {
                     .padding(.horizontal, 5)
                     .background {
                         Capsule()
-                            .fill(Color.Main.TLBackground.opacity(0.5))
+                            .fill(Color.Main.background.opacity(0.5))
                     }
                     .padding(3)
             }

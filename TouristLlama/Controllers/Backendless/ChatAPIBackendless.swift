@@ -14,24 +14,10 @@ class ChatAPIBackendless: ChatAPIProvider {
     private let serviceName = "ChatService"
     private var channels: [Channel] = []
     private var channelSubscriptions: [RTSubscription?] = []
-    private var timer: Timer?
-    
-    init() {
-        print("ChatAPIBackendless is ALIVE")
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-            print("TIMER", "channels", self.channels.count, self.channels.map( { $0 }))
-            print("TIMER", "sunscriptions", self.channelSubscriptions.count, self.channelSubscriptions.map( { $0 }))
-
-        })
-    }
-    
-    deinit {
-        print("ChatAPIBackendless is DEAD")
-    }
-    
-    func getChat(for tripId: String) async throws -> TripChat {
+        
+    func getChat(tripId: String, pageSize: Int, pageOffset: Int) async throws -> TripChat {
         return try await withCheckedThrowingContinuation { continuation in
-            let parameters = tripId
+            let parameters: [String : Any] = ["tripId": tripId, "pageSize": pageSize, "pageOffset": pageOffset]
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "getTripChat", parameters: parameters) { response in
                 guard let blTripDiscussion = response as? BackendlessTripChat else {
                     continuation.resume(throwing: CustomError(text: "Can't cast to backendless object"))

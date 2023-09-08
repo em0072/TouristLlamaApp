@@ -155,7 +155,7 @@ extension MyTripsCellView {
                 .frame(width: 25, height: 25)
             Image(systemName: "arrow.right")
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.Main.TLStrongWhite)
+                .foregroundColor(.Main.strongWhite)
         }
     }
     

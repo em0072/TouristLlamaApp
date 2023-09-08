@@ -29,17 +29,37 @@ struct FramedTextField: View {
         VStack(spacing: 8) {
             if !title.isEmpty {
                 FieldTitleView(title: title)
+                
             }
             
-            FieldBackgroundView()
+            FieldBackgroundView(fillColor: backgroundColor, shadowStyle: shadowStyle)
                 .overlay {
                     textField
                 }
+            
         }
     }
 }
 
 extension FramedTextField {
+    
+    private var backgroundColor: Color? {
+        for style in styles {
+            if case .backgroundColor(let color) = style {
+                return color
+            }
+        }
+        return nil
+    }
+    
+    private var shadowStyle: ShadowStyle? {
+        for style in styles {
+            if case .withShadow(let shadowStyle) = style {
+                return shadowStyle
+            }
+        }
+        return nil
+    }
     
     private var isLoading: Bool {
         for style in styles {
@@ -196,6 +216,8 @@ extension FramedTextField {
             case (.withRightIcon, .withRightIcon): return true
             case (.withLeftButton, .withLeftButton): return true
             case (.withRightButton, .withRightButton): return true
+            case (.backgroundColor, .backgroundColor): return true
+            case (.withShadow, .withShadow): return true
             default: return false
             }
         }
@@ -208,6 +230,8 @@ extension FramedTextField {
             case .withRightIcon: return 3
             case .withLeftButton: return 4
             case .withRightButton: return 5
+            case .backgroundColor: return 6
+            case .withShadow: return 7
             }
         }
         
@@ -221,6 +245,8 @@ extension FramedTextField {
         case withRightIcon(String)
         case withLeftButton(icon: String, action: () -> Void)
         case withRightButton(icon: String, action: () -> Void)
+        case backgroundColor(Color)
+        case withShadow(ShadowStyle)
     }
     
     enum Option: Hashable {

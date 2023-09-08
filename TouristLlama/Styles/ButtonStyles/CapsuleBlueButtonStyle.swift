@@ -11,7 +11,7 @@ struct CapsuleBlueButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(.Main.TLStrongWhite)
+            .foregroundColor(.Main.strongWhite)
             .padding(.vertical, 8)
             .padding(.horizontal, 12)
             .background {

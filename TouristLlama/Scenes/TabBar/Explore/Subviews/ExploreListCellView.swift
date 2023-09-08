@@ -10,6 +10,9 @@ import Kingfisher
 
 struct ExploreListCellView: View {
     
+    @Environment(\.colorScheme) var currentMode
+
+    
     var trip: Trip
     var showBadge: Bool
     
@@ -54,13 +57,16 @@ struct ExploreListCellView: View {
     private var tripStyleView: some View {
         if let tripStyle = trip.style {
             ZStack {
-                Capsule()
-                    .fill(tripStyle.styleColor)
-                    .frame(width: 68, height: 33)
                 Text(tripStyle.localizedValue)
                     .font(.avenirSmallBody)
                     .bold()
                     .foregroundColor(tripStyle.styleTextColor)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 12)
+                    .background {
+                        Capsule()
+                            .fill(tripStyle.styleColor)
+                    }
             }
         }
     }
@@ -76,6 +82,8 @@ struct ExploreListCellView: View {
         Text(datesText)
             .font(.avenirBody)
             .foregroundColor(.Main.black)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
             
     private var datesText: String {
@@ -88,12 +96,15 @@ struct ExploreListCellView: View {
         Text(trip.location.nameAndFlag)
             .font(.avenirBody)
             .foregroundColor(.Main.black)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
     }
     
     private var proceedButtonView: some View {
         ZStack {
             Circle()
-                .fill(Color.Main.black)
+                .fill(.thinMaterial)
+                .environment(\.colorScheme, currentMode == .light ? .dark : .light)
                 .frame(width: 40, height: 40)
                 .overlay {
                     Image(systemName: "arrow.right")

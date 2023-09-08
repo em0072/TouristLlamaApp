@@ -63,6 +63,12 @@ extension String {
         static let inviteRejected = String.localized("inviteRejected")
         static let requestRejected = String.localized("requestRejected")
 
+        static let leaveTrip = String.localized("leaveTrip")
+        static let leaveTripMessage = String.localized("leaveTripMessage")
+
+        static let deleteTrip = String.localized("deleteTrip")
+        static let deleteTripMessage = String.localized("deleteTripMessage")
+
         static let manageMembersTitle = String.localized("tripManageMembersTitle")
         static let manageMembersSubitle = String.localized("tripManageMembersSubitle")
         

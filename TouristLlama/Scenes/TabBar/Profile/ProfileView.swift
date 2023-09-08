@@ -38,11 +38,38 @@ struct ProfileView: View {
             .navigationTitle(viewModel.user?.username ?? "")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) { settingsButton }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    settingsButton
+                    
+                    if !viewModel.isCurrentUser {
+                        moreButton
+                    }
+                }
             }
             .fullScreenCover(item: $viewModel.userToEditProfile) { currentUser in
                 EditProfileView(currentUser: currentUser)
             }
+            .sheet(isPresented: $viewModel.isReportingViewOpen) {
+                ReportingView(isLoading: viewModel.loadingState == .loading) { reason in
+                    viewModel.reportUser(reason: reason)
+                }
+                .presentationDetents([.medium])
+            }
+            .confirmationDialog(viewModel.blockConfirmationTitle,
+                                isPresented: $viewModel.isBlockingViewOpen,
+                                titleVisibility: .visible,
+                                actions: {
+                Button(viewModel.blockConfirmationActionString, role: .destructive) {
+                    viewModel.blockConfirmationAction()
+                }
+            }, message: {
+                Text(viewModel.blockConfirmationMessage)
+            })
+            .onAppear {
+                viewModel.getUserCounters()
+            }
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
         }
     }
 }
@@ -54,7 +81,6 @@ extension ProfileView {
             HStack(spacing: 40) {
                 userImage
                 userStats
-                Spacer()
             }
             .padding(.top, 24)
             .padding(.bottom, 16)
@@ -75,11 +101,12 @@ extension ProfileView {
     }
     
     private var userStats: some View {
-        HStack(spacing: 18) {
+        HStack(spacing: 30) {
             statsEntry(num: viewModel.counter?.tripsCount, title: String.Profile.trips)
 //            statsEntry(num: 0, title: "Awards")
             statsEntry(num: viewModel.counter?.friendsCount, title: String.Profile.friends)
         }
+//        .fixedSize(horizontal: true, vertical: false)
     }
     
     private func statsEntry(num: Int?, title: String) -> some View {
@@ -95,8 +122,6 @@ extension ProfileView {
             Text(title)
                 .font(.avenirBody)
                 .foregroundColor(.Main.black)
-//                .fixedSize(horizontal: true, vertical: false)
-//                .minimumScaleFactor(0.5)
                 .opacity(0.8)
                 .lineLimit(1)
         }
@@ -108,17 +133,12 @@ extension ProfileView {
                 Text(name)
                     .font(.avenirBigBody.weight(.heavy))
                     .foregroundColor(.Main.black)
-//                if let pronouns = pronouns {
-//                    Text(pronouns)
-//                        .font(.avenirBody)
-//                        .foregroundColor(.Main.black)
-//                        .opacity(0.5)
-//                }
             } else {
                 Capsule()
                     .frame(width: 100, height: 30)
                     .foregroundColor(.Main.grey)
             }
+            Spacer()
         }
         .padding(.vertical, 5)
     }
@@ -126,13 +146,11 @@ extension ProfileView {
     @ViewBuilder
     private var aboutView: some View {
         if let about = viewModel.user?.about, !about.isEmpty {
-            VStack {
-                Text(about)
-                    .font(.avenirBody)
-                    .foregroundColor(.Main.black)
-                    .opacity(0.8)
-            }
-            .padding(.vertical, 10)
+            Text(about)
+                .font(.avenirBody)
+                .foregroundColor(.Main.black)
+                .opacity(0.8)
+                .padding(.vertical, 10)
         }
     }
     
@@ -161,8 +179,8 @@ extension ProfileView {
     
     private var manageFriendsButton: some View {
         VStack {
-            Button {
-//                viewModel.openManageFriendsView()
+            NavigationLink {
+                FriendsListView()
             } label: {
                 HStack(spacing: 15) {
                     Image(systemName: "person.fill.checkmark")
@@ -183,7 +201,7 @@ extension ProfileView {
                         .foregroundColor(.Main.black)
                         .font(.system(size: 15, weight: .heavy))
                 }
-                
+
             }
             .padding(.bottom, 24)
             
@@ -192,6 +210,38 @@ extension ProfileView {
         .padding(.top, 24)
     }
     
+    private var moreButton: some View {
+        Menu {
+            reportMenuButton
+            blockMenuButton
+            
+        } label: {
+            Image(systemName: "ellipsis.circle.fill")
+                .font(.system(size: 25, weight: .medium))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
+            
+        }
+    }
+
+    
+    private var reportMenuButton: some View {
+        Button {
+            viewModel.reportUserButtonAction()
+        } label: {
+            Label(String.Main.report, systemImage: "exclamationmark.bubble.fill")
+        }
+    }
+    
+    private var blockMenuButton: some View {
+        Button {
+            viewModel.blockUserButtonAction()
+        } label: {
+            Label(viewModel.blockMenuButtonTitle, systemImage: viewModel.blockMenuButtonIcon)
+        }
+    }
+
+
 //    private var awardsButton: some View {
 //        VStack {
 //            Button {
@@ -234,10 +284,6 @@ extension ProfileView {
                     .font(.system(size: 17, weight: .medium))
             }
         }
-//        Button {
-//            viewModel.openSettings()
-//        } label: {
-//        }
     }
 }
 

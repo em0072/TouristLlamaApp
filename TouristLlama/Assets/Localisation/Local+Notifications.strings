@@ -1,0 +1,10 @@
+/* 
+  Local+Notifications.strings
+  TouristLlama
+
+  Created by Evgeny Mitko on 08/09/2023.
+  
+*/
+
+"notificationsTitle" = "My Notifications";
+"notificationsMarkAllAsRead" = "Read All";

@@ -28,22 +28,30 @@ struct TripDetailsView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) { offset in
-                scrollViewOffset = offset
-            } content: {
-                VStack(alignment: .leading, spacing: 0) {
-                    imageView
-                    datesView
-                    dividerView
-                    aboutView
-                    dividerView
-                    paticipantsView
-                    dividerView
-                    mapView
+            ZStack {
+                ScrollView(showsIndicators: false) { offset in
+                    scrollViewOffset = offset
+                } content: {
+                    VStack(alignment: .leading, spacing: 0) {
+                        imageView
+                        datesView
+                        dividerView
+                        aboutView
+                        dividerView
+                        paticipantsView
+                        dividerView
+                        mapView
+                    }
                 }
+                .padding(.top, -8)
+                .safeAreaInset(edge: .bottom, content: {
+                    Spacer()
+                        .frame(height: viewModel.tripDetailViewBottomOffsetAmount)
+                })
+                .ignoresSafeArea(.all, edges: .top)
+                
+                joinView
             }
-            .padding(.top, -8)
-            .ignoresSafeArea(.all, edges: .top)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("")
             .toolbar {
@@ -52,27 +60,266 @@ struct TripDetailsView: View {
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        HStack(spacing: 8) {
-                            if viewModel.isCurrentUserOwnerOfTrip {
-                                editButton
-                            }
-                            shareButton
+                    HStack(spacing: 8) {
+                        if viewModel.isCurrentUserOwnerOfTrip {
+                            editButton
                         }
+                        //                            shareButton
+                        moreButton
+                    }
                 }
             }
             .navigationDestination(isPresented: $viewModel.isMembersManagmentOpen) {
                 TripManageMemebersView(trip: viewModel.trip)
             }
+            .confirmationDialog("", isPresented: $viewModel.isLeaveTripConfirmationShown, actions: {
+                leaveTripButton
+            }, message: {
+                Text(String.Trip.leaveTripMessage)
+                    .font(.avenirBody)
+            })
+            .confirmationDialog("", isPresented: $viewModel.isDeleteTripConfirmationShown, actions: {
+                deleteTripButton
+            }, message: {
+                Text(String.Trip.deleteTripMessage)
+                    .font(.avenirBody)
+            })
+            .sheet(item: $viewModel.sheetType, content: { type in
+                sheetView(for: type)
+            })
+            .animation(.default, value: viewModel.nonParticipantTripRequest)
+
+            
         }
+        .handle(loading: $viewModel.loadingState)
+        .handle(error: $viewModel.error)
         .onChange(of: trip) { trip in
             viewModel.trip = trip
+        }
+        .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
+            if shouldDismiss {
+                dismiss()
+            }
         }
         
     }
 }
 
-    
+
 extension TripDetailsView {
+    
+    @ViewBuilder
+    private func sheetView(for type: TripDetailViewModel.SheetType) -> some View {
+        switch type {
+        case .report:
+            ReportingView(isLoading: viewModel.loadingState == .loading) { reason in
+                viewModel.reportTrip(reason: reason)
+            }
+            .presentationDetents([.medium])
+
+        case .applicationLetter:
+            TripApplicationForm { message in
+                viewModel.joinRequestSend(message: message)
+            }
+            .presentationDragIndicator(.visible)
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
+        }
+    }
+    
+    @ViewBuilder
+    private var joinView: some View {
+        if !viewModel.isCurrentUserMemberOfTrip {
+            VStack(spacing: 0) {
+                Spacer()
+                
+                if let request = viewModel.nonParticipantTripRequest {
+                    switch request.status {
+                    case .inviteRejected:
+                        inviteRejectedView
+                        
+                    case .invitePending:
+                        invitePendingView(request: request)
+                        
+                    case .requestPending:
+                        requestPendingView(request: request)
+                        
+                    case .requestRejected:
+                        requestRejectedView
+                        
+                    case .inviteAccepted, .requestApproved:
+                        EmptyView()
+                        
+                    case .requestCancelled:
+                        joinButtonView
+                    }
+                    
+                } else {
+                    joinButtonView
+                }
+            }
+        }
+    }
+    
+    private var joinButtonView: some View {
+        Button(String.Trip.requestToJoin) {
+            viewModel.joinButtonAction()
+        }
+        .buttonStyle(WideBlueButtonStyle())
+        .padding(.top, 12)
+        .padding(.horizontal, 20)
+        .background {
+            joinBackgroundView(color: .clear)
+        }
+    }
+    
+    private func requestPendingView(request: TripRequest) -> some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text(String.Trip.requestToJoinPending)
+                    .foregroundStyle(.primary)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.cancelJoinRequest(request)
+                } label: {
+                    Text(String.Main.cancel)
+                        .font(.avenirBody)
+                        .foregroundStyle(.primary)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            Spacer()
+        }
+        .background {
+            joinBackgroundView(color: .Main.yellow)
+        }
+    }
+    
+    private func invitePendingView(request: TripRequest) -> some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text(String.Trip.inviteToJoinPending)
+                    .foregroundStyle(.primary)
+                    .font(.avenirBody)
+                    .bold()
+                
+                HStack {
+                    Button {
+                        viewModel.acceptInvite(request)
+                    } label: {
+                        Text(String.Main.accept)
+                            .font(.avenirBody)
+                            .foregroundStyle(.primary)
+                            .bold()
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background {
+                                Capsule()
+                                    .fill(Color.Main.green.opacity(0.7))
+                            }
+                    }
+                    
+                    Button {
+                        viewModel.rejectInvite(request)
+                    } label: {
+                        Text(String.Main.reject)
+                            .font(.avenirBody)
+                            .foregroundStyle(.primary)
+                            .bold()
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background {
+                                Capsule()
+                                    .fill(Color.Main.accentRed.opacity(0.7))
+                            }
+                    }
+                    
+                }
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+            
+        }
+        .background {
+            joinBackgroundView(color: .Main.yellow)
+        }
+        
+    }
+    
+    private var requestRejectedView: some View {
+        HStack {
+            
+            Spacer()
+            
+            VStack {
+                Text(String.Trip.requestToJoinRejected)
+                    .foregroundStyle(.primary)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.joinButtonAction()
+                } label: {
+                    Text(String.Trip.requestToJoinAgain)
+                        .foregroundStyle(.primary)
+                        .font(.avenirBody)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+        }
+        .background {
+            joinBackgroundView(color: .Main.accentRed)
+        }
+    }
+    
+    private var inviteRejectedView: some View {
+        HStack {
+            
+            Spacer()
+            
+            VStack {
+                Text(String.Trip.inviteToJoinRejected)
+                    .foregroundStyle(.primary)
+                    .font(.avenirBody)
+                    .bold()
+                
+                Button {
+                    viewModel.joinButtonAction()
+                } label: {
+                    Text(String.Trip.requestToJoinAgain)
+                        .foregroundStyle(.primary)
+                        .font(.avenirBody)
+                        .underline()
+                }
+            }
+            .padding(.top, 12)
+            
+            Spacer()
+        }
+        .background {
+            joinBackgroundView(color: .Main.accentRed)
+        }
+    }
+    
+    private func joinBackgroundView(color: Color) -> some View {
+        Rectangle()
+            .fill(.ultraThinMaterial)
+            .background {
+                color.opacity(0.6)
+            }
+            .ignoresSafeArea()
+        
+    }
+
     
     private var closeButton: some View {
         Button {
@@ -81,7 +328,7 @@ extension TripDetailsView {
             Image(systemName: "xmark.circle.fill")
                 .font(.system(size: 25, weight: .medium))
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(Color.Main.black, Color.Main.white)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
         }
     }
     
@@ -92,9 +339,69 @@ extension TripDetailsView {
             Image(systemName: "square.and.arrow.up.circle.fill")
                 .font(.system(size: 25, weight: .medium))
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(Color.Main.black, Color.Main.white)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
         }
     }
+    
+    private var moreButton: some View {
+        Menu {
+            if viewModel.isCurrentUserMemberOfTrip && !viewModel.isCurrentUserOwnerOfTrip {
+                leaveTripMenuButton
+            }
+            if viewModel.isCurrentUserOwnerOfTrip {
+                deleteTripMenuButton
+            }
+            if !viewModel.isCurrentUserOwnerOfTrip {
+                reportMenuButton
+            }
+            
+            
+        } label: {
+            Image(systemName: "ellipsis.circle.fill")
+                .font(.system(size: 25, weight: .medium))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
+            
+        }
+    }
+    
+    private var leaveTripMenuButton: some View {
+        Button(role: .destructive) {
+            viewModel.showLeaveTripConfirmation()
+        } label: {
+            Label(String.Trip.leaveTrip, systemImage: "figure.walk.departure")
+        }
+        
+    }
+    
+    private var leaveTripButton: some View {
+        Button(String.Trip.leaveTrip, role: .destructive) {
+            viewModel.leaveTrip()
+        }
+    }
+    
+    private var deleteTripMenuButton: some View {
+        Button(role: .destructive) {
+            viewModel.showDeleteTripConfirmation()
+        } label: {
+            Label(String.Trip.deleteTrip, systemImage: "trash.fill")
+        }
+    }
+    
+    private var deleteTripButton: some View {
+        Button(String.Trip.deleteTrip, role: .destructive) {
+            viewModel.deleteTrip()
+        }
+    }
+    
+    private var reportMenuButton: some View {
+        Button {
+            viewModel.reportTripButtonAction()
+        } label: {
+            Label(String.Main.report, systemImage: "exclamationmark.bubble.fill")
+        }
+    }
+    
     
     private var editButton: some View {
         Button {
@@ -103,7 +410,7 @@ extension TripDetailsView {
             Image(systemName: "pencil.circle.fill")
                 .font(.system(size: 25, weight: .medium))
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(Color.Main.black, Color.Main.white)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
         }
     }
     
@@ -120,7 +427,7 @@ extension TripDetailsView {
                     .clipped()
                     .offset(y: -(max(0, geometry.frame(in: .global).minY)))
             }.frame(height: 390)
-
+            
             LinearGradient(colors: [.clear, .clear, .Main.white], startPoint: .top, endPoint: .bottom)
             
             VStack(alignment: .leading, spacing: 5) {
@@ -157,7 +464,7 @@ extension TripDetailsView {
             return 0
         }
     }
-        
+    
     private func titleView(_ text: String) -> some View {
         Text(text)
             .font(.avenirBigBody)
@@ -195,13 +502,13 @@ extension TripDetailsView {
     @ViewBuilder
     private var aboutView: some View {
         if !viewModel.trip.description.isEmpty {
-        VStack(alignment: .leading, spacing: 0) {
-            titleView(String.Trip.aboutTitle)
-            bodyView(viewModel.trip.description)
-                .padding(.bottom, 20)
-            dividerView
-        }
-        .padding([.top, .horizontal], 20)
+            VStack(alignment: .leading, spacing: 0) {
+                titleView(String.Trip.aboutTitle)
+                bodyView(viewModel.trip.description)
+                    .padding(.bottom, 20)
+                dividerView
+            }
+            .padding([.top, .horizontal], 20)
         } else {
             EmptyView()
         }

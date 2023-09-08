@@ -30,9 +30,8 @@ struct SearchingUsersListCell: View {
                 
                 selectButtonView
             }
-            .padding(.vertical, 12)
+            .padding(.vertical, 6)
 
-            Divider()
         }
     }
     

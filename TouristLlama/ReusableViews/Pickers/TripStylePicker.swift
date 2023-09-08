@@ -73,7 +73,7 @@ extension TripStylePicker {
             .background {
                 ZStack {
                     Capsule()
-                        .fill(Color.Main.TLStrongWhite.opacity(0.9))
+                        .fill(Color.Main.strongWhite.opacity(0.9))
                     
                     Capsule()
                         .fill(style.styleColor)

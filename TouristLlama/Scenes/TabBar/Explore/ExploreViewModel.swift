@@ -51,10 +51,10 @@ class ExploreViewModel: ViewModel {
         requestTrips()
     }
     
-    func requestTrips() {
+    func requestTrips(showingProgress: Bool = true) {
         Task {
             do {
-                isSearching = true
+                isSearching = showingProgress
                 try await tripAPI.getExploreTrips(searchTerm: searchPrompt,
                                                   tripStyel: filters.tripStyle,
                                                   startDate: filters.startDate,
@@ -80,7 +80,12 @@ class ExploreViewModel: ViewModel {
     func shouldShowNotificationBadge(_ trip: Trip) -> Bool {
         guard let currentUser = userAPI.currentUser else { return false }
         for request in trip.requests {
+            // Show badge if there is an invite for a user
             if request.applicant.id == currentUser.id && request.status == .invitePending {
+                return true
+            }
+            // Show badge if there is a join request for a trip owner
+            if trip.ownerId == currentUser.id && request.status == .requestPending {
                 return true
             }
         }
@@ -105,6 +110,5 @@ class ExploreViewModel: ViewModel {
                 self?.trips = allTrips
             })
             .store(in: &publishers)
-//            .assign(to: &$trips)
     }
 }

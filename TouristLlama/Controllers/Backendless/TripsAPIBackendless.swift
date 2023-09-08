@@ -12,8 +12,6 @@ import Combine
 class TripsAPIBackendless: TripsAPIProvider {
     
     private let serviceName = "TripsService"
-//    private var evenHandler: EventHandlerForMap?
-//    private var subscription: RTSubscription?
 
     func create(trip: Trip) async throws -> Trip {
         return try await withCheckedThrowingContinuation { continuation in
@@ -142,6 +140,14 @@ class TripsAPIBackendless: TripsAPIProvider {
             print("Error: \(fault.message ?? "")")
         })
         
+        _ = eventHandlerClauseTrip?.addDeleteRelationListener(relationColumnName: "participants", parentObjectIds: [tripId], responseHandler: { status in
+            guard let tripId = status.parentObjectId else { return }
+            onNewUpdate(tripId)
+        }, errorHandler: { fault in
+            print("Error: \(fault.message ?? "")")
+        })
+
+        
         let eventHandlerTripRequest = Backendless.shared.data.ofTable("TripRequest").rt
         let whereClauseTripRequest = "tripId = '\(tripId)'"
         _ = eventHandlerTripRequest?.addUpsertListener(whereClause: whereClauseTripRequest, responseHandler: { dict in
@@ -152,6 +158,17 @@ class TripsAPIBackendless: TripsAPIProvider {
         })
     }
     
+    func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void) {
+        let eventHandlerClauseTrip = Backendless.shared.data.ofTable("Trip").rt
+        let whereClauseTrip = "objectId = '\(tripId)'"
+        _ = eventHandlerClauseTrip?.addDeleteListener(whereClause: whereClauseTrip, responseHandler: { dict in
+            guard let tripId = dict["objectId"] as? String else { return }
+            onDelete(tripId)
+        }, errorHandler: { fault in
+            print("Error: \(fault.message ?? "")")
+        })
+    }
+
     func cancelJoinRequest(tripId: String) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "cancelRequest", parameters: tripId) { response in
@@ -228,5 +245,37 @@ class TripsAPIBackendless: TripsAPIProvider {
                 continuation.resume(throwing: error)
             }
         }
+    }
+    
+    func leaveTrip(tripId: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "leaveTrip", parameters: tripId) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+    
+    func deleteTrip(tripId: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "deleteTrip", parameters: tripId) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
+
+    func reportTrip(tripId: String, reason: String) async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let parameters: [String: Any] = ["tripId": tripId, "reason": reason]
+            Backendless.shared.customService.invoke(serviceName: serviceName, method: "reportTrip", parameters: parameters) { response in
+                continuation.resume(returning: ())
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+
     }
 }

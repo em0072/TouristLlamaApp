@@ -16,8 +16,8 @@ extension Color {
         static let TLPurple = Color("purple")
         static let TLBlue = Color("blue")
         static let white = Color("white")
-        static let TLStrongWhite = Color("strongWhite")
-        static let TLStrongBlack = Color("strongBlack")
+        static let strongWhite = Color("strongWhite")
+        static let strongBlack = Color("strongBlack")
         static let black = Color("black")
         static let green = Color("green")
         static let grey = Color("grey")
@@ -25,8 +25,8 @@ extension Color {
         static let yellow = Color("yellow")
         static let TLBackgroundActive = Color("backgroundActive")
         static let TLInactiveGrey = Color("inactiveGrey")
-        static let TLBackground = Color("background")
-        
-        static let TLText = Color("text")
+        static let background = Color("background")
+        static let listItem = Color("listItem")
+        static let text = Color("text")
     }
 }

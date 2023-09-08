@@ -18,7 +18,7 @@ extension TripRequest {
     }
     
     static var testRequestApproved: TripRequest {
-        TripRequest(id: "2df2f", applicant: .testNotInvited, applicationLetter: "hey", rejectReason: "", status: .inviteRejected, tripId: "dfcfvgr34")
+        TripRequest(id: "2df2f", applicant: .testNotInvited, applicationLetter: "hey", rejectReason: "", status: .requestApproved, tripId: "dfcfvgr34")
     }
 
     static var testInvitationPending: TripRequest {
@@ -32,5 +32,10 @@ extension TripRequest {
     static var testInvitationAccepted: TripRequest {
         TripRequest(id: "2df2f", applicant: .testNotInvited, applicationLetter: "hey", rejectReason: "", status: .inviteAccepted, tripId: "dfcfvgr34")
     }
+    
+    static var testRequestCancelled: TripRequest {
+        TripRequest(id: "2df2f", applicant: .testNotInvited, applicationLetter: "hey", rejectReason: "", status: .requestCancelled, tripId: "dfcfvgr34")
+    }
+
 
 }

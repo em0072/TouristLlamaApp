@@ -43,6 +43,9 @@
 "editProfileDescriptionPlaceholder" = "Tell a little bit about yourself";
 "editProfilePersonalInformationSettings" = "Personal Information Settings";
 
-
+// MARK: - Friends
+"friendsManageNoFriendsTitle" = "You didn't add any friends yet";
+"friendsManageMyFriends" = "My Friends";
+"friendsManageSelectFromFriend" = "Select a user from your friends";
 
 

@@ -23,7 +23,7 @@ class TripViewModel: ViewModel {
 
     @Published var trip: Trip
     @Published var isDiscussionLoaded = false
-    @Published var isApplicationLetterFormShown = false
+//    @Published var isApplicationLetterFormShown = false
     @Published var shouldDismiss = false
     @Published var isMembersManagmentOpen = false
     @Published var selectedTab: TabSelection = .details {
@@ -85,16 +85,29 @@ class TripViewModel: ViewModel {
             .store(in: &publishers)
     }
     
+    private func subscribeToChatUpdates() {
+        guard let chatId = trip.chat?.id else { return }
+        chatAPI.subscribeToChatUpdates(for: chatId)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] message in
+                guard let self else { return }
+                if self.selectedTab == .details {
+                    self.chatBadgeCount += 1
+                }
+            }
+            .store(in: &publishers)
+    }
+    
     var isCurrentUserParticipantOfTrip: Bool {
         guard let currentUser = userAPI.currentUser else { return false}
         return trip.participants.contains(currentUser)
     }
     
-    var nonParticipantTripRequest: TripRequest? {
-        guard !isCurrentUserParticipantOfTrip else { return nil }
-        return trip.requests.first
-    }
-    
+//    var nonParticipantTripRequest: TripRequest? {
+//        guard !isCurrentUserParticipantOfTrip else { return nil }
+//        return trip.requests.first
+//    }
+//
     func editTrip() {
         tripToEdit = trip
     }
@@ -104,62 +117,62 @@ class TripViewModel: ViewModel {
         getTripDiscussionIfNeeded()
     }
     
-    func joinButtonAction() {
-        isApplicationLetterFormShown = true
-    }
+//    func joinButtonAction() {
+//        isApplicationLetterFormShown = true
+//    }
     
-    func joinRequestSend(message: String) {
-        loadingState = .loading
-        Task {
-            do {
-                let tripRequest = try await tripAPI.sendJoinRequest(tripId: trip.id, message: message)
-                trip.upsert(tripRequest: tripRequest)
-                isApplicationLetterFormShown = false
-            } catch {
-                self.error = error
-            }
-            loadingState = .none
-        }
-    }
-    
-    func cancelJoinRequest(_ request: TripRequest) {
-        Task {
-            do {
-                loadingState = .loading
-                try await tripAPI.cancelJoinRequest(request: request)
-                trip.delete(tripRequest: request)
-            } catch {
-                self.error = error
-            }
-            loadingState = .none
-        }
-    }
-    
-    func acceptInvite(_ request: TripRequest) {
-        loadingState = .loading
-        Task {
-            do {
-                let tripRequest = try await tripAPI.answerTravelInvite(request: request, accepted: true)
-                trip.upsert(tripRequest: tripRequest)
-            } catch {
-                self.error = error
-            }
-            loadingState = .none
-        }
-    }
-    
-    func rejectInvite(_ request: TripRequest) {
-        loadingState = .loading
-        Task {
-            do {
-                let tripRequest = try await tripAPI.answerTravelInvite(request: request, accepted: false)
-                trip.upsert(tripRequest: tripRequest)
-            } catch {
-                self.error = error
-            }
-            loadingState = .none
-        }
-    }
+//    func joinRequestSend(message: String) {
+//        loadingState = .loading
+//        Task {
+//            do {
+//                let tripRequest = try await tripAPI.sendJoinRequest(tripId: trip.id, message: message)
+//                trip.upsert(tripRequest: tripRequest)
+//                isApplicationLetterFormShown = false
+//            } catch {
+//                self.error = error
+//            }
+//            loadingState = .none
+//        }
+//    }
+//    
+//    func cancelJoinRequest(_ request: TripRequest) {
+//        Task {
+//            do {
+//                loadingState = .loading
+//                try await tripAPI.cancelJoinRequest(request: request)
+//                trip.delete(tripRequest: request)
+//            } catch {
+//                self.error = error
+//            }
+//            loadingState = .none
+//        }
+//    }
+//    
+//    func acceptInvite(_ request: TripRequest) {
+//        loadingState = .loading
+//        Task {
+//            do {
+//                let tripRequest = try await tripAPI.answerTravelInvite(request: request, accepted: true)
+//                trip.upsert(tripRequest: tripRequest)
+//            } catch {
+//                self.error = error
+//            }
+//            loadingState = .none
+//        }
+//    }
+//    
+//    func rejectInvite(_ request: TripRequest) {
+//        loadingState = .loading
+//        Task {
+//            do {
+//                let tripRequest = try await tripAPI.answerTravelInvite(request: request, accepted: false)
+//                trip.upsert(tripRequest: tripRequest)
+//            } catch {
+//                self.error = error
+//            }
+//            loadingState = .none
+//        }
+//    }
 
         
     private func getTripDiscussionIfNeeded() {
@@ -171,7 +184,7 @@ class TripViewModel: ViewModel {
     private func getTripDiscussion() {
         Task {
             do {
-                let discussion = try await chatAPI.getTripChat(for: trip.id)
+                let discussion = try await chatAPI.getTripChat(tripId: trip.id)
                 trip.chat = discussion
                 subscribeToChatUpdates()
                 isDiscussionLoaded = true
@@ -188,33 +201,25 @@ class TripViewModel: ViewModel {
             chatBadgeCount = 0
             return
         }
-        var unreadMessages = 0
+//        var unreadMessages = 0
         let lastReadMessageId = userDefaultsController.getLastMessageIf(for: trip.id)
-        var foundLastReadMessage = false
-        for message in chat.messages {
-            if foundLastReadMessage {
-                unreadMessages += 1
-            }
-            if message.id == lastReadMessageId {
-                foundLastReadMessage = true
-            }
+        if let lastReadMessage = chat.messages.first(where: { $0.id == lastReadMessageId }) {
+            let unreadMessagesCount = chat.messages.filter( { $0.created > lastReadMessage.created } ).count
+            chatBadgeCount = unreadMessagesCount
+        } else {
+            chatBadgeCount = chat.messages.count
         }
-        chatBadgeCount = unreadMessages
+//        let unreadMessageCount = chat.messages.filter( { $0.created > lastReadMessage?.created } ).count
+////        var foundLastReadMessage = false
+//        for message in chat.messages {
+//
+//            if foundLastReadMessage {
+//                unreadMessages += 1
+//            }
+//            if message.id == lastReadMessageId {
+//                foundLastReadMessage = true
+//            }
+//        }
+//        chatBadgeCount = unreadMessages
     }
-    
-    private func subscribeToChatUpdates() {
-        guard let chatId = trip.chat?.id else { return }
-        chatAPI.subscribeToChatUpdates(for: chatId)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] message in
-                guard let self else { return }
-                if self.selectedTab == .details {
-                    self.chatBadgeCount += 1
-                }
-            }
-            .store(in: &publishers)
-    }
-    
-
-    
 }

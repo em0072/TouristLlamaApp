@@ -15,27 +15,25 @@ struct SearchingUsersView: View {
     @StateObject private var viewModel: SearchingUsersViewModel
     
     @Binding var loadingState: LoadingState
+    private let showUserFriends: Bool
     private let isDisabled: (User) -> Bool
     private let onUserSelection: (User) -> Void
     
-    init(loadingState: Binding<LoadingState>, isDisabled: @escaping (User) -> Bool, onUserSelection: @escaping (User) -> Void) {
+    init(loadingState: Binding<LoadingState>, showUserFriends: Bool, isDisabled: @escaping (User) -> Bool, onUserSelection: @escaping (User) -> Void) {
         _viewModel = StateObject(wrappedValue: SearchingUsersViewModel())
         self._loadingState = Binding(projectedValue: loadingState)
+        self.showUserFriends = showUserFriends
         self.isDisabled = isDisabled
         self.onUserSelection = onUserSelection
     }
 
     var body: some View {
-        VStack {
-            searchFieldView
-                .padding(.horizontal, 20)
-                .padding(.vertical, 12)
+        ZStack {
 
             switch viewModel.state {
             case .content:
                 if viewModel.searchPrompt.isEmpty {
                     initalView
-                        .padding(.horizontal, 20)
                 } else if viewModel.users.isEmpty {
                     emptyView
                         .padding(.horizontal, 20)
@@ -44,9 +42,13 @@ struct SearchingUsersView: View {
                 }
                 
             case .loading:
-                loadingView
+                LoadingView()
             }
+            
+            searchFieldView
+
         }
+        .background(Color.Main.white)
         .sheet(item: $viewModel.selectedUser) { user in
             ProfileView(user: user)
                 .presentationDragIndicator(.visible)
@@ -59,42 +61,84 @@ struct SearchingUsersView: View {
 extension SearchingUsersView {
     
     private var searchFieldView: some View {
+        VStack {
         FramedTextField(title: nil,
                         prompt: String.Main.search,
                         value: $viewModel.searchPrompt,
                         styles: [.withLeftIcon("magnifyingglass"),
                                  .withLoading(viewModel.state == .loading && !viewModel.searchPrompt.isEmpty),
-                                 .withDeleteButton
+                                 .withDeleteButton,
+                                 .backgroundColor(.Main.white.opacity(0.4)),
+                                 .withShadow(.inner(color: .black.opacity(0.5), radius: 1, x: 0, y: 0))
                         ])
+        .padding(.horizontal, 20)
+        .padding(.bottom, 12)
+        .padding(.top, 20)
+        .background {
+            Rectangle()
+                .fill(.thinMaterial)
+                .ignoresSafeArea()
+        }
+        
+        Spacer()
+    }
+
     }
 
     
     private var initalView: some View {
-        VStack{
+        VStack(spacing: 6) {
             Spacer()
-            IconPlaceholderView(icon: "text.cursor", text: String.Trip.userSearchInitialInstruction)
+                .frame(height: 100)
+            VStack {
+                IconPlaceholderView(icon: "text.cursor", text: String.Trip.userSearchInitialInstruction)
+                if showUserFriends {
+                    Text(String.Main.or.lowercased())
+                    Text(String.Friends.selectFromFriend.lowercased())
+                }
+            }
+            .padding(.horizontal, 20)
+            if showUserFriends {
+                List(viewModel.friends) { friend in
+                    cellView(for: friend)
+                        .listRowBackground(Color.Main.listItem)
+                        .onTapGesture {
+                            viewModel.cellTapAction(for: friend)
+                        }
+                }
+                .background(Color.Main.white)
+                .scrollContentBackground(.hidden)
+            }
             Spacer()
         }
+        .font(.avenirBigBody)
     }
     
     private var contentView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Search Result")
-                .font(.avenirBigBody)
-                .bold()
-                .foregroundColor(.Main.black)
-                .padding(.horizontal, 20)
             
-            ScrollView {
-                VStack {
+            List {
+                Section {
                     ForEach(viewModel.users) { user in
                         cellView(for: user)
+                            .listRowBackground(Color.Main.listItem)
                             .onTapGesture {
                                 viewModel.cellTapAction(for: user)
                             }
                     }
+                } header: {
+                    Text("Search Result")
+                        .font(.avenirBody)
+                        .bold()
+                        .foregroundColor(.Main.black)
                 }
-                .padding(.horizontal, 20)
+
+            }
+            .background(Color.Main.white)
+            .scrollContentBackground(.hidden)
+            .safeAreaInset(edge: .top) {
+                Spacer()
+                    .frame(height: 80)
             }
         }
     }
@@ -104,6 +148,7 @@ extension SearchingUsersView {
             onUserSelection(user)
         }
         .disabled(isDisabled(user))
+        .buttonStyle(.plain)
     }
     
     private var emptyView: some View {
@@ -114,19 +159,11 @@ extension SearchingUsersView {
         }
     }
     
-    private var loadingView: some View {
-        VStack{
-            Spacer()
-            ProgressView()
-                .progressViewStyle(.circular)
-            Spacer()
-        }
-    }
 }
 
 struct SearchingUsersView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchingUsersView(loadingState: .constant(.loading)) { _ in
+        SearchingUsersView(loadingState: .constant(.loading), showUserFriends: true) { _ in
             return .random()
         } onUserSelection: { _ in
             

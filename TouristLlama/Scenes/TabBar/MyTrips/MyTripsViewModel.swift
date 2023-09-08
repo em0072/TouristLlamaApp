@@ -60,7 +60,7 @@ class MyTripsViewModel: ViewModel {
         if trip.requestsPendingCount > 0 {
             icons.append(.requests)
         }
-        if trip.lastMessage?.id != userDefaultsController.getLastMessageIf(for: trip.id) {
+        if let lastMessage = trip.lastMessage, lastMessage.id != userDefaultsController.getLastMessageIf(for: trip.id) {
             icons.append(.chat)
         }
         return icons
@@ -72,9 +72,13 @@ class MyTripsViewModel: ViewModel {
         subscribeToMyTripsUpdates()
     }
     
+    func updateMyTrips() {
+        myTrips = tripsAPI.myTrips
+    }
+    
     private func subscribeToMyTripsUpdates() {
         tripsAPI.$myTrips
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] myTrips in
                 guard let self else { return }
                 self.myTrips = myTrips
@@ -82,6 +86,7 @@ class MyTripsViewModel: ViewModel {
                     self.state = .content
                     self.subscribeToChatUpdates()
                 }
+                
             }
             .store(in: &publishers)
     }
@@ -94,11 +99,12 @@ class MyTripsViewModel: ViewModel {
                 .receive(on: RunLoop.main)
                 .sink { [weak self] message in
                     guard let self else { return }
-                    let tripChatId = trip.lastMessage?.chatId
-                    let messageChatId = message.chatId
-                    if tripChatId == messageChatId, let tripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
-                        myTrips[tripIndex].lastMessage = message
-                    }
+                    tripsAPI.updateLastMessage(tripId: trip.id, message: message)
+//                    let tripChatId = trip.lastMessage?.chatId
+//                    let messageChatId = message.chatId
+//                    if tripChatId == messageChatId, let tripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
+//                        myTrips[tripIndex].lastMessage = message
+//                    }
                 }
                 .store(in: &chatPublishers)
         }
@@ -122,4 +128,5 @@ class MyTripsViewModel: ViewModel {
             }
         }
     }
+    
 }

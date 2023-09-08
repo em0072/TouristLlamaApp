@@ -57,14 +57,6 @@ extension TripManageListCell {
                 requestButtonsView
                 
                 userStatus
-//                if isOrganiser {
-//                    organiserLabelView
-//                } else if !isOrganiser && request == nil  {
-                    removeButtonView
-//                } else if request?.status == .invitePending {
-//                    invitedUserLeftView
-//                }
-                
             }
             
             requestSection
@@ -72,18 +64,17 @@ extension TripManageListCell {
                     isExpanded.toggle()
                 }
             
-            Divider()
         }
-        .padding(.top, 12)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            if shouldShowDeleteButton {
+                Button(role: .destructive) {
+                    onDeleteUser?()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
+        }
     }
-    
-//    private var invitedUserLeftView: some View {
-//        HStack {
-//            userStatus
-//            removeButtonView
-//        }
-//    }
-    
         
     @ViewBuilder
     private var requestSection: some View {
@@ -96,7 +87,7 @@ extension TripManageListCell {
                     .padding(.horizontal, 14)
                     .background {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(.ultraThickMaterial)
+                            .fill(.thickMaterial)
                     }
 
                 Spacer()
@@ -113,7 +104,7 @@ extension TripManageListCell {
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(.Main.green)
-                        .font(.avenirSubtitle)
+                        .font(.avenirTitle)
                         .padding(8)
                 }
                 
@@ -122,7 +113,7 @@ extension TripManageListCell {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.Main.accentRed)
-                        .font(.avenirSubtitle)
+                        .font(.avenirTitle)
                         .padding(8)
                 }
             }
@@ -187,19 +178,6 @@ extension TripManageListCell {
         return hasDeleteAction && !isOrganiser && (!isRequested || isInvitePending) && !inviteRejected
     }
     
-    @ViewBuilder
-    private var removeButtonView: some View {
-        if shouldShowDeleteButton {
-            Button {
-                onDeleteUser?()
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.Main.accentRed.opacity(0.5))
-                    .font(.avenirSubtitle)
-                    .padding(8)
-            }
-        }
-    }
 }
 
 struct TripManageListCell_Previews: PreviewProvider {

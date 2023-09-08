@@ -11,6 +11,7 @@ struct ChatMessage: Identifiable {
     enum MessageType: String {
         case user
         case info
+        case newMessages
     }
     
     enum MessageStatus {
@@ -19,7 +20,7 @@ struct ChatMessage: Identifiable {
         case error
     }
     
-    var id: String { return objectId ?? clientId }
+    var id: String { return clientId }
     let objectId: String?
     let clientId: String
     let ownerId: String?
@@ -60,5 +61,6 @@ extension ChatMessage: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.clientId == rhs.clientId
+        && lhs.status == rhs.status
     }
 }

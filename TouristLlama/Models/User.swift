@@ -20,6 +20,8 @@ struct User: Identifiable {
         case profilePicture
         case about
         case memberSince = "created"
+        case friends
+        
         var string: String {
             return self.rawValue
         }
@@ -36,8 +38,9 @@ struct User: Identifiable {
     let profilePicture: String?
 //    let sex: Sex
     let memberSince: Date?
-    
-    init(id: String, name: String, username: String, pronoun: Pronoun, email: String, phone: String, dateOfBirth: Date?, profilePicture: String?, about: String?, memberSince: Date?) {
+    let friends: [User]
+
+    init(id: String, name: String, username: String, pronoun: Pronoun, email: String, phone: String, dateOfBirth: Date?, profilePicture: String?, about: String?, memberSince: Date?, friends: [User]) {
         self.id = id
         self.name = name
         self.username = username
@@ -48,6 +51,7 @@ struct User: Identifiable {
         self.profilePicture = profilePicture
         self.about = about ?? ""
         self.memberSince = memberSince
+        self.friends = friends
     }
     
     init?(from blUser: BackendlessUser) {
@@ -58,31 +62,34 @@ struct User: Identifiable {
             return nil
         }
         let phone = blUser.properties[Property.phone.string] as? String ?? ""
-        var dateOfBirth: Date?
-        if let timeIntervalSince1970Milliseconds = blUser.properties[Property.dateOfBirth.string] as? TimeInterval {
-            dateOfBirth = Date(timeIntervalSince1970Milliseconds: timeIntervalSince1970Milliseconds)
-        }
+        let dateOfBirthTimeInterval = blUser.properties[Property.dateOfBirth.string] as? TimeInterval
         let profilePicture = blUser.properties[Property.profilePicture.string] as? String
         let about = blUser.properties[Property.about.string] as? String ?? ""
         let pronoun = Pronoun(rawValue: blUser.properties[Property.pronoun.string] as? String ?? "") ?? .none
-        let memberSince = blUser.properties[Property.memberSince.string] as? Date
-        
+        let memberSinceTimeInterval = blUser.properties[Property.memberSince.string] as? TimeInterval
+        let blFriends = blUser.properties[Property.friends.string] as? [BackendlessUser] ?? []
+
         self.id = id
         self.name = name
         self.username = username
         self.pronoun = pronoun
         self.email = email
         self.phone = phone
-        self.dateOfBirth = dateOfBirth
+        if let dateOfBirthTimeInterval {
+            self.dateOfBirth = Date(timeIntervalSince1970Milliseconds: dateOfBirthTimeInterval)
+        } else {
+            self.dateOfBirth = nil
+        }
         self.profilePicture = profilePicture
         self.about = about
-        self.memberSince = memberSince
+        if let memberSinceTimeInterval {
+            self.memberSince = Date(timeIntervalSince1970Milliseconds: memberSinceTimeInterval)
+        } else {
+            self.memberSince = nil
+        }
+        self.friends = blFriends.compactMap({ User(from: $0) })
     }
-    
-    static var info: User {
-        User(id: "info", name: "", username: "", pronoun: .none, email: "", phone: "", dateOfBirth: nil, profilePicture: nil, about: nil, memberSince: nil)
-    }
-    
+        
     var imageURL: URL? {
         if let profilePicture {
             return URL(string: profilePicture)
@@ -102,7 +109,7 @@ struct User: Identifiable {
         blUser.properties[Property.dateOfBirth.string] = self.dateOfBirth?.timeIntervalSince1970Milliseconds
         blUser.properties[Property.about.string] = self.about
         blUser.properties[Property.memberSince.string] = self.memberSince
-        blUser.properties[Property.memberSince.string] = self.memberSince
+//        blUser.properties[Property.friends.string] = self.friends.map({ $0.blUser })
         return blUser
     }
 }

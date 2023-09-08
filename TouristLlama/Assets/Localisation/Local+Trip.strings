@@ -61,6 +61,11 @@
 "inviteRejected" = "Invite rejected";
 "requestRejected" = "Request rejected";
 
+"leaveTrip" = "Leave trip";
+"leaveTripMessage" = "Are you sure you want do leave this trip?";
+"deleteTrip" = "Delete trip";
+"deleteTripMessage" = "Are you sure you want do delete this trip?";
+
 "tripManageMembersTitle" = "Manage Members";
 "tripManageMembersSubitle" = "Invite & Manage Team Members";
 
@@ -88,7 +93,7 @@
 
 
 //MARK: - User Search
-"userSearchInitialInstruction" = "Start typing the username to find the user.";
+"userSearchInitialInstruction" = "Start typing the username to find the user";
 
 
 // MARK: - Chat

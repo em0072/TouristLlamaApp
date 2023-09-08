@@ -9,6 +9,7 @@ import SwiftUI
 import Dependencies
 import PhotosUI
 
+//@MainActor
 class EditProfileViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
@@ -167,7 +168,7 @@ class EditProfileViewModel: ViewModel {
             .dropFirst()
             .sink { [weak self] pickedImage in
                 self?.isLoadingImage = true
-                Task {
+                Task { [weak self] in
                     if let data = try? await pickedImage?.loadTransferable(type: Data.self),
                        let image = UIImage(data: data) {
                         self?.newImage = image

@@ -9,8 +9,8 @@ import Foundation
 
 class ChatAPIMock: ChatAPIProvider {
         
-    func getChat(for tripId: String) async throws -> TripChat {
-        TripChat.test(numberOfMessages: 25)
+    func getChat(tripId: String, pageSize: Int, pageOffset: Int) async throws -> TripChat {
+        TripChat.test(numberOfMessages: pageSize)
     }
     
     func subscribeToChatUpdates(for chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {}

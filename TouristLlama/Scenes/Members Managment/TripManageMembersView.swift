@@ -16,16 +16,15 @@ struct TripManageMemebersView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 0) {
+        List {
                 requestsPendingSection
                 
                 teamMembersSection
                 
                 rejectedSection
-            }
-            .padding(.horizontal, 20)
         }
+        .background(Color.Main.white)
+        .scrollContentBackground(.hidden)
         .navigationBarTitle(String.Trip.manageMembersTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -38,7 +37,7 @@ struct TripManageMemebersView: View {
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $viewModel.isInviteViewShown, content: {
-            SearchingUsersView(loadingState: $viewModel.loadingState) { user in
+            SearchingUsersView(loadingState: $viewModel.loadingState, showUserFriends: true) { user in
                 !viewModel.canInvite(user)
             } onUserSelection: { user in
                 viewModel.invite(user)
@@ -59,14 +58,13 @@ struct TripManageMemebersView: View {
     }
     
     private var newInviteButton: some View {
-        
         Button {
             viewModel.inviteNewUserButtonAction()
         } label: {
             Image(systemName: "plus.circle.fill")
                 .font(.system(size: 25, weight: .medium))
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(Color.Main.black, Color.Main.white)
+                .foregroundStyle(Color.Main.black, .thinMaterial)
         }
     }
 
@@ -87,13 +85,10 @@ struct TripManageMemebersView: View {
                     }
                 }
             } header: {
-                HStack {
                     Text(String.Trip.manageRequestsSectionTitle)
                         .font(.avenirBody)
                         .bold()
                         .foregroundColor(.Main.black)
-                    Spacer()
-                }
             }
             .padding(.vertical, 12)
         }
@@ -109,13 +104,10 @@ struct TripManageMemebersView: View {
                 cell(for: invite)
             }
         } header: {
-            HStack {
                 Text(String.Trip.manageTeammatesSectionTitle)
-                    .font(.avenirBigBody)
+                    .font(.avenirBody)
                     .bold()
                     .foregroundColor(.Main.black)
-                Spacer()
-            }
         }
         .padding(.vertical, 12)
 
@@ -132,13 +124,10 @@ struct TripManageMemebersView: View {
                     cell(for: request)
                 }
             } header: {
-                HStack {
                     Text(String.Trip.manageRejectedSectionTitle)
                         .font(.avenirBody)
                         .bold()
                         .foregroundColor(.Main.black)
-                    Spacer()
-                }
             }
             .padding(.vertical, 12)
 
@@ -165,18 +154,22 @@ extension TripManageMemebersView {
         }, onRejectUser: {
             viewModel.deny(request)
         }, onDeleteUser: deleteAction(participant: request.applicant))
+        .listRowBackground(Color.Main.listItem)
         .onTapGesture {
             viewModel.selectedUser = request.applicant
         }
+        .buttonStyle(.plain)
     }
     
     private func cell(for participant: User) -> some View {
         TripManageListCell(participant: participant,
                            isOrganiser: viewModel.trip.ownerId == participant.id,
                            onDeleteUser: deleteAction(participant: participant))
+        .listRowBackground(Color.Main.listItem)
             .onTapGesture {
                 viewModel.selectedUser = participant
             }
+        
     }
 
 }
