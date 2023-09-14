@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct ChatMessage: Identifiable {
-    enum MessageType: String {
+struct ChatMessage: Identifiable, Hashable {
+    enum MessageType: String, Hashable {
         case user
         case info
         case newMessages
     }
     
-    enum MessageStatus {
+    enum MessageStatus: Hashable {
         case sending
         case sent
         case error

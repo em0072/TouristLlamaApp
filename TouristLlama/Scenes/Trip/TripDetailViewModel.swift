@@ -12,6 +12,7 @@ class TripDetailViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.tripsAPI) var tripsAPI
+    @Dependency(\.tripsController) var tripsController
 
     @Published var trip: Trip
     @Published var isMembersManagmentOpen = false
@@ -62,6 +63,10 @@ class TripDetailViewModel: ViewModel {
     var nonParticipantTripRequest: TripRequest? {
         guard !isCurrentUserMemberOfTrip else { return nil }
         return trip.requests.first
+    }
+    
+    func updateTrip(updatedTrip: Trip) {
+        self.trip = updatedTrip
     }
 
     func showLeaveTripConfirmation() {

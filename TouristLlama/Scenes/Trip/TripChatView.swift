@@ -16,26 +16,31 @@ struct TripChatView: View {
     
     @Environment(\.dismiss) private var dismiss
 
+    let title: String
     @StateObject var viewModel: TripChatViewModel
-    @State var wholeSize: CGSize = .zero
-    @State var scrollViewSize: CGSize = .zero
-    @State var scrollViewProxy: ScrollViewProxy?
-    @State var isUIInitiallyLoaded =  false
-    @State var incomingMessage =  false
+    
+    @State private var wholeSize: CGSize = .zero
+    @State private var scrollViewSize: CGSize = .zero
+    @State private var scrollViewProxy: ScrollViewProxy?
+    @State private var isUIInitiallyLoaded =  false
+    @State private var incomingMessage =  false
     
     let chatEndId = "chatEnd"
 
     
-    let title: String
-    let chat: TripChat?
-    let selected: Bool
+//    let chat: TripChat?
+//    let selected: Bool
     
-    init(title: String, chat: TripChat?, selected: Bool = true) {
-        self.title = title
-        self.chat = chat
-        self.selected = selected
-        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
-    }
+//    init(title: String, chat: TripChat?, selected: Bool = true) {
+//        self.title = title
+//        self.chat = chat
+//        self.selected = selected
+//        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
+//    }
+    
+//    init(title: String, viewModel: TripChatViewModel) {
+//        self._viewModel = St
+//    }
     
     @FocusState private var focusState: KeyboardFocus?
         
@@ -62,9 +67,9 @@ struct TripChatView: View {
             }
             .animation(.default, value: viewModel.shouldShowScrollButton)
         }
-        .onChange(of: chat) { chat in
-            viewModel.updateChat(with: chat)
-        }
+//        .onChange(of: chat) { chat in
+//            viewModel.updateChat(with: chat)
+//        }
         .onChange(of: viewModel.messages) { [oldMessages = viewModel.messages] newMessages in
             guard oldMessages.first?.id == newMessages.first?.id else {
                 scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
@@ -73,7 +78,6 @@ struct TripChatView: View {
             guard !oldMessages.isEmpty else {
                 return
             }
-//            guard viewModel.canScrollDown else { return }
             incomingMessage = true
             scrollToBottom()
         }
@@ -83,8 +87,7 @@ struct TripChatView: View {
                     scrollToBottom()
                 }
             }
-        }
-        
+        }        
     }
     
 }
@@ -451,6 +454,6 @@ extension TripChatView {
 
 struct TripChatsListView_Previews: PreviewProvider {
     static var previews: some View {
-        TripChatView(title: "New chat", chat: .test(numberOfMessages: 55))
+        TripChatView(title: "Trip Chat", viewModel: .init())
     }
 }

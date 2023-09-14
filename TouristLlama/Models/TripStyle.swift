@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TripStyle: String, Identifiable, CaseIterable, Equatable {
+enum TripStyle: String, Identifiable, CaseIterable, Equatable, Hashable {
     
     var id: String { rawValue }
 //    case none

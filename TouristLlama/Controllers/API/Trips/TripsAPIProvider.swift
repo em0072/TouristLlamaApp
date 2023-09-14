@@ -13,8 +13,8 @@ protocol TripsAPIProvider {
     func getMyTrips() async throws -> [Trip]
     func editTrip(trip: Trip) async throws -> Trip
     func getExploreTrips(searchTerm: String, tripStyle: TripStyle?, startDate: Date?, endDate: Date?) async throws -> [Trip]
-    func subscribeToTripUpdates(for tripId: String, onNewUpdate: @escaping (String) -> Void)
-    func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void)
+    func subscribeToTripsUpdates(for trips: [Trip], onNewUpdate: @escaping (String) -> Void)
+    func subscribeToTripsDeletion(for trips: [Trip], onDelete: @escaping (String) -> Void)
     func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest
     func cancelJoinRequest(tripId: String) async throws
     func answerTravelRequest(request: TripRequest, approved: Bool) async throws -> TripRequest

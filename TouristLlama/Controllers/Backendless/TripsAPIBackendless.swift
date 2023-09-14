@@ -12,6 +12,12 @@ import Combine
 class TripsAPIBackendless: TripsAPIProvider {
     
     private let serviceName = "TripsService"
+    
+    var tripsUpsertSubscription: RTSubscription?
+    var participantsDeleteSubscription: RTSubscription?
+    var tripRequestsUpsertSubscription: RTSubscription?
+    var tripRequestsForUserUpsertSubscription: RTSubscription?
+    var tripsDeleteSubscription: RTSubscription?
 
     func create(trip: Trip) async throws -> Trip {
         return try await withCheckedThrowingContinuation { continuation in
@@ -130,34 +136,81 @@ class TripsAPIBackendless: TripsAPIProvider {
         }
     }
     
-    func subscribeToTripUpdates(for tripId: String, onNewUpdate: @escaping (String) -> Void) {
+    func subscribeToTripsUpdates(for trips: [Trip], onNewUpdate: @escaping (String) -> Void) {
+        tripsUpsertSubscription?.stop()
+        participantsDeleteSubscription?.stop()
+        tripRequestsUpsertSubscription?.stop()
+        tripRequestsForUserUpsertSubscription?.stop()
+        
+        let tripIds = trips.map { $0.id }
+        
         let eventHandlerClauseTrip = Backendless.shared.data.ofTable("Trip").rt
-        let whereClauseTrip = "objectId = '\(tripId)'"
-        _ = eventHandlerClauseTrip?.addUpsertListener(whereClause: whereClauseTrip, responseHandler: { dict in
+        var whereClauseTripIdsString: String = ""
+        for (i, tripId) in tripIds.enumerated() {
+            whereClauseTripIdsString += "'\(tripId)'"
+            if i != tripIds.count - 1 {
+                whereClauseTripIdsString += ","
+            }
+        }
+        let whereClauseTrip = "objectId in (\(whereClauseTripIdsString))"
+        tripsUpsertSubscription = eventHandlerClauseTrip?.addUpsertListener(whereClause: whereClauseTrip, responseHandler: { dict in
             guard let tripId = dict["objectId"] as? String else { return }
             onNewUpdate(tripId)
         }, errorHandler: { fault in
             print("Error: \(fault.message ?? "")")
         })
         
-        _ = eventHandlerClauseTrip?.addDeleteRelationListener(relationColumnName: "participants", parentObjectIds: [tripId], responseHandler: { status in
+        participantsDeleteSubscription = eventHandlerClauseTrip?.addDeleteRelationListener(relationColumnName: "participants", parentObjectIds: tripIds, responseHandler: { status in
             guard let tripId = status.parentObjectId else { return }
             onNewUpdate(tripId)
         }, errorHandler: { fault in
             print("Error: \(fault.message ?? "")")
         })
 
-        
         let eventHandlerTripRequest = Backendless.shared.data.ofTable("TripRequest").rt
-        let whereClauseTripRequest = "tripId = '\(tripId)'"
-        _ = eventHandlerTripRequest?.addUpsertListener(whereClause: whereClauseTripRequest, responseHandler: { dict in
+        let whereClauseTripRequest = "tripId in (\(whereClauseTripIdsString))"
+        tripRequestsUpsertSubscription = eventHandlerTripRequest?.addUpsertListener(whereClause: whereClauseTripRequest, responseHandler: { dict in
             guard let tripId = dict["tripId"] as? String else { return }
+            guard let applicantId = dict["applicantId"] as? String, Backendless.shared.userService.currentUser?.objectId != applicantId else { return }
             onNewUpdate(tripId)
         }, errorHandler: { fault in
             print("Error: \(fault.message ?? "")")
         })
         
+        if let currentUserId = Backendless.shared.userService.currentUser?.objectId {
+            let whereClauseTripRequestForUser = "applicantId = '\(currentUserId)'"
+            tripRequestsForUserUpsertSubscription = eventHandlerTripRequest?.addUpsertListener(whereClause: whereClauseTripRequestForUser, responseHandler: { dict in
+                guard let tripId = dict["tripId"] as? String else { return }
+                onNewUpdate(tripId)
+            }, errorHandler: { fault in
+                print("Error: \(fault.message ?? "")")
+            })
+        }
+
     }
+
+    func subscribeToTripsDeletion(for trips: [Trip], onDelete: @escaping (String) -> Void) {
+        tripsDeleteSubscription?.stop()
+        
+        let tripIds = trips.map { $0.id }
+
+        let eventHandlerClauseTrip = Backendless.shared.data.ofTable("Trip").rt
+        var whereClauseTripIdsString: String = ""
+        for (i, tripId) in tripIds.enumerated() {
+            whereClauseTripIdsString += "'\(tripId)'"
+            if i != tripIds.count - 1 {
+                whereClauseTripIdsString += ","
+            }
+        }
+        let whereClauseTrip = "objectId in (\(whereClauseTripIdsString))"
+        tripsDeleteSubscription = eventHandlerClauseTrip?.addDeleteListener(whereClause: whereClauseTrip, responseHandler: { dict in
+            guard let tripId = dict["objectId"] as? String else { return }
+            onDelete(tripId)
+        }, errorHandler: { fault in
+            print("Error: \(fault.message ?? "")")
+        })
+    }
+
     
     func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void) {
         let eventHandlerClauseTrip = Backendless.shared.data.ofTable("Trip").rt

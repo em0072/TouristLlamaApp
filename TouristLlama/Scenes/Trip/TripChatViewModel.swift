@@ -17,9 +17,8 @@ class TripChatViewModel: ViewModel {
 
     @Published var chat: TripChat? {
         didSet {
-            if oldValue?.id != chat?.id {
+            if oldValue != chat {
                 mapMessages()
-                subscribeToChatUpdates()
             }
         }
     }
@@ -38,14 +37,7 @@ class TripChatViewModel: ViewModel {
             }
         }
     }
-    
-    init(chat: TripChat?) {
-        self.chat = chat
-        super.init()
-        mapMessages()
-        subscribeToChatUpdates()
-    }
-    
+        
     private func setViewModelState() {
         self.state = chat == nil ? .loading : .content
     }
@@ -77,10 +69,15 @@ class TripChatViewModel: ViewModel {
     
     
     func updateChat(with chat: TripChat?) {
-        if chat?.id != self.chat?.id {
+        if chat != self.chat {
             self.chat = chat
         }
-        setViewModelState()
+        self.state = chat == nil ? .loading : .content
+    }
+    
+    func proccessNewMessage(_ message: ChatMessage) {
+        guard message.author != self.userAPI.currentUser else { return }
+        self.insertMessageIfNeeded(message)
     }
 
     func resend(message: ChatMessage) {
@@ -98,30 +95,6 @@ class TripChatViewModel: ViewModel {
             }
         }
     }
-
-//    func resend(message: ChatMessage) {
-//        guard let messageIndex = chat?.messages.firstIndex(of: message) else {
-//            self.error = CustomError(text: "Can't resend the message")
-//            return
-//        }
-//        chat?.messages[messageIndex].status = .sending
-//        Task {
-//            do {
-//                let sentMessage = try await chatAPI.sendChatMessage(message: message)
-//                markMessageAsRead(message: sentMessage)
-//            } catch {
-//                markMessageAsNotSent(message: message)
-//                self.error = error
-//            }
-//        }
-//    }
-
-//    func markMessageAsNotSent(message: ChatMessage) {
-//        if let messageIndex = chat?.messages.firstIndex(of: message) {
-//            chat?.messages[messageIndex].status = .error
-//        }
-//    }
-    
 
     func sendChatMessage() {
         guard let chatId = chat?.id else {
@@ -142,7 +115,6 @@ class TripChatViewModel: ViewModel {
                 do {
                     let sentMessage = try await chatAPI.sendChatMessage(message: message)
                     self.insertMessageIfNeeded(sentMessage)
-//                    markMessageAsSent(messageId: sentMessage.id)
                 } catch {
                     markMessageAsNotSent(messageId: message.id)
                 }
@@ -188,7 +160,6 @@ class TripChatViewModel: ViewModel {
                 lastReadMessage = message
             }
             messages.insert(message, at: 0)
-
         }
         self.messages = messages
         
@@ -196,9 +167,7 @@ class TripChatViewModel: ViewModel {
     }
     
     private func addOlderMessages(_ olderMessages: [ChatMessage]) {
-//        canScrollDown = false
         olderMessages.forEach({ messages.insert($0, at: 0) })
-//        canScrollDown = true
     }
     
     private func markMessageAsNotSent(messageId: String) {
@@ -213,19 +182,6 @@ class TripChatViewModel: ViewModel {
             }
         }
 
-        
-    private func subscribeToChatUpdates() {
-        guard let chatId = chat?.id else { return }
-        chatAPI.subscribeToChatUpdates(for: chatId)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] message in
-                guard let self else { return }
-                guard message.author != self.userAPI.currentUser else { return }
-                self.insertMessageIfNeeded(message)
-            }
-            .store(in: &publishers)
-    }
-    
     private func insertMessageIfNeeded(_ message: ChatMessage) {
         if let messageIndex = messages.firstIndex(where: { $0.id == message.id}) {
             messages[messageIndex] = message

@@ -99,3 +99,17 @@ extension DependencyValues {
     }
 }
 
+// MARK: - Trips Controller
+private enum TripsControllerKey: DependencyKey {
+    static let liveValue = TripsController()
+    static let previewValue = TripsController()
+}
+
+extension DependencyValues {
+    var tripsController: TripsController {
+        get { self[TripsControllerKey.self] }
+        set { self[TripsControllerKey.self] = newValue }
+    }
+}
+
+

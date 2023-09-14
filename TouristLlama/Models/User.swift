@@ -8,7 +8,7 @@
 import Foundation
 import SwiftSDK
 
-struct User: Identifiable {
+struct User: Identifiable, Hashable {
     
     enum Property: String {
         case name

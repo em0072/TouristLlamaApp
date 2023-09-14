@@ -14,18 +14,10 @@ struct TripDetailsView: View {
     @Environment(\.dismiss) private var dismiss
     
     @StateObject var viewModel: TripDetailViewModel
+    let onTripEdit: () -> Void
     
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
-    
-    let onTripEdit: () -> Void
-    let trip: Trip
-    
-    init(trip: Trip, isMembersManagmentOpen: Bool, onTripEdit: @escaping () -> Void) {
-        self.trip = trip
-        self._viewModel = StateObject(wrappedValue: TripDetailViewModel(trip: trip, isMembersManagmentOpen: isMembersManagmentOpen))
-        self.onTripEdit = onTripEdit
-    }
-    
+        
     var body: some View {
         NavigationStack {
             ZStack {
@@ -38,9 +30,9 @@ struct TripDetailsView: View {
                         dividerView
                         aboutView
                         dividerView
-                        paticipantsView
-                        dividerView
                         mapView
+                        dividerView
+                        paticipantsView
                     }
                 }
                 .padding(.top, -8)
@@ -64,7 +56,6 @@ struct TripDetailsView: View {
                         if viewModel.isCurrentUserOwnerOfTrip {
                             editButton
                         }
-                        //                            shareButton
                         moreButton
                     }
                 }
@@ -93,9 +84,6 @@ struct TripDetailsView: View {
         }
         .handle(loading: $viewModel.loadingState)
         .handle(error: $viewModel.error)
-        .onChange(of: trip) { trip in
-            viewModel.trip = trip
-        }
         .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
             if shouldDismiss {
                 dismiss()
@@ -581,7 +569,7 @@ extension TripDetailsView {
                 .foregroundColor(.Main.black)
             Spacer()
             
-            if viewModel.trip.ownerId == user.id { //TripHelper.is(viewModel.trip, orginisedBy: user) {
+            if viewModel.trip.ownerId == user.id {
                 Text(String.Trip.organizer)
                     .font(.avenirBody.weight(.medium))
                     .foregroundColor(.Main.black)
@@ -611,6 +599,6 @@ extension TripDetailsView {
 
 struct TripDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailsView(trip: .testOngoing, isMembersManagmentOpen: false, onTripEdit: {})
+        TripDetailsView(viewModel: .init(trip: .testFuture), onTripEdit: {})
     }
 }

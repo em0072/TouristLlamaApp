@@ -22,6 +22,8 @@ struct NotificationsView: View {
                     contentView
                 }
             }
+            .handle(loading: $viewModel.loadingState)
+            .handle(error: $viewModel.error)
             .navigationTitle(String.Notifications.title)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -46,6 +48,9 @@ extension NotificationsView {
     private var listView: some View {
         List(viewModel.myNotifications) { notification in
             NotificationCellView(notification: notification)
+                .onTapGesture {
+                    viewModel.openTrip(tripId: notification.tripId)
+                }
                 .listRowBackground(Color.Main.listItem)
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     

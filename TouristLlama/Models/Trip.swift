@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Trip: Identifiable, Equatable {
+struct Trip: Identifiable, Equatable, Hashable {
     let id: String
     let name: String
     let style: TripStyle?

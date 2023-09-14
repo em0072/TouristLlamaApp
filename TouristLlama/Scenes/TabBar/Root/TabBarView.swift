@@ -64,6 +64,11 @@ struct TabBarView: View {
             .tint(.Main.black)
         }
         .tint(.Main.accentBlue)
+        .fullScreenCover(item: $viewModel.selectedTripOpenState, onDismiss: {
+            viewModel.tripsController.reloadTrips()
+        }, content: { tripState in
+            TripView(openState: tripState)
+        })
     }
 }
 

@@ -54,6 +54,7 @@ import SwiftSDK
               let startDate,
               let endDate,
               let tripDescription,
+              let chat = self.chat?.appObject,
               let photo = self.photo?.appObject,
               let ownerId else { return nil }
         
@@ -73,6 +74,7 @@ import SwiftSDK
                     isPublic: isPublic,
                     participants: self.participants.compactMap { User(from: $0) },
                     ownerId: ownerId,
+                    chat: chat,
                     requests: requests
         )
     }

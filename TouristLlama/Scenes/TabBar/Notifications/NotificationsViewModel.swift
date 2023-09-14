@@ -12,7 +12,8 @@ import Combine
 class NotificationsViewModel: ViewModel {
     
     @Dependency(\.notificationsAPI) var notificationsAPI
-    
+    @Dependency(\.tripsController) var tripsController
+
     @Published var myNotifications: [UserNotification] = []
     
     override func subscribeToUpdates() {
@@ -43,5 +44,19 @@ class NotificationsViewModel: ViewModel {
     
     func markAllNotificationAsRead() {
         notificationsAPI.markAllNotificationsAsRead()
+    }
+    
+    @MainActor
+    func openTrip(tripId: String) {
+        loadingState = .loading
+        Task {
+            do {
+                let trip = try await tripsController.getTrip(tripId: tripId)
+                loadingState = .none
+                tripsController.selectedTripState = .details(trip)
+            } catch {
+                self.error = error
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TripRequest: Identifiable, Equatable {
+struct TripRequest: Identifiable, Equatable, Hashable {
     
     var id: String
     var applicant: User

@@ -9,12 +9,15 @@ import SwiftUI
 import Combine
 import UserNotifications
 import UserNotificationsUI
+import Dependencies
 
 final class NotificationsController: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     
+    @Dependency(\.tripsController) var tripsController
+    @Dependency(\.notificationsAPI) var notificationsAPI
+
     @Published var isShowingSettingsPage = false
     @Published var badgeNumber = 0
-    
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -57,11 +60,34 @@ final class NotificationsController: NSObject, ObservableObject, UNUserNotificat
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         print(response)
+        guard let type = response.notification.request.content.userInfo["type"] as? String,
+              let tripId = response.notification.request.content.userInfo["tripId"] as? String,
+              let trip = try? await tripsController.getTrip(tripId: tripId) else {
+            return
+        }
+        if let notificationId = response.notification.request.content.userInfo["notificationId"] as? String {
+            notificationsAPI.markNotificationAsRead(id: notificationId)
+        }
+        if type == "chatUpdate" {
+            tripsController.open(tripOpenState: .chat(trip))
+        } else if type == "tripUpdate" {
+            tripsController.open(tripOpenState: .details(trip))
+        }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         print(notification)
-        return [.badge, .banner, .sound]
+        let notificationShownOptions: UNNotificationPresentationOptions = [.badge, .banner, .sound]
+        let notificationNotShownOptions: UNNotificationPresentationOptions = []
+        
+        guard let type = notification.request.content.userInfo["type"] as? String,
+              let tripId = notification.request.content.userInfo["tripId"] as? String else {
+            return notificationShownOptions
+        }
+        if type == "chatUpdate" && tripsController.selectedTripState?.id == tripId {
+            return notificationNotShownOptions
+        }
+        return notificationShownOptions
     }
     
 //    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

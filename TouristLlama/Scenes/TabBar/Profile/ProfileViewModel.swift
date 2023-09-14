@@ -19,6 +19,7 @@ class ProfileViewModel: ViewModel {
     @Published var userToEditProfile: User?
     @Published var isReportingViewOpen = false
     @Published var isBlockingViewOpen = false
+    @Published var isLogoutConfirmationShown: Bool = false
 
     
     init(user: User?) {
@@ -172,5 +173,18 @@ class ProfileViewModel: ViewModel {
         }
     }
 
+    func logoutButtonAction() {
+        isLogoutConfirmationShown = true
+    }
+
+    func logout() {
+        Task {
+            do {
+                try await userAPI.logOut()
+            } catch {
+                self.error = error
+            }
+        }
+    }
 
 }

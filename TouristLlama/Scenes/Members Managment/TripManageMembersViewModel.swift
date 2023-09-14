@@ -37,7 +37,7 @@ class TripManageMembersViewModel: ViewModel {
         
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
-        subscribeToTripUpdates()
+//        subscribeToTripUpdates()
         subscribeToInvitedUsers()
     }
 
@@ -200,14 +200,14 @@ class TripManageMembersViewModel: ViewModel {
         }
     }
     
-    private func subscribeToTripUpdates() {
-        tripAPI.subscribreToTripUpdates(with: trip.id)
-            .sink(receiveValue: { [weak self] updatedTrip in
-                self?.trip = updatedTrip
-            })
-            .store(in: &publishers)
-//            .assign(to: &$trip)
-    }
+//    private func subscribeToTripUpdates() {
+//        tripAPI.subscribreToTripUpdates(with: trip.id)
+//            .sink(receiveValue: { [weak self] updatedTrip in
+//                self?.trip = updatedTrip
+//            })
+//            .store(in: &publishers)
+////            .assign(to: &$trip)
+//    }
     
     private func subscribeToInvitedUsers() {
 //        TripService.shared.subscribeToTripRequests(tripId: trip.id.description, usersStatus: .invited)

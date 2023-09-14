@@ -16,7 +16,7 @@ class TripsAPI {
     private let provider: TripsAPIProvider
     @Published var myTrips: [Trip] = []
     @Published var myTripsIsLoaded = false
-    
+
     @Published var allTrips: [Trip] = []
     @Published var allTripsIsLoaded = false
 
@@ -25,43 +25,67 @@ class TripsAPI {
 
     init(provider: TripsAPIProvider) {
         self.provider = provider
-        updateMyTrips()
+//        updateMyTrips()
     }
     
-    func subscribreToTripUpdates(with tripId: String) -> AnyPublisher<Trip, Never> {
-        
-        if let exictingPublisher = publishers[tripId] {
-            return exictingPublisher.eraseToAnyPublisher()
-        }
-        let publisher = PassthroughSubject<Trip, Never>()
-        publishers[tripId] = publisher
-        provider.subscribeToTripUpdates(for: tripId) { [weak self] tripId in
-            guard let self else { return }
+    func subscribeToTripsUpdates(for trips: [Trip], onNewUpdate: @escaping (Trip) -> Void) {
+        provider.subscribeToTripsUpdates(for: trips) { tripId in
             Task {
                 do {
                     let trip = try await self.getTrip(for: tripId)
                     Task { @MainActor in
-                        publisher.send(trip)
+                        onNewUpdate(trip)
                     }
                 } catch {
                     print("ERROR can't get trip with id \(tripId) - \(error)")
                 }
             }
         }
-        
-        return publisher.eraseToAnyPublisher()
     }
     
-    func subscribeOnTripDeletion(with tripId: String) {
-        provider.subscribeToTripDeletion(for: tripId) { [weak self] tripId in
-            self?.deleteTrip(with: tripId)
-        }
+    func subscribeToTripsDeletion(for trips: [Trip], onDelete: @escaping (String) -> Void) {
+        provider.subscribeToTripsDeletion(for: trips, onDelete: onDelete)
     }
     
-    func updateLastMessage(tripId: String, message: ChatMessage) {
-        if let myTripIndex = myTrips.firstIndex(where: { $0.id == tripId }) {
-            myTrips[myTripIndex].lastMessage = message
-        }
+//    func subscribreToTripUpdates(with tripId: String) -> AnyPublisher<Trip, Never> {
+//
+//        if let exictingPublisher = publishers[tripId] {
+//            return exictingPublisher.eraseToAnyPublisher()
+//        }
+//        let publisher = PassthroughSubject<Trip, Never>()
+//        publishers[tripId] = publisher
+//        provider.subscribeToTripUpdates(for: tripId) { [weak self] tripId in
+//            guard let self else { return }
+//            Task {
+//                do {
+//                    let trip = try await self.getTrip(for: tripId)
+//                    Task { @MainActor in
+//                        publisher.send(trip)
+//                    }
+//                } catch {
+//                    print("ERROR can't get trip with id \(tripId) - \(error)")
+//                }
+//            }
+//        }
+//
+//        return publisher.eraseToAnyPublisher()
+//    }
+    
+//    func subscribeOnTripDeletion(with tripId: String, onTripDelete: @escaping (String) -> Void) {
+//        provider.subscribeToTripDeletion(for: tripId, onDelete: onTripDelete)
+////        provider.subscribeToTripDeletion(for: tripId) { [weak self] tripId in
+////            onTripDelete(tripId)
+////        }
+//    }
+    
+//    func updateLastMessage(tripId: String, message: ChatMessage) {
+//        if let myTripIndex = myTrips.firstIndex(where: { $0.id == tripId }) {
+//            myTrips[myTripIndex].lastMessage = message
+//        }
+//    }
+    
+    func getMyTrips() async throws -> [Trip] {
+        try await provider.getMyTrips()
     }
     
     func getTrip(for tripId: String) async throws -> Trip {
@@ -79,9 +103,9 @@ class TripsAPI {
         return editedTrip
     }
     
-    func getExploreTrips(searchTerm: String, tripStyel: TripStyle? = nil, startDate: Date? = nil, endDate: Date? = nil) async throws {
-        allTrips = try await provider.getExploreTrips(searchTerm: searchTerm, tripStyle: tripStyel, startDate: startDate, endDate: endDate)
-        await subscribeToAllTripsUpdates()
+    func getExploreTrips(searchTerm: String, tripStyle: TripStyle? = nil, startDate: Date? = nil, endDate: Date? = nil) async throws -> [Trip] {
+        try await provider.getExploreTrips(searchTerm: searchTerm, tripStyle: tripStyle, startDate: startDate, endDate: endDate)
+//        await subscribeToAllTripsUpdates()
     }
     
     func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
@@ -116,9 +140,9 @@ class TripsAPI {
     }
     
     func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
-        let updatedRequest = try await provider.answerTravelInvite(request: request, accepted: accepted)
-        updateTrips(with: updatedRequest)
-        return updatedRequest
+        try await provider.answerTravelInvite(request: request, accepted: accepted)
+//        updateTrips(with: updatedRequest)
+//        return updatedRequest
     }
     
     func leaveTrip(tripId: String) async throws {
@@ -134,43 +158,43 @@ class TripsAPI {
     }
     
 
-    private func updateMyTrips() {
-        Task {
-            do {
-                myTrips = try await provider.getMyTrips()
-                myTripsIsLoaded = true
-                await subscribeToMyTripsUpdates()
-            } catch {
-                print(error)
-            }
-        }
-    }
+//    private func updateMyTrips() {
+//        Task {
+//            do {
+//                myTrips = try await provider.getMyTrips()
+//                myTripsIsLoaded = true
+//                await subscribeToMyTripsUpdates()
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
     
-    @MainActor
-    private func subscribeToMyTripsUpdates() {
-        for trip in myTrips {
-            subscribreToTripUpdates(with: trip.id)
-                .sink { [weak self] updatedTrip in
-                    self?.updateTrips(with: updatedTrip)
-                }
-                .store(in: &cancelebles)
-            
-            subscribeOnTripDeletion(with: trip.id)
-        }
-    }
+//    @MainActor
+//    private func subscribeToMyTripsUpdates() {
+//        for trip in myTrips {
+//            subscribreToTripUpdates(with: trip.id)
+//                .sink { [weak self] updatedTrip in
+//                    self?.updateTrips(with: updatedTrip)
+//                }
+//                .store(in: &cancelebles)
+//
+//            subscribeOnTripDeletion(with: trip.id)
+//        }
+//    }
     
-    @MainActor
-    private func subscribeToAllTripsUpdates() {
-        for trip in allTrips {
-            subscribreToTripUpdates(with: trip.id)
-                .sink { [weak self] updatedTrip in
-                    self?.updateTrips(with: updatedTrip)
-                }
-                .store(in: &cancelebles)
-            
-            subscribeOnTripDeletion(with: trip.id)
-        }
-    }
+//    @MainActor
+//    private func subscribeToAllTripsUpdates() {
+//        for trip in allTrips {
+//            subscribreToTripUpdates(with: trip.id)
+//                .sink { [weak self] updatedTrip in
+//                    self?.updateTrips(with: updatedTrip)
+//                }
+//                .store(in: &cancelebles)
+//            
+////            subscribeOnTripDeletion(with: trip.id)
+//        }
+//    }
     
     private func cancelRequest(_ request: TripRequest) {
         if let myTripIndex = myTrips.firstIndex(where: { $0.id == request.tripId }) {

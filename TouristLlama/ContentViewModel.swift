@@ -14,7 +14,8 @@ import UIKit
 class ContentViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.notificationsController) var notificationsController
-    
+    @Dependency(\.tripsController) var tripsController
+
     enum LoginStatus {
         case notDetermined
         case loggedOut
@@ -41,6 +42,10 @@ class ContentViewModel: ViewModel {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+    }
+    
+    func loadTrips() {
+        tripsController.loadTrips()
     }
 }
 

@@ -18,13 +18,21 @@ enum TabOption {
 class TabBarViewModel: ViewModel {
     
     @Dependency(\.notificationsAPI) var notificationsAPI
-    
+    @Dependency(\.tripsController) var tripsController
+
     @Published var selectedTab: TabOption = .explore
     @Published var notificationsBadgeNumber: Int = 0
-    
+    @Published var selectedTripOpenState: TripOpenState? {
+        didSet {
+            guard selectedTripOpenState != tripsController.selectedTripState else { return }
+            tripsController.selectedTripState = selectedTripOpenState
+        }
+    }
+
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
         subscribeToNotificationsBadgeUpdate()
+        subscribeToTripOpenState()
     }
 
     var exploreTabIcon: String {
@@ -50,6 +58,16 @@ class TabBarViewModel: ViewModel {
                 guard let self else { return }
                 self.notificationsBadgeNumber = badgeNumber
             }
+            .store(in: &publishers)
+    }
+    
+    private func subscribeToTripOpenState() {
+        tripsController.$selectedTripState
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] tripOpenState in
+                guard let self, self.selectedTripOpenState != tripOpenState else { return }
+                self.selectedTripOpenState = tripOpenState
+            })
             .store(in: &publishers)
     }
 }

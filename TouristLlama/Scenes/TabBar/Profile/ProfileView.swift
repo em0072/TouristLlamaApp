@@ -39,10 +39,12 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    settingsButton
+                    
                     
                     if !viewModel.isCurrentUser {
                         moreButton
+                    } else {
+                        logoutButton
                     }
                 }
             }
@@ -58,13 +60,12 @@ struct ProfileView: View {
             .confirmationDialog(viewModel.blockConfirmationTitle,
                                 isPresented: $viewModel.isBlockingViewOpen,
                                 titleVisibility: .visible,
-                                actions: {
-                Button(viewModel.blockConfirmationActionString, role: .destructive) {
-                    viewModel.blockConfirmationAction()
-                }
-            }, message: {
-                Text(viewModel.blockConfirmationMessage)
-            })
+                                actions: { blockConfirmationDialogActions },
+                                message: { blockConfirmationDialogMessage })
+            .confirmationDialog(String.Profile.logoutPromptTitle,
+                                isPresented: $viewModel.isLogoutConfirmationShown,
+                                actions: { logoutConfirmationDialogActions },
+                                message: { logoutConfirmationDialogMessage })
             .onAppear {
                 viewModel.getUserCounters()
             }
@@ -241,6 +242,16 @@ extension ProfileView {
         }
     }
 
+    private var blockConfirmationDialogActions: some View {
+        Button(viewModel.blockConfirmationActionString, role: .destructive) {
+            viewModel.blockConfirmationAction()
+        }
+    }
+    
+    private var blockConfirmationDialogMessage: some View {
+        Text(viewModel.blockConfirmationMessage)
+    }
+
 
 //    private var awardsButton: some View {
 //        VStack {
@@ -275,16 +286,31 @@ extension ProfileView {
 //    }
     
     @ViewBuilder
-    private var settingsButton: some View {
+    private var logoutButton: some View {
         if viewModel.isCurrentUser {
-            NavigationLink {
-                SettingsView()
+            Button(role: .destructive) {
+                viewModel.logoutButtonAction()
             } label: {
-                Image(systemName: "gearshape.fill")
+                Image(systemName: "rectangle.portrait.and.arrow.right")
                     .font(.system(size: 17, weight: .medium))
+                    .foregroundColor(.Main.accentRed)
             }
         }
     }
+    
+    @ViewBuilder
+    private var logoutConfirmationDialogActions: some View {
+        Button(String.Profile.logout, role: .destructive) {
+            viewModel.logout()
+        }
+    }
+    
+    private var logoutConfirmationDialogMessage: some View {
+        Text(String.Profile.logoutPromptMessage)
+            .font(.avenirBody)
+    }
+    
+
 }
 
 

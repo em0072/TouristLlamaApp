@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TripChat: Identifiable, Equatable {
+struct TripChat: Identifiable, Equatable, Hashable {
     let id: String
     let ownerId: String
     let tripId: String

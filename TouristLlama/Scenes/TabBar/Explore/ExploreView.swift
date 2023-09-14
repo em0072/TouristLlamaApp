@@ -29,12 +29,12 @@ struct ExploreView: View {
             Color.Main.white
                 .ignoresSafeArea()
         }
-        .onAppear {
-            viewModel.requestTrips(showingProgress: false)
-        }
-        .fullScreenCover(item: $viewModel.tripToOpen) { trip in
-            TripView(trip: trip)
-        }
+//        .onAppear {
+//            viewModel.requestTrips(showingProgress: false)
+//        }
+//        .fullScreenCover(item: $viewModel.tripToOpen) { trip in
+//            TripView(trip: trip)
+//        }
         .sheet(isPresented: $viewModel.areFiltersOpen) {
             TripsFiltersView(filters: viewModel.filters) { filters in
                 viewModel.set(filters)

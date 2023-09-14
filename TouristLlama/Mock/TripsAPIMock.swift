@@ -25,9 +25,10 @@ class TripsAPIMock: TripsAPIProvider {
         return [Trip.testOngoing, Trip.testFuture, .testPast]
     }
     
-    func subscribeToTripUpdates(for tripId: String, onNewUpdate: @escaping (String) -> Void) {}
-    
-    func subscribeToTripDeletion(for tripId: String, onDelete: @escaping (String) -> Void) {}
+    func subscribeToTripsUpdates(for trips: [Trip], onNewUpdate: @escaping (String) -> Void) {
+    }
+    func subscribeToTripsDeletion(for trips: [Trip], onDelete: @escaping (String) -> Void) {
+    }
     
     func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
         return .testRequestPending

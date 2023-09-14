@@ -32,24 +32,11 @@ struct TripView: View {
                     }
             } else {
                 tripDetailsView
-//                VStack(spacing: 0) {
-//                    Spacer()
-//                    joinView
-//                }
             }
         }
         .onChange(of: viewModel.shouldDismiss) { shouldDismiss in
             if shouldDismiss { dismiss() }
         }
-//        .sheet(isPresented: $viewModel.isApplicationLetterFormShown) {
-//            TripApplicationForm { message in
-//                viewModel.joinRequestSend(message: message)
-//            }
-//            .presentationDragIndicator(.visible)
-//            .handle(loading: $viewModel.loadingState)
-//            .handle(error: $viewModel.error)
-//        }
-//        .animation(.default, value: viewModel.nonParticipantTripRequest)
         .handle(loading: $viewModel.loadingState)
         .handle(error: $viewModel.error)
         
@@ -59,197 +46,8 @@ struct TripView: View {
 
 extension TripView {
     
-//    @ViewBuilder
-//    private var joinView: some View {
-//        if let request = viewModel.nonParticipantTripRequest {
-//            switch request.status {
-//            case .inviteRejected:
-//                inviteRejectedView
-//
-//            case .invitePending:
-//                invitePendingView(request: request)
-//
-//            case .requestPending:
-//                requestPendingView(request: request)
-//
-//            case .requestRejected:
-//                requestRejectedView
-//
-//            case .inviteAccepted, .requestApproved:
-//                EmptyView()
-//
-//            case .requestCancelled:
-//                joinButtonView
-//            }
-//
-//        } else {
-//            joinButtonView
-//        }
-//    }
-    
-//    private var joinButtonView: some View {
-//        Button(String.Trip.requestToJoin) {
-//            viewModel.joinButtonAction()
-//        }
-//        .buttonStyle(WideBlueButtonStyle())
-//        .padding(.top, 12)
-//        .padding(.horizontal, 20)
-//        .background {
-//            joinBackgroundView(color: .clear)
-//        }
-//    }
-//    
-//    private func requestPendingView(request: TripRequest) -> some View {
-//        HStack {
-//            Spacer()
-//            VStack {
-//                Text(String.Trip.requestToJoinPending)
-//                    .foregroundStyle(.primary)
-//                    .font(.avenirBody)
-//                    .bold()
-//                
-//                Button {
-//                    viewModel.cancelJoinRequest(request)
-//                } label: {
-//                    Text(String.Main.cancel)
-//                        .font(.avenirBody)
-//                        .foregroundStyle(.primary)
-//                        .underline()
-//                }
-//            }
-//            .padding(.top, 12)
-//            Spacer()
-//        }
-//        .background {
-//            joinBackgroundView(color: .Main.yellow)
-//        }
-//    }
-//    
-//    private func invitePendingView(request: TripRequest) -> some View {
-//        HStack {
-//            Spacer()
-//            VStack {
-//                Text(String.Trip.inviteToJoinPending)
-//                    .foregroundStyle(.primary)
-//                    .font(.avenirBody)
-//                    .bold()
-//                
-//                HStack {
-//                    Button {
-//                        viewModel.acceptInvite(request)
-//                    } label: {
-//                        Text(String.Main.accept)
-//                            .font(.avenirBody)
-//                            .foregroundStyle(.primary)
-//                            .bold()
-//                            .padding(.vertical, 6)
-//                            .padding(.horizontal, 12)
-//                            .background {
-//                                Capsule()
-//                                    .fill(Color.Main.green.opacity(0.7))
-//                            }
-//                    }
-//                    
-//                    Button {
-//                        viewModel.rejectInvite(request)
-//                    } label: {
-//                        Text(String.Main.reject)
-//                            .font(.avenirBody)
-//                            .foregroundStyle(.primary)
-//                            .bold()
-//                            .padding(.vertical, 6)
-//                            .padding(.horizontal, 12)
-//                            .background {
-//                                Capsule()
-//                                    .fill(Color.Main.accentRed.opacity(0.7))
-//                            }
-//                    }
-//                    
-//                }
-//            }
-//            .padding(.top, 12)
-//            
-//            Spacer()
-//            
-//        }
-//        .background {
-//            joinBackgroundView(color: .Main.yellow)
-//        }
-//        
-//    }
-//    
-//    private var requestRejectedView: some View {
-//        HStack {
-//            
-//            Spacer()
-//            
-//            VStack {
-//                Text(String.Trip.requestToJoinRejected)
-//                    .foregroundStyle(.primary)
-//                    .font(.avenirBody)
-//                    .bold()
-//                
-//                Button {
-//                    viewModel.joinButtonAction()
-//                } label: {
-//                    Text(String.Trip.requestToJoinAgain)
-//                        .foregroundStyle(.primary)
-//                        .font(.avenirBody)
-//                        .underline()
-//                }
-//            }
-//            .padding(.top, 12)
-//            
-//            Spacer()
-//        }
-//        .background {
-//            joinBackgroundView(color: .Main.accentRed)
-//        }
-//    }
-//    
-//    private var inviteRejectedView: some View {
-//        HStack {
-//            
-//            Spacer()
-//            
-//            VStack {
-//                Text(String.Trip.inviteToJoinRejected)
-//                    .foregroundStyle(.primary)
-//                    .font(.avenirBody)
-//                    .bold()
-//                
-//                Button {
-//                    viewModel.joinButtonAction()
-//                } label: {
-//                    Text(String.Trip.requestToJoinAgain)
-//                        .foregroundStyle(.primary)
-//                        .font(.avenirBody)
-//                        .underline()
-//                }
-//            }
-//            .padding(.top, 12)
-//            
-//            Spacer()
-//        }
-//        .background {
-//            joinBackgroundView(color: .Main.accentRed)
-//        }
-//    }
-//    
-//    private func joinBackgroundView(color: Color) -> some View {
-//        Rectangle()
-//            .fill(.ultraThinMaterial)
-//            .background {
-//                color.opacity(0.6)
-//            }
-//            .ignoresSafeArea()
-//        
-//    }
-    
-    
     private var tripDetailsView: some View {
-        TripDetailsView(trip: viewModel.trip,
-                        isMembersManagmentOpen: viewModel.isMembersManagmentOpen) {
+        TripDetailsView(viewModel: viewModel.tripDetailViewModel) {
             viewModel.editTrip()
         }
     }
@@ -263,7 +61,7 @@ extension TripView {
                 }.tag(TripViewModel.TabSelection.details)
                 .tint(Color.Main.black)
             
-            TripChatView(title: viewModel.trip.name, chat: viewModel.trip.chat, selected: viewModel.selectedTab == .chats)
+            TripChatView(title: viewModel.trip.name, viewModel: viewModel.tripChatViewModel)
                 .tabItem {
                     Label(String.Trip.discussionTitle, systemImage: "text.bubble.fill")
                 }.tag(TripViewModel.TabSelection.chats)

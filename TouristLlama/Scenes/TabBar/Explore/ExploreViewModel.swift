@@ -10,7 +10,8 @@ import Dependencies
 
 class ExploreViewModel: ViewModel {
     
-    @Dependency(\.tripsAPI) var tripAPI
+    @Dependency(\.tripsController) var tripsController
+    @Dependency(\.userDefaultsController) var userDefaultsController
     @Dependency(\.userAPI) var userAPI
 
     @Published var searchPrompt: String = ""
@@ -26,7 +27,7 @@ class ExploreViewModel: ViewModel {
     @Published var areFiltersOpen: Bool = false
     @Published var filters: Filters = .init()
     @Published var trips = [Trip]()
-    @Published var tripToOpen: Trip?
+//    @Published var tripToOpen: Trip?
     
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
@@ -48,33 +49,24 @@ class ExploreViewModel: ViewModel {
     
     func clearFilters() {
         filters.clear()
-        requestTrips()
+        searchTrips()
     }
     
-    func requestTrips(showingProgress: Bool = true) {
-        Task {
-            do {
-                isSearching = showingProgress
-                try await tripAPI.getExploreTrips(searchTerm: searchPrompt,
-                                                  tripStyel: filters.tripStyle,
-                                                  startDate: filters.startDate,
-                                                  endDate: filters.endDate)
-                state = .content
-                isSearching = false
-            } catch {
-                self.error = error
-                isSearching = false
-            }
-        }
+    func searchTrips() {
+                isSearching = true
+                tripsController.searchTrips(searchTerm: searchPrompt,
+                                            tripStyle: filters.tripStyle,
+                                            startDate: filters.startDate,
+                                            endDate: filters.endDate)
     }
     
     func open(_ trip: Trip) {
-        tripToOpen = trip
+        tripsController.open(tripOpenState: .details(trip))
     }
     
     func set(_ filters: Filters) {
         self.filters = filters
-        self.requestTrips()
+        self.searchTrips()
     }
     
     func shouldShowNotificationBadge(_ trip: Trip) -> Bool {
@@ -89,6 +81,11 @@ class ExploreViewModel: ViewModel {
                 return true
             }
         }
+        if trip.participants.contains(where: { currentUser.id == $0.id }),
+           let lastMessage = trip.lastMessage,
+           lastMessage.id != userDefaultsController.getLastMessageIf(for: trip.id) {
+            return true
+        }
         return false
     }
     
@@ -97,17 +94,20 @@ class ExploreViewModel: ViewModel {
             .dropFirst()
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [weak self] searchTerm in
-                self?.requestTrips()
+                guard let self else { return }
+                self.searchTrips()
             }
             .store(in: &publishers)
     }
     
     private func subscribeToAllTrips() {
-        tripAPI.$allTrips
-            .dropFirst()
+        tripsController.$exploreTrips
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] allTrips in
+                guard let allTrips else { return }
                 self?.trips = allTrips
+                self?.state = .content
+                self?.isSearching = false
             })
             .store(in: &publishers)
     }

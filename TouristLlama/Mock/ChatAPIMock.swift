@@ -13,7 +13,8 @@ class ChatAPIMock: ChatAPIProvider {
         TripChat.test(numberOfMessages: pageSize)
     }
     
-    func subscribeToChatUpdates(for chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {}
+    func subscribeToChatUpdates(for chatIds: [String], onNewMessage: @escaping (ChatMessage) -> Void) {
+    }
     
     func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
         .test
