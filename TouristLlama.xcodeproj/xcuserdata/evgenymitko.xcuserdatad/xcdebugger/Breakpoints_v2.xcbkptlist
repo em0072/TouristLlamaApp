@@ -5900,8 +5900,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "downloadOlderMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -5930,8 +5930,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "mapMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -5946,8 +5946,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "markMessageAsSent(messageId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5962,8 +5962,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "insertMessageIfNeeded(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6024,8 +6024,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "isTitleMessage(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6040,8 +6040,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "resend(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6088,8 +6088,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "sendChatMessage()"
             landmarkType = "7">
             <Locations>
@@ -6136,8 +6136,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "sendChatMessage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -6152,8 +6152,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "sendChatMessage()"
             landmarkType = "7">
             <Locations>
@@ -6228,8 +6228,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "downloadOlderMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -6244,8 +6244,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199">
+            startingLineNumber = "197"
+            endingLineNumber = "197">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6449,8 +6449,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "mapMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -6465,8 +6465,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199">
+            startingLineNumber = "197"
+            endingLineNumber = "197">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6479,10 +6479,10 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "addOlderMessages(_:)"
-            landmarkType = "7">
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "TripChatViewModel"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "79674431-DC28-4986-B73D-95DD6B23FAAE - 1503f38bc3c4af13"
@@ -6557,8 +6557,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "TripChatViewModel"
             landmarkType = "3">
          </BreakpointContent>
@@ -6573,8 +6573,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199">
+            startingLineNumber = "197"
+            endingLineNumber = "197">
             <Locations>
                <Location
                   uuid = "5E11B926-2A10-486C-AACA-7FBB104052BA - 9e62592d2080d330"
@@ -7077,8 +7077,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "mapMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -7520,8 +7520,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "resend(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -9142,8 +9142,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "mapMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -9158,8 +9158,8 @@
             filePath = "TouristLlama/Scenes/Trip/TripChatViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "downloadOlderMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -9168,48 +9168,16 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7A64EB57-D6BD-4111-9CB7-3FDD273C5D55"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TouristLlama/Scenes/Trip/TripChatView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "7A64EB57-D6BD-4111-9CB7-3FDD273C5D55 - b6d48134ced0b50b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Array&lt;TouristLlama.ChatMessage&gt;) -&gt; () in TouristLlama.TripChatView.body.getter : some"
-                  moduleName = "TouristLlama"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Trip/TripChatView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "1980">
-               </Location>
-               <Location
-                  uuid = "7A64EB57-D6BD-4111-9CB7-3FDD273C5D55 - b6d48134ced0b50b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Array&lt;TouristLlama.ChatMessage&gt;) -&gt; () in TouristLlama.TripChatView.body.getter : some"
-                  moduleName = "TouristLlama"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/evgenymitko/Documents/Development/TouristLlamaApp/TouristLlama/Scenes/Trip/TripChatView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "1904">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -68,13 +68,9 @@ struct TripChatView: View {
             }
             .animation(.default, value: viewModel.shouldShowScrollButton)
         }
-//        .onChange(of: chat) { chat in
-//            viewModel.updateChat(with: chat)
-//        }
         .onChange(of: viewModel.messages) { [oldMessages = viewModel.messages] newMessages in
             guard oldMessages.first?.id == newMessages.first?.id else {
-                scrollViewProxy?.scrollTo(viewModel.lastMessageId, anchor: .top)
-//                scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
+                scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
                 return
             }
             guard !oldMessages.isEmpty else {
@@ -145,6 +141,7 @@ extension TripChatView {
             }
         } content: {
             ChildSizeReader(size: $wholeSize) {
+                
                 LazyVStack(spacing: 0) {
                     Color.clear
                         .frame(height: 10)
@@ -178,6 +175,7 @@ extension TripChatView {
                 }
             }
         }
+//        .scrollPo
         .scrollDismissesKeyboard(.interactively)
         .onTapGesture {
             focusState = nil

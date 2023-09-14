@@ -26,7 +26,6 @@ class TripChatViewModel: ViewModel {
     @Published var messages: [ChatMessage] = []
     @Published var chatMessageText: String = ""
     @Published var shouldShowScrollButton: Bool = false
-    @Published var lastMessageId: String?
     
     var pageOffset: Int = 1
     var canDownloadMoreMessages = false
@@ -171,7 +170,6 @@ class TripChatViewModel: ViewModel {
     }
     
     private func addOlderMessages(_ olderMessages: [ChatMessage]) {
-        lastMessageId = messages.first?.id
         messages.insert(contentsOf: olderMessages.reversed(), at: 0)
     }
     
