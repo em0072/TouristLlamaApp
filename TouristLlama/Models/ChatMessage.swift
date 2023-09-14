@@ -54,6 +54,10 @@ struct ChatMessage: Identifiable, Hashable {
         self.type = .user
         self.status = .sending
     }
+    
+    static var newMessages: ChatMessage {
+        ChatMessage(objectId: "newMessages", clientId: "newMessages", ownerId: "", chatId: "", text: "New Messages", author: nil, created: Date(), type: .newMessages)
+    }
 }
 
 

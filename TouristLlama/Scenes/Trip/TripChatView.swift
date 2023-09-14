@@ -26,6 +26,7 @@ struct TripChatView: View {
     @State private var incomingMessage =  false
     
     let chatEndId = "chatEnd"
+    let chatNewMessagesId = "newMessages"
 
     
 //    let chat: TripChat?
@@ -72,7 +73,8 @@ struct TripChatView: View {
 //        }
         .onChange(of: viewModel.messages) { [oldMessages = viewModel.messages] newMessages in
             guard oldMessages.first?.id == newMessages.first?.id else {
-                scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
+                scrollViewProxy?.scrollTo(viewModel.lastMessageId, anchor: .top)
+//                scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
                 return
             }
             guard !oldMessages.isEmpty else {
@@ -100,6 +102,12 @@ extension TripChatView {
         }
     }
     
+    private func scrollToNewMessagesPlack(animated: Bool = true) {
+        withAnimation(animated ? .default : .none) {
+            scrollViewProxy?.scrollTo(chatNewMessagesId, anchor: .center)
+        }
+    }
+
     private func chatView(messages: [ChatMessage]) -> some View {
         
         ScrollViewReader { scrollProxy in
@@ -111,7 +119,11 @@ extension TripChatView {
             }
             .onAppear {
                 scrollViewProxy = scrollProxy
-                scrollToBottom(animated: false)
+                if viewModel.messages.contains(where: { $0.type == .newMessages }) {
+                    scrollToNewMessagesPlack(animated: false)
+                } else {
+                    scrollToBottom(animated: false)
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     isUIInitiallyLoaded = true
                 }
@@ -146,15 +158,16 @@ extension TripChatView {
                             switch message.type {
                             case .user:
                                 userMessageCell(message: message, isTitle: viewModel.isTitleMessage(message))
-                                
+                                    .id(message.id)
+
                             case .newMessages:
                                 newMesasgesCell
-                                
+                                    .id(chatNewMessagesId)
+
                             case .info:
                                 infoMessageCell(message)
                             }
                         }
-                        .id(message.id)
                         .onAppear {
                             viewModel.markAsRead(message)
                         }

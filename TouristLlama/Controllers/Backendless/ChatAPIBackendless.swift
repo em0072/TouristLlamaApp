@@ -12,8 +12,6 @@ import Combine
 class ChatAPIBackendless: ChatAPIProvider {
     
     private let serviceName = "ChatService"
-//    private var channels: [Channel] = []
-//    private var channelSubscriptions: [RTSubscription?] = []
     private var chatsSubscription: RTSubscription?
     
     func getChat(tripId: String, pageSize: Int, pageOffset: Int) async throws -> TripChat {
@@ -35,15 +33,6 @@ class ChatAPIBackendless: ChatAPIProvider {
         }
     }
     
-//    private func hasChannel(with name: String) -> Bool {
-//        for channel in channels {
-//            if channel.channelName == name {
-//                return true
-//            }
-//        }
-//        return false
-//    }
-//
     func subscribeToChatUpdates(for chatIds: [String], onNewMessage: @escaping (ChatMessage) -> Void) {
         chatsSubscription?.stop()
         
@@ -57,35 +46,30 @@ class ChatAPIBackendless: ChatAPIProvider {
         }
         let whereClauseChat = "chatId in (\(whereClauseChatIdsString))"
         chatsSubscription = eventHandlerClauseChat?.addUpsertListener(whereClause: whereClauseChat, responseHandler: { response in
-            guard let blChatMessage = response as? BackendlessChatMessage else {
+            guard let blChatMessage = response as? BackendlessChatMessage,
+                  let messageId = blChatMessage.objectId else {
                 return
             }
-            guard let chatMessage = blChatMessage.appObject else {
-                return
-            }
-            onNewMessage(chatMessage)
+            let queryBuilder = DataQueryBuilder()
+            queryBuilder.related = ["author"]
+            Backendless.shared.data.of(BackendlessChatMessage.self)
+                .findById(objectId: messageId, queryBuilder: queryBuilder) { response in
+                    guard let blChatMessage = response as? BackendlessChatMessage else {
+                        return
+                    }
+                    guard let chatMessage = blChatMessage.appObject else {
+                        return
+                    }
+                    onNewMessage(chatMessage)
+                    
+                } errorHandler: { fault in
+                    print("Error: \(fault.message ?? "")")
+                }
         }, errorHandler: { fault in
             print("Error: \(fault.message ?? "")")
         })
     }
 
-//    func subscribeToChatUpdates(for chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {
-//        
-//        let eventHandlerClauseTrip = Backendless.shared.data.of(BackendlessChatMessage.self).rt
-//        let whereClauseTrip = "chatId = '\(chatId)'"
-//        _ = eventHandlerClauseTrip?.addUpsertListener(whereClause: whereClauseTrip, responseHandler: { response in
-//            guard let blChatMessage = response as? BackendlessChatMessage else {
-//                return
-//            }
-//            guard let chatMessage = blChatMessage.appObject else {
-//                return
-//            }
-//            onNewMessage(chatMessage)
-//        }, errorHandler: { fault in
-//            print("Error: \(fault.message ?? "")")
-//        })
-//    }
-    
     func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
         return try await withCheckedThrowingContinuation { continuation in
             let message = BackendlessChatMessage(from: message)

@@ -26,7 +26,8 @@ class TripChatViewModel: ViewModel {
     @Published var messages: [ChatMessage] = []
     @Published var chatMessageText: String = ""
     @Published var shouldShowScrollButton: Bool = false
-
+    @Published var lastMessageId: String?
+    
     var pageOffset: Int = 1
     var canDownloadMoreMessages = false
 
@@ -66,7 +67,6 @@ class TripChatViewModel: ViewModel {
             shouldShowScrollButton = true
         }
     }
-    
     
     func updateChat(with chat: TripChat?) {
         if chat != self.chat {
@@ -123,6 +123,7 @@ class TripChatViewModel: ViewModel {
     }
         
     func markAsRead(_ message: ChatMessage) {
+        guard message.type != .newMessages else { return }
         if let lastReadMessage {
             if message.created > lastReadMessage.created {
                 self.lastReadMessage = message
@@ -158,6 +159,9 @@ class TripChatViewModel: ViewModel {
             
             if message.id == lastReadMessageId {
                 lastReadMessage = message
+                if !messages.isEmpty {
+                    messages.insert(.newMessages, at: 0)
+                }
             }
             messages.insert(message, at: 0)
         }
@@ -167,7 +171,8 @@ class TripChatViewModel: ViewModel {
     }
     
     private func addOlderMessages(_ olderMessages: [ChatMessage]) {
-        olderMessages.forEach({ messages.insert($0, at: 0) })
+        lastMessageId = messages.first?.id
+        messages.insert(contentsOf: olderMessages.reversed(), at: 0)
     }
     
     private func markMessageAsNotSent(messageId: String) {
