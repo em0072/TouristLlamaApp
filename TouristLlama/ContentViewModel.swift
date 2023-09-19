@@ -14,7 +14,7 @@ import UIKit
 class ContentViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.notificationsController) var notificationsController
-    @Dependency(\.tripsController) var tripsController
+//    @Dependency(\.tripsController) var tripsController
 
     enum LoginStatus {
         case notDetermined
@@ -44,8 +44,8 @@ class ContentViewModel: ViewModel {
         }
     }
     
-    func loadTrips() {
-        tripsController.loadTrips()
-    }
+//    func loadTrips() {
+//        tripsController.loadTrips()
+//    }
 }
 

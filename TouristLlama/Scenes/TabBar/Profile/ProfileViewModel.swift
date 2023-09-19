@@ -20,13 +20,15 @@ class ProfileViewModel: ViewModel {
     @Published var isReportingViewOpen = false
     @Published var isBlockingViewOpen = false
     @Published var isLogoutConfirmationShown: Bool = false
-
+    #if DEBUG
+    @Published var isDebugOpen: Bool = false
+    #endif
     
     init(user: User?) {
         self.user = user
         super.init()
         getUpdatedUser()
-        getUserCounters()
+//        getUserCounters()
         
     }
     

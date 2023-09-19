@@ -10,7 +10,11 @@ import Foundation
 class ChatAPIMock: ChatAPIProvider {
         
     func getChat(tripId: String, pageSize: Int, pageOffset: Int) async throws -> TripChat {
-        TripChat.test(numberOfMessages: pageSize)
+        if tripId == "testAmsterdam" {
+            return .testAmsterdam
+        } else {
+            return TripChat.test(numberOfMessages: pageSize)
+        }
     }
     
     func subscribeToChatUpdates(for chatIds: [String], onNewMessage: @escaping (ChatMessage) -> Void) {

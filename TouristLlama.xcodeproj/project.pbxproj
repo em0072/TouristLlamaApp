@@ -95,6 +95,15 @@
 		7557A8F22A9DE93200F402A9 /* TripManageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */; };
 		7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
+		7579BD102AB4610F006F893F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD0F2AB4610F006F893F /* DebugView.swift */; };
+		7579BD132AB46215006F893F /* AspirinShot in Frameworks */ = {isa = PBXBuildFile; productRef = 7579BD122AB46215006F893F /* AspirinShot */; };
+		7579BD152AB462B3006F893F /* ScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD142AB462B3006F893F /* ScreenshotsView.swift */; };
+		7579BD182AB47743006F893F /* ExploreViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD172AB47743006F893F /* ExploreViewScreenshot.swift */; };
+		7579BD1A2AB83156006F893F /* TripViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD192AB83156006F893F /* TripViewScreenshot.swift */; };
+		7579BD1C2AB83AFB006F893F /* TripCreateViewSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD1B2AB83AFB006F893F /* TripCreateViewSnapshot.swift */; };
+		7579BD1E2AB8560D006F893F /* String+DetectedAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD1D2AB8560D006F893F /* String+DetectedAttributedString.swift */; };
+		7585997C2AB85AF3009D4AA9 /* TripChatViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585997B2AB85AF3009D4AA9 /* TripChatViewScreenshot.swift */; };
+		75A8B9922AB9D0D200FB9F23 /* View+iOS17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A8B9912AB9D0D200FB9F23 /* View+iOS17.swift */; };
 		75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */; };
 		75BC4A462A80E88800B6F6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BC4A452A80E88800B6F6CE /* ContentView.swift */; };
 		75BC4A482A80E88A00B6F6CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75BC4A472A80E88A00B6F6CE /* Assets.xcassets */; };
@@ -288,6 +297,14 @@
 		7557A8EF2A9D210F00F402A9 /* TripManageMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageMembersViewModel.swift; sourceTree = "<group>"; };
 		7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageListCell.swift; sourceTree = "<group>"; };
 		7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripRequest+test.swift"; sourceTree = "<group>"; };
+		7579BD0F2AB4610F006F893F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		7579BD142AB462B3006F893F /* ScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsView.swift; sourceTree = "<group>"; };
+		7579BD172AB47743006F893F /* ExploreViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewScreenshot.swift; sourceTree = "<group>"; };
+		7579BD192AB83156006F893F /* TripViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewScreenshot.swift; sourceTree = "<group>"; };
+		7579BD1B2AB83AFB006F893F /* TripCreateViewSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCreateViewSnapshot.swift; sourceTree = "<group>"; };
+		7579BD1D2AB8560D006F893F /* String+DetectedAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DetectedAttributedString.swift"; sourceTree = "<group>"; };
+		7585997B2AB85AF3009D4AA9 /* TripChatViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripChatViewScreenshot.swift; sourceTree = "<group>"; };
+		75A8B9912AB9D0D200FB9F23 /* View+iOS17.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+iOS17.swift"; sourceTree = "<group>"; };
 		75BC4A402A80E88800B6F6CE /* TouristLlama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristLlama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BC4A432A80E88800B6F6CE /* TouristLlamaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristLlamaApp.swift; sourceTree = "<group>"; };
 		75BC4A452A80E88800B6F6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -399,6 +416,7 @@
 			files = (
 				7557A8D82A9782B400F402A9 /* Kingfisher in Frameworks */,
 				75ED7A002A826FFC0078D103 /* AlertToast in Frameworks */,
+				7579BD132AB46215006F893F /* AspirinShot in Frameworks */,
 				75DE43212A86BD0700D42B9D /* Alamofire in Frameworks */,
 				7565F0562A81465300B796A1 /* Backendless in Frameworks */,
 				75DE43282A8A0A6F00D42B9D /* WaterfallGrid in Frameworks */,
@@ -594,6 +612,27 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		7579BD0E2AB46103006F893F /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				7579BD0F2AB4610F006F893F /* DebugView.swift */,
+				7579BD162AB4772F006F893F /* Screenshots */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		7579BD162AB4772F006F893F /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				7579BD142AB462B3006F893F /* ScreenshotsView.swift */,
+				7579BD172AB47743006F893F /* ExploreViewScreenshot.swift */,
+				7579BD192AB83156006F893F /* TripViewScreenshot.swift */,
+				7579BD1B2AB83AFB006F893F /* TripCreateViewSnapshot.swift */,
+				7585997B2AB85AF3009D4AA9 /* TripChatViewScreenshot.swift */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		75BC4A372A80E88800B6F6CE = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +686,7 @@
 		75BC4A512A80E92600B6F6CE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7579BD0E2AB46103006F893F /* Debug */,
 				753364CE2AA74F4600675BB5 /* Friends Managment */,
 				7557A8EC2A9D20D900F402A9 /* Members Managment */,
 				75516FD02A9F44A900816150 /* SearchingUsersView */,
@@ -839,6 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				75BC4A892A8114D700B6F6CE /* String+Email.swift */,
+				7579BD1D2AB8560D006F893F /* String+DetectedAttributedString.swift */,
 				753F95652A94F628005B55B5 /* UIimage+resized.swift */,
 				75336BBD2A8507EC00031D5C /* String+CountryCode.swift */,
 				75336BC72A852A8100031D5C /* Date+Forward.swift */,
@@ -851,6 +892,7 @@
 				75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */,
 				753F95672A94F651005B55B5 /* View+CameraPicker.swift */,
 				755170072AA1D70200816150 /* User+Chat.swift */,
+				75A8B9912AB9D0D200FB9F23 /* View+iOS17.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1155,6 +1197,7 @@
 				75DE43202A86BD0700D42B9D /* Alamofire */,
 				75DE43272A8A0A6F00D42B9D /* WaterfallGrid */,
 				7557A8D72A9782B400F402A9 /* Kingfisher */,
+				7579BD122AB46215006F893F /* AspirinShot */,
 			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
@@ -1190,6 +1233,7 @@
 				75ED79FE2A826FFB0078D103 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				75DE431F2A86BD0700D42B9D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */,
 			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
@@ -1229,6 +1273,8 @@
 			files = (
 				752D326E2AAB192B000280D5 /* Local+Notifications.swift in Sources */,
 				75BC4A712A80EEB700B6F6CE /* Local+Onboarding.swift in Sources */,
+				7579BD1A2AB83156006F893F /* TripViewScreenshot.swift in Sources */,
+				7579BD1E2AB8560D006F893F /* String+DetectedAttributedString.swift in Sources */,
 				753F95522A939470005B55B5 /* TripChatViewModel.swift in Sources */,
 				75DE43392A8A382000D42B9D /* BackendlessTripLocation.swift in Sources */,
 				75DE164E2A84F02200AF671B /* MyTripsView.swift in Sources */,
@@ -1241,6 +1287,7 @@
 				75516FD22A9F44DB00816150 /* SearchingUsersView.swift in Sources */,
 				75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */,
 				753364D52AA7632900675BB5 /* FriendsListCell.swift in Sources */,
+				7579BD182AB47743006F893F /* ExploreViewScreenshot.swift in Sources */,
 				75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */,
 				753F953C2A8E3DA4005B55B5 /* Color+Chat.swift in Sources */,
 				7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */,
@@ -1251,9 +1298,11 @@
 				755170012A9F84EA00816150 /* NotificationsController.swift in Sources */,
 				75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */,
 				7557A8F02A9D210F00F402A9 /* TripManageMembersViewModel.swift in Sources */,
+				7579BD102AB4610F006F893F /* DebugView.swift in Sources */,
 				75DE43322A8A299400D42B9D /* TripsAPIBackendless.swift in Sources */,
 				75BC4A852A810CCA00B6F6CE /* FloatingTextField.swift in Sources */,
 				753F953F2A93596E005B55B5 /* ProfileView.swift in Sources */,
+				75A8B9922AB9D0D200FB9F23 /* View+iOS17.swift in Sources */,
 				75336BB32A85039900031D5C /* Pickable.swift in Sources */,
 				752D326A2AAB163F000280D5 /* UserNotification+test.swift in Sources */,
 				7557A8E72A9CCEEB00F402A9 /* Colors+Text.swift in Sources */,
@@ -1315,8 +1364,10 @@
 				7557A8D52A962B0000F402A9 /* ExploreListCellView.swift in Sources */,
 				75DE43582A8CB22300D42B9D /* ScrollView+Offsets.swift in Sources */,
 				75336BD22A86330600031D5C /* StageSelector.swift in Sources */,
+				7579BD1C2AB83AFB006F893F /* TripCreateViewSnapshot.swift in Sources */,
 				75BC4A6A2A80ED1E00B6F6CE /* OnboardingFeaturesBuilder.swift in Sources */,
 				752D32592AAB05F2000280D5 /* NotificationsView.swift in Sources */,
+				7585997C2AB85AF3009D4AA9 /* TripChatViewScreenshot.swift in Sources */,
 				7557A8E42A9C9D7C00F402A9 /* TripApplicationForm.swift in Sources */,
 				75DE16532A84F04D00AF671B /* ManageTripView.swift in Sources */,
 				75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */,
@@ -1353,6 +1404,7 @@
 				753F95682A94F651005B55B5 /* View+CameraPicker.swift in Sources */,
 				753364D02AA74F5500675BB5 /* FriendsListView.swift in Sources */,
 				75DE436B2A8CE9FA00D42B9D /* ChatAPI.swift in Sources */,
+				7579BD152AB462B3006F893F /* ScreenshotsView.swift in Sources */,
 				75DE16552A84F05500AF671B /* ManageTripViewModel.swift in Sources */,
 				75DE164A2A84EF0B00AF671B /* CapsuleBlueButtonStyle.swift in Sources */,
 				7557A8E02A9C8E2D00F402A9 /* TripRequestStatus.swift in Sources */,
@@ -1540,17 +1592,21 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1574,17 +1630,21 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1628,6 +1688,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/goodwhale/AspirinShot";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
 		75DE431F2A86BD0700D42B9D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1664,6 +1732,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */;
 			productName = Backendless;
+		};
+		7579BD122AB46215006F893F /* AspirinShot */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */;
+			productName = AspirinShot;
 		};
 		75DE43202A86BD0700D42B9D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

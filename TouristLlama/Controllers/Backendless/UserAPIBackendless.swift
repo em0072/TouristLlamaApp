@@ -64,8 +64,12 @@ class UserAPIBackendless: UserAPIProvider {
         }
     }
     
-    func login(token: String) async throws -> User {
-        return try await withCheckedThrowingContinuation { continuation in
+    func login(token: String, givenName: String?, familyName: String?) async throws -> User {
+        return try await withCheckedThrowingContinuation { [weak self] continuation in
+            guard let self else {
+                continuation.resume(throwing: CustomError(text: "No self is available"))
+                return
+            }
             let parameters = token
             Backendless.shared.userService.stayLoggedIn = true
             Backendless.shared.customService.invoke(serviceName: "AppleAuth", method: "login", parameters: parameters) { loggedInUser in
@@ -74,15 +78,84 @@ class UserAPIBackendless: UserAPIProvider {
                     return
                 }
                 Backendless.shared.userService.currentUser = loggedInUser
-                guard let user = User(from: loggedInUser) else {
-                    continuation.resume(throwing: UserAPIError.responceIsEmpty)
-                    return
+                
+                self.updateAppleAuthPropertiesIfNeeded(for: loggedInUser, givenName: givenName, familyName: familyName) { result in
+                    switch result {
+                    case .success(let updatedUser):
+                        guard let user = User(from: updatedUser) else {
+                            continuation.resume(throwing: UserAPIError.responceIsEmpty)
+                            return
+                        }
+                        continuation.resume(returning: user)
+
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
                 }
-                continuation.resume(returning: user)
             } errorHandler: { error in
                 continuation.resume(throwing: error)
             }
         }
+    }
+    
+    private func updateAppleAuthPropertiesIfNeeded(for user: BackendlessUser, givenName: String?, familyName: String?, completion: @escaping (Result<BackendlessUser, Error>) -> Void) {
+        var shouldUpdateUser = false
+        // Update Name if possible
+        let name = user.name ?? ""
+        if name.isEmpty {
+            var fullName: String = ""
+            if let givenName {
+                fullName += givenName
+            }
+            if let familyName {
+                if !fullName.isEmpty {
+                    fullName += " "
+                }
+                fullName += familyName
+            }
+            
+            if !fullName.isEmpty {
+                user.properties[User.Property.name.string] = fullName
+                shouldUpdateUser = true
+            }
+        }
+        // Update username if needed
+        let username = (user.properties[User.Property.username.string] as? String) ?? ""
+        if username.isEmpty {
+            if let email = user.email,
+               let generatedUsername = generatedUsername(from: email) {
+                user.properties[User.Property.username.string] = generatedUsername
+                shouldUpdateUser = true
+            }
+        }
+        
+        if shouldUpdateUser {
+            Backendless.shared.userService.update(user: user) { updatedUser in
+                completion(.success(updatedUser))
+            } errorHandler: { error in
+                completion(.failure(error))
+            }
+        } else {
+            completion(.success(user))
+        }
+    }
+    
+    private func generatedUsername(from email: String) -> String? {
+        guard let emailMainPart = email.components(separatedBy: "@").first else {
+            return nil
+        }
+        let firstPart: String
+        if emailMainPart.count > 6 {
+            firstPart = "\(emailMainPart.dropFirst(5))"
+        } else {
+            firstPart = emailMainPart
+        }
+        let calendar = Calendar.current
+        let date = Date()
+        let day = calendar.component(.day, from: date)
+        let week = calendar.component(.weekOfYear, from: date)
+        let second = calendar.component(.second, from: date)
+        return firstPart + "\(week)\(day)\(second)"
     }
     
     func updateUserProperty(_ properties: [User.Property: Any]) async throws -> User {

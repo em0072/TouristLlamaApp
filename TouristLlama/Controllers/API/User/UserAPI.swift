@@ -41,8 +41,8 @@ class UserAPI {
     }
     
     @discardableResult
-    func login(token: String) async throws -> User {
-        let user = try await provider.login(token: token)
+    func login(token: String, givenName: String?, familyName: String?) async throws -> User {
+        let user = try await provider.login(token: token, givenName: givenName, familyName: familyName)
         currentUser = user
         return user
     }

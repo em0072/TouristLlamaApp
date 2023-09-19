@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AspirinShot
 
 struct ExploreView: View {
     
@@ -22,19 +23,17 @@ struct ExploreView: View {
                 contentView
             }
             
-            searchFieldView
+            VStack {
+                searchFieldView
+                filtersTitle
+                Spacer()
+            }
 
         }
         .background {
             Color.Main.white
                 .ignoresSafeArea()
         }
-//        .onAppear {
-//            viewModel.requestTrips(showingProgress: false)
-//        }
-//        .fullScreenCover(item: $viewModel.tripToOpen) { trip in
-//            TripView(trip: trip)
-//        }
         .sheet(isPresented: $viewModel.areFiltersOpen) {
             TripsFiltersView(filters: viewModel.filters) { filters in
                 viewModel.set(filters)
@@ -69,23 +68,26 @@ extension ExploreView {
                     .ignoresSafeArea()
             }
             
-            Spacer()
+//            Spacer()
         }
     }
     
     @ViewBuilder
     private var contentView: some View {
-        filtersTitle
-        if viewModel.trips.isEmpty {
-            NoResultsView()
-        } else {
-            listView
-        }
+            if viewModel.trips.isEmpty {
+                NoResultsView()
+            } else {
+                listView
+            }
     }
     
     private var listView: some View {
             ScrollView {
                 VStack(spacing: 18) {
+                    if viewModel.filtersTitle != nil {
+                        Spacer()
+                            .frame(height: 50)
+                    }
                     ForEach(viewModel.trips) { trip in
                         tripCell(for: trip)
                     }
@@ -101,23 +103,24 @@ extension ExploreView {
     @ViewBuilder
     private var filtersTitle: some View {
         if let title = viewModel.filtersTitle {
-            HStack(spacing: 8) {
-                Text(title)
-                    .font(.avenirBody)
-                Button {
-                    withAnimation {
-                        viewModel.clearFilters()
+                HStack(spacing: 8) {
+                    Text(title)
+                        .font(.avenirBody)
+                        .foregroundColor(.primary)
+                    Button {
+                        withAnimation {
+                            viewModel.clearFilters()
+                        }
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
                     }
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
+                    
                 }
-
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 5)
                 .background {
                     Capsule()
-                        .fill(Color.Main.TLInactiveGrey)
+                        .fill(.thinMaterial)
                 }
                 .padding(.top, 8)
         }
@@ -133,7 +136,15 @@ extension ExploreView {
 }
 
 struct ExploreView_Previews: PreviewProvider {
+    static var viewModel: ExploreViewModel {
+        let viewModel = ExploreViewModel()
+        viewModel.filters.tripStyle = .active
+        return viewModel
+    }
+    
     static var previews: some View {
-        ExploreView()
+        NavigationStack {
+            ExploreView(viewModel: ExploreView_Previews.viewModel)
+        }
     }
 }

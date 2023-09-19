@@ -35,4 +35,26 @@ struct TripLocation: Equatable, Hashable {
                      point: .init(latitude: 52.5103769, longitude: 4.9446193),
                      flag: "🇳🇱")
     }
+    
+    static var paris: TripLocation {
+        TripLocation(title: "Paris, France",
+                     country: "France",
+                     point: .init(latitude: 48.86, longitude: 2.35),
+                     flag: "🇫🇷")
+    }
+    
+    static var zermatt: TripLocation {
+        TripLocation(title: "Zermatt, Switzerland",
+                     country: "Switzerland",
+                     point: .init(latitude: 46.01, longitude: 7.44),
+                     flag: "🇨🇭")
+    }
+    
+    static var amsterdam: TripLocation {
+        TripLocation(title: "Amsterdam, The Netherlands",
+                     country: "The Netherlands",
+                     point: .init(latitude: 52.3676, longitude: 4.9041),
+                     flag: "🇳🇱")
+    }
+
 }

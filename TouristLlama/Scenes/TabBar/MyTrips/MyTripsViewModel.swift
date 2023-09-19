@@ -65,7 +65,7 @@ class MyTripsViewModel: ViewModel {
         if trip.requestsPendingCount > 0 {
             icons.append(.requests)
         }
-        if let lastMessage = trip.lastMessage, lastMessage.id != userDefaultsController.getLastMessageIf(for: trip.id) {
+        if let lastMessage = trip.lastMessage, lastMessage.id != userDefaultsController.getLastMessageId(for: trip.id) {
             icons.append(.chat)
         }
         return icons

@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "aspirinshot",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/goodwhale/AspirinShot",
+      "state" : {
+        "revision" : "81a1a2fa8ae8f5623567113772a9a6128e157152",
+        "version" : "0.9.1"
+      }
+    },
+    {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/combine-schedulers",

@@ -66,4 +66,47 @@ extension User {
              friends: [])
     }
 
+    
+    static var testBob: User {
+        User(id: "3084E0CC-7926-4A47-A97B-0ABEE9B32A48",
+             name: "Bob",
+             username: "bob",
+             pronoun: .heHim,
+             email: "bob@mail.com",
+             phone: "0651104950",
+             dateOfBirth: nil,
+             profilePicture: "https://images.pexels.com/photos/162140/duckling-birds-yellow-fluffy-162140.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+             about: "This is 'About me' text. It tells a little bit about me and what I love doing. Alos it explains how I like to travel.",
+             memberSince: Date(),
+             friends: [])
+    }
+    
+    static var testAnabel: User {
+        User(id: "testAnabel",
+             name: "Anabel",
+             username: "anabel",
+             pronoun: .sheHer,
+             email: "v@mail.com",
+             phone: "05464242",
+             dateOfBirth: nil,
+             profilePicture: "https://images.pexels.com/photos/15462408/pexels-photo-15462408/free-photo-of-lioness-on-rock.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+             about: "This is 'About me' text. It tells a little bit about me and what I love doing. Alos it explains how I like to travel.",
+             memberSince: Date(),
+             friends: [])
+    }
+
+    static var testHanna: User {
+        User(id: "testHanna",
+             name: "Hanna",
+             username: "hanna",
+             pronoun: .sheHer,
+             email: "hanna.montana@mail.com",
+             phone: "04392932",
+             dateOfBirth: nil,
+             profilePicture: "https://images.pexels.com/photos/1036620/pexels-photo-1036620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+             about: "This is 'About me' text. It tells a little bit about me and what I love doing. Alos it explains how I like to travel.",
+             memberSince: Date(),
+             friends: [])
+    }
+
 }

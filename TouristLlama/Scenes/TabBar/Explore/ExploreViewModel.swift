@@ -27,7 +27,6 @@ class ExploreViewModel: ViewModel {
     @Published var areFiltersOpen: Bool = false
     @Published var filters: Filters = .init()
     @Published var trips = [Trip]()
-//    @Published var tripToOpen: Trip?
     
     override func subscribeToUpdates() {
         super.subscribeToUpdates()
@@ -83,7 +82,7 @@ class ExploreViewModel: ViewModel {
         }
         if trip.participants.contains(where: { currentUser.id == $0.id }),
            let lastMessage = trip.lastMessage,
-           lastMessage.id != userDefaultsController.getLastMessageIf(for: trip.id) {
+           lastMessage.id != userDefaultsController.getLastMessageId(for: trip.id) {
             return true
         }
         return false
@@ -111,4 +110,5 @@ class ExploreViewModel: ViewModel {
             })
             .store(in: &publishers)
     }
+    
 }

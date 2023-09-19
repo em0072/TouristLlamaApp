@@ -10,11 +10,16 @@ import SwiftUI
 struct ManageTripView: View {
     
     @Environment(\.dismiss) var dismiss
-    
+//    @Environment(\.isAspirinShot) var isAspirinShot
+
     @StateObject var viewModel: ManageTripViewModel
     
     init(mode: ManageTripViewModel.Mode, onSubmit: ((Trip) -> Void)? = nil) {
         self._viewModel = StateObject(wrappedValue: ManageTripViewModel(mode: mode, onSubmit: onSubmit))
+    }
+    
+    init(viewModel: ManageTripViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -69,6 +74,9 @@ struct ManageTripView: View {
                     dismiss()
                 }
             }
+//            .onAppear {
+//                viewModel.prepareForScreenshot(isInScreenshot: isAspirinShot)
+//            }
             .handle(error: $viewModel.error)
         }
     }

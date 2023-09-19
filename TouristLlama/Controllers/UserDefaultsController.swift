@@ -15,7 +15,7 @@ class UserDefaultsController {
         UserDefaults.group.setValue(messageId, forKey: tripId)
     }
     
-    func getLastMessageIf(for tripId: String) -> String? {
+    func getLastMessageId(for tripId: String) -> String? {
         UserDefaults.group.string(forKey: tripId)
     }
 }

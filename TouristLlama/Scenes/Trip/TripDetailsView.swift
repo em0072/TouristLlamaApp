@@ -12,12 +12,13 @@ import Kingfisher
 struct TripDetailsView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.isAspirinShot) var isAspirinShot
     
     @StateObject var viewModel: TripDetailViewModel
     let onTripEdit: () -> Void
     
     @State private var scrollViewOffset: CGPoint = CGPoint.zero
-        
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -79,7 +80,7 @@ struct TripDetailsView: View {
                 sheetView(for: type)
             })
             .animation(.default, value: viewModel.nonParticipantTripRequest)
-
+            
             
         }
         .handle(loading: $viewModel.loadingState)
@@ -104,7 +105,7 @@ extension TripDetailsView {
                 viewModel.reportTrip(reason: reason)
             }
             .presentationDetents([.medium])
-
+            
         case .applicationLetter:
             TripApplicationForm { message in
                 viewModel.joinRequestSend(message: message)
@@ -307,7 +308,7 @@ extension TripDetailsView {
             .ignoresSafeArea()
         
     }
-
+    
     
     private var closeButton: some View {
         Button {
@@ -584,21 +585,36 @@ extension TripDetailsView {
            let longitude = viewModel.trip.location.point?.coordinate.longitude {
             VStack(alignment: .leading, spacing: 0) {
                 titleView(String.Trip.mapTitle)
-                Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), interactionModes: [.all])
-                    .frame(height: 230)
-                    .cornerRadius(24)
                 
+#if DEBUG
+                if isAspirinShot {
+                    Image("zermattMap")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 230)
+                } else {
+                    actualMapView(latitude: latitude, longitude: longitude)
+                }
+#else
+                actualMapView(latitude: latitude, longitude: longitude)
+#endif
             }
             .padding(20)
         } else {
             EmptyView()
         }
-        
+    }
+    
+    @ViewBuilder
+    private func actualMapView(latitude: CLLocationDegrees, longitude: CLLocationDegrees) -> some View {
+        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), interactionModes: [.all])
+            .frame(height: 230)
+            .cornerRadius(24)
     }
 }
 
 struct TripDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailsView(viewModel: .init(trip: .testFuture), onTripEdit: {})
+        TripDetailsView(viewModel: .init(trip: .testZermatt), onTripEdit: {})
     }
 }

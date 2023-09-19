@@ -23,7 +23,7 @@ struct ContentView: View {
                 TabBarView()
                     .onAppear {
                         viewModel.requestNotificationsAuthorization()
-                        viewModel.loadTrips()
+//                        viewModel.loadTrips()
                     }
             }
         }

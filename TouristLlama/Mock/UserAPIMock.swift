@@ -10,7 +10,7 @@ import Foundation
 class UserAPIMock: UserAPIProvider {
     
     func getCurrentUser() async -> User? {
-        return User.test
+        return User.testBob
     }
     
     func registerUser(name: String, username: String, email: String, password: String) async throws -> User {
@@ -25,7 +25,7 @@ class UserAPIMock: UserAPIProvider {
         return User.test
     }
     
-    func login(token: String) async throws -> User {
+    func login(token: String, givenName: String?, familyName: String?) async throws -> User {
         return User.test
     }
     

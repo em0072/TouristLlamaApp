@@ -104,6 +104,15 @@ class ManageTripViewModel: ViewModel {
 
     }
     
+//    func prepareForScreenshot(isInScreenshot: Bool) {
+//#if DEBUG
+//        if isInScreenshot {
+//            tripName = Trip.testParis.name
+//            tripStyle = Trip.testParis.style
+//        }
+//#endif
+//    }
+    
     private func areAllFieldsCompleted() -> Bool {
         
         

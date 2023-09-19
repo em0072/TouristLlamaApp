@@ -24,25 +24,12 @@ struct TripChatView: View {
     @State private var scrollViewProxy: ScrollViewProxy?
     @State private var isUIInitiallyLoaded =  false
     @State private var incomingMessage =  false
-    
+    @State private var messageIdOnScreen: String?
+    @State private var scrollPositionId: String?
+
     let chatEndId = "chatEnd"
     let chatNewMessagesId = "newMessages"
 
-    
-//    let chat: TripChat?
-//    let selected: Bool
-    
-//    init(title: String, chat: TripChat?, selected: Bool = true) {
-//        self.title = title
-//        self.chat = chat
-//        self.selected = selected
-//        self._viewModel = StateObject(wrappedValue: TripChatViewModel(chat: chat))
-//    }
-    
-//    init(title: String, viewModel: TripChatViewModel) {
-//        self._viewModel = St
-//    }
-    
     @FocusState private var focusState: KeyboardFocus?
         
     var body: some View {
@@ -70,7 +57,7 @@ struct TripChatView: View {
         }
         .onChange(of: viewModel.messages) { [oldMessages = viewModel.messages] newMessages in
             guard oldMessages.first?.id == newMessages.first?.id else {
-                scrollViewProxy?.scrollTo(oldMessages.first?.id, anchor: .top)
+                scrollPositionId = messageIdOnScreen
                 return
             }
             guard !oldMessages.isEmpty else {
@@ -85,7 +72,7 @@ struct TripChatView: View {
                     scrollToBottom()
                 }
             }
-        }        
+        } 
     }
     
 }
@@ -93,9 +80,13 @@ struct TripChatView: View {
 extension TripChatView {
     
     private func scrollToBottom(animated: Bool = true) {
-        withAnimation(animated ? .default : .none) {
-            scrollViewProxy?.scrollTo(chatEndId)
-        }
+        if animated {
+            withAnimation(.default) {
+                scrollViewProxy?.scrollTo(chatEndId)
+            }
+        } else {
+                scrollViewProxy?.scrollTo(chatEndId)
+            }
     }
     
     private func scrollToNewMessagesPlack(animated: Bool = true) {
@@ -115,12 +106,12 @@ extension TripChatView {
             }
             .onAppear {
                 scrollViewProxy = scrollProxy
-                if viewModel.messages.contains(where: { $0.type == .newMessages }) {
-                    scrollToNewMessagesPlack(animated: false)
-                } else {
-                    scrollToBottom(animated: false)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    if viewModel.messages.contains(where: { $0.type == .newMessages }) {
+                        scrollToNewMessagesPlack(animated: false)
+                    } else {
+                        scrollToBottom(animated: false)
+                    }
                     isUIInitiallyLoaded = true
                 }
             }
@@ -168,6 +159,18 @@ extension TripChatView {
                         .onAppear {
                             viewModel.markAsRead(message)
                         }
+                        .background {
+                            GeometryReader { proxy in
+                                Color.clear
+                                    .onChange(of: proxy.frame(in: .global)) { value in
+                                        let minY = value.minY
+                                        if minY > 95 && minY < 105 && messageIdOnScreen != message.id {
+                                            messageIdOnScreen = message.id
+                                            print(message.text)
+                                        }
+                                    }
+                            }
+                        }
                     }
                     Color.clear
                         .frame(height: 10)
@@ -175,8 +178,8 @@ extension TripChatView {
                 }
             }
         }
-//        .scrollPo
         .scrollDismissesKeyboard(.interactively)
+        .scrollPositionIfPossible(id: $scrollPositionId, anchor: .top)
         .onTapGesture {
             focusState = nil
         }
@@ -184,6 +187,8 @@ extension TripChatView {
             viewModel.markEndOfChat(isEnd: true)
         }
     }
+    
+    
     
     @ViewBuilder
     private var scrollDownButton: some View {
@@ -222,9 +227,11 @@ extension TripChatView {
         
         return HStack(spacing: 0) {
             Spacer()
-            Text(message.text)
+            Text(message.text.detectedAttributedString)
                 .font(.avenirBody)
                 .foregroundColor(.Main.strongWhite)
+                .tint(Color.Main.strongWhite)
+                .multilineTextAlignment(.leading)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 14)
                 .background {
@@ -254,9 +261,11 @@ extension TripChatView {
                 if isTitleCell {
                     authorNameView(message.author?.name)
                 }
-                Text(message.text)
+                Text(message.text.detectedAttributedString)
                     .font(.avenirBody)
+                    .tint(Color.Main.black)
                     .foregroundColor(.Main.black)
+                    .multilineTextAlignment(.leading)
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 14)
@@ -303,29 +312,6 @@ extension TripChatView {
         case .none:
             EmptyView()
         }
-//        if message.status == .sending {
-//            VStack {
-//                Spacer()
-//                Image(systemName: "clock")
-//                    .font(.avenirCaption)
-//            }
-//        } else if message.status == .sent {
-//            VStack {
-//                Spacer()
-//                Image(systemName: "checkmark")
-//                    .font(.avenirCaption)
-//            }
-//
-//        } else if message.status == .error {
-//            Button {
-//                viewModel.resend(message: message)
-//            } label: {
-//                Image(systemName: "exclamationmark.octagon.fill")
-//                    .font(.avenirSubtitle)
-//                    .foregroundColor(.Main.accentRed)
-//                    .padding(.leading, 8)
-//            }
-//        }
     }
     
     private func infoMessageCell(_ message: ChatMessage) -> some View {

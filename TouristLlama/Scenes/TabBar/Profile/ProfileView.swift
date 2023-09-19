@@ -40,7 +40,6 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     
-                    
                     if !viewModel.isCurrentUser {
                         moreButton
                     } else {
@@ -57,6 +56,11 @@ struct ProfileView: View {
                 }
                 .presentationDetents([.medium])
             }
+            #if DEBUG
+            .sheet(isPresented: $viewModel.isDebugOpen, content: {
+                DebugView()
+            })
+            #endif
             .confirmationDialog(viewModel.blockConfirmationTitle,
                                 isPresented: $viewModel.isBlockingViewOpen,
                                 titleVisibility: .visible,
@@ -99,6 +103,11 @@ extension ProfileView {
             .aspectRatio(contentMode: .fill)
             .frame(width: 120, height: 120)
             .clipShape(Circle())
+            .onTapGesture(count: 4) {
+                #if DEBUG
+                viewModel.isDebugOpen.toggle()
+                #endif
+            }
     }
     
     private var userStats: some View {

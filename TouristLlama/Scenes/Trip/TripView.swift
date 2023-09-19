@@ -20,7 +20,7 @@ struct TripView: View {
     init(openState: TripOpenState) {
         _viewModel = StateObject(wrappedValue: TripViewModel(openState: openState))
     }
-    
+        
     var body: some View {
         ZStack {
             if viewModel.isCurrentUserParticipantOfTrip {
@@ -78,6 +78,6 @@ extension TripView {
 
 struct TripView_Previews: PreviewProvider {
     static var previews: some View {
-        TripView(openState: .details(.testRequest(.testRequestCancelled)))
+        TripView(openState: .details(.testAmsterdam))
     }
 }

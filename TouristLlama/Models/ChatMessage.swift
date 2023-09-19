@@ -55,6 +55,19 @@ struct ChatMessage: Identifiable, Hashable {
         self.status = .sending
     }
     
+    init(chatId: String, text: String, author: User, status: MessageStatus) {
+        self.objectId = nil
+        self.clientId = UUID().uuidString
+        self.ownerId = author.id
+        self.chatId = chatId
+        self.text = text
+        self.author = author
+        self.created = Date()
+        self.type = .user
+        self.status = status
+    }
+
+    
     static var newMessages: ChatMessage {
         ChatMessage(objectId: "newMessages", clientId: "newMessages", ownerId: "", chatId: "", text: "New Messages", author: nil, created: Date(), type: .newMessages)
     }

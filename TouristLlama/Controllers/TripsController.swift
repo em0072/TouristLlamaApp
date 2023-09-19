@@ -8,9 +8,10 @@
 import SwiftUI
 import Dependencies
 import Combine
+import AspirinShot
 
 class TripsController: ObservableObject {
-    
+        
     @Dependency(\.tripsAPI) var tripsAPI
     @Dependency(\.chatAPI) var chatAPI
     @Dependency(\.userAPI) var userAPI
@@ -29,28 +30,36 @@ class TripsController: ObservableObject {
     private var messagePublisher: PassthroughSubject<ChatMessage, Never>?
 
     init() {
+        Task {
+            await loadTrips()
+        }
     }
     
     // MARK: - My Trips
-//    func updateMyTrips() {
-//        Task {
-//            do {
-//                try await loadMyTrips()
-//            } catch {
-//                print(error)
-//            }
-//        }
-//    }
     
     @MainActor
-    private func loadMyTrips() async throws {
-        myTrips = try await tripsAPI.getMyTrips()
+    private func loadMyTrips() {
+        Task {
+            do {
+                myTrips = try await tripsAPI.getMyTrips()
+                subscribeToTripsUpdates()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - Explore Trips
     @MainActor
-    func loadExploreTrips() async throws {
-        exploreTrips = try await tripsAPI.getExploreTrips(searchTerm: "")
+    func loadExploreTrips() {
+        Task {
+            do {
+                exploreTrips = try await tripsAPI.getExploreTrips(searchTerm: "")
+                subscribeToTripsUpdates()
+            } catch {
+                print(error)
+            }
+        }
     }
     
     @MainActor
@@ -79,15 +88,8 @@ class TripsController: ObservableObject {
     
     @MainActor
     func loadTrips() {
-        Task {
-            do {
-                try await loadMyTrips()
-                try await loadExploreTrips()
-                subscribeToTripsUpdates()
-            } catch {
-                print(error)
-            }
-        }
+        loadMyTrips()
+        loadExploreTrips()
     }
     
     func reloadTrips() {

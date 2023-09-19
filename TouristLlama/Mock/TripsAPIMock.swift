@@ -10,19 +10,19 @@ import Foundation
 class TripsAPIMock: TripsAPIProvider {
     
     func getMyTrips() async throws -> [Trip] {
-        return [Trip.testOngoing, Trip.testFuture, .testPast]
+        return [.testParis, .testAmsterdam, .testPast]
     }
     
     func create(trip: Trip) async throws -> Trip {
-        return Trip.testFuture
+        return .testFuture
     }
     
     func editTrip(trip: Trip) async throws -> Trip {
-        return Trip.testFuture
+        return .testFuture
     }
     
     func getExploreTrips(searchTerm: String, tripStyle: TripStyle?, startDate: Date?, endDate: Date?) async throws -> [Trip] {
-        return [Trip.testOngoing, Trip.testFuture, .testPast]
+        return [.testParis, .testZermatt, .testAmsterdam]
     }
     
     func subscribeToTripsUpdates(for trips: [Trip], onNewUpdate: @escaping (String) -> Void) {

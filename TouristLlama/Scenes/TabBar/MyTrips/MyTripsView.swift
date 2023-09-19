@@ -36,12 +36,6 @@ struct MyTripsView: View {
             ManageTripView(mode: .create)
             .interactiveDismissDisabled()
         }
-//        .fullScreenCover(item: $viewModel.tripOpenState, onDismiss: {
-//            viewModel.updateMyTrips()
-//        }, content: { tripState in
-//            TripView(openState: tripState)
-//
-//        })
         .handle(error: $viewModel.error)
     }
 }

@@ -48,8 +48,8 @@ struct ExploreListCellView: View {
         GeometryReader { proxy in
             KFImage(trip.photo.large)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: proxy.size.width)
+                .scaledToFill()
+                .frame(width: proxy.size.width, height: proxy.size.height)
         }
     }
     
@@ -141,6 +141,6 @@ extension ExploreListCellView {
 
 struct ExploreListCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreListCellView(trip: .testOngoing, showBadge: true)
+        ExploreListCellView(trip: .testZermatt, showBadge: true)
     }
 }

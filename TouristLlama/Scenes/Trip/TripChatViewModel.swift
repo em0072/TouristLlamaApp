@@ -140,7 +140,7 @@ class TripChatViewModel: ViewModel {
             do {
                 let chat = try await chatAPI.getTripChat(tripId: chat.tripId, pageOffset: pageOffset)
                 let messages = chat.messages
-                canDownloadMoreMessages = messages.count == chatAPI.pageSize
+                canDownloadMoreMessages = messages.count >= chatAPI.pageSize
                 addOlderMessages(messages)
                 pageOffset += 1
             } catch {
@@ -149,11 +149,19 @@ class TripChatViewModel: ViewModel {
         }
     }
     
+    func prepareForScreenshot(isInScreenshot: Bool) {
+#if DEBUG
+        if isInScreenshot {
+            state = .content
+        }
+#endif
+    }
+
     private func mapMessages() {
         setViewModelState()
         guard let chat else { return }
         var messages = [ChatMessage]()
-        let lastReadMessageId = userDefaultsController.getLastMessageIf(for: chat.tripId)
+        let lastReadMessageId = userDefaultsController.getLastMessageId(for: chat.tripId)
         for message in chat.messages {
             
             if message.id == lastReadMessageId {

@@ -24,7 +24,6 @@ class TripViewModel: ViewModel {
 
     @Published var trip: Trip
     @Published var isDiscussionLoaded = false
-//    @Published var isApplicationLetterFormShown = false
     @Published var shouldDismiss = false
     @Published var isMembersManagmentOpen = false
     @Published var selectedTab: TabSelection = .details {
@@ -156,12 +155,12 @@ class TripViewModel: ViewModel {
             chatBadgeCount = 0
             return
         }
-        let lastReadMessageId = userDefaultsController.getLastMessageIf(for: trip.id)
+        let lastReadMessageId = userDefaultsController.getLastMessageId(for: trip.id)
         if let lastReadMessage = chat.messages.first(where: { $0.id == lastReadMessageId }) {
             let unreadMessagesCount = chat.messages.filter( { $0.created > lastReadMessage.created } ).count
             chatBadgeCount = unreadMessagesCount
         } else {
-            chatBadgeCount = chat.messages.count
+            chatBadgeCount = 0
         }
     }
     
