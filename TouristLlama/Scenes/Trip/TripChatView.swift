@@ -60,9 +60,9 @@ struct TripChatView: View {
                 scrollPositionId = messageIdOnScreen
                 return
             }
-            guard !oldMessages.isEmpty else {
-                return
-            }
+//            guard !oldMessages.isEmpty else {
+//                return
+//            }
             incomingMessage = true
             scrollToBottom()
         }
@@ -72,7 +72,13 @@ struct TripChatView: View {
                     scrollToBottom()
                 }
             }
-        } 
+        }
+        .onAppear {
+            print("Chat Appear")
+        }
+        .onDisappear {
+            print("Chat Disappear")
+        }
     }
     
 }
@@ -82,10 +88,10 @@ extension TripChatView {
     private func scrollToBottom(animated: Bool = true) {
         if animated {
             withAnimation(.default) {
-                scrollViewProxy?.scrollTo(chatEndId)
+                scrollViewProxy?.scrollTo(chatEndId, anchor: .bottom)
             }
         } else {
-                scrollViewProxy?.scrollTo(chatEndId)
+                scrollViewProxy?.scrollTo(chatEndId, anchor: .bottom)
             }
     }
     
@@ -105,10 +111,16 @@ extension TripChatView {
                 }
             }
             .onAppear {
+                print("ScrollViewReader Appear")
                 scrollViewProxy = scrollProxy
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+//                if viewModel.messages.contains(where: { $0.type == .newMessages }) {
+//                    scrollToNewMessagesPlack(animated: true)
+//                } else {
+//                    scrollToBottom(animated: false)
+//                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
                     if viewModel.messages.contains(where: { $0.type == .newMessages }) {
-                        scrollToNewMessagesPlack(animated: false)
+                        scrollToNewMessagesPlack(animated: true)
                     } else {
                         scrollToBottom(animated: false)
                     }
@@ -157,18 +169,21 @@ extension TripChatView {
                             }
                         }
                         .onAppear {
+                            print("message Appear")
                             viewModel.markAsRead(message)
                         }
                         .background {
-                            GeometryReader { proxy in
-                                Color.clear
-                                    .onChange(of: proxy.frame(in: .global)) { value in
-                                        let minY = value.minY
-                                        if minY > 95 && minY < 105 && messageIdOnScreen != message.id {
-                                            messageIdOnScreen = message.id
-                                            print(message.text)
+                            if isUIInitiallyLoaded {
+                                GeometryReader { proxy in
+                                    Color.clear
+                                        .onChange(of: proxy.frame(in: .global)) { value in
+                                            let minY = value.minY
+                                            if minY > 95 && minY < 105 && messageIdOnScreen != message.id {
+                                                messageIdOnScreen = message.id
+                                                print(message.text)
+                                            }
                                         }
-                                    }
+                                }
                             }
                         }
                     }
@@ -178,12 +193,15 @@ extension TripChatView {
                 }
             }
         }
+//        .defaultScrollAnchorIfPossible(.bottom)
         .scrollDismissesKeyboard(.interactively)
         .scrollPositionIfPossible(id: $scrollPositionId, anchor: .top)
         .onTapGesture {
             focusState = nil
         }
         .onAppear {
+            
+            print("ScrollView Appear")
             viewModel.markEndOfChat(isEnd: true)
         }
     }

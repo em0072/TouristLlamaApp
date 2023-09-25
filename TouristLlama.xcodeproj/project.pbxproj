@@ -95,6 +95,7 @@
 		7557A8F22A9DE93200F402A9 /* TripManageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */; };
 		7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
+		7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7577DE5E2AC175E70076E5AA /* MessageKit */; };
 		7579BD102AB4610F006F893F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD0F2AB4610F006F893F /* DebugView.swift */; };
 		7579BD132AB46215006F893F /* AspirinShot in Frameworks */ = {isa = PBXBuildFile; productRef = 7579BD122AB46215006F893F /* AspirinShot */; };
 		7579BD152AB462B3006F893F /* ScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD142AB462B3006F893F /* ScreenshotsView.swift */; };
@@ -421,6 +422,7 @@
 				7565F0562A81465300B796A1 /* Backendless in Frameworks */,
 				75DE43282A8A0A6F00D42B9D /* WaterfallGrid in Frameworks */,
 				75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */,
+				7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1200,7 @@
 				75DE43272A8A0A6F00D42B9D /* WaterfallGrid */,
 				7557A8D72A9782B400F402A9 /* Kingfisher */,
 				7579BD122AB46215006F893F /* AspirinShot */,
+				7577DE5E2AC175E70076E5AA /* MessageKit */,
 			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
@@ -1234,6 +1237,7 @@
 				75DE431F2A86BD0700D42B9D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */,
+				7577DE5D2AC175E60076E5AA /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
@@ -1598,7 +1602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1636,7 +1640,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1688,6 +1692,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		7577DE5D2AC175E60076E5AA /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 		7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/goodwhale/AspirinShot";
@@ -1732,6 +1744,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */;
 			productName = Backendless;
+		};
+		7577DE5E2AC175E70076E5AA /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7577DE5D2AC175E60076E5AA /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 		7579BD122AB46215006F893F /* AspirinShot */ = {
 			isa = XCSwiftPackageProductDependency;

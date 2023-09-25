@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @Environment(\.scenePhase) var screenPhase
 
     @StateObject private var viewModel = ContentViewModel()
     
@@ -25,6 +27,14 @@ struct ContentView: View {
                         viewModel.requestNotificationsAuthorization()
 //                        viewModel.loadTrips()
                     }
+                    .onChange(of: screenPhase, perform: { newScreenPhase in
+                        switch newScreenPhase {
+                        case .active:
+                            viewModel.clearNotificationBadge()
+                        default:
+                            return
+                        }
+                    })
             }
         }
         .animation(.default, value: viewModel.loginStatus)

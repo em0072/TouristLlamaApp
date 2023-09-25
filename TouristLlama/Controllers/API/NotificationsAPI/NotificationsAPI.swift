@@ -32,13 +32,14 @@ class NotificationsAPI {
     }
     
     private func subscribreToNotificationUpdates() {
-        provider.subscribeToNotificationsUpdates { [weak self] notification in
+        provider.subscribeToNotificationsUpsert { [weak self] notification in
             guard let self else { return }
             self.notifications.insert(notification, at: 0)
             if !notification.read {
                 self.unreadNotifications += 1
             }
         }
+        
     }
     
     func deleteNotification(id: String) {

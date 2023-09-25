@@ -27,13 +27,14 @@ struct TripDetailsView: View {
                 } content: {
                     VStack(alignment: .leading, spacing: 0) {
                         imageView
+                        tripStyleView
                         datesView
                         dividerView
                         aboutView
                         dividerView
-                        mapView
-                        dividerView
                         paticipantsView
+                        dividerView
+                        mapView
                     }
                 }
                 .padding(.top, -8)
@@ -434,6 +435,26 @@ extension TripDetailsView {
             .padding(20)
         }
     }
+    
+    @ViewBuilder
+    private var tripStyleView: some View {
+        if let tripStyle = viewModel.trip.style {
+            ZStack {
+                Text(tripStyle.localizedValue)
+                    .font(.avenirSmallBody)
+                    .bold()
+                    .foregroundColor(tripStyle.styleTextColor)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 12)
+                    .background {
+                        Capsule()
+                            .fill(tripStyle.styleColor)
+                    }
+            }
+            .padding(.horizontal, 12)
+        }
+    }
+
     
     private var imageHeight: CGFloat {
         let height: CGFloat = 390

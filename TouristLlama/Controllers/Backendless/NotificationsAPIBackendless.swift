@@ -14,6 +14,8 @@ class NotificationsAPIBackendless: NotificationsAPIProvider {
     private var channels: [Channel] = []
     private var channelSubscriptions: [RTSubscription?] = []
     
+    private var notificationsUpsertSubscription: RTSubscription?
+
     init() {}
     
     
@@ -32,13 +34,15 @@ class NotificationsAPIBackendless: NotificationsAPIProvider {
         }
     }
     
-    func subscribeToNotificationsUpdates(onNewNotification: @escaping (UserNotification) -> Void) {
+    func subscribeToNotificationsUpsert(onNewNotification: @escaping (UserNotification) -> Void) {
         guard let currentUserID = Backendless.shared.userService.currentUser?.objectId else { return }
-        let eventHandlerClauseTrip = Backendless.shared.data.ofTable("Notification").rt
-        let whereClauseTrip = "ownerId = '\(currentUserID)'"
         
-        _ = eventHandlerClauseTrip?.addUpsertListener(whereClause: whereClauseTrip, responseHandler: { dict in
-//            print(dict)
+        notificationsUpsertSubscription?.stop()
+        
+        let eventHandler = Backendless.shared.data.ofTable("Notification").rt
+        let whereClause = "ownerId = '\(currentUserID)'"
+        
+        notificationsUpsertSubscription = eventHandler?.addUpsertListener(whereClause: whereClause, responseHandler: { dict in
             guard let id = dict["objectId"] as? String,
                   let ownerId = dict["ownerId"] as? String,
                   let tripId = dict["tripId"] as? String,
@@ -57,7 +61,7 @@ class NotificationsAPIBackendless: NotificationsAPIProvider {
             print("Error: \(fault.message ?? "")")
         })
     }
-    
+        
     func deleteNotification(id: String) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             let parameters = id

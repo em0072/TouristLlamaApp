@@ -79,7 +79,6 @@ final class NotificationsController: NSObject, ObservableObject, UNUserNotificat
         print(notification)
         let notificationShownOptions: UNNotificationPresentationOptions = [.badge, .banner, .sound]
         let notificationNotShownOptions: UNNotificationPresentationOptions = []
-        
         guard let type = notification.request.content.userInfo["type"] as? String,
               let tripId = notification.request.content.userInfo["tripId"] as? String else {
             return notificationShownOptions

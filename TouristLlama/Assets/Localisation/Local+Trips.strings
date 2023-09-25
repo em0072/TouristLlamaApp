@@ -16,6 +16,7 @@
 "myTripsCreateTripSettingsStage" = "Setings";
 
 "myTripsCreateTripTitle" = "Create Trip";
+"myTripsEditTripTitle" = "Edit Trip";
 "myTripsCreateTripName" = "Name";
 "myTripsCreateTripNamePlaceholder" = "What will be the name of your trip?";
 "myTripsCreateTripStyle" = "Style";

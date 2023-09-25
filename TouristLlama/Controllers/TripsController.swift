@@ -15,6 +15,7 @@ class TripsController: ObservableObject {
     @Dependency(\.tripsAPI) var tripsAPI
     @Dependency(\.chatAPI) var chatAPI
     @Dependency(\.userAPI) var userAPI
+    @Dependency(\.userDefaultsController) var userDefaultsController
 
     @Published var myTrips: [Trip]?
     @Published var exploreTrips: [Trip]?
@@ -156,7 +157,7 @@ class TripsController: ObservableObject {
         }
         subscribeToTripsUpdates()
     }
-    
+        
     private func deleteTrip(with tripId: String) {
         if selectedTripState?.id == tripId {
             selectedTripState = nil

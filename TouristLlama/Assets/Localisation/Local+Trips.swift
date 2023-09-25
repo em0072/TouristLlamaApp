@@ -20,6 +20,7 @@ extension String {
 
         
         static let createTripTitle = String.localized("myTripsCreateTripTitle")
+        static let editTripTitle = String.localized("myTripsEditTripTitle")
         static let createTripName = String.localized("myTripsCreateTripName")
         static let createTripNamePlaceholder = String.localized("myTripsCreateTripNamePlaceholder")
         static let createTripStyle = String.localized("myTripsCreateTripStyle")

@@ -94,7 +94,7 @@ class TripViewModel: ViewModel {
             guard let self else { return }
             guard chatId == message.chatId else { return }
             self.tripChatViewModel.proccessNewMessage(message)
-            if self.selectedTab == .details {
+            if self.selectedTab == .details && message.ownerId != userAPI.currentUser?.id {
                 self.chatBadgeCount += 1
             }
         }
@@ -156,7 +156,7 @@ class TripViewModel: ViewModel {
             return
         }
         let lastReadMessageId = userDefaultsController.getLastMessageId(for: trip.id)
-        if let lastReadMessage = chat.messages.first(where: { $0.id == lastReadMessageId }) {
+        if let lastReadMessage = chat.messages.first(where: { $0.id == lastReadMessageId }), lastReadMessage.ownerId != userAPI.currentUser?.id {
             let unreadMessagesCount = chat.messages.filter( { $0.created > lastReadMessage.created } ).count
             chatBadgeCount = unreadMessagesCount
         } else {

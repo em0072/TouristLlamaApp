@@ -75,7 +75,7 @@ class TripChatViewModel: ViewModel {
     }
     
     func proccessNewMessage(_ message: ChatMessage) {
-        guard message.author != self.userAPI.currentUser else { return }
+//        guard message.author != self.userAPI.currentUser else { return }
         self.insertMessageIfNeeded(message)
     }
 
@@ -166,7 +166,7 @@ class TripChatViewModel: ViewModel {
             
             if message.id == lastReadMessageId {
                 lastReadMessage = message
-                if !messages.isEmpty {
+                if !messages.isEmpty && chat.messages.first?.ownerId != userAPI.currentUser?.id {
                     messages.insert(.newMessages, at: 0)
                 }
             }

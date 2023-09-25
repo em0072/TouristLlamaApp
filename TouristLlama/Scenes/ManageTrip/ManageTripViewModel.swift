@@ -262,4 +262,14 @@ class ManageTripViewModel: ViewModel {
             return String.Main.continue
         }
     }
+    
+    var navigationTitle: String {
+        switch mode {
+        case .create:
+            return String.Trips.createTripTitle
+            
+        case .edit:
+            return String.Trips.editTripTitle
+        }
+    }
 }

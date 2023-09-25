@@ -44,8 +44,9 @@ class ContentViewModel: ViewModel {
         }
     }
     
-//    func loadTrips() {
-//        tripsController.loadTrips()
-//    }
+    func clearNotificationBadge() {
+        notificationsController.clearBadge()
+    }
+    
 }
 

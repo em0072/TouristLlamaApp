@@ -50,6 +50,7 @@ extension NotificationsView {
             NotificationCellView(notification: notification)
                 .onTapGesture {
                     viewModel.openTrip(tripId: notification.tripId)
+                    viewModel.markNotificationAsRead(id: notification.id)
                 }
                 .listRowBackground(Color.Main.listItem)
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {

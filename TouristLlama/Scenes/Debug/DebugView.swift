@@ -4,7 +4,7 @@
 //
 //  Created by Evgeny Mitko on 15/09/2023.
 //
-
+#if DEBUG
 import SwiftUI
 
 struct DebugView: View {
@@ -28,3 +28,4 @@ struct DebugView_Previews: PreviewProvider {
         DebugView()
     }
 }
+#endif

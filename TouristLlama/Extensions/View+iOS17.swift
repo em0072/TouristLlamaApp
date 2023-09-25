@@ -25,4 +25,14 @@ extension View {
             return self
         }
     }
+    
+    func defaultScrollAnchorIfPossible(_ anchor: UnitPoint?) -> some View {
+        if #available(iOS 17.0, *) {
+            return self
+                .defaultScrollAnchor(anchor)
+        } else {
+            return self
+        }
+    }
+
 }

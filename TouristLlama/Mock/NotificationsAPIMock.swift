@@ -13,7 +13,11 @@ class NotificationsAPIMock: NotificationsAPIProvider {
         return [.test, .testRead]
     }
     
-    func subscribeToNotificationsUpdates(onNewNotification: @escaping (UserNotification) -> Void) {
+    func subscribeToNotificationsUpsert(onNewNotification: @escaping (UserNotification) -> Void) {
+        
+    }
+    
+    func subscribeOnNotificationsUpdates(onUpdate: @escaping () -> Void) {
         
     }
     

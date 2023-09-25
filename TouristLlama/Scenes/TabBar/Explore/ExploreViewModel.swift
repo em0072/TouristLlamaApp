@@ -82,7 +82,7 @@ class ExploreViewModel: ViewModel {
         }
         if trip.participants.contains(where: { currentUser.id == $0.id }),
            let lastMessage = trip.lastMessage,
-           lastMessage.id != userDefaultsController.getLastMessageId(for: trip.id) {
+           lastMessage.id != userDefaultsController.getLastMessageId(for: trip.id) && lastMessage.ownerId != userAPI.currentUser?.id {
             return true
         }
         return false
