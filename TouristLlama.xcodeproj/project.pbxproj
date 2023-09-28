@@ -70,6 +70,7 @@
 		753F95682A94F651005B55B5 /* View+CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F95672A94F651005B55B5 /* View+CameraPicker.swift */; };
 		753F956C2A96146B005B55B5 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F956B2A96146B005B55B5 /* ExploreViewModel.swift */; };
 		753F956E2A961473005B55B5 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753F956D2A961473005B55B5 /* ExploreView.swift */; };
+		7547B9FD2AC3163000F7E29A /* ScrollToBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7547B9FC2AC3163000F7E29A /* ScrollToBottomButton.swift */; };
 		75516FD22A9F44DB00816150 /* SearchingUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD12A9F44DB00816150 /* SearchingUsersView.swift */; };
 		75516FD42A9F44F300816150 /* SearchingUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD32A9F44F300816150 /* SearchingUsersViewModel.swift */; };
 		75516FD72A9F4F8100816150 /* SearchingUsersListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75516FD62A9F4F8100816150 /* SearchingUsersListCell.swift */; };
@@ -96,6 +97,9 @@
 		7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
 		7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7577DE5E2AC175E70076E5AA /* MessageKit */; };
+		7577DE612AC17B390076E5AA /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE602AC17B390076E5AA /* MessagesView.swift */; };
+		7577DE662AC1885B0076E5AA /* Array+AdjacentElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */; };
+		7577DE7D2AC1AB4B0076E5AA /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE7C2AC1AB4B0076E5AA /* InputView.swift */; };
 		7579BD102AB4610F006F893F /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD0F2AB4610F006F893F /* DebugView.swift */; };
 		7579BD132AB46215006F893F /* AspirinShot in Frameworks */ = {isa = PBXBuildFile; productRef = 7579BD122AB46215006F893F /* AspirinShot */; };
 		7579BD152AB462B3006F893F /* ScreenshotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7579BD142AB462B3006F893F /* ScreenshotsView.swift */; };
@@ -208,6 +212,7 @@
 		75ED7A1F2A83CFBC0078D103 /* Local+Terms.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75ED7A1E2A83CFBC0078D103 /* Local+Terms.strings */; };
 		75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A202A83CFC70078D103 /* Local+Terms.swift */; };
 		75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */; };
+		75F1EACF2AC597C7005A1694 /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -275,6 +280,7 @@
 		753F95692A94F7AA005B55B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		753F956B2A96146B005B55B5 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		753F956D2A961473005B55B5 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		7547B9FC2AC3163000F7E29A /* ScrollToBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToBottomButton.swift; sourceTree = "<group>"; };
 		75516FD12A9F44DB00816150 /* SearchingUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersView.swift; sourceTree = "<group>"; };
 		75516FD32A9F44F300816150 /* SearchingUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersViewModel.swift; sourceTree = "<group>"; };
 		75516FD62A9F4F8100816150 /* SearchingUsersListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingUsersListCell.swift; sourceTree = "<group>"; };
@@ -298,6 +304,9 @@
 		7557A8EF2A9D210F00F402A9 /* TripManageMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageMembersViewModel.swift; sourceTree = "<group>"; };
 		7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageListCell.swift; sourceTree = "<group>"; };
 		7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripRequest+test.swift"; sourceTree = "<group>"; };
+		7577DE602AC17B390076E5AA /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AdjacentElement.swift"; sourceTree = "<group>"; };
+		7577DE7C2AC1AB4B0076E5AA /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		7579BD0F2AB4610F006F893F /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		7579BD142AB462B3006F893F /* ScreenshotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsView.swift; sourceTree = "<group>"; };
 		7579BD172AB47743006F893F /* ExploreViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewScreenshot.swift; sourceTree = "<group>"; };
@@ -408,6 +417,7 @@
 		75ED7A1E2A83CFBC0078D103 /* Local+Terms.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Local+Terms.strings"; sourceTree = "<group>"; };
 		75ED7A202A83CFC70078D103 /* Local+Terms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Terms.swift"; sourceTree = "<group>"; };
 		75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
+		75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				7557A8E32A9C9D7C00F402A9 /* TripApplicationForm.swift */,
+				7577DE622AC186750076E5AA /* MessagesView */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -612,6 +623,17 @@
 				7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		7577DE622AC186750076E5AA /* MessagesView */ = {
+			isa = PBXGroup;
+			children = (
+				7577DE602AC17B390076E5AA /* MessagesView.swift */,
+				75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */,
+				7577DE7C2AC1AB4B0076E5AA /* InputView.swift */,
+				7547B9FC2AC3163000F7E29A /* ScrollToBottomButton.swift */,
+			);
+			path = MessagesView;
 			sourceTree = "<group>";
 		};
 		7579BD0E2AB46103006F893F /* Debug */ = {
@@ -895,6 +917,7 @@
 				753F95672A94F651005B55B5 /* View+CameraPicker.swift */,
 				755170072AA1D70200816150 /* User+Chat.swift */,
 				75A8B9912AB9D0D200FB9F23 /* View+iOS17.swift */,
+				7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1290,6 +1313,7 @@
 				75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */,
 				75516FD22A9F44DB00816150 /* SearchingUsersView.swift in Sources */,
 				75336BC62A852A3900031D5C /* FramedDatePickerView.swift in Sources */,
+				75F1EACF2AC597C7005A1694 /* InfoMessageCell.swift in Sources */,
 				753364D52AA7632900675BB5 /* FriendsListCell.swift in Sources */,
 				7579BD182AB47743006F893F /* ExploreViewScreenshot.swift in Sources */,
 				75ED7A132A838D0E0078D103 /* TabBarView.swift in Sources */,
@@ -1322,6 +1346,7 @@
 				75DE43442A8BC83C00D42B9D /* TripParticipantsImageView.swift in Sources */,
 				75ED7A162A838D690078D103 /* PasswordRecoveryView.swift in Sources */,
 				752D32712AAB2702000280D5 /* NotificationCellView.swift in Sources */,
+				7547B9FD2AC3163000F7E29A /* ScrollToBottomButton.swift in Sources */,
 				75ED79EB2A8260B40078D103 /* Dependencies.swift in Sources */,
 				75336BAA2A84FFD400031D5C /* Sex.swift in Sources */,
 				75DE43342A8A2A5700D42B9D /* BackendlessTrip.swift in Sources */,
@@ -1341,6 +1366,7 @@
 				75516FD42A9F44F300816150 /* SearchingUsersViewModel.swift in Sources */,
 				75DE43372A8A2DF200D42B9D /* TripsAPIMock.swift in Sources */,
 				75DE432C2A8A293F00D42B9D /* TripsAPI.swift in Sources */,
+				7577DE7D2AC1AB4B0076E5AA /* InputView.swift in Sources */,
 				75BC4A8E2A811ABC00B6F6CE /* LogInView.swift in Sources */,
 				753364CD2AA72F7400675BB5 /* ReportingView.swift in Sources */,
 				75DE43402A8BB3EF00D42B9D /* MyTripCellView.swift in Sources */,
@@ -1358,6 +1384,7 @@
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				7557A8DA2A989D2700F402A9 /* TripsFiltersView.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
+				7577DE662AC1885B0076E5AA /* Array+AdjacentElement.swift in Sources */,
 				7557A8E22A9C8F9100F402A9 /* BackendlessTripRequest.swift in Sources */,
 				752D32622AAB0B4D000280D5 /* NotificationsAPIMock.swift in Sources */,
 				753F95572A94B066005B55B5 /* EditProfileViewModel.swift in Sources */,
@@ -1377,6 +1404,7 @@
 				75BC4A442A80E88800B6F6CE /* TouristLlamaApp.swift in Sources */,
 				7557A8EE2A9D210500F402A9 /* TripManageMembersView.swift in Sources */,
 				75DE433B2A8A3AF400D42B9D /* BackendlessTripPhoto.swift in Sources */,
+				7577DE612AC17B390076E5AA /* MessagesView.swift in Sources */,
 				75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */,
 				75ED7A102A8279350078D103 /* UserAPIError.swift in Sources */,
 				75DE434A2A8C004600D42B9D /* Trip+test.swift in Sources */,
@@ -1583,7 +1611,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TouristLlama/TouristLlama.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TouristLlama/Preview Content\"";
 				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
@@ -1602,7 +1630,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1621,7 +1649,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TouristLlama/TouristLlama.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TouristLlama/Preview Content\"";
 				DEVELOPMENT_TEAM = 65952893XA;
 				ENABLE_PREVIEWS = YES;
@@ -1640,7 +1668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.mitko.TouristLlamaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

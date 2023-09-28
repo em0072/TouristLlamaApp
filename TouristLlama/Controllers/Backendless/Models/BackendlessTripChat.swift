@@ -29,7 +29,7 @@ import Foundation
         guard let objectId,
               let ownerId,
               let tripId else { return nil }
-        
+    
         let messages = self.messages.compactMap { $0.appObject }
         
         return TripChat(id: objectId, ownerId: ownerId, tripId: tripId, messages: messages)

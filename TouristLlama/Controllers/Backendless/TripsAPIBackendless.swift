@@ -19,6 +19,8 @@ class TripsAPIBackendless: TripsAPIProvider {
     var tripRequestsForUserUpsertSubscription: RTSubscription?
     var tripsDeleteSubscription: RTSubscription?
 
+    var measure: TimeInterval = 0
+    
     func create(trip: Trip) async throws -> Trip {
         return try await withCheckedThrowingContinuation { continuation in
             let backendlessTrip = BackendlessTrip(from: trip)
@@ -40,12 +42,15 @@ class TripsAPIBackendless: TripsAPIProvider {
     
     func getMyTrips() async throws -> [Trip] {
         return try await withCheckedThrowingContinuation { continuation in
+            measure = Date().timeIntervalSince1970
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "getMyTrips", parameters: nil) { response in
+                print("Request done in ", Date().timeIntervalSince1970 - self.measure)
                 guard let tripsArray = response as? [BackendlessTrip] else {
                     continuation.resume(throwing: CustomError(text: "Can't cast to array"))
                     return
                 }
                 let trips = tripsArray.compactMap { $0.appObject }
+                print("Mapping done in ", Date().timeIntervalSince1970 - self.measure)
                 continuation.resume(returning: trips)
             } errorHandler: { error in
                 continuation.resume(throwing: error)

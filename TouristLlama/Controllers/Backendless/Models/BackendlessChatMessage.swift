@@ -28,7 +28,7 @@ import SwiftSDK
         self.ownerId = chatMessage.ownerId
         self.chatId = chatMessage.chatId
         self.text = chatMessage.text
-        self.author = chatMessage.author?.blUser
+        self.author = chatMessage.author.blUser
         self.created = chatMessage.created
         self.type = chatMessage.type.rawValue
     }
@@ -41,11 +41,13 @@ import SwiftSDK
               let created,
               let text else { return nil }
 
-        var user: User?
-        if let author {
-            user = User(from: author)
+        let user: User
+        if let blAuthor = self.author, let author = User(from: blAuthor) {
+            user = author
+        } else {
+            user = User.emptyUser
         }
-        let type = ChatMessage.MessageType(rawValue: self.type ?? "") ?? .user
+        let type = ChatMessage.MessageType(rawValue: self.type ?? "") ?? .userText
         return ChatMessage(objectId: objectId, clientId: clientId, ownerId: ownerId, chatId: chatId, text: text, author: user, created: created, type: type)
     }
 }

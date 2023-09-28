@@ -11,7 +11,6 @@ import Dependencies
 class TripDetailViewModel: ViewModel {
     
     @Dependency(\.userAPI) var userAPI
-    @Dependency(\.tripsAPI) var tripsAPI
     @Dependency(\.tripsController) var tripsController
 
     @Published var trip: Trip
@@ -81,7 +80,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                let tripRequest = try await tripsAPI.sendJoinRequest(tripId: trip.id, message: message)
+                let tripRequest = try await tripsController.sendJoinRequest(tripId: trip.id, message: message)
                 trip.upsert(tripRequest: tripRequest)
                 sheetType = nil
             } catch {
@@ -95,7 +94,7 @@ class TripDetailViewModel: ViewModel {
         Task {
             do {
                 loadingState = .loading
-                try await tripsAPI.cancelJoinRequest(request: request)
+                try await tripsController.cancelJoinRequest(request: request)
                 trip.delete(tripRequest: request)
             } catch {
                 self.error = error
@@ -108,7 +107,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                let tripRequest = try await tripsAPI.answerTravelInvite(request: request, accepted: true)
+                let tripRequest = try await tripsController.answerTravelInvite(request: request, accepted: true)
                 trip.upsert(tripRequest: tripRequest)
             } catch {
                 self.error = error
@@ -121,7 +120,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                let tripRequest = try await tripsAPI.answerTravelInvite(request: request, accepted: false)
+                let tripRequest = try await tripsController.answerTravelInvite(request: request, accepted: false)
                 trip.upsert(tripRequest: tripRequest)
             } catch {
                 self.error = error
@@ -139,7 +138,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                try await tripsAPI.leaveTrip(tripId: trip.id)
+                try await tripsController.leaveTrip(tripId: trip.id)
                 loadingState = .none
             } catch {
                 self.error = error
@@ -176,7 +175,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                try await tripsAPI.deleteTrip(tripId: trip.id)
+                try await tripsController.deleteTrip(tripId: trip.id)
                 loadingState = .none
                 shouldDismiss = true
             } catch {
@@ -194,7 +193,7 @@ class TripDetailViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                try await tripsAPI.reportTrip(tripId: trip.id, reason: reason)
+                try await tripsController.reportTrip(tripId: trip.id, reason: reason)
                 loadingState = .none
                 sheetType = nil
             } catch {

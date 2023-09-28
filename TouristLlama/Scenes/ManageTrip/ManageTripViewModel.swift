@@ -12,8 +12,8 @@ import Dependencies
 @MainActor
 class ManageTripViewModel: ViewModel {
     
-    @Dependency(\.tripsAPI) var tripsAPI
-    
+    @Dependency(\.tripsController) var tripsController
+
     enum Mode {
         case create
         case edit(trip: Trip)
@@ -187,7 +187,7 @@ class ManageTripViewModel: ViewModel {
     private func create(trip: Trip) {
         Task {
             do {
-                try await tripsAPI.create(trip: trip)
+                try await tripsController.create(trip: trip)
                 self.onSubmit?(trip)
                 self.shouldDismiss = true
             } catch {
@@ -200,8 +200,8 @@ class ManageTripViewModel: ViewModel {
     private func update(trip: Trip) {
         Task {
             do {
-                let updatedTrip = try await tripsAPI.edit(trip: trip)
-                self.onSubmit?(updatedTrip)
+                try await tripsController.edit(trip: trip)
+                self.onSubmit?(trip)
                 self.shouldDismiss = true
             } catch {
                 self.error = error

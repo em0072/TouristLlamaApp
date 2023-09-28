@@ -55,18 +55,19 @@ extension TripView {
     
     private var tabBarView: some View {
         TabView(selection: $viewModel.selectedTab) {
-            tripDetailsView
-                .tabItem {
-                    Label(String.Trip.detailsTitle, systemImage: "flag.fill")
-                }.tag(TripViewModel.TabSelection.details)
-                .tint(Color.Main.black)
-            
-            TripChatView(title: viewModel.trip.name, viewModel: viewModel.tripChatViewModel)
-                .tabItem {
-                    Label(String.Trip.discussionTitle, systemImage: "text.bubble.fill")
-                }.tag(TripViewModel.TabSelection.chats)
-                .badge(viewModel.chatBadgeCount)
-                .tint(Color.Main.black)
+                tripDetailsView
+                    .tabItem {
+                        Label(String.Trip.detailsTitle, systemImage: "flag.fill")
+                    }.tag(TripViewModel.TabSelection.details)
+                    .tint(Color.Main.black)
+                
+                TripChatView(title: viewModel.trip.name, viewModel: viewModel.tripChatViewModel)
+                    .tabItem {
+                        Label(String.Trip.discussionTitle, systemImage: "text.bubble.fill")
+                    }.tag(TripViewModel.TabSelection.chats)
+                    .badge(viewModel.chatBadgeCount)
+                    .tint(Color.Main.black)
+                    .toolbarBackground(.hidden, for: .tabBar)
         }
         .tint(.Main.accentBlue)
     }

@@ -14,11 +14,11 @@ class TripsAPI {
     @Dependency(\.userAPI) var userAPI
     
     private let provider: TripsAPIProvider
-    @Published var myTrips: [Trip] = []
-    @Published var myTripsIsLoaded = false
-
-    @Published var allTrips: [Trip] = []
-    @Published var allTripsIsLoaded = false
+//    @Published var myTrips: [Trip] = []
+//    @Published var myTripsIsLoaded = false
+//
+//    @Published var allTrips: [Trip] = []
+//    @Published var allTripsIsLoaded = false
 
     var publishers: [String: PassthroughSubject<Trip, Never>] = [:]
     var cancelebles = Set<AnyCancellable>()
@@ -92,15 +92,12 @@ class TripsAPI {
         try await provider.getTrip(for: tripId)
     }
     
-    func create(trip: Trip) async throws {
-        let newTrip = try await provider.create(trip: trip)
-        addTripToMyTrips(newTrip)
+    func create(_ trip: Trip) async throws -> Trip {
+        try await provider.create(trip: trip)
     }
     
     func edit(trip: Trip) async throws -> Trip {
-        let editedTrip = try await provider.editTrip(trip: trip)
-        updateTrips(with: editedTrip)
-        return editedTrip
+        try await provider.editTrip(trip: trip)
     }
     
     func getExploreTrips(searchTerm: String, tripStyle: TripStyle? = nil, startDate: Date? = nil, endDate: Date? = nil) async throws -> [Trip] {
@@ -109,20 +106,15 @@ class TripsAPI {
     }
     
     func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
-        let request = try await provider.sendJoinRequest(tripId: tripId, message: message)
-        updateTrips(with: request)
-        return request
+        try await provider.sendJoinRequest(tripId: tripId, message: message)
     }
     
     func cancelJoinRequest(request: TripRequest) async throws {
         try await provider.cancelJoinRequest(tripId: request.tripId)
-        cancelRequest(request)
     }
     
     func answerTravelRequest(request: TripRequest, approved: Bool) async throws -> TripRequest {
-        let updatedRequest = try await provider.answerTravelRequest(request: request, approved: approved)
-        updateTrips(with: updatedRequest)
-        return updatedRequest
+        try await provider.answerTravelRequest(request: request, approved: approved)
     }
     
     func removeUser(tripId: String, userId: String) async throws {
@@ -134,15 +126,11 @@ class TripsAPI {
     }
     
     func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest {
-        let request = try await provider.sendJoinInvite(tripId: tripId, userId: userId)
-        updateTrips(with: request)
-        return request
+        try await provider.sendJoinInvite(tripId: tripId, userId: userId)
     }
     
     func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
         try await provider.answerTravelInvite(request: request, accepted: accepted)
-//        updateTrips(with: updatedRequest)
-//        return updatedRequest
     }
     
     func leaveTrip(tripId: String) async throws {
@@ -196,65 +184,65 @@ class TripsAPI {
 //        }
 //    }
     
-    private func cancelRequest(_ request: TripRequest) {
-        if let myTripIndex = myTrips.firstIndex(where: { $0.id == request.tripId }) {
-            myTrips[myTripIndex].delete(tripRequest: request)
-        }
-
-        if let allTripIndex = allTrips.firstIndex(where: { $0.id == request.tripId }) {
-            allTrips[allTripIndex].delete(tripRequest: request)
-        }
-
-    }
-    
-    private func updateTrips(with request: TripRequest) {
-        if let myTripIndex = myTrips.firstIndex(where: { $0.id == request.tripId }) {
-            myTrips[myTripIndex].upsert(tripRequest: request)
-        }
-
-        if let allTripIndex = allTrips.firstIndex(where: { $0.id == request.tripId }) {
-            allTrips[allTripIndex].upsert(tripRequest: request)
-        }
-    }
-        
-    private func addTripToMyTrips(_ trip: Trip) {
-        myTrips.append(trip)
-        myTrips.sort { $0.startDate < $1.startDate }
-        myTrips.sort { $0.endDate < $1.endDate }
-    }
-    
-    private func updateTrips(with trip: Trip) {
-        updateMyTripsIfNeeded(with: trip)
-        
-        if let allTripIndex = allTrips.firstIndex(where: { $0.id == trip.id }) {
-            allTrips[allTripIndex] = trip
-        }
-    }
-    
-    private func updateMyTripsIfNeeded(with trip: Trip) {
-        //If user is a participant of the trip
-        if trip.participants.contains(where: { $0.id == userAPI.currentUser?.id }) {
-            // If trip is in MyTrips then update the trip
-            if let myTripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
-                myTrips[myTripIndex] = trip
-            } else { // If trip is not in MyTrips then add it
-                addTripToMyTrips(trip)
-            }
-        } else { //If user is not a participant of the trip then delete it from MyTrips
-            myTrips.removeAll(where: { $0.id == trip.id })
-        }
-    }
-    
-    private func deleteTrip(with tripId: String) {
-        withAnimation {
-            if let myTripIndex = myTrips.firstIndex(where: { $0.id == tripId }) {
-                myTrips.remove(at: myTripIndex)
-            }
-            
-            if let allTripIndex = allTrips.firstIndex(where: { $0.id == tripId }) {
-                allTrips.remove(at: allTripIndex)
-            }
-        }
-    }
+//    private func cancelRequest(_ request: TripRequest) {
+//        if let myTripIndex = myTrips.firstIndex(where: { $0.id == request.tripId }) {
+//            myTrips[myTripIndex].delete(tripRequest: request)
+//        }
+//
+//        if let allTripIndex = allTrips.firstIndex(where: { $0.id == request.tripId }) {
+//            allTrips[allTripIndex].delete(tripRequest: request)
+//        }
+//
+//    }
+//    
+//    private func updateTrips(with request: TripRequest) {
+//        if let myTripIndex = myTrips.firstIndex(where: { $0.id == request.tripId }) {
+//            myTrips[myTripIndex].upsert(tripRequest: request)
+//        }
+//
+//        if let allTripIndex = allTrips.firstIndex(where: { $0.id == request.tripId }) {
+//            allTrips[allTripIndex].upsert(tripRequest: request)
+//        }
+//    }
+//        
+//    private func addTripToMyTrips(_ trip: Trip) {
+//        myTrips.append(trip)
+//        myTrips.sort { $0.startDate < $1.startDate }
+//        myTrips.sort { $0.endDate < $1.endDate }
+//    }
+//    
+//    private func updateTrips(with trip: Trip) {
+//        updateMyTripsIfNeeded(with: trip)
+//        
+//        if let allTripIndex = allTrips.firstIndex(where: { $0.id == trip.id }) {
+//            allTrips[allTripIndex] = trip
+//        }
+//    }
+//    
+//    private func updateMyTripsIfNeeded(with trip: Trip) {
+//        //If user is a participant of the trip
+//        if trip.participants.contains(where: { $0.id == userAPI.currentUser?.id }) {
+//            // If trip is in MyTrips then update the trip
+//            if let myTripIndex = myTrips.firstIndex(where: { $0.id == trip.id }) {
+//                myTrips[myTripIndex] = trip
+//            } else { // If trip is not in MyTrips then add it
+//                addTripToMyTrips(trip)
+//            }
+//        } else { //If user is not a participant of the trip then delete it from MyTrips
+//            myTrips.removeAll(where: { $0.id == trip.id })
+//        }
+//    }
+//    
+//    private func deleteTrip(with tripId: String) {
+//        withAnimation {
+//            if let myTripIndex = myTrips.firstIndex(where: { $0.id == tripId }) {
+//                myTrips.remove(at: myTripIndex)
+//            }
+//            
+//            if let allTripIndex = allTrips.firstIndex(where: { $0.id == tripId }) {
+//                allTrips.remove(at: allTripIndex)
+//            }
+//        }
+//    }
     
 }

@@ -11,7 +11,7 @@ import Dependencies
 class TripManageMembersViewModel: ViewModel {
 
     @Dependency(\.userAPI) var userAPI
-    @Dependency(\.tripsAPI) var tripAPI
+    @Dependency(\.tripsController) var tripsController
 
     @Published var trip: Trip {
         didSet {
@@ -73,7 +73,7 @@ class TripManageMembersViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                try await tripAPI.removeUser(tripId: trip.id, userId: user.id)
+                try await tripsController.removeUserFromTrip(tripId: trip.id, userId: user.id)
                 deleteMemberFromTrip()
                 loadingState = .none
             } catch {
@@ -87,7 +87,7 @@ class TripManageMembersViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                try await tripAPI.cancelInvite(tripId: trip.id, userId: user.id)
+                try await tripsController.cancelInvite(tripId: trip.id, userId: user.id)
                 deleteMemberFromInvite()
                 loadingState = .none
             } catch {
@@ -109,7 +109,8 @@ class TripManageMembersViewModel: ViewModel {
         loadingState = .loading
         Task {
             do {
-                let request = try await tripAPI.sendJoinInvite(tripId: trip.id, userId: user.id)
+                let request = try await tripsController.sendJoinInvite(tripId: trip.id, userId: user.id)
+//                let request = try await tripAPI.sendJoinInvite(tripId: trip.id, userId: user.id)
                 updateTripWith(request)
                 isInviteViewShown = false
                 loadingState = .none
@@ -123,7 +124,7 @@ class TripManageMembersViewModel: ViewModel {
         Task {
             loadingState = .loading
             do {
-                let updatedRequest = try await tripAPI.answerTravelRequest(request: request, approved: true)
+                let updatedRequest = try await tripsController.answerTravelRequest(request: request, approved: true)
                 updateTripWith(updatedRequest)
                 loadingState = .none
             } catch {
@@ -137,7 +138,7 @@ class TripManageMembersViewModel: ViewModel {
         Task {
             loadingState = .loading
             do {
-                let updatedRequest = try await tripAPI.answerTravelRequest(request: request, approved: false)
+                let updatedRequest = try await tripsController.answerTravelRequest(request: request, approved: false)
                 updateTripWith(updatedRequest)
                 loadingState = .none
             } catch {
