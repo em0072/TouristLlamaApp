@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftSDK
+import MessageKit
 
 struct User: Identifiable, Hashable {
     
@@ -112,6 +113,10 @@ struct User: Identifiable, Hashable {
 //        blUser.properties[Property.friends.string] = self.friends.map({ $0.blUser })
         return blUser
     }
+    
+    static var emptyUser: User {
+        User(id: "nil", name: "", username: "", pronoun: .none, email: "", phone: "", dateOfBirth: nil, profilePicture: nil, about: nil, memberSince: nil, friends: [])
+    }
 }
 
 extension User: Equatable {
@@ -119,3 +124,9 @@ extension User: Equatable {
         lhs.id == rhs.id
     }
 }
+
+extension User: SenderType {
+    var senderId: String { id }
+    var displayName: String { name }
+}
+

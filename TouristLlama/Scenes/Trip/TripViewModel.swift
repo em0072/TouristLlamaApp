@@ -18,7 +18,6 @@ class TripViewModel: ViewModel {
 
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.chatAPI) var chatAPI
-    @Dependency(\.tripsAPI) var tripAPI
     @Dependency(\.userDefaultsController) var userDefaultsController
     @Dependency(\.tripsController) var tripsController
 

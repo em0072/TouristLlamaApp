@@ -26,6 +26,9 @@ class TripsController: ObservableObject {
         return Array(allTrips)
     }
     @Published var selectedTripState: TripOpenState?
+    
+    var myTripsStartTime: TimeInterval = 0
+    var exploreTripsStartTime: TimeInterval = 0
 
     private var messagePublishers = Set<AnyCancellable>()
     private var messagePublisher: PassthroughSubject<ChatMessage, Never>?
@@ -40,10 +43,14 @@ class TripsController: ObservableObject {
     
     @MainActor
     private func loadMyTrips() {
-        Task {
+        myTripsStartTime = Date().timeIntervalSince1970
+        print("Starting Load My Trips", Date().timeIntervalSince1970)
+        Task(priority: .userInitiated) {
             do {
                 myTrips = try await tripsAPI.getMyTrips()
                 subscribeToTripsUpdates()
+                let finalTime = Date().timeIntervalSince1970
+                print("Completed Load My Trips", finalTime, "It took ", finalTime - myTripsStartTime)
             } catch {
                 print(error)
             }
@@ -53,10 +60,14 @@ class TripsController: ObservableObject {
     // MARK: - Explore Trips
     @MainActor
     func loadExploreTrips() {
-        Task {
+        exploreTripsStartTime = Date().timeIntervalSince1970
+        print("Starting Load Explore Trips", exploreTripsStartTime)
+        Task(priority: .userInitiated) {
             do {
                 exploreTrips = try await tripsAPI.getExploreTrips(searchTerm: "")
                 subscribeToTripsUpdates()
+                let finalTime = Date().timeIntervalSince1970
+                print("Completed Load Explore Trips", finalTime, "It took ", finalTime - exploreTripsStartTime)
             } catch {
                 print(error)
             }
@@ -65,7 +76,7 @@ class TripsController: ObservableObject {
     
     @MainActor
     func searchTrips(searchTerm: String, tripStyle: TripStyle? = nil, startDate: Date? = nil, endDate: Date? = nil) {
-        Task {
+        Task(priority: .userInitiated) {
             do {
                 exploreTrips = try await tripsAPI.getExploreTrips(searchTerm: searchTerm, tripStyle: tripStyle, startDate: startDate, endDate: endDate)
                 subscribeToTripsUpdates()
@@ -99,6 +110,7 @@ class TripsController: ObservableObject {
         exploreTrips = exploreTrips
     }
     
+    // MARK: Subscriptions
     func subscribeToNewMessages(chatId: String, onNewMessage: @escaping (ChatMessage) -> Void) {
         messagePublisher = PassthroughSubject<ChatMessage, Never>()
         
@@ -112,6 +124,7 @@ class TripsController: ObservableObject {
     
     @MainActor
     private func subscribeToTripsUpdates() {
+        guard myTrips != nil && exploreTrips != nil else { return }
         tripsAPI.subscribeToTripsUpdates(for: allTrips) { [weak self] updatedTrip in
             self?.updateTrips(with: updatedTrip)
         }
@@ -131,6 +144,74 @@ class TripsController: ObservableObject {
         }
     }
     
+    // MARK: - Trips Managment
+    func create(trip: Trip) async throws {
+        let newTrip = try await tripsAPI.create(trip)
+        await updateTrips(with: newTrip)
+    }
+
+    func edit(trip: Trip) async throws {
+        let editedTrip = try await tripsAPI.edit(trip: trip)
+        await updateTrips(with: editedTrip)
+    }
+    
+    func removeUserFromTrip(tripId: String, userId: String) async throws {
+        try await tripsAPI.removeUser(tripId: tripId, userId: userId)
+        await deleteUser(userId: userId, tripId: tripId)
+    }
+    
+    func cancelInvite(tripId: String, userId: String) async throws {
+        try await tripsAPI.cancelInvite(tripId: tripId, userId: userId)
+        await deleteUserRequest(userId: userId, tripId: tripId)
+    }
+
+    func sendJoinInvite(tripId: String, userId: String) async throws -> TripRequest {
+        let request = try await tripsAPI.sendJoinInvite(tripId: tripId, userId: userId)
+        await updateTrips(with: request)
+        return request
+    }
+    
+    func answerTravelRequest(request: TripRequest, approved: Bool) async throws -> TripRequest {
+        let updatedRequest = try await tripsAPI.answerTravelRequest(request: request, approved: approved)
+        await updateTrips(with: updatedRequest)
+        return updatedRequest
+    }
+    
+    func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
+        let updatedRequest = try await tripsAPI.answerTravelInvite(request: request, accepted: accepted)
+        await updateTrips(with: updatedRequest)
+        return updatedRequest
+
+    }
+
+    func sendJoinRequest(tripId: String, message: String) async throws -> TripRequest {
+        let request = try await tripsAPI.sendJoinRequest(tripId: tripId, message: message)
+        await updateTrips(with: request)
+        return request
+    }
+
+    func cancelJoinRequest(request: TripRequest) async throws {
+        try await tripsAPI.cancelJoinRequest(request: request)
+        await updateRequestStatus(request: request, status: .requestCancelled)
+    }
+
+    func leaveTrip(tripId: String) async throws {
+        try await tripsAPI.leaveTrip(tripId: tripId)
+        if let currentUser = userAPI.currentUser {
+            await deleteUser(userId: currentUser.id, tripId: tripId)
+        }
+    }
+    
+    func deleteTrip(tripId: String) async throws {
+        try await tripsAPI.deleteTrip(tripId: tripId)
+        await deleteTrip(with: tripId)
+    }
+
+    func reportTrip(tripId: String, reason: String) async throws {
+        try await tripsAPI.reportTrip(tripId: tripId, reason: reason)
+    }
+    
+    // MARK: - Data Source Update
     @MainActor
     func updateTrips(with updatedTrip: Trip?) {
         guard let updatedTrip else { return }
@@ -157,7 +238,19 @@ class TripsController: ObservableObject {
         }
         subscribeToTripsUpdates()
     }
+    
+    @MainActor
+    func updateTrips(with request: TripRequest) {
+        if let myTripIndex = myTrips?.firstIndex(where: { $0.id == request.tripId }) {
+            myTrips?[myTripIndex].upsert(tripRequest: request)
+        }
         
+        if let exploreTripIndex = exploreTrips?.firstIndex(where: { $0.id == request.tripId }) {
+            exploreTrips?[exploreTripIndex].upsert(tripRequest: request)
+        }
+    }
+
+    @MainActor
     private func deleteTrip(with tripId: String) {
         if selectedTripState?.id == tripId {
             selectedTripState = nil
@@ -184,6 +277,33 @@ class TripsController: ObservableObject {
         messagePublisher?.send(message)
     }
     
+    @MainActor
+    private func deleteUser(userId: String , tripId: String) {
+        if let myTripIndex = myTrips?.firstIndex(where: { $0.id == tripId }),
+           var tripToEdit = myTrips?[myTripIndex] {
+            tripToEdit.delete(participantId: userId)
+            updateTrips(with: tripToEdit)
+        }
+    }
     
+    @MainActor
+    private func deleteUserRequest(userId: String , tripId: String) {
+        if let myTripIndex = myTrips?.firstIndex(where: { $0.id == tripId }),
+           var tripToEdit = myTrips?[myTripIndex] {
+            tripToEdit.deleteRequest(userId: userId)
+            updateTrips(with: tripToEdit)
+        }
+    }
     
+    @MainActor
+    private func updateRequestStatus(request: TripRequest , status: TripRequestStatus) {
+        if let myTripIndex = myTrips?.firstIndex(where: { $0.id == request.tripId }),
+           var tripToEdit = myTrips?[myTripIndex] {
+            var requestToUpdate = request
+            requestToUpdate.status = status
+            tripToEdit.upsert(tripRequest: requestToUpdate)
+            updateTrips(with: tripToEdit)
+        }
+    }
+
 }

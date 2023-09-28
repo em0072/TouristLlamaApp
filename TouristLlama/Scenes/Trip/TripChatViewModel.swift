@@ -22,19 +22,17 @@ class TripChatViewModel: ViewModel {
             }
         }
     }
-    
     @Published var messages: [ChatMessage] = []
-    @Published var chatMessageText: String = ""
+//    @Published var chatMessageText: String = ""
     @Published var shouldShowScrollButton: Bool = false
     
+    @Published var chatParticipants = [String: User]()
     var pageOffset: Int = 1
     var canDownloadMoreMessages = false
-
+    
     private var lastReadMessage: ChatMessage? {
         didSet {
-            if let lastReadMessage, let chat {
-                userDefaultsController.saveLast(messageId: lastReadMessage.id, for: chat.tripId)
-            }
+            saveLastMessage()
         }
     }
         
@@ -67,6 +65,14 @@ class TripChatViewModel: ViewModel {
         }
     }
     
+    func messageAppeared(_ message: ChatMessage) {
+        markAsRead(message)
+        if message.id == messages.first?.id && canDownloadMoreMessages {
+            downloadOlderMessages()
+            canDownloadMoreMessages = false
+        }
+    }
+        
     func updateChat(with chat: TripChat?) {
         if chat != self.chat {
             self.chat = chat
@@ -95,7 +101,7 @@ class TripChatViewModel: ViewModel {
         }
     }
 
-    func sendChatMessage() {
+    func sendChatMessage(chatMessageText: String) {
         guard let chatId = chat?.id else {
             self.error = CustomError(text: "Couldn't determin chat Id")
             return
@@ -109,7 +115,6 @@ class TripChatViewModel: ViewModel {
             let message = ChatMessage(chatId: chatId, text: chatMessageText, author: currentUser)
             insertMessageIfNeeded(message)
             markAsRead(message)
-            chatMessageText.removeAll()
             Task {
                 do {
                     let sentMessage = try await chatAPI.sendChatMessage(message: message)
@@ -126,15 +131,16 @@ class TripChatViewModel: ViewModel {
         if let lastReadMessage {
             if message.created > lastReadMessage.created {
                 self.lastReadMessage = message
-                print("LAST READ MESSAGE - \(message.text)")
+                print("LAST READ MESSAGE UPDATED - \(message.text)")
             }
         } else {
             lastReadMessage = message
-            print("LAST READ MESSAGE - \(message.text)")
+            print("LAST READ MESSAGE SET - \(message.text)")
         }
     }
     
     func downloadOlderMessages() {
+        print("downloadOlderMessages TRIGGERED")
         guard let chat, canDownloadMoreMessages else { return }
         Task {
             do {
@@ -162,14 +168,21 @@ class TripChatViewModel: ViewModel {
         guard let chat else { return }
         var messages = [ChatMessage]()
         let lastReadMessageId = userDefaultsController.getLastMessageId(for: chat.tripId)
-        for message in chat.messages {
+        for (i, message) in chat.messages.enumerated() {
+            var message = message
+            // Collect all chat users
+            collectUser(from: message)
+            var position = determineMessagePosition(for: message, allMessages: chat.messages, at: i)
+            position.reverse()
+            message.position = position
             
             if message.id == lastReadMessageId {
                 lastReadMessage = message
-                if !messages.isEmpty && chat.messages.first?.ownerId != userAPI.currentUser?.id {
-                    messages.insert(.newMessages, at: 0)
-                }
+//                if !messages.isEmpty && chat.messages.first?.ownerId != userAPI.currentUser?.id {
+//                    messages.insert(.newMessages, at: 0)
+//                }
             }
+            
             messages.insert(message, at: 0)
         }
         self.messages = messages
@@ -177,8 +190,81 @@ class TripChatViewModel: ViewModel {
         canDownloadMoreMessages = messages.count == chatAPI.pageSize
     }
     
+    private func saveLastMessage() {
+        if let lastReadMessage, let chat {
+            userDefaultsController.saveLast(messageId: lastReadMessage.id, for: chat.tripId)
+        }
+    }
+    
+    private func collectUser(from message: ChatMessage) {
+        let author = message.author
+        
+        if chatParticipants[author.id] == nil {
+            chatParticipants[author.id] = author
+        }
+    }
+    
+    private func filterUserMessage(_ message: ChatMessage?) -> ChatMessage? {
+        guard let message else { return nil }
+        if message.type == .userText {
+            return message
+        } else {
+            return nil
+        }
+    }
+    
+    private func determineMessagePosition(for message: ChatMessage, allMessages: [ChatMessage]?, at index: Int) -> ChatMessage.MessagePosition {
+        let previousMessage = filterUserMessage(allMessages?.previous(from: index))
+        let nextMessage = filterUserMessage(allMessages?.next(from: index))
+
+        if let previousMessage, let nextMessage {
+            if message.ownerId == previousMessage.ownerId && message.ownerId == nextMessage.ownerId {
+                return .middle
+            } else if message.ownerId == previousMessage.ownerId && message.ownerId != nextMessage.ownerId {
+                return .last
+            } else if message.ownerId != previousMessage.ownerId && message.ownerId == nextMessage.ownerId{
+                return .first
+            } else {
+                return .only
+            }
+        } else if let previousMessage, nextMessage == nil {
+            if message.ownerId == previousMessage.ownerId {
+                return .last
+            } else {
+                return .only
+            }
+        } else if let nextMessage, previousMessage == nil {
+            if message.ownerId == nextMessage.ownerId {
+                return .first
+            } else {
+                return .only
+            }
+        } else {
+            return .only
+        }
+    }
+    
     private func addOlderMessages(_ olderMessages: [ChatMessage]) {
-        messages.insert(contentsOf: olderMessages.reversed(), at: 0)
+        var messages = [ChatMessage]()
+        for (i, message) in olderMessages.enumerated() {
+            var message = message
+            // Collect all chat users
+            collectUser(from: message)
+            var position = determineMessagePosition(for: message, allMessages: olderMessages, at: i)
+            position.reverse()
+            message.position = position
+            
+//            if message.id == lastReadMessageId {
+//                lastReadMessage = message
+//                if !messages.isEmpty && chat.messages.first?.ownerId != userAPI.currentUser?.id {
+//                    messages.insert(.newMessages, at: 0)
+//                }
+//            }
+            
+            messages.insert(message, at: 0)
+        }
+
+        self.messages.insert(contentsOf: messages, at: 0)
     }
     
     private func markMessageAsNotSent(messageId: String) {
@@ -193,11 +279,26 @@ class TripChatViewModel: ViewModel {
             }
         }
 
+    @MainActor
     private func insertMessageIfNeeded(_ message: ChatMessage) {
+        var messageToInsert = message
+        
         if let messageIndex = messages.firstIndex(where: { $0.id == message.id}) {
-            messages[messageIndex] = message
+            let position = determineMessagePosition(for: messageToInsert, allMessages: messages, at: messageIndex)
+            messageToInsert.position = position
+            messages[messageIndex] = messageToInsert
         } else {
-            messages.append(message)
+            // Determine Position
+            let position = determineMessagePosition(for: messageToInsert, allMessages: messages, at: messages.count)
+            messageToInsert.position = position
+            // Append Message
+            messages.append(messageToInsert)
+            // Fix position of prevoius message
+            let previousMessageIndex = messages.count - 2
+            if let prevoiusMessage = messages.item(at: previousMessageIndex) {
+                let previousMessagePosition = determineMessagePosition(for: prevoiusMessage, allMessages: messages, at: previousMessageIndex)
+                messages[previousMessageIndex].position = previousMessagePosition
+            }
         }
     }
     

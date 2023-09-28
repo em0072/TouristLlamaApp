@@ -8,7 +8,7 @@
 import Foundation
 import SwiftSDK
 
-@objcMembers final class BackendlessTrip: NSObject {
+@objcMembers final class BackendlessTrip: NSObject, BackendlessObject {
     var objectId: String?
     var name: String?
     var style: String?
@@ -46,7 +46,7 @@ import SwiftSDK
         self.chat = BackendlessTripChat(from: trip.chat)
         self.requests = trip.requests.map { BackendlessTripReqest(from: $0) }
     }
-        
+
     var appObject: Trip? {
         guard let objectId,
               let name,

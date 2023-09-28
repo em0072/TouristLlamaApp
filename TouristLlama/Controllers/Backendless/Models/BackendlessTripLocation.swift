@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import SwiftSDK
 
-@objcMembers class BackendlessTripLocation: NSObject, Codable {
+@objcMembers class BackendlessTripLocation: NSObject, BackendlessObject, Codable {
     var objectId: String?
     var title: String?
     var country: String?

@@ -10,7 +10,7 @@ import Foundation
 
 import SwiftSDK
 
-@objcMembers final class BackendlessTripReqest: NSObject {
+@objcMembers final class BackendlessTripReqest: NSObject, BackendlessObject {
     var objectId: String?
     var applicant: BackendlessUser?
     var applicationLetter: String?

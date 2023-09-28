@@ -67,8 +67,20 @@ struct Trip: Identifiable, Equatable, Hashable {
         }
     }
     
+    mutating func deleteRequest(userId: String) {
+        if let requestIndex = requests.lastIndex(where: { $0.applicant.id == userId }) {
+            requests.remove(at: requestIndex)
+        }
+    }
+
     mutating func add(participant: User) {
         participants.append(participant)
+    }
+    
+    mutating func delete(participantId: String) {
+        if let userIndex = participants.firstIndex(where: { $0.id == participantId }) {
+            participants.remove(at: userIndex)
+        }
     }
     
     var requestsPendingCount: Int {
