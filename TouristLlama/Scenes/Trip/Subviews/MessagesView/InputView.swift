@@ -45,7 +45,6 @@ final class InputBarView: InputBarAccessoryView {
                 }
         }
     }()
-    
         
     func configure() {
         setupBackground()

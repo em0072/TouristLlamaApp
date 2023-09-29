@@ -14,7 +14,7 @@ private struct CameraPickerViewModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .sheet(isPresented: $isPresented) {
+            .fullScreenCover(isPresented: $isPresented) {
                 CameraPickerView(image: $selection)
                     .ignoresSafeArea()
             }

@@ -88,4 +88,24 @@ class ChatAPIBackendless: ChatAPIProvider {
             }
         }
     }
+    
+    func uploadImage(id: String, chatId: String,  data: Data) async throws -> String {
+        return try await withCheckedThrowingContinuation { continuation in
+            guard let objectId = Backendless.shared.userService.currentUser?.objectId else {
+                continuation.resume(throwing: CustomError(text: "No current user is available"))
+                return
+            }
+            let fileName = id
+            let filePath = "chat/\(chatId)/images/"
+            Backendless.shared.file.uploadFile(fileName: fileName, filePath: filePath, content: data, overwrite: true) { file in
+                guard let fileUrl = file.fileUrl else {
+                    continuation.resume(throwing: CustomError(text: "File upload returned empty file url"))
+                    return
+                }
+                continuation.resume(returning: fileUrl)
+            } errorHandler: { error in
+                continuation.resume(throwing: error)
+            }
+        }
+    }
 }

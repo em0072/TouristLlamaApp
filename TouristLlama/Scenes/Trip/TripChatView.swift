@@ -10,28 +10,10 @@ import Kingfisher
 
 struct TripChatView: View {
     
-    enum KeyboardFocus {
-        case inputField
-    }
-    
     @Environment(\.dismiss) private var dismiss
 
     let title: String
     @StateObject var viewModel: TripChatViewModel
-    
-    @State private var wholeSize: CGSize = .zero
-    @State private var scrollViewSize: CGSize = .zero
-    @State private var scrollViewProxy: ScrollViewProxy?
-    @State private var isUIInitiallyLoaded =  false
-    @State private var incomingMessage =  false
-    @State private var messageIdOnScreen: String?
-    @State private var scrollPositionId: String?
-    @State private var scrollToBottom: Bool = false
-    
-    let chatEndId = "chatEnd"
-    let chatNewMessagesId = "newMessages"
-
-    @FocusState private var focusState: KeyboardFocus?
         
     var body: some View {
         NavigationStack {
@@ -45,17 +27,22 @@ struct TripChatView: View {
                                     viewModel.messageAppeared(message)
                                 }                                
                             } onMediaButtonPress: {
-                                print("Media Button Press")
+                                viewModel.mediaButtonAction()
                             } onSendButtonPress: { text in
                                 viewModel.sendChatMessage(chatMessageText: text)
                             }
                             .ignoresSafeArea()
-//                        }
                     }
                 case .loading:
                     loaderView
                 }
             }
+            .confirmationDialog("", isPresented: $viewModel.isMediaPickerSheetPresented, actions: {
+                cameraButton
+                photoLibraryButton
+            })
+            .cameraPicker(isPresented: $viewModel.isCameraOpen, selection: $viewModel.cameraImageToSend)
+            .photosPicker(isPresented: $viewModel.isPhotoLibraryOpen, selection: $viewModel.photoLibraryImagesToSend, photoLibrary: .shared())
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(title)
             .toolbar {
@@ -63,6 +50,7 @@ struct TripChatView: View {
                     closeButton
                 }
             }
+            .handle(loading: $viewModel.loadingState)
             .animation(.default, value: viewModel.shouldShowScrollButton)
         }
     }
@@ -70,6 +58,18 @@ struct TripChatView: View {
 }
 
 extension TripChatView {
+    
+    private var cameraButton: some View {
+            Button(String.Main.camera) {
+                viewModel.cameraButtonAction()
+            }
+    }
+    
+    private var photoLibraryButton: some View {
+            Button(String.Main.photoLibrary) {
+                viewModel.photoLibraryButtonAction()
+            }
+    }
     
     private var closeButton: some View {
         Button {

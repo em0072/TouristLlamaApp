@@ -14,7 +14,7 @@ extension ChatMessage {
         let number = Int.random(in: 0...100)
         let count = Int.random(in: 0...30)
         let message = "\(Array(repeating: number, count: count))"
-        return ChatMessage(objectId: UUID().uuidString, clientId: UUID().uuidString, ownerId: author.id, chatId: "asdasdq", text: message, author: author, created: Date(), type: .userText)
+        return ChatMessage(objectId: UUID().uuidString, clientId: UUID().uuidString, ownerId: author.id, chatId: "asdasdq", text: message, image: nil, author: author, created: Date(), type: .userText)
     }
     
     static var testNotOwner: ChatMessage {
@@ -23,7 +23,7 @@ extension ChatMessage {
         let count = Int.random(in: 0...30)
         let message = "\(Array(repeating: number, count: count))"
 
-        return ChatMessage(objectId: UUID().uuidString, clientId: UUID().uuidString, ownerId: author.id, chatId: "asdasdq", text: message, author: author, created: Date(), type: .userText)
+        return ChatMessage(objectId: UUID().uuidString, clientId: UUID().uuidString, ownerId: author.id, chatId: "asdasdq", text: message, image: nil, author: author, created: Date(), type: .userText)
     }
 
 }

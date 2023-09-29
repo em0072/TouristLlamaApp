@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Dependencies
+import PhotosUI
+import Kingfisher
 
 @MainActor
 class TripChatViewModel: ViewModel {
@@ -14,6 +16,13 @@ class TripChatViewModel: ViewModel {
     @Dependency(\.userAPI) var userAPI
     @Dependency(\.chatAPI) var chatAPI
     @Dependency(\.userDefaultsController) var userDefaultsController
+    
+    enum ImageState {
+        case empty
+        case loading(Progress)
+        case failure(Error)
+        case success(UIImage)
+    }
 
     @Published var chat: TripChat? {
         didSet {
@@ -24,6 +33,23 @@ class TripChatViewModel: ViewModel {
     }
     @Published var messages: [ChatMessage] = []
 //    @Published var chatMessageText: String = ""
+    @Published var isMediaPickerSheetPresented: Bool = false
+    @Published var isCameraOpen: Bool = false
+    @Published var isPhotoLibraryOpen: Bool = false
+    
+    @Published var cameraImageToSend: UIImage?
+    @Published var imageState: ImageState = .empty
+    @Published var photoLibraryImagesToSend: PhotosPickerItem? {
+        didSet {
+            if let photoLibraryImagesToSend {
+                let progress = loadTransferable(from: photoLibraryImagesToSend)
+                imageState = .loading(progress)
+            } else {
+                imageState = .empty
+            }
+        }
+    }
+
     @Published var shouldShowScrollButton: Bool = false
     
     @Published var chatParticipants = [String: User]()
@@ -35,9 +61,36 @@ class TripChatViewModel: ViewModel {
             saveLastMessage()
         }
     }
+    
+    override init() {
+        super.init()
+        subscribeToImages()
+    }
         
     private func setViewModelState() {
         self.state = chat == nil ? .loading : .content
+    }
+    
+    private func subscribeToImages() {
+        $imageState
+            .debounce(for: 0.2, scheduler: RunLoop.main)
+            .sink { [weak self] state in
+                guard let self else { return }
+                switch state {
+                case .empty:
+                    self.loadingState = .none
+                case .loading:
+                    self.loadingState = .loading
+                case .failure(let error):
+                    self.loadingState = .error(error)
+                case .success(let uiImage):
+                    self.loadingState = .none
+                    Task {
+                        await self.sendChatMessage(image: uiImage)
+                    }
+                }
+            }
+            .store(in: &publishers)
     }
         
     func isMessageFromCurrentUser(_ message: ChatMessage) -> Bool {
@@ -125,6 +178,44 @@ class TripChatViewModel: ViewModel {
             }
         }
     }
+    
+    func sendChatMessage(image: UIImage) async {
+        guard let chatId = chat?.id else {
+            self.error = CustomError(text: "Couldn't determin chat Id")
+            return
+        }
+        guard let currentUser = userAPI.currentUser else {
+            self.error = CustomError(text: "Current User is not found - can't send the message")
+            return
+        }
+        guard let imageId = photoLibraryImagesToSend?.itemIdentifier else {
+            self.error = CustomError(text: "Can't identify the image")
+            return
+        }
+//        Task {
+        do {
+            var mediaItem = ChatMessageMediaItem(image: image)
+            var message = ChatMessage(chatId: chatId, image: mediaItem, author: currentUser)
+            insertMessageIfNeeded(message)
+            markAsRead(message)
+            
+            let urlString = try await chatAPI.uploadImage(id: imageId, chatId: chatId, image: image)
+            mediaItem = ChatMessageMediaItem(url: URL(string: urlString), image: image)
+            message.image = mediaItem
+            ImageCache.default.store(image, forKey: urlString)
+//            Task {
+                do {
+                    var sentMessage = try await chatAPI.sendChatMessage(message: message)
+                    sentMessage.image?.image = image
+                    self.insertMessageIfNeeded(sentMessage)
+                } catch {
+                    markMessageAsNotSent(messageId: message.id)
+                }
+//            }
+        } catch {
+            self.error = CustomError(text: error.localizedDescription)
+        }
+    }
         
     func markAsRead(_ message: ChatMessage) {
         guard message.type != .newMessages else { return }
@@ -155,13 +246,47 @@ class TripChatViewModel: ViewModel {
         }
     }
     
-    func prepareForScreenshot(isInScreenshot: Bool) {
-#if DEBUG
-        if isInScreenshot {
-            state = .content
-        }
-#endif
+    func mediaButtonAction() {
+        isMediaPickerSheetPresented = true
     }
+    
+    func cameraButtonAction() {
+        isCameraOpen = true
+    }
+    
+    func photoLibraryButtonAction() {
+        isPhotoLibraryOpen = true
+    }
+    
+//    func prepareForScreenshot(isInScreenshot: Bool) {
+//#if DEBUG
+//        if isInScreenshot {
+//            state = .content
+//        }
+//#endif
+//    }
+    
+    private func loadTransferable(from imageSelection: PhotosPickerItem) -> Progress {
+        return imageSelection.loadTransferable(type: ChatMessageMediaItem.self) { result in
+            DispatchQueue.main.async {
+                guard imageSelection == self.photoLibraryImagesToSend else {
+                    print("Failed to get the selected item.")
+                    return
+                }
+                switch result {
+                case .success(let chatImage):
+                    if let image = chatImage?.image {
+                        self.imageState = .success(image)
+                    } else {
+                        self.imageState = .empty
+                    }
+                case .failure(let error):
+                    self.imageState = .failure(error)
+                }
+            }
+        }
+    }
+
 
     private func mapMessages() {
         setViewModelState()
@@ -206,7 +331,7 @@ class TripChatViewModel: ViewModel {
     
     private func filterUserMessage(_ message: ChatMessage?) -> ChatMessage? {
         guard let message else { return nil }
-        if message.type == .userText {
+        if message.type.isUser {
             return message
         } else {
             return nil

@@ -11,8 +11,18 @@ import MessageKit
 struct ChatMessage: Identifiable, Hashable {
     enum MessageType: String, Hashable {
         case userText
+        case userImage
         case info
         case newMessages
+        
+        var isUser: Bool {
+            switch self {
+            case .userText, .userImage:
+                return true
+            case .info, .newMessages:
+                return false
+            }
+        }
     }
     
     enum CustomCellKind {
@@ -50,18 +60,20 @@ struct ChatMessage: Identifiable, Hashable {
     let ownerId: String?
     let chatId: String
     let text: String
+    var image: ChatMessageMediaItem?
     let author: User
     let created: Date
     let type: MessageType
     var status: MessageStatus?
     var position: MessagePosition?
     
-    init(objectId: String, clientId: String, ownerId: String, chatId: String, text: String, author: User, created: Date, type: MessageType) {
+    init(objectId: String, clientId: String, ownerId: String, chatId: String, text: String, image: String?, author: User, created: Date, type: MessageType) {
         self.objectId = objectId
         self.clientId = clientId
         self.ownerId = ownerId
         self.chatId = chatId
         self.text = text
+        self.image = ChatMessageMediaItem(url: URL(string: image ?? ""))
         self.author = author
         self.created = created
         self.type = type
@@ -74,6 +86,7 @@ struct ChatMessage: Identifiable, Hashable {
         self.ownerId = author.id
         self.chatId = chatId
         self.text = text
+        self.image = nil
         self.author = author
         self.created = Date()
         self.type = .userText
@@ -86,10 +99,24 @@ struct ChatMessage: Identifiable, Hashable {
         self.ownerId = author.id
         self.chatId = chatId
         self.text = text
+        self.image = nil
         self.author = author
         self.created = Date()
         self.type = .userText
         self.status = status
+    }
+    
+    init(chatId: String, image: ChatMessageMediaItem, author: User) {
+        self.objectId = nil
+        self.clientId = UUID().uuidString
+        self.ownerId = author.id
+        self.chatId = chatId
+        self.text = ""
+        self.image = image
+        self.author = author
+        self.created = Date()
+        self.type = .userImage
+        self.status = .sending
     }
 
     
@@ -123,6 +150,9 @@ extension ChatMessage: MessageType {
 
         case .userText:
             return .text(text)
+            
+        case .userImage:
+            return .photo(image ?? ChatMessageMediaItem())
         }
     }
     
