@@ -96,6 +96,11 @@
 		7557A8F22A9DE93200F402A9 /* TripManageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */; };
 		7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */; };
 		7565F0562A81465300B796A1 /* Backendless in Frameworks */ = {isa = PBXBuildFile; productRef = 7565F0552A81465300B796A1 /* Backendless */; };
+		75660EF32AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF22AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift */; };
+		75660EF52AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF42AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift */; };
+		75660EF72AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */; };
+		75660EF92AC6E9C0004B3BEE /* MessageSwiftUIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */; };
+		75660EFC2AC70C83004B3BEE /* Agrume in Frameworks */ = {isa = PBXBuildFile; productRef = 75660EFB2AC70C83004B3BEE /* Agrume */; };
 		7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7577DE5E2AC175E70076E5AA /* MessageKit */; };
 		7577DE612AC17B390076E5AA /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE602AC17B390076E5AA /* MessagesView.swift */; };
 		7577DE662AC1885B0076E5AA /* Array+AdjacentElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */; };
@@ -213,6 +218,8 @@
 		75ED7A212A83CFC70078D103 /* Local+Terms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A202A83CFC70078D103 /* Local+Terms.swift */; };
 		75ED7A262A83D14D0078D103 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */; };
 		75F1EACF2AC597C7005A1694 /* InfoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */; };
+		75F1EAD52AC6B782005A1694 /* View+PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1EAD42AC6B782005A1694 /* View+PhotoPicker.swift */; };
+		75F1EAD72AC6B9B0005A1694 /* ChatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1EAD62AC6B9B0005A1694 /* ChatImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -304,6 +311,10 @@
 		7557A8EF2A9D210F00F402A9 /* TripManageMembersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageMembersViewModel.swift; sourceTree = "<group>"; };
 		7557A8F12A9DE93200F402A9 /* TripManageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripManageListCell.swift; sourceTree = "<group>"; };
 		7557A8F42A9DED3700F402A9 /* TripRequest+test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TripRequest+test.swift"; sourceTree = "<group>"; };
+		75660EF22AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesView+MessagesLayoutDelegate.swift"; sourceTree = "<group>"; };
+		75660EF42AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesView+InputBarAccessoryViewDelegate.swift"; sourceTree = "<group>"; };
+		75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesView+MessagesDisplayDelegate.swift"; sourceTree = "<group>"; };
+		75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSwiftUIVC.swift; sourceTree = "<group>"; };
 		7577DE602AC17B390076E5AA /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AdjacentElement.swift"; sourceTree = "<group>"; };
 		7577DE7C2AC1AB4B0076E5AA /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -418,6 +429,8 @@
 		75ED7A202A83CFC70078D103 /* Local+Terms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Local+Terms.swift"; sourceTree = "<group>"; };
 		75ED7A252A83D14D0078D103 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
 		75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
+		75F1EAD42AC6B782005A1694 /* View+PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PhotoPicker.swift"; sourceTree = "<group>"; };
+		75F1EAD62AC6B9B0005A1694 /* ChatImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +444,7 @@
 				75DE43212A86BD0700D42B9D /* Alamofire in Frameworks */,
 				7565F0562A81465300B796A1 /* Backendless in Frameworks */,
 				75DE43282A8A0A6F00D42B9D /* WaterfallGrid in Frameworks */,
+				75660EFC2AC70C83004B3BEE /* Agrume in Frameworks */,
 				75ED79E92A8260AA0078D103 /* Dependencies in Frameworks */,
 				7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */,
 			);
@@ -629,6 +643,10 @@
 			isa = PBXGroup;
 			children = (
 				7577DE602AC17B390076E5AA /* MessagesView.swift */,
+				75660EF22AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift */,
+				75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */,
+				75660EF42AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift */,
+				75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */,
 				75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */,
 				7577DE7C2AC1AB4B0076E5AA /* InputView.swift */,
 				7547B9FC2AC3163000F7E29A /* ScrollToBottomButton.swift */,
@@ -915,6 +933,7 @@
 				75DE43592A8CB37D00D42B9D /* Calendar+Nights.swift */,
 				75DE435D2A8CBE8B00D42B9D /* View+CornerRadius.swift */,
 				753F95672A94F651005B55B5 /* View+CameraPicker.swift */,
+				75F1EAD42AC6B782005A1694 /* View+PhotoPicker.swift */,
 				755170072AA1D70200816150 /* User+Chat.swift */,
 				75A8B9912AB9D0D200FB9F23 /* View+iOS17.swift */,
 				7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */,
@@ -1124,6 +1143,7 @@
 				75DE431A2A86BB6200D42B9D /* PexelPhoto.swift */,
 				7557A8EA2A9CFCC300F402A9 /* TripOpenState.swift */,
 				752D32652AAB14C7000280D5 /* UserNotification.swift */,
+				75F1EAD62AC6B9B0005A1694 /* ChatImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1224,6 +1244,7 @@
 				7557A8D72A9782B400F402A9 /* Kingfisher */,
 				7579BD122AB46215006F893F /* AspirinShot */,
 				7577DE5E2AC175E70076E5AA /* MessageKit */,
+				75660EFB2AC70C83004B3BEE /* Agrume */,
 			);
 			productName = TouristLlama;
 			productReference = 75BC4A402A80E88800B6F6CE /* TouristLlama.app */;
@@ -1261,6 +1282,7 @@
 				7557A8D62A9782B400F402A9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				7579BD112AB46215006F893F /* XCRemoteSwiftPackageReference "AspirinShot" */,
 				7577DE5D2AC175E60076E5AA /* XCRemoteSwiftPackageReference "MessageKit" */,
+				75660EFA2AC70C83004B3BEE /* XCRemoteSwiftPackageReference "Agrume" */,
 			);
 			productRefGroup = 75BC4A412A80E88800B6F6CE /* Products */;
 			projectDirPath = "";
@@ -1303,6 +1325,7 @@
 				7579BD1A2AB83156006F893F /* TripViewScreenshot.swift in Sources */,
 				7579BD1E2AB8560D006F893F /* String+DetectedAttributedString.swift in Sources */,
 				753F95522A939470005B55B5 /* TripChatViewModel.swift in Sources */,
+				75660EF92AC6E9C0004B3BEE /* MessageSwiftUIVC.swift in Sources */,
 				75DE43392A8A382000D42B9D /* BackendlessTripLocation.swift in Sources */,
 				75DE164E2A84F02200AF671B /* MyTripsView.swift in Sources */,
 				7557A8F22A9DE93200F402A9 /* TripManageListCell.swift in Sources */,
@@ -1323,6 +1346,7 @@
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
 				753F95412A935976005B55B5 /* ProfileViewModel.swift in Sources */,
+				75F1EAD72AC6B9B0005A1694 /* ChatImage.swift in Sources */,
 				755170012A9F84EA00816150 /* NotificationsController.swift in Sources */,
 				75ED79F62A8267970078D103 /* EmailConfirmationView.swift in Sources */,
 				7557A8F02A9D210F00F402A9 /* TripManageMembersViewModel.swift in Sources */,
@@ -1371,6 +1395,7 @@
 				753364CD2AA72F7400675BB5 /* ReportingView.swift in Sources */,
 				75DE43402A8BB3EF00D42B9D /* MyTripCellView.swift in Sources */,
 				75336BC22A85162100031D5C /* Local+Main.swift in Sources */,
+				75660EF32AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift in Sources */,
 				75336BAC2A85000300031D5C /* SelectorIconView.swift in Sources */,
 				75336BA32A84FE9500031D5C /* FramedPickerView.swift in Sources */,
 				75DE16642A84F53600AF671B /* TripPhoto.swift in Sources */,
@@ -1383,6 +1408,7 @@
 				7557A8E92A9CD61800F402A9 /* AppDelegate.swift in Sources */,
 				75ED7A1C2A839EF10078D103 /* TabBarViewModel.swift in Sources */,
 				7557A8DA2A989D2700F402A9 /* TripsFiltersView.swift in Sources */,
+				75F1EAD52AC6B782005A1694 /* View+PhotoPicker.swift in Sources */,
 				75BC4A5D2A80E9FA00B6F6CE /* Image+Onboarding.swift in Sources */,
 				7577DE662AC1885B0076E5AA /* Array+AdjacentElement.swift in Sources */,
 				7557A8E22A9C8F9100F402A9 /* BackendlessTripRequest.swift in Sources */,
@@ -1462,10 +1488,12 @@
 				752D325E2AAB0B16000280D5 /* NotificationsAPI.swift in Sources */,
 				75BC4A5F2A80EAC300B6F6CE /* OnboardViewModel.swift in Sources */,
 				75ED79FD2A826CBD0078D103 /* UserAPIMock.swift in Sources */,
+				75660EF52AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift in Sources */,
 				75DE43122A8646FF00D42B9D /* FramedTextView.swift in Sources */,
 				75DE16602A84F3B000AF671B /* TripStyle.swift in Sources */,
 				75DE433D2A8A3E5700D42B9D /* BackendlessObject.swift in Sources */,
 				75ED7A0A2A8277C90078D103 /* CustomError.swift in Sources */,
+				75660EF72AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift in Sources */,
 				75DE431B2A86BB6200D42B9D /* PexelPhoto.swift in Sources */,
 				753F955B2A94BF48005B55B5 /* Pronoun.swift in Sources */,
 				75DE436F2A8CEA6E00D42B9D /* ChatAPIMock.swift in Sources */,
@@ -1720,6 +1748,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		75660EFA2AC70C83004B3BEE /* XCRemoteSwiftPackageReference "Agrume" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JanGorman/Agrume";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.6;
+			};
+		};
 		7577DE5D2AC175E60076E5AA /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
@@ -1772,6 +1808,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7565F0542A81465300B796A1 /* XCRemoteSwiftPackageReference "Swift-SDK" */;
 			productName = Backendless;
+		};
+		75660EFB2AC70C83004B3BEE /* Agrume */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75660EFA2AC70C83004B3BEE /* XCRemoteSwiftPackageReference "Agrume" */;
+			productName = Agrume;
 		};
 		7577DE5E2AC175E70076E5AA /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;

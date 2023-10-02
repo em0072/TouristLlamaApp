@@ -116,6 +116,11 @@ struct LoadHadlerViewModifier: ViewModifier {
                     loader.showError(error)
                 }
             })
+            .overlay(content: {
+                if loader.isLoading {
+                    Color.black.opacity(0.8)
+                }
+            })
             .toast(isPresenting: $loader.isLoading, alert: {
                 AlertToast(displayMode: .alert, type: .loading)
             })

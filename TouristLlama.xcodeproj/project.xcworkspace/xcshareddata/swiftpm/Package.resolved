@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "agrume",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JanGorman/Agrume",
+      "state" : {
+        "revision" : "3527d8dc0d8303be12a7194f287881e8bf689a6b",
+        "version" : "5.8.6"
+      }
+    },
+    {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
@@ -115,6 +124,15 @@
       "state" : {
         "revision" : "e14b3aae919e610c61488ba929c5a01a728a292f",
         "version" : "7.0.0"
+      }
+    },
+    {
+      "identity" : "swiftygif",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kirualex/SwiftyGif",
+      "state" : {
+        "revision" : "d6d26061d6553a493781ad3df4a8e275c43fc373",
+        "version" : "5.4.4"
       }
     },
     {

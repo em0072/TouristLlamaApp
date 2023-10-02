@@ -23,4 +23,8 @@ class ChatAPIMock: ChatAPIProvider {
     func sendChatMessage(message: ChatMessage) async throws -> ChatMessage {
         .test
     }
+    
+    func uploadImage(id: String, chatId: String,  data: Data) async throws -> String {
+        return ""
+    }
 }

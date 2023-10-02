@@ -5,7 +5,7 @@
 //  Created by Evgeny Mitko on 16/08/2023.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 import Dependencies
 
@@ -31,4 +31,11 @@ class ChatAPI {
         try await provider.sendChatMessage(message: message)
     }
     
+    func uploadImage(id: String, chatId: String,  image: UIImage) async throws -> String {
+        guard let data = image.jpegData(compressionQuality: 0.6) else {
+            throw CustomError(text: "Can't convert image to data")
+        }
+        return try await provider.uploadImage(id: id, chatId: chatId, data: data)
+    }
+
 }
