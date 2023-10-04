@@ -12,7 +12,7 @@ import MessageKit
 
 struct MessagesView: UIViewControllerRepresentable {
     
-    final class Coordinator {
+    final class Coordinator: NSObject {
         let chat: TripChat
         let currentUser: User
         let chatParticipants: [String: User]

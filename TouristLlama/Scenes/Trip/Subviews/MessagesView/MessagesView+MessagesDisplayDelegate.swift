@@ -26,6 +26,7 @@ extension MessagesView.Coordinator: MessagesDisplayDelegate {
         }
     }
     
+    
     func enabledDetectors(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> [DetectorType] {
         switch message.kind {
         case .text:
