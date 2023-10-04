@@ -69,7 +69,7 @@ class MyTripsViewModel: ViewModel {
     
     private func subscribeToMyTripsUpdates() {
         tripsController.$myTrips
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] myTrips in
                 guard let self, let myTrips else { return }
                 self.myTrips = myTrips

@@ -32,6 +32,7 @@ class ExploreViewModel: ViewModel {
         super.subscribeToUpdates()
         subscribeToSearchTerm()
         subscribeToAllTrips()
+        print("subscribeToAllTrips", Date().timeIntervalSince1970)
     }
 
     var filtersTitle: String? {
@@ -101,11 +102,13 @@ class ExploreViewModel: ViewModel {
     
     private func subscribeToAllTrips() {
         tripsController.$exploreTrips
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] allTrips in
                 guard let allTrips else { return }
+                print("allTripsReceived", Date().timeIntervalSince1970)
                 self?.trips = allTrips
                 self?.state = .content
+                print("State changed", Date().timeIntervalSince1970)
                 self?.isSearching = false
             })
             .store(in: &publishers)

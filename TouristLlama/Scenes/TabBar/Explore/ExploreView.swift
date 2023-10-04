@@ -20,6 +20,7 @@ struct ExploreView: View {
                 LoadingView()
                 
             case .content:
+                let _ = print("content Rendered", Date().timeIntervalSince1970)
                 contentView
             }
             

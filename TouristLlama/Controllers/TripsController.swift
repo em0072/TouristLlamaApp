@@ -100,8 +100,25 @@ class TripsController: ObservableObject {
     
     @MainActor
     func loadTrips() {
-        loadMyTrips()
-        loadExploreTrips()
+        exploreTripsStartTime = Date().timeIntervalSince1970
+        print("Starting Load Explore Trips", exploreTripsStartTime)
+        Task { [weak self] in
+            guard let self else { return }
+            do {
+                async let myTrips = self.tripsAPI.getMyTrips()
+                async let exploreTrips = self.tripsAPI.getExploreTrips(searchTerm: "")
+                let trips = try await (myTrips, exploreTrips)
+                self.myTrips = trips.0
+                self.exploreTrips = trips.1
+                self.subscribeToTripsUpdates()
+                let finalTime = Date().timeIntervalSince1970
+                print("Completed Load Explore Trips", finalTime, "It took ", finalTime - exploreTripsStartTime)
+            } catch {
+                print(error)
+            }
+        }
+//        loadMyTrips()
+//        loadExploreTrips()
     }
     
     func reloadTrips() {

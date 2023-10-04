@@ -9,13 +9,15 @@ import UIKit
 import MessageKit
 import Agrume
 import Kingfisher
+import OSLog
 
 final class MessageSwiftUIVC: MessagesViewController {
     
     private var scrollToBottomButton: UIButton?
     private var isScrollToBottomButtonVisible: Bool = false
     private var isUserDragging: Bool = false
-    private var agrume: Agrume?
+    
+    var agrume: Agrume?
     
     var messages: [ChatMessage] {
         didSet {
@@ -42,6 +44,12 @@ final class MessageSwiftUIVC: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addScrollToBottomButton()
+//        let downloadItem = UIEditMenuInteraction(delegate: self)
+        
+    }
+    
+    @objc func downloadImage() {
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +82,7 @@ final class MessageSwiftUIVC: MessagesViewController {
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         onMessageDisappear(indexPath.section)
     }
+    
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         super.scrollViewDidScroll(scrollView)
@@ -149,7 +158,6 @@ final class MessageSwiftUIVC: MessagesViewController {
     }
     
     @objc private func scrollToBottomButtonAction() {
-        print("Scroll To Bottom Button Pressed")
         messagesCollectionView.scrollToLastItem(animated: true)
     }
     
@@ -167,20 +175,6 @@ final class MessageSwiftUIVC: MessagesViewController {
     }
 }
 
-extension MessageSwiftUIVC: MessageCellDelegate {
-    func didTapImage(in cell: MessageCollectionViewCell) {
-        guard let indexPath = messagesCollectionView.indexPath(for: cell),
-              let message = messages.item(at: indexPath.section),
-              message.type == .userImage else {
-                   return
-           }
-        if let imageIndex = mediaMessages.firstIndex(where: { $0.id == message.id }) {
-            let agrume = Agrume(dataSource: self, startIndex: imageIndex)
-            agrume.show(from: self)
-        }
-    }
-
-}
            
 extension MessageSwiftUIVC: AgrumeDataSource {
     var numberOfImages: Int {
@@ -188,6 +182,7 @@ extension MessageSwiftUIVC: AgrumeDataSource {
     }
     
     func image(forIndex index: Int, completion: @escaping (UIImage?) -> Void) {
+        Logger.viewCycle.info("Show Image at index \(index)")
         let message = mediaMessages[index]
         let mediaItem = message.image
         if let image = mediaItem?.image {

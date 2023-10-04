@@ -101,6 +101,9 @@
 		75660EF72AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */; };
 		75660EF92AC6E9C0004B3BEE /* MessageSwiftUIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */; };
 		75660EFC2AC70C83004B3BEE /* Agrume in Frameworks */ = {isa = PBXBuildFile; productRef = 75660EFB2AC70C83004B3BEE /* Agrume */; };
+		75660EFE2ACAE6F0004B3BEE /* MessageSwiftUIVC+MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EFD2ACAE6F0004B3BEE /* MessageSwiftUIVC+MessageCellDelegate.swift */; };
+		75660F002ACC1974004B3BEE /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660EFF2ACC1974004B3BEE /* Logger.swift */; };
+		75660F052ACC2711004B3BEE /* AgrumeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75660F042ACC2711004B3BEE /* AgrumeOverlayView.swift */; };
 		7577DE5F2AC175E70076E5AA /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7577DE5E2AC175E70076E5AA /* MessageKit */; };
 		7577DE612AC17B390076E5AA /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE602AC17B390076E5AA /* MessagesView.swift */; };
 		7577DE662AC1885B0076E5AA /* Array+AdjacentElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */; };
@@ -315,6 +318,9 @@
 		75660EF42AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesView+InputBarAccessoryViewDelegate.swift"; sourceTree = "<group>"; };
 		75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessagesView+MessagesDisplayDelegate.swift"; sourceTree = "<group>"; };
 		75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSwiftUIVC.swift; sourceTree = "<group>"; };
+		75660EFD2ACAE6F0004B3BEE /* MessageSwiftUIVC+MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageSwiftUIVC+MessageCellDelegate.swift"; sourceTree = "<group>"; };
+		75660EFF2ACC1974004B3BEE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		75660F042ACC2711004B3BEE /* AgrumeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgrumeOverlayView.swift; sourceTree = "<group>"; };
 		7577DE602AC17B390076E5AA /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		7577DE652AC1885B0076E5AA /* Array+AdjacentElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AdjacentElement.swift"; sourceTree = "<group>"; };
 		7577DE7C2AC1AB4B0076E5AA /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -646,9 +652,11 @@
 				75660EF22AC6E947004B3BEE /* MessagesView+MessagesLayoutDelegate.swift */,
 				75660EF62AC6E99F004B3BEE /* MessagesView+MessagesDisplayDelegate.swift */,
 				75660EF42AC6E978004B3BEE /* MessagesView+InputBarAccessoryViewDelegate.swift */,
+				75660EFD2ACAE6F0004B3BEE /* MessageSwiftUIVC+MessageCellDelegate.swift */,
 				75660EF82AC6E9C0004B3BEE /* MessageSwiftUIVC.swift */,
 				75F1EACE2AC597C7005A1694 /* InfoMessageCell.swift */,
 				7577DE7C2AC1AB4B0076E5AA /* InputView.swift */,
+				75660F042ACC2711004B3BEE /* AgrumeOverlayView.swift */,
 				7547B9FC2AC3163000F7E29A /* ScrollToBottomButton.swift */,
 			);
 			path = MessagesView;
@@ -659,6 +667,7 @@
 			children = (
 				7579BD0F2AB4610F006F893F /* DebugView.swift */,
 				7579BD162AB4772F006F893F /* Screenshots */,
+				75660EFF2ACC1974004B3BEE /* Logger.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -1344,6 +1353,7 @@
 				7557A8F52A9DED3700F402A9 /* TripRequest+test.swift in Sources */,
 				75336BD42A86333100031D5C /* TripCreationStage.swift in Sources */,
 				75BC4A872A810D6100B6F6CE /* RegisterViewModel.swift in Sources */,
+				75660EFE2ACAE6F0004B3BEE /* MessageSwiftUIVC+MessageCellDelegate.swift in Sources */,
 				75ED79F32A8262430078D103 /* User.swift in Sources */,
 				753F95412A935976005B55B5 /* ProfileViewModel.swift in Sources */,
 				75F1EAD72AC6B9B0005A1694 /* ChatImage.swift in Sources */,
@@ -1386,6 +1396,7 @@
 				753F95452A93621A005B55B5 /* Local+Profile.swift in Sources */,
 				753F95592A94BA67005B55B5 /* FramedButtonStyle.swift in Sources */,
 				7557A8D22A96283F00F402A9 /* NoResultsView.swift in Sources */,
+				75660F002ACC1974004B3BEE /* Logger.swift in Sources */,
 				75ED7A072A8270C50078D103 /* ViewModel.swift in Sources */,
 				75516FD42A9F44F300816150 /* SearchingUsersViewModel.swift in Sources */,
 				75DE43372A8A2DF200D42B9D /* TripsAPIMock.swift in Sources */,
@@ -1454,6 +1465,7 @@
 				75DE43732A8E03C600D42B9D /* ChatMessage+test.swift in Sources */,
 				75DE43692A8CE9B500D42B9D /* ChatAPIProvider.swift in Sources */,
 				75DE43232A86BDF600D42B9D /* System Constants.swift in Sources */,
+				75660F052ACC2711004B3BEE /* AgrumeOverlayView.swift in Sources */,
 				75336BC82A852A8100031D5C /* Date+Forward.swift in Sources */,
 				75DE16502A84F03000AF671B /* MyTripsViewModel.swift in Sources */,
 				75BC4A7C2A80FB5400B6F6CE /* WideBlueButtonStyle.swift in Sources */,
@@ -1648,6 +1660,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tourist Llama";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera for you to be able to take pictures and upload them.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to acces your photos to be able to save photos to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1686,6 +1699,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tourist Llama";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera for you to be able to take pictures and upload them.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to acces your photos to be able to save photos to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
