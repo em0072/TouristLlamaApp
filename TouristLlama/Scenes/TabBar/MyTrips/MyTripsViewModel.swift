@@ -87,9 +87,9 @@ class MyTripsViewModel: ViewModel {
     private func sortTrips() {
         clearTripsData()
         for trip in myTrips {
-            if trip.startDate > Date().removeTimeStamp {
+            if trip.startDate.removeTimeStamp > Date().removeTimeStamp {
                 myFutureTrips.append(trip)
-            } else if trip.endDate >= Date().removeTimeStamp {
+            } else if trip.endDate.removeTimeStamp >= Date().removeTimeStamp {
                 myOngoingTrips.append(trip)
             } else {
                 myPastTrips.append(trip)

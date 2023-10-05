@@ -61,7 +61,7 @@ class TripDetailViewModel: ViewModel {
     
     var nonParticipantTripRequest: TripRequest? {
         guard !isCurrentUserMemberOfTrip else { return nil }
-        return trip.requests.first
+        return trip.requests.first(where: { $0.applicant.id == userAPI.currentUser?.id })
     }
     
     func updateTrip(updatedTrip: Trip) {

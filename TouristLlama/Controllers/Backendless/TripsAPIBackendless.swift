@@ -300,7 +300,7 @@ class TripsAPIBackendless: TripsAPIProvider {
     
     func answerTravelInvite(request: TripRequest, accepted: Bool) async throws -> TripRequest {
         return try await withCheckedThrowingContinuation { continuation in
-            let parameters: [String: Any] = ["travelRequestId": request.id, "accepted": accepted]
+            let parameters: [String: Any] = ["tripId": request.tripId, "accepted": accepted]
             Backendless.shared.customService.invoke(serviceName: serviceName, method: "answerTravelInvite", parameters: parameters) { response in
                 guard let blTripRequest = response as? BackendlessTripReqest else {
                     continuation.resume(throwing: CustomError(text: "Cannot parse data to backendless object"))
